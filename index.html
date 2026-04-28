@@ -1,0 +1,1455 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#050505" />
+  <title>OFF NUTRITION LAB // ENERGY DUST — Energia em pó, performance em movimento</title>
+  <meta name="description" content="Um energético em pó criado para transformar rotina em impulso. Misture, ative e siga. Performance diária, visual premium." />
+
+  <!-- Preconnect fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Nebula DS type stack: Bricolage (display), Inter (body), JetBrains Mono (labels) -->
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet" />
+
+  <!-- Preload the scroll-driven video so the scrub is buttery from the first frame -->
+  <link rel="preload" href="./assets/raw_files/video2.mp4" as="video" type="video/mp4" />
+
+  <style>
+    /* =============================================================
+       OFF NUTRITION // ENERGY DUST — HERO
+       Extends the "Nebula" Design System (design-system.html)
+       Tokens, fonts, patterns and animations inherited 1:1.
+       Acid (#CCFF00) promoted to primary for the energy brand.
+       ============================================================= */
+
+    :root {
+      /* Base surfaces — Nebula tokens */
+      --obsidian: #050505;
+      --void: #000000;
+      --surface: #0A0A0A;
+      --panel: #111111;
+      --panel-2: #171717;
+
+      /* Neutrals (Inter ramp) */
+      --n-100: #f5f5f5;
+      --n-200: #e5e5e5;
+      --n-300: #d4d4d4;
+      --n-400: #a3a3a3;
+      --n-500: #737373;
+      --n-600: #525252;
+      --n-700: #404040;
+      --n-800: #262626;
+
+      /* Borders */
+      --line: rgba(255, 255, 255, 0.08);
+      --line-soft: rgba(255, 255, 255, 0.05);
+      --line-strong: rgba(255, 255, 255, 0.16);
+
+      /* Accents — Energy Dust leans on Acid */
+      --acid: #ccff00;
+      --acid-2: #a9d900;
+      --solar: #f97316;
+      --ember: #fb923c;
+      --amber: #fbbf24;
+
+      /* Easing / timing — from Nebula */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-elastic: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --ease-hero: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+      /* Typography */
+      --f-display: 'Bricolage Grotesque', sans-serif;
+      --f-sans: 'Inter', sans-serif;
+      --f-mono: 'JetBrains Mono', monospace;
+
+      /* Radii */
+      --r-xs: 6px;
+      --r-sm: 10px;
+      --r-md: 14px;
+      --r-lg: 22px;
+      --r-xl: 28px;
+      --r-pill: 999px;
+
+      /* Shadows */
+      --sh-acid: 0 0 40px -6px rgba(204, 255, 0, 0.45), 0 0 90px -20px rgba(204, 255, 0, 0.35);
+      --sh-acid-strong: 0 0 60px -6px rgba(204, 255, 0, 0.7), 0 0 140px -30px rgba(204, 255, 0, 0.55);
+      --sh-card: 0 18px 60px -28px rgba(0, 0, 0, 0.8), 0 1px 0 rgba(255, 255, 255, 0.04) inset;
+    }
+
+    /* ---------- Reset ---------- */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    html { scroll-behavior: auto; -webkit-text-size-adjust: 100%; }
+    img, svg, video { display: block; max-width: 100%; }
+    button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+    a { color: inherit; text-decoration: none; }
+
+    body {
+      font-family: var(--f-sans);
+      background: var(--obsidian);
+      color: var(--n-200);
+      overflow-x: hidden;
+      min-height: 100%;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      letter-spacing: -0.005em;
+    }
+    ::selection { background: rgba(204, 255, 0, 0.35); color: #000; }
+
+    /* Hide scrollbar (Nebula convention) */
+    body { scrollbar-width: none; -ms-overflow-style: none; }
+    body::-webkit-scrollbar { display: none; }
+
+    /* Lenis integration — disables CSS smooth-scroll on html, opts body into scroll */
+    html.lenis { height: auto; }
+    .lenis.lenis-smooth { scroll-behavior: auto !important; }
+    .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+    .lenis.lenis-stopped { overflow: hidden; }
+
+    /* =============================================================
+       GLOBAL BACKGROUND — grid + stars + drifting glows + noise
+       Same visual recipe as Nebula DS global background.
+       ============================================================= */
+    .bg-layer {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .bg-grid {
+      position: absolute;
+      inset: -2px;
+      background-image:
+        linear-gradient(to right, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: radial-gradient(ellipse at 60% 40%, #000 35%, transparent 85%);
+      -webkit-mask-image: radial-gradient(ellipse at 60% 40%, #000 35%, transparent 85%);
+    }
+    .bg-stars {
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(1px 1px at 20px 30px, #fff, rgba(0, 0, 0, 0)),
+        radial-gradient(1px 1px at 40px 70px, #fff, rgba(0, 0, 0, 0)),
+        radial-gradient(1px 1px at 50px 160px, #fff, rgba(0, 0, 0, 0)),
+        radial-gradient(1.5px 1.5px at 90px 40px, #fff, rgba(0, 0, 0, 0)),
+        radial-gradient(1px 1px at 130px 80px, #fff, rgba(0, 0, 0, 0)),
+        radial-gradient(1px 1px at 160px 120px, #fff, rgba(0, 0, 0, 0));
+      background-size: 220px 220px;
+      opacity: 0.18;
+    }
+    .bg-glow {
+      position: absolute;
+      border-radius: 9999px;
+      filter: blur(140px);
+      will-change: transform;
+    }
+    .bg-glow-acid {
+      width: 680px; height: 680px;
+      left: 62%; top: 12%;
+      background: rgba(204, 255, 0, 0.14);
+      animation: drift 16s var(--ease-out) infinite alternate;
+    }
+    .bg-glow-solar {
+      width: 520px; height: 520px;
+      left: -6%; top: 55%;
+      background: rgba(249, 115, 22, 0.10);
+      animation: drift 22s var(--ease-out) -6s infinite alternate;
+    }
+    .bg-glow-deep {
+      width: 820px; height: 520px;
+      left: 40%; top: 70%;
+      background: rgba(204, 255, 0, 0.05);
+      animation: drift 28s var(--ease-out) -12s infinite alternate;
+    }
+    @keyframes drift {
+      0%   { transform: translate3d(0, 0, 0) scale(1); }
+      50%  { transform: translate3d(40px, -30px, 0) scale(1.06); }
+      100% { transform: translate3d(-30px, 20px, 0) scale(0.96); }
+    }
+
+    /* Film grain — identical to Nebula DS */
+    .noise {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0.045;
+      mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    }
+
+    /* Vignette to focus center */
+    .vignette {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      background:
+        radial-gradient(120% 80% at 50% 0%, transparent 40%, rgba(0, 0, 0, 0.55) 100%),
+        radial-gradient(80% 60% at 50% 100%, rgba(0, 0, 0, 0.35) 0%, transparent 60%);
+    }
+
+    /* =============================================================
+       NAV — minimal, glass, Nebula vocabulary
+       ============================================================= */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 60;
+      padding: 18px clamp(16px, 4vw, 40px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      background: linear-gradient(to bottom, rgba(5, 5, 5, 0.72), rgba(5, 5, 5, 0.28));
+      border-bottom: 1px solid var(--line-soft);
+    }
+    .nav-brand { display: flex; align-items: center; gap: 12px; }
+    .nav-mark {
+      position: relative;
+      width: 34px; height: 34px;
+      display: grid; place-items: center;
+    }
+    .nav-mark::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 9999px;
+      background: conic-gradient(from 0deg, transparent 0 310deg, var(--acid) 340deg, #fff 360deg);
+      filter: blur(6px);
+      opacity: 0.85;
+      animation: spin 8s linear infinite;
+    }
+    .nav-mark svg {
+      position: relative;
+      width: 22px; height: 22px;
+      stroke: #fff;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .nav-name { display: flex; flex-direction: column; line-height: 1; gap: 3px; }
+    .nav-name .kicker {
+      font-family: var(--f-mono);
+      font-size: 10px;
+      letter-spacing: 0.28em;
+      color: var(--n-500);
+      text-transform: uppercase;
+    }
+    .nav-name .brand {
+      font-family: var(--f-display);
+      font-weight: 300;
+      font-size: 18px;
+      color: #fff;
+      letter-spacing: -0.01em;
+    }
+    .nav-name .brand b { color: var(--acid); font-weight: 300; }
+
+    .nav-menu {
+      display: none;
+      align-items: center;
+      gap: 28px;
+    }
+    .nav-menu a {
+      font-family: var(--f-mono);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--n-400);
+      transition: color .25s var(--ease-out);
+      position: relative;
+    }
+    .nav-menu a::after {
+      content: "";
+      position: absolute;
+      left: 0; bottom: -8px;
+      height: 1px; width: 0;
+      background: var(--acid);
+      transition: width .4s var(--ease-out);
+    }
+    .nav-menu a:hover { color: #fff; }
+    .nav-menu a:hover::after { width: 100%; }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 16px;
+      border-radius: var(--r-pill);
+      background: #fff;
+      color: #000;
+      font-family: var(--f-mono);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      transition: transform .3s var(--ease-out), box-shadow .3s var(--ease-out);
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.3) inset;
+    }
+    .nav-cta::before {
+      content: "";
+      width: 6px; height: 6px;
+      border-radius: 9999px;
+      background: var(--acid);
+      box-shadow: 0 0 12px 2px rgba(204, 255, 0, 0.8);
+      animation: pulseDot 1.8s ease-in-out infinite;
+    }
+    .nav-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 0 30px -8px rgba(204, 255, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.4) inset;
+    }
+    @keyframes pulseDot {
+      0%, 100% { transform: scale(1);   box-shadow: 0 0 12px 2px rgba(204, 255, 0, 0.8); }
+      50%      { transform: scale(1.35); box-shadow: 0 0 22px 4px rgba(204, 255, 0, 0.9); }
+    }
+
+    @media (min-width: 960px) {
+      .nav-menu { display: flex; }
+    }
+
+    /* =============================================================
+       HERO — 280vh track + sticky viewport
+       Scroll drives video.currentTime (Apple product-page style).
+       ============================================================= */
+    .hero {
+      position: relative;
+      height: 280vh;        /* scroll track length */
+      z-index: 5;
+    }
+    .hero-sticky {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      min-height: 720px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Ambient halos bound to the sticky frame — sit behind right column */
+    .hero-halo {
+      position: absolute;
+      pointer-events: none;
+      z-index: 1;
+      border-radius: 9999px;
+      filter: blur(120px);
+    }
+    .hero-halo.h-acid {
+      right: -120px; top: 20%;
+      width: 620px; height: 620px;
+      background: rgba(204, 255, 0, 0.18);
+    }
+    .hero-halo.h-solar {
+      left: -160px; bottom: -140px;
+      width: 520px; height: 520px;
+      background: rgba(249, 115, 22, 0.10);
+    }
+
+    /* Orbital rings — signature Nebula motif, acid colored */
+    .orbit {
+      position: absolute;
+      top: 50%; left: 62%;
+      transform: translate(-50%, -50%);
+      border-radius: 9999px;
+      pointer-events: none;
+      z-index: 2;
+    }
+    .orbit.o-1 { width: 560px;  height: 560px; border: 1px solid rgba(204, 255, 0, 0.15); animation: spin 48s linear infinite; }
+    .orbit.o-2 { width: 780px;  height: 780px; border: 1px dashed rgba(255, 255, 255, 0.07); animation: spin 70s linear reverse infinite; }
+    .orbit.o-3 { width: 1060px; height: 1060px; border: 1px solid rgba(255, 255, 255, 0.04); animation: spin 120s linear infinite; }
+    .orbit.o-1::before {
+      content: "";
+      position: absolute;
+      top: -4px; left: 50%;
+      width: 8px; height: 8px;
+      margin-left: -4px;
+      border-radius: 9999px;
+      background: var(--acid);
+      box-shadow: 0 0 14px 3px rgba(204, 255, 0, 0.8);
+    }
+    @keyframes spin { to { transform: translate(-50%, -50%) rotate(360deg); } }
+
+    /* ============ GRID ============ */
+    .hero-grid {
+      position: relative;
+      z-index: 10;
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr;
+      align-items: center;
+      gap: 40px;
+      max-width: 1360px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 90px clamp(18px, 4vw, 56px) 40px;
+    }
+    @media (min-width: 1024px) {
+      .hero-grid {
+        grid-template-columns: 1.05fr 1fr;
+        gap: 60px;
+      }
+    }
+
+    /* ============ LEFT COLUMN ============ */
+    .hero-left { position: relative; z-index: 3; max-width: 720px; }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 7px 12px 7px 9px;
+      border-radius: var(--r-pill);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--line);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      font-family: var(--f-mono);
+      font-size: 10px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--n-300);
+    }
+    .hero-tag .dot {
+      position: relative;
+      display: inline-flex;
+      width: 8px; height: 8px;
+    }
+    .hero-tag .dot::before,
+    .hero-tag .dot::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 9999px;
+      background: var(--acid);
+    }
+    .hero-tag .dot::before {
+      box-shadow: 0 0 10px 1px rgba(204, 255, 0, 0.85);
+    }
+    .hero-tag .dot::after {
+      animation: ping 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+      opacity: 0.7;
+    }
+    .hero-tag .ver {
+      margin-left: 4px;
+      padding-left: 10px;
+      border-left: 1px solid var(--line);
+      color: var(--n-500);
+    }
+    @keyframes ping {
+      0%   { transform: scale(1);   opacity: 0.7; }
+      75%, 100% { transform: scale(2.4); opacity: 0; }
+    }
+
+    /* ----------------------------------------------------------------
+       HEADLINE — lettering premium seguindo referência visual:
+       · Peso 800 (ultra-bold), idêntico ao "Obsidian motion,
+         engineered precision." da imagem de referência
+       · Tamanho generoso para dominar a coluna esquerda
+       · Linha 1 branca  →  "Energia em pó,"
+       · Linhas 2–3 verde acid sólido (#CCFF00)  → "performance"
+         + "em movimento."  (equivalente a "engineered precision.")
+       ---------------------------------------------------------------- */
+    .hero-headline {
+      margin: 20px 0 24px;
+      font-family: var(--f-display);
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.038em;
+      line-height: 0.90;
+      font-size: clamp(40px, 6.2vw, 84px);
+    }
+    .hero-headline .line {
+      display: block;
+      overflow: hidden;
+      /* pequena respiração entre linhas sem comprometer o ritmo visual */
+      padding: 0.045em 0;
+    }
+    .hero-headline .line > span {
+      display: inline-block;
+      /* estado inicial oculto — GSAP fará o set() via inline style
+         antes de animar, garantindo controle total da tween */
+      will-change: transform, opacity;
+    }
+    /* Linhas em verde acid — idêntico ao "engineered precision." da referência */
+    .hero-headline .line > span.hl-acid {
+      color: var(--acid);
+      /* glow sutil para reforçar a luminosidade do verde */
+      text-shadow:
+        0 0 55px rgba(204, 255, 0, 0.30),
+        0 0 16px rgba(204, 255, 0, 0.18);
+    }
+
+    .hero-sub {
+      font-size: clamp(15px, 1.15vw, 18px);
+      line-height: 1.55;
+      color: var(--n-400);
+      max-width: 520px;
+      margin: 0 0 32px;
+      opacity: 0;
+      transform: translateY(14px);
+      will-change: transform, opacity;
+    }
+    .hero-sub b { color: var(--n-100); font-weight: 500; }
+
+    /* ============ CTAs ============ */
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 42px;
+      opacity: 0;
+      transform: translateY(14px);
+      will-change: transform, opacity;
+    }
+    .btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 22px 13px 24px;
+      border-radius: var(--r-pill);
+      font-size: 14px;
+      letter-spacing: 0.01em;
+      font-family: var(--f-sans);
+      font-weight: 500;
+      white-space: nowrap;
+      transition: transform .35s var(--ease-out), box-shadow .35s var(--ease-out), background .25s;
+      overflow: hidden;
+      isolation: isolate;
+    }
+    .btn svg {
+      width: 16px; height: 16px;
+      transition: transform .35s var(--ease-out);
+    }
+    .btn:hover svg { transform: translateX(3px); }
+
+    /* Primary — Acid green glow (Energy Dust) */
+    .btn-primary {
+      color: #0a0a0a;
+      background: linear-gradient(180deg, #e5ff66 0%, var(--acid) 45%, var(--acid-2) 100%);
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.35) inset,
+        0 14px 40px -14px rgba(204, 255, 0, 0.9),
+        0 0 60px -18px rgba(204, 255, 0, 0.7);
+    }
+    .btn-primary .shimmer {
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .btn-primary .shimmer::before {
+      content: "";
+      position: absolute;
+      top: 0; left: -80%;
+      width: 60%; height: 100%;
+      background: linear-gradient(100deg, transparent 0%, rgba(255, 255, 255, 0.55) 50%, transparent 100%);
+      transform: skewX(-18deg);
+      transition: left .9s var(--ease-out);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.5) inset,
+        0 18px 60px -14px rgba(204, 255, 0, 1),
+        0 0 100px -18px rgba(204, 255, 0, 0.85);
+    }
+    .btn-primary:hover .shimmer::before { left: 120%; }
+
+    /* Secondary — conic beam (Nebula gemini pattern) */
+    .btn-secondary {
+      padding: 1px;
+      border-radius: var(--r-pill);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.04));
+      color: #fff;
+    }
+    .btn-secondary .inner {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 20px;
+      border-radius: var(--r-pill);
+      background: #0b0b0b;
+      color: #fff;
+      transition: background .3s var(--ease-out);
+      position: relative;
+    }
+    .btn-secondary .beam {
+      position: absolute;
+      inset: -1000%;
+      background: conic-gradient(from 0deg, transparent 0 330deg, var(--acid) 348deg, #fff 360deg);
+      animation: spin 2.4s linear infinite;
+      opacity: 0;
+      transition: opacity .3s var(--ease-out);
+      z-index: 0;
+    }
+    .btn-secondary:hover .beam { opacity: 1; }
+    .btn-secondary .label { position: relative; z-index: 2; color: #fff; }
+    .btn-secondary .arrow {
+      position: relative;
+      z-index: 2;
+      color: var(--n-400);
+      transition: color .25s, transform .35s var(--ease-out);
+    }
+    .btn-secondary:hover .arrow { color: #fff; transform: translateX(2px); }
+
+    /* ============ META STRIP (3 stats) ============ */
+    .hero-meta {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      padding-top: 22px;
+      border-top: 1px solid var(--line-soft);
+      max-width: 520px;
+      opacity: 0;
+      transform: translateY(14px);
+      will-change: transform, opacity;
+    }
+    .meta-val {
+      font-family: var(--f-display);
+      font-weight: 300;
+      font-size: clamp(22px, 2.4vw, 30px);
+      letter-spacing: -0.02em;
+      color: #fff;
+      line-height: 1;
+    }
+    .meta-val span {
+      font-family: var(--f-mono);
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      color: var(--acid);
+      margin-left: 6px;
+      text-transform: uppercase;
+      vertical-align: 4px;
+    }
+    .meta-lbl {
+      margin-top: 8px;
+      font-family: var(--f-mono);
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--n-500);
+    }
+
+    /* =============================================================
+       RIGHT COLUMN — video stage + HUD overlays + floating cards
+       ============================================================= */
+    .hero-right {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 480px;
+    }
+
+    .stage {
+      position: relative;
+      width: min(520px, 94%);
+      aspect-ratio: 4 / 5;
+      z-index: 4;
+      will-change: transform;
+    }
+
+    .stage-frame {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: var(--r-xl);
+      overflow: hidden;
+      background:
+        radial-gradient(120% 80% at 50% 0%, rgba(204, 255, 0, 0.22), transparent 60%),
+        linear-gradient(180deg, #0b0e04 0%, #050505 60%, #020500 100%);
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.08) inset,
+        0 30px 90px -30px rgba(0, 0, 0, 0.9),
+        var(--sh-acid);
+    }
+    /* Gradient border accent (Nebula electric-card pattern) */
+    .stage-frame::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(180deg, rgba(204, 255, 0, 0.65) 0%, rgba(204, 255, 0, 0.08) 40%, transparent 70%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+              mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+              mask-composite: exclude;
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    #scrollVideo {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity .6s var(--ease-out);
+      filter: saturate(1.05) contrast(1.04);
+    }
+    #scrollVideo.is-ready { opacity: 1; }
+
+    /* Fallback — always present; video sits on top once ready */
+    .stage-fallback {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      background:
+        radial-gradient(60% 50% at 50% 40%, rgba(204, 255, 0, 0.35), transparent 70%),
+        radial-gradient(80% 60% at 50% 100%, rgba(249, 115, 22, 0.22), transparent 70%),
+        #050505;
+    }
+    .stage-fallback::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(1px 1px at 20% 30%, #ccff00aa, transparent 55%),
+        radial-gradient(1.4px 1.4px at 70% 20%, #fffa, transparent 55%),
+        radial-gradient(1px 1px at 40% 70%, #ccff0088, transparent 55%),
+        radial-gradient(2px 2px at 80% 80%, #ffffffdd, transparent 60%),
+        radial-gradient(1px 1px at 55% 55%, #ccff00cc, transparent 55%);
+      opacity: 0.6;
+    }
+    .stage-fallback::after {
+      content: "";
+      position: absolute;
+      inset: 25% 15% 15% 25%;
+      border-radius: 50%;
+      background: radial-gradient(closest-side, rgba(204, 255, 0, 0.85), rgba(204, 255, 0, 0.18) 55%, transparent 75%);
+      filter: blur(18px);
+      animation: breathe 5.5s ease-in-out infinite;
+    }
+    @keyframes breathe {
+      0%, 100% { transform: scale(0.9); opacity: 0.85; }
+      50%      { transform: scale(1.08); opacity: 1; }
+    }
+
+    /* Scan line — subtle tech detail */
+    .stage-scan {
+      position: absolute;
+      left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(204, 255, 0, 0.8), transparent);
+      box-shadow: 0 0 14px rgba(204, 255, 0, 0.6);
+      z-index: 4;
+      pointer-events: none;
+      mix-blend-mode: screen;
+      animation: scan 5.5s linear infinite;
+    }
+    @keyframes scan {
+      0%   { top: -2%; opacity: 0; }
+      10%  { opacity: 0.9; }
+      90%  { opacity: 0.9; }
+      100% { top: 102%; opacity: 0; }
+    }
+
+    /* Corner ticks — top-left/top-right/bottom-left/bottom-right */
+    .tick {
+      position: absolute;
+      width: 18px; height: 18px;
+      border-color: rgba(204, 255, 0, 0.7);
+      border-style: solid;
+      z-index: 5;
+    }
+    .tick.tl { top: 12px;    left: 12px;    border-width: 1px 0 0 1px; }
+    .tick.tr { top: 12px;    right: 12px;   border-width: 1px 1px 0 0; }
+    .tick.bl { bottom: 12px; left: 12px;    border-width: 0 0 1px 1px; }
+    .tick.br { bottom: 12px; right: 12px;   border-width: 0 1px 1px 0; }
+
+    /* HUD overlays inside the video frame */
+    .hud {
+      position: absolute;
+      z-index: 6;
+      font-family: var(--f-mono);
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--n-200);
+      padding: 7px 11px;
+      border-radius: var(--r-sm);
+      background: rgba(5, 5, 5, 0.55);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .hud-tl { top: 28px;    left: 28px;    display: inline-flex; align-items: center; gap: 8px; }
+    .hud-tl::before {
+      content: "";
+      width: 6px; height: 6px;
+      border-radius: 9999px;
+      background: var(--acid);
+      box-shadow: 0 0 10px 2px rgba(204, 255, 0, 0.9);
+      animation: pulseDot 1.6s ease-in-out infinite;
+    }
+    /* hud-tr removed */
+    .hud-bl {
+      bottom: 28px; left: 28px;
+      padding: 10px 12px;
+      min-width: 150px;
+    }
+    .hud-bl .hud-title {
+      display: block;
+      font-size: 9px;
+      color: var(--n-400);
+      margin-bottom: 8px;
+    }
+    .hud-bars {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 2px;
+      height: 12px;
+    }
+    .hud-bars span {
+      display: block;
+      border-radius: 1px;
+      background: rgba(204, 255, 0, 0.2);
+      transform-origin: bottom;
+    }
+    .hud-bars span.hot   { background: var(--acid); box-shadow: 0 0 6px rgba(204, 255, 0, 0.9); }
+    .hud-bars span.warm  { background: rgba(204, 255, 0, 0.65); }
+    .hud-bars span.cool  { background: rgba(204, 255, 0, 0.35); }
+
+    .hud-br {
+      bottom: 28px; right: 28px;
+      display: flex; flex-direction: column; align-items: flex-end; gap: 2px;
+      padding: 10px 12px;
+    }
+    .hud-br .big {
+      font-family: var(--f-display);
+      font-weight: 300;
+      font-size: 22px;
+      letter-spacing: -0.02em;
+      color: #fff;
+      text-transform: none;
+    }
+    .hud-br .big em {
+      font-style: normal;
+      color: var(--acid);
+      font-size: 11px;
+      margin-left: 3px;
+      letter-spacing: 0.12em;
+    }
+    .hud-br .lbl { color: var(--n-400); font-size: 9px; }
+
+
+
+
+    /* Small drifting motes around stage */
+    .mote {
+      position: absolute;
+      width: 6px; height: 6px;
+      border-radius: 9999px;
+      background: var(--acid);
+      box-shadow: 0 0 14px 2px rgba(204, 255, 0, 0.85);
+      animation: float 7s ease-in-out infinite;
+      z-index: 3;
+    }
+    .mote.m1 { top: 8%;  left: 4%;  animation-delay: -1s; }
+    .mote.m2 { top: 62%; right: 6%; width: 4px; height: 4px; animation-delay: -3s; background: #fff; box-shadow: 0 0 10px 1px rgba(255, 255, 255, 0.8); }
+    .mote.m3 { bottom: 10%; left: 10%; width: 5px; height: 5px; animation-delay: -5s; background: var(--solar); box-shadow: 0 0 14px 2px rgba(249, 115, 22, 0.85); }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-14px); }
+    }
+
+    /* =============================================================
+       MICROTEXT LABELS — below-the-fold technical list (marquee)
+       ============================================================= */
+    .hero-strip {
+      position: relative;
+      z-index: 15;
+      padding: 14px 0;
+      border-top: 1px solid var(--line-soft);
+      border-bottom: 1px solid var(--line-soft);
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      overflow: hidden;
+      mask-image: linear-gradient(90deg, transparent 0%, #000 10%, #000 90%, transparent 100%);
+    }
+    .hero-strip-track {
+      display: flex;
+      gap: 44px;
+      width: max-content;
+      animation: marquee 36s linear infinite;
+      align-items: center;
+    }
+    .hero-strip-track span {
+      font-family: var(--f-mono);
+      font-size: 11px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--n-400);
+      white-space: nowrap;
+    }
+    .hero-strip-track span.acc { color: var(--acid); }
+    .hero-strip-track svg { width: 10px; height: 10px; }
+    @keyframes marquee {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* =============================================================
+       SCROLL HINT (bottom of the sticky frame)
+       ============================================================= */
+    .hero-scrollhint {
+      position: absolute;
+      left: 50%;
+      bottom: 26px;
+      transform: translateX(-50%);
+      z-index: 20;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      pointer-events: none;
+    }
+    .hero-scrollhint span {
+      font-family: var(--f-mono);
+      font-size: 9.5px;
+      letter-spacing: 0.32em;
+      color: var(--n-500);
+      text-transform: uppercase;
+    }
+    .hero-scrollhint .line {
+      width: 1px;
+      height: 42px;
+      background: linear-gradient(180deg, transparent 0%, var(--acid) 40%, transparent 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-scrollhint .line::after {
+      content: "";
+      position: absolute;
+      left: 0; right: 0;
+      top: -20px;
+      height: 16px;
+      background: var(--acid);
+      box-shadow: 0 0 8px var(--acid);
+      animation: slideDown 2.2s ease-in-out infinite;
+    }
+    @keyframes slideDown {
+      0%   { top: -16px; opacity: 0; }
+      20%  { opacity: 1; }
+      80%  { opacity: 1; }
+      100% { top: 42px; opacity: 0; }
+    }
+
+    /* =============================================================
+       RESPONSIVE — tighten on tablet/mobile
+       ============================================================= */
+    @media (max-width: 1023px) {
+      .hero { height: 220vh; }
+      .hero-grid { padding-top: 100px; }
+      .hero-right { min-height: 380px; margin-top: 20px; }
+    }
+    @media (max-width: 680px) {
+      .hero { height: 200vh; }
+      .hero-sticky { min-height: 640px; }
+      /* mobile: mantém peso 800 mas escala para caber na tela */
+      .hero-headline { font-size: clamp(34px, 9.5vw, 54px); letter-spacing: -0.025em; line-height: 0.93; }
+      .hero-sub { font-size: 14px; }
+      .hero-cta { flex-direction: column; align-items: stretch; }
+      .btn { justify-content: center; }
+      .hero-meta { grid-template-columns: 1fr 1fr; }
+      .hero-meta > :nth-child(3) { display: none; }
+      .stage { width: 86%; aspect-ratio: 4 / 5; }
+
+      .nav-cta { display: none; }
+      .hero-scrollhint { display: none; }
+      .orbit { left: 50%; }
+      .orbit.o-3 { display: none; }
+    }
+
+    /* =============================================================
+       PREFERS-REDUCED-MOTION — strip animations, keep layout
+       ============================================================= */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .001ms !important;
+      }
+      .hero { height: auto; min-height: 100vh; }
+      .hero-sticky { position: relative; height: auto; min-height: 100vh; }
+      .hero-headline .line > span { transform: none; opacity: 1; }
+      .hero-sub, .hero-cta, .hero-meta { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- =================================================================
+       GLOBAL BACKGROUND LAYERS (grid + stars + drifting glows)
+       ================================================================= -->
+  <div class="bg-layer" aria-hidden="true">
+    <div class="bg-grid"></div>
+    <div class="bg-stars"></div>
+    <div class="bg-glow bg-glow-acid"></div>
+    <div class="bg-glow bg-glow-solar"></div>
+    <div class="bg-glow bg-glow-deep"></div>
+  </div>
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="noise" aria-hidden="true"></div>
+
+  <!-- =================================================================
+       NAVIGATION
+       ================================================================= -->
+  <nav class="nav" aria-label="Primary">
+    <div class="nav-brand">
+      <div class="nav-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M12 6v12"/><path d="M17.196 9 6.804 15"/><path d="m6.804 9 10.392 6"/></svg>
+      </div>
+      <div class="nav-name">
+        <span class="kicker">OFFNUTRITION</span>
+        <span class="brand">Energy<b>·</b>Dust</span>
+      </div>
+    </div>
+
+    <div class="nav-menu" role="navigation">
+      <a href="#produto">Produto</a>
+      <a href="#lab">Laboratório</a>
+      <a href="#composicao">Composição</a>
+      <a href="#rituais">Rituais</a>
+    </div>
+
+    <a href="#comprar" class="nav-cta" aria-label="Ativar energia">
+      Ativar <span style="color:#737373">·</span> v1.0
+    </a>
+  </nav>
+
+  <!-- =================================================================
+       HERO — single section, 280vh scroll track, pinned via CSS sticky
+       ================================================================= -->
+  <section class="hero" id="hero">
+    <div class="hero-sticky">
+
+      <!-- Ambient halos + orbital rings specific to the hero -->
+      <div class="hero-halo h-acid" aria-hidden="true"></div>
+      <div class="hero-halo h-solar" aria-hidden="true"></div>
+      <div class="orbit o-1" aria-hidden="true"></div>
+      <div class="orbit o-2" aria-hidden="true"></div>
+      <div class="orbit o-3" aria-hidden="true"></div>
+
+      <div class="hero-grid">
+        <!-- ============ LEFT ============ -->
+        <div class="hero-left">
+          <div class="hero-tag" data-reveal="tag">
+            <span class="dot" aria-hidden="true"></span>
+            <span>OFF NUTRITION LAB // ENERGY DUST</span>
+            <span class="ver">v1.0</span>
+          </div>
+
+          <h1 class="hero-headline" aria-label="Energia em pó, performance em movimento.">
+            <!-- Branca — equivale a "Obsidian motion," da referência -->
+            <span class="line"><span>Energia em pó,</span></span>
+            <!-- Verde acid sólido — equivale a "engineered" + "precision." -->
+            <span class="line"><span class="hl-acid">performance</span></span>
+            <span class="line"><span class="hl-acid">em movimento.</span></span>
+          </h1>
+
+          <p class="hero-sub" data-reveal="sub">
+            Um energético em pó criado para transformar rotina em impulso.
+            <b>Misture, ative e siga.</b>
+            Uma dose prática para treinar, produzir e manter o ritmo — sem depender da motivação.
+          </p>
+
+          <div class="hero-cta" data-reveal="cta">
+            <button class="btn btn-primary" type="button" aria-label="Comprar agora">
+              <span class="shimmer" aria-hidden="true"></span>
+              <span>Comprar agora</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </button>
+
+            <button class="btn btn-secondary" type="button" aria-label="Ver composição">
+              <span class="beam" aria-hidden="true"></span>
+              <span class="inner">
+                <span class="label">Ver composição</span>
+                <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 13l5 5 5-5M12 4v13"/></svg>
+              </span>
+            </button>
+          </div>
+
+          <div class="hero-meta" data-reveal="meta">
+            <div class="meta-item">
+              <div class="meta-val">30<span>dias</span></div>
+              <div class="meta-lbl">Protocolo diário</div>
+            </div>
+            <div class="meta-item">
+              <div class="meta-val">0g<span>açúcar</span></div>
+              <div class="meta-lbl">Fórmula seca</div>
+            </div>
+            <div class="meta-item">
+              <div class="meta-val">≈7s</div>
+              <div class="meta-lbl">Fast mix</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============ RIGHT (video + HUD + floating cards) ============ -->
+        <div class="hero-right">
+          <!-- drifting motes behind the stage -->
+          <span class="mote m1" aria-hidden="true"></span>
+          <span class="mote m2" aria-hidden="true"></span>
+          <span class="mote m3" aria-hidden="true"></span>
+
+
+          <!-- ::: main video stage ::: -->
+          <div class="stage" id="stage">
+            <div class="stage-frame">
+              <!-- Fallback (shown until the video is ready) -->
+              <div class="stage-fallback" aria-hidden="true"></div>
+
+              <!-- Scroll-driven video — 1080×1920, 9:16, ~2s -->
+              <video id="scrollVideo"
+                     muted
+                     playsinline
+                     webkit-playsinline
+                     preload="auto"
+                     disablepictureinpicture
+                     x-webkit-airplay="deny"
+                     tabindex="-1"
+                     aria-hidden="true">
+                <source src="./assets/raw_files/video2.mp4" type="video/mp4" />
+              </video>
+
+              <!-- Corner ticks -->
+              <span class="tick tl" aria-hidden="true"></span>
+              <span class="tick tr" aria-hidden="true"></span>
+              <span class="tick bl" aria-hidden="true"></span>
+              <span class="tick br" aria-hidden="true"></span>
+
+              <!-- HUD overlays mínimos dentro do frame (detalhes técnicos) -->
+              <div class="hud hud-tl">SYS-01 · ACTIVE</div>
+
+
+              <div class="stage-scan" aria-hidden="true"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Technical marquee strip (bottom of sticky hero) -->
+      <div class="hero-strip" aria-hidden="true">
+        <div class="hero-strip-track" id="stripTrack">
+          <!-- Track is duplicated by JS for seamless loop -->
+          <span>DAILY PERFORMANCE</span><span class="acc">●</span>
+          <span>POWDER ENERGY</span><span class="acc">●</span>
+          <span>FAST MIX</span><span class="acc">●</span>
+          <span>FOCUS MODE</span><span class="acc">●</span>
+          <span>ROUTINE ACTIVATED</span><span class="acc">●</span>
+          <span>LAB / ENERGY DUST</span><span class="acc">●</span>
+        </div>
+      </div>
+
+      <div class="hero-scrollhint" aria-hidden="true">
+        <span>SCROLL TO ACTIVATE</span>
+        <span class="line"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================================================================
+       LIBRARIES — GSAP + ScrollTrigger + Lenis (via CDN, no build)
+       Sem defer: estão no fim do <body>, DOM já está pronto.
+       Scripts rodam em ordem, garantindo que GSAP está disponível
+       quando o inline script logo abaixo executar.
+       ================================================================= -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
+
+  <script>
+    /* =================================================================
+       ENERGY DUST HERO — controller
+       - Lenis smooth scrolling (driven by GSAP's ticker)
+       - ScrollTrigger scrub drives the hero video (Apple product style)
+       - requestAnimationFrame smooths currentTime updates
+       - Reveal timeline for headline, CTAs, HUD cards
+       - prefers-reduced-motion: opt-out of all motion, keep layout
+       ================================================================= */
+    (function () {
+      'use strict';
+
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // Duplicate the strip track content to create a seamless marquee loop
+      (function cloneStrip() {
+        const track = document.getElementById('stripTrack');
+        if (track) track.innerHTML += track.innerHTML;
+      })();
+
+      // Wait until all CDN scripts are available. We use `defer` + this check.
+      function ready(cb) {
+        if (document.readyState !== 'loading') cb();
+        else document.addEventListener('DOMContentLoaded', cb);
+      }
+
+      ready(function boot() {
+        const hasGSAP = typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined';
+        const hasLenis = typeof window.Lenis !== 'undefined';
+
+        // ---------- Lenis smooth scroll (optional) ----------
+        let lenis = null;
+        if (hasLenis && !prefersReducedMotion) {
+          lenis = new Lenis({
+            duration: 1.05,       // ligeiramente mais rápido
+            smoothWheel: true,
+            wheelMultiplier: 0.9, // multiplier moderado para controle fino
+            touchMultiplier: 1.2,
+            lerp: 0.11,           // mais responsivo para scrub de vídeo curto
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          });
+        }
+
+        // ---------- GSAP + ScrollTrigger ----------
+        if (hasGSAP) {
+          gsap.registerPlugin(ScrollTrigger);
+
+          // Bridge Lenis -> GSAP ticker so ScrollTrigger is in perfect sync
+          if (lenis) {
+            lenis.on('scroll', ScrollTrigger.update);
+            gsap.ticker.add((time) => lenis.raf(time * 1000));
+            gsap.ticker.lagSmoothing(0);
+          }
+        }
+
+        // ---------- Hero entry timeline ----------
+        const headlineSpans = document.querySelectorAll('.hero-headline .line > span');
+        const sub = document.querySelector('[data-reveal="sub"]');
+        const cta = document.querySelector('[data-reveal="cta"]');
+        const meta = document.querySelector('[data-reveal="meta"]');
+        if (prefersReducedMotion || !hasGSAP) {
+          // Fallback sem animação — mostra tudo imediatamente
+          headlineSpans.forEach((s) => {
+            s.style.transform  = 'none';
+            s.style.opacity    = '1';
+          });
+          [sub, cta, meta].forEach((el) => {
+            if (el) { el.style.opacity = '1'; el.style.transform = 'none'; }
+          });
+        } else {
+          gsap.set(headlineSpans, { yPercent: 110, opacity: 0 });
+          gsap.set([sub, cta, meta].filter(Boolean), { opacity: 0, y: 14 });
+
+          const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
+          tl.to(headlineSpans, {
+            yPercent: 0,
+            opacity: 1,
+            duration: 1.1,
+            stagger: 0.09,
+            delay: 0.15,
+          })
+          .to(sub,  { opacity: 1, y: 0, duration: 0.9 }, '-=0.55')
+          .to(cta,  { opacity: 1, y: 0, duration: 0.9 }, '-=0.65')
+          .to(meta, { opacity: 1, y: 0, duration: 0.9 }, '-=0.70');
+        }
+
+        // ---------- Scroll-driven VIDEO (the star) ----------
+        const video = document.getElementById('scrollVideo');
+        const heroSection = document.querySelector('.hero');
+        const stage = document.getElementById('stage');
+
+        if (!video || !heroSection) return;
+
+        // Nudge iOS to decode frames server-side
+        video.pause();
+
+        let targetTime = 0;
+        let currentTime = 0;
+        let duration = 0;
+        let videoReady = false;
+        let rafId = 0;
+
+        const setReady = () => {
+          if (videoReady) return;
+          videoReady = true;
+          video.classList.add('is-ready');
+        };
+
+        // rAF smoothing loop — lerps currentTime para scrub suave.
+        // lerp 0.22: mais responsivo para vídeo curto de 2s.
+        // snap < 0.008: evita micro-updates sem perder precisão.
+        function loop() {
+          if (videoReady && duration > 0) {
+            const diff = targetTime - currentTime;
+            if (Math.abs(diff) < 0.008) {
+              currentTime = targetTime;
+            } else {
+              currentTime += diff * 0.22;
+            }
+            // Guard rails (iOS Safari lança erro fora do range)
+            const t = Math.max(0, Math.min(duration - 0.016, currentTime));
+            try {
+              if (Math.abs(video.currentTime - t) > 0.008) video.currentTime = t;
+            } catch (e) { /* no-op */ }
+          }
+          rafId = requestAnimationFrame(loop);
+        }
+
+        // Fires when the browser has enough info to know duration + seek safely
+        function onMeta() {
+          if (!isFinite(video.duration) || video.duration <= 0) return;
+          duration = video.duration;
+          setReady();
+
+          if (hasGSAP && !prefersReducedMotion) {
+
+            /* ============================================================
+               SCROLL → VIDEO scrub
+               Trigger separado com scrub:true (instantâneo).
+               O rAF lerp cuida da suavização de currentTime.
+               Video tem 2s → progresso 0-1 mapeia 0s→2s.
+               ============================================================ */
+            ScrollTrigger.create({
+              trigger: heroSection,
+              start: 'top top',
+              end: 'bottom bottom',
+              scrub: true,
+              onUpdate(self) {
+                targetTime = self.progress * duration;
+              },
+            });
+
+            /* ============================================================
+               MASTER SCROLL TIMELINE
+               Uma única timeline controlada por scroll (scrub: 0.9).
+               Duração interna = 1 (representa 0-100% do scroll).
+               Landmarks de progresso mapeados ao vídeo de 2s:
+                  pos 0.00 = vídeo 0.0s  → estado inicial
+                  pos 0.20 = vídeo 0.4s  → texto começa a ceder atenção
+                  pos 0.35 = vídeo 0.7s  → produto (stage) avança
+                  pos 0.55 = vídeo 1.1s  → meio caminho, cards separando
+                  pos 0.70 = vídeo 1.4s  → CTA glow crescendo
+                  pos 1.00 = vídeo 2.0s  → estado final
+               ============================================================ */
+            const D = 1; // duração total da timeline (normalizada)
+
+            const masterTl = gsap.timeline({
+              scrollTrigger: {
+                trigger: heroSection,
+                start: 'top top',
+                end: 'bottom bottom',
+                scrub: 0.9,  // lag suave — 0.9s de amortecimento
+              },
+              defaults: { ease: 'power1.inOut' },
+            });
+
+            // — Stage: escala + brilho crescem durante todo o scroll —
+            // Sincroniza com o produto sendo revelado pelo vídeo.
+            masterTl.fromTo(stage,
+              { scale: 0.96, filter: 'brightness(0.86) saturate(0.90)' },
+              { scale: 1.06, filter: 'brightness(1.14) saturate(1.08)',
+                ease: 'none', duration: D },
+              0
+            );
+
+            // — Headline: segura o foco nos primeiros 20% do scroll,
+            //   depois cede suavemente para o produto —
+            masterTl
+              .to('.hero-headline', {
+                y: -20, opacity: 0.42,
+                ease: 'power1.in', duration: D * 0.55,
+              }, D * 0.22)
+              .to('.hero-sub', {
+                y: -12, opacity: 0.28,
+                ease: 'power1.in', duration: D * 0.40,
+              }, D * 0.18)
+              .to('.hero-meta', {
+                y: -10, opacity: 0.22,
+                ease: 'power1.in', duration: D * 0.40,
+              }, D * 0.20);
+
+            // — CTA "Comprar agora": glow explode nos últimos 35% —
+            // Climax da experiência: produto revelado → hora de comprar.
+            masterTl.fromTo('.btn-primary',
+              {
+                boxShadow:
+                  '0 0 0 1px rgba(255,255,255,0.35) inset,' +
+                  '0 14px 40px -14px rgba(204,255,0,0.85),' +
+                  '0 0 60px -18px rgba(204,255,0,0.65)',
+              },
+              {
+                boxShadow:
+                  '0 0 0 1px rgba(255,255,255,0.65) inset,' +
+                  '0 18px 90px -8px rgba(204,255,0,1.0),' +
+                  '0 0 160px -8px rgba(204,255,0,1.0)',
+                ease: 'power2.in', duration: D * 0.38,
+              },
+              D * 0.62
+            );
+
+            // — Orbit ring: rotação extra (sobre a CSS infinita) —
+            masterTl.fromTo('.orbit.o-1',
+              { rotation: 0,   transformOrigin: '50% 50%' },
+              { rotation: 200, ease: 'none', duration: D },
+              0
+            );
+
+            // — Halo acid de fundo: cresce levemente com o produto —
+            masterTl.to('.bg-glow-acid', {
+              scale: 1.3, opacity: 0.85,
+              ease: 'none', duration: D,
+            }, 0);
+
+            ScrollTrigger.refresh();
+          }
+
+          if (!rafId) rafId = requestAnimationFrame(loop);
+        }
+
+        if (video.readyState >= 1 && isFinite(video.duration)) {
+          onMeta();
+        } else {
+          video.addEventListener('loadedmetadata', onMeta, { once: true });
+          video.addEventListener('loadeddata', setReady, { once: true });
+          video.addEventListener('canplay', setReady, { once: true });
+        }
+
+        // Error fallback — keep the decorative fallback visible, hide broken video
+        video.addEventListener('error', () => {
+          video.style.display = 'none';
+        });
+
+        // iOS sometimes needs an explicit load() when preload doesn't kick in
+        try { video.load(); } catch (e) { /* no-op */ }
+
+        // Clean up on teardown (not strictly needed for a hero page, but tidy)
+        window.addEventListener('beforeunload', () => {
+          if (rafId) cancelAnimationFrame(rafId);
+          if (lenis) lenis.destroy();
+        });
+
+        // Recalc on resize — ScrollTrigger handles it but we hint Lenis too
+        let resizeTimer = null;
+        window.addEventListener('resize', () => {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(() => {
+            if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
+          }, 180);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

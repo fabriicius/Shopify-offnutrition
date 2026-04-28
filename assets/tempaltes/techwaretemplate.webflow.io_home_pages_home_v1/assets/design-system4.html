@@ -1,0 +1,1867 @@
+<!DOCTYPE html>
+<html class="scroll-smooth dark" lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+<title>DESIGN SYSTEM 4 — VOID × PRISM</title>
+
+<!-- Tailwind CSS CDN (same as animations-gemini via resource_3fa48481346f.js) -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Lucide Icons (instagram-slides) -->
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+<!-- Iconify (animations-gemini) -->
+<script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+
+<!-- Fonts: Geist (display), Inter (body), Space Mono (mono), Space Grotesk (ui) -->
+<link href="https://fonts.googleapis.com" rel="preconnect" />
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet" />
+
+<!-- ===== TAILWIND CONFIG (refs classes from all source files) ===== -->
+<script>
+tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      fontFamily: {
+        display: ['Bricolage Grotesque', 'sans-serif'],
+        sans:    ['Inter', 'system-ui', 'sans-serif'],
+        grotesk: ['Space Grotesk', 'sans-serif'],
+        mono:    ['Space Mono', 'monospace'],
+      },
+      colors: {
+        /* ── palette from animations-gemini2 ── */
+        obsidian: '#09090b',
+        void:     '#000000',
+        surface:  '#0a0a0a',
+        panel:    '#111111',
+        border:   '#1e1e1e',
+        acid:     '#ccff00',
+        /* ── NEW palette VOID×PRISM ── */
+        prism:    '#7c3aed',
+        prismlt:  '#a78bfa',
+        prismglow:'#4c1d95',
+        cyan:     '#06b6d4',
+        cyanglow: '#0e7490',
+        rose:     '#f43f5e',
+      },
+      animation: {
+        'marquee':      'marquee 40s linear infinite',
+        'marquee-fast': 'marquee 18s linear infinite',
+        'shimmer':      'shimmer 2s linear infinite',
+        'float':        'float 8s ease-in-out infinite',
+        'float-slow':   'float 14s ease-in-out infinite',
+        'drift':        'drift 16s ease-in-out infinite',
+        'drift2':       'drift 22s ease-in-out infinite reverse',
+        'pulse-ring':   'pulse-ring 2.4s cubic-bezier(.455,.03,.515,.955) infinite',
+        'spin-slow':    'spin 8s linear infinite',
+        'spin-beam':    'spin 2s linear infinite',
+        'glow-pulse':   'glow-pulse 3s ease-in-out infinite',
+        'text-slide':   'textSlide 0.9s cubic-bezier(0.16,1,0.3,1) forwards',
+        'clip-in':      'clip-reveal 1.5s cubic-bezier(0.77,0,0.175,1) forwards',
+        'card-cycle':   'cardStackCycle 12s infinite ease-in-out',
+        'bg-scroll':    'bgScroll 20s linear infinite',
+      },
+      keyframes: {
+        marquee:       { '0%': {transform:'translateX(0)'}, '100%': {transform:'translateX(-50%)'} },
+        shimmer:       { from:{transform:'translateX(-100%) skewX(-15deg)'}, to:{transform:'translateX(200%) skewX(-15deg)'} },
+        float:         { '0%,100%':{transform:'translateY(0)'}, '50%':{transform:'translateY(-18px)'} },
+        drift:         { '0%,100%':{transform:'translate(0,0) scale(1)'}, '33%':{transform:'translate(60px,-40px) scale(1.12)'}, '66%':{transform:'translate(-40px,30px) scale(0.94)'} },
+        'pulse-ring':  { '0%':{transform:'scale(0.5)',opacity:'0.9'}, '100%':{transform:'scale(2.8)',opacity:'0'} },
+        'glow-pulse':  { '0%,100%':{opacity:'0.6',filter:'blur(20px)'}, '50%':{opacity:'1',filter:'blur(35px)'} },
+        'textSlide':   { '0%':{transform:'translateY(110%)',opacity:'0'}, '100%':{transform:'translateY(0)',opacity:'1'} },
+        'clip-reveal': { '0%':{clipPath:'inset(100% 0 0 0)'}, '100%':{clipPath:'inset(0 0 0 0)'} },
+        cardStackCycle:{
+          '0%,25%':   {transform:'translateY(0) scale(1)',zIndex:'30',opacity:'1',filter:'blur(0)'},
+          '33%,58%':  {transform:'translateY(-60px) scale(0.85)',zIndex:'10',opacity:'0.45',filter:'blur(2px)'},
+          '66%,91%':  {transform:'translateY(-30px) scale(0.92)',zIndex:'20',opacity:'0.7',filter:'blur(1px)'},
+          '100%':     {transform:'translateY(0) scale(1)',zIndex:'30',opacity:'1',filter:'blur(0)'},
+        },
+        bgScroll: { '0%':{backgroundPosition:'0 0'}, '100%':{backgroundPosition:'0 -200px'} },
+      },
+    }
+  }
+};
+</script>
+
+<!-- ===== GLOBAL STYLES (exact classes referenced in all source files) ===== -->
+<style>
+/* ─────────────────────────────────────────────────
+   ROOT / BASE  (from animations-gemini/index.html)
+───────────────────────────────────────────────── */
+:root {
+  --bg-deep:        #050505;
+  --ease-out:       cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-elastic:   cubic-bezier(0.34, 1.56, 0.64, 1);
+  --prism:          #7c3aed;
+  --prism-lt:       #a78bfa;
+  --prism-glow:     rgba(124,58,237,0.35);
+  --cyan:           #06b6d4;
+  --cyan-glow:      rgba(6,182,212,0.3);
+  --acid:           #ccff00;
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-deep);
+  color: #e5e5e5;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  overflow-x: hidden;
+}
+body::-webkit-scrollbar { display: none; }
+
+/* ─── animate-on-scroll (exact pattern from animations-gemini) ─── */
+@keyframes animationIn {
+  0%   { opacity:0; transform:translateY(30px); filter:blur(10px); }
+  100% { opacity:1; transform:translateY(0);    filter:blur(0); }
+}
+.animate-on-scroll { animation-play-state: paused !important; }
+.animate-on-scroll.animate { animation-play-state: running !important; }
+
+/* ─── textSlide (from animations-gemini) ─── */
+@keyframes textSlide {
+  0%   { transform:translateY(110%); opacity:0; }
+  100% { transform:translateY(0);    opacity:1; }
+}
+.text-clip-anim span {
+  display: inline-block;
+  animation: textSlide 0.9s cubic-bezier(0.16,1,0.3,1) forwards;
+  opacity: 0;
+}
+
+/* ─── shimmer (from animations-gemini) ─── */
+@keyframes shimmer {
+  from { transform:translateX(-100%) skewX(-15deg); }
+  to   { transform:translateX(200%)  skewX(-15deg); }
+}
+
+/* ─── marquee (from animations-gemini) ─── */
+@keyframes marquee {
+  0%   { transform:translateX(0); }
+  100% { transform:translateX(-50%); }
+}
+.animate-marquee { animation: marquee 40s linear infinite; }
+.animate-marquee-fast { animation: marquee 18s linear infinite; }
+
+/* ─── beam (from instagram-slides) ─── */
+@keyframes beam {
+  0%   { left:-100%; }
+  100% { left:100%; }
+}
+.animate-beam { animation: beam 2s cubic-bezier(0.4,0,0.2,1) infinite; }
+
+/* ─── clip-reveal (from instagram-slides) ─── */
+@keyframes clip-reveal {
+  0%   { clip-path:inset(100% 0 0 0); }
+  100% { clip-path:inset(0 0 0 0); }
+}
+.animate-clip { animation: clip-reveal 1.5s cubic-bezier(0.77,0,0.175,1) infinite alternate; }
+
+/* ─── card stack cycle (from instagram-slides) ─── */
+@keyframes cardStackCycle {
+  0%,25%  { transform:translateY(0)    scale(1);    z-index:30; opacity:1;    filter:blur(0); }
+  33%,58% { transform:translateY(-60px) scale(0.85); z-index:10; opacity:0.45; filter:blur(2px); }
+  66%,91% { transform:translateY(-30px) scale(0.92); z-index:20; opacity:0.70; filter:blur(1px); }
+  100%    { transform:translateY(0)    scale(1);    z-index:30; opacity:1;    filter:blur(0); }
+}
+
+/* ─── float / drift / glow-pulse ─── */
+@keyframes float {
+  0%,100% { transform:translateY(0); }
+  50%     { transform:translateY(-18px); }
+}
+@keyframes drift {
+  0%,100% { transform:translate(0,0) scale(1); }
+  33%     { transform:translate(60px,-40px) scale(1.12); }
+  66%     { transform:translate(-40px,30px) scale(0.94); }
+}
+@keyframes glow-pulse {
+  0%,100% { opacity:.55; filter:blur(22px); }
+  50%     { opacity:1;   filter:blur(40px); }
+}
+@keyframes pulse-ring {
+  0%   { transform:scale(0.5); opacity:.9; }
+  100% { transform:scale(2.8); opacity:0; }
+}
+@keyframes bgScroll {
+  0%   { background-position: 0 0; }
+  100% { background-position: 0 -200px; }
+}
+
+/* ─── glass-panel (exact from animations-gemini) ─── */
+.glass-panel {
+  background: rgba(23,23,23,0.6);
+  backdrop-filter: blur(20px);
+}
+
+/* ─── flashlight-card (exact from animations-gemini) ─── */
+.flashlight-card { background: rgba(255,255,255,0.01); }
+.flashlight-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    600px circle at var(--mouse-x) var(--mouse-y),
+    rgba(124,58,237,0.12),
+    transparent 40%
+  );
+  opacity: 0;
+  transition: opacity 0.5s;
+  pointer-events: none;
+  z-index: 2;
+}
+.flashlight-card:hover::before { opacity: 1; }
+
+/* ─── border-gradient trick (exact from instagram-slides) ─── */
+[style*="--border-gradient"]::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  padding:1px;
+  border-radius:var(--border-radius-before,inherit);
+  -webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+  background:var(--border-gradient);
+  pointer-events:none;
+}
+
+/* ─── bg-grid-pattern (exact from instagram-slides) ─── */
+.bg-grid-pattern {
+  background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.07) 1px, transparent 0);
+  background-size: 28px 28px;
+}
+/* fine grid (from animations-gemini2) */
+.bg-grid {
+  background-size: 40px 40px;
+  background-image:
+    linear-gradient(to right,  rgba(128,128,128,0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(128,128,128,0.05) 1px, transparent 1px);
+}
+
+/* ─── noise overlay (from animations-gemini2) ─── */
+.noise {
+  position: fixed;
+  top:0; left:0; width:100%; height:100%;
+  opacity: 0.025;
+  pointer-events: none;
+  z-index: 9999;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ─── Prism glow card ─── */
+.prism-card {
+  box-shadow: 0 0 30px var(--prism-glow), inset 0 0 20px rgba(124,58,237,0.06);
+}
+.cyan-card {
+  box-shadow: 0 0 30px var(--cyan-glow), inset 0 0 20px rgba(6,182,212,0.05);
+}
+
+/* ─── Section common ─── */
+.ds-section {
+  position: relative;
+  padding: 6rem 2rem;
+  overflow: hidden;
+}
+@media (min-width:768px) { .ds-section { padding: 7rem 4rem; } }
+@media (min-width:1280px) { .ds-section { padding: 8rem 8rem; } }
+
+.ds-section-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--acid);
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  margin-bottom: 1.5rem;
+  display: block;
+}
+.ds-section-title {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+}
+
+/* ─── Swatch ─── */
+.swatch {
+  width:100%; aspect-ratio:1/.6;
+  border-radius:4px;
+  border:1px solid rgba(255,255,255,0.06);
+  position:relative;
+  overflow:hidden;
+  transition: transform 0.3s var(--ease-out);
+}
+.swatch:hover { transform:scale(1.03); }
+
+/* ─── hide-scrollbar (from instagram-slides) ─── */
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+.hide-scrollbar { -ms-overflow-style:none; scrollbar-width:none; }
+
+/* ─── stroke-draw (from animations-gemini2 ONYX) ─── */
+.stroke-draw { stroke-dasharray:20; stroke-dashoffset:20; }
+.group:hover .stroke-draw { animation:draw 0.4s ease-out forwards; }
+@keyframes draw { to { stroke-dashoffset:0; } }
+
+/* ─── tooltip (from animations-gemini2) ─── */
+.tooltip-box {
+  transform: translateY(10px) scale(0.95);
+  opacity: 0;
+  transition: all 0.3s var(--ease-elastic);
+  pointer-events: none;
+}
+.group:hover .tooltip-box { transform:translateY(0) scale(1); opacity:1; }
+
+/* ─── Prism gradient text ─── */
+.gradient-text {
+  background: linear-gradient(135deg, var(--prism-lt) 0%, var(--cyan) 50%, var(--acid) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.gradient-text-warm {
+  background: linear-gradient(135deg, #ffffff 0%, var(--prism-lt) 60%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Animated bg orbs ─── */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(80px);
+  opacity: 0.22;
+}
+.orb-prism { background: radial-gradient(circle, #7c3aed, transparent 70%); animation: drift 16s ease-in-out infinite; }
+.orb-cyan  { background: radial-gradient(circle, #06b6d4, transparent 70%); animation: drift 22s ease-in-out infinite reverse; }
+.orb-acid  { background: radial-gradient(circle, #ccff00, transparent 70%); animation: float 14s ease-in-out infinite; opacity:0.12; }
+
+/* ─── Input styles ─── */
+.ds-input {
+  background: #0a0a0a;
+  border: 1px solid #222;
+  color: #e5e5e5;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem;
+  padding: 0.625rem 1rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  width: 100%;
+}
+.ds-input::placeholder { color: #555; }
+.ds-input:focus {
+  border-color: var(--prism);
+  box-shadow: 0 0 0 3px rgba(124,58,237,0.15);
+}
+.ds-input-error { border-color: #f43f5e !important; }
+.ds-input-error:focus { box-shadow: 0 0 0 3px rgba(244,63,94,0.15) !important; }
+.ds-input-success { border-color: #22c55e !important; }
+
+/* ─── Badge ─── */
+.ds-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+  border: 1px solid transparent;
+}
+
+/* ─── Modal ─── */
+.ds-modal-backdrop {
+  position: fixed; inset:0; background:rgba(0,0,0,0.8);
+  backdrop-filter:blur(8px); z-index:200;
+  display:flex; align-items:center; justify-content:center;
+  opacity:0; pointer-events:none; transition:opacity 0.3s;
+}
+.ds-modal-backdrop.open { opacity:1; pointer-events:auto; }
+.ds-modal {
+  background:#0e0e0e; border:1px solid #222;
+  padding:2rem; max-width:480px; width:90%;
+  position:relative; box-shadow:0 0 60px rgba(124,58,237,0.2);
+  transform:translateY(20px) scale(0.98); transition:transform 0.3s var(--ease-out);
+}
+.ds-modal-backdrop.open .ds-modal { transform:translateY(0) scale(1); }
+
+/* ─── Chart path draw (from animations-gemini2) ─── */
+.draw-path {
+  stroke-dasharray:1000; stroke-dashoffset:1000;
+  animation: dash 2s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+@keyframes dash { to { stroke-dashoffset:0; } }
+.grow-bar {
+  transform-origin:bottom; transform:scaleY(0);
+  animation: grow 1s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+@keyframes grow { to { transform:scaleY(1); } }
+
+/* ─── Particle canvas bg (custom) ─── */
+#hero-canvas { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; }
+
+/* ─── Morph blob (from animations-gemini2) ─── */
+@keyframes morph {
+  0%,100% { border-radius:60% 40% 30% 70% / 60% 30% 70% 40%; }
+  50%     { border-radius:30% 60% 70% 40% / 50% 60% 30% 60%; }
+}
+.animate-morph { animation: morph 8s ease-in-out infinite; }
+
+/* ─── Scrolling bg lines ─── */
+.bg-lines {
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 40px,
+    rgba(255,255,255,0.015) 40px,
+    rgba(255,255,255,0.015) 41px
+  );
+  animation: bgScroll 25s linear infinite;
+}
+</style>
+</head>
+
+<body class="antialiased selection:bg-prism/30 selection:text-white relative bg-neutral-950">
+
+<!-- ── Noise overlay (animations-gemini2) ── -->
+<div class="noise" aria-hidden="true"></div>
+
+<!-- ══════════════════════════════════════════════════════════
+     STICKY NAV
+══════════════════════════════════════════════════════════ -->
+<nav class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-5 py-3 bg-black/70 backdrop-blur-lg border-b border-white/5">
+  <a href="#hero" class="font-mono text-xs uppercase tracking-widest text-white/80 hover:text-white transition-colors flex items-center gap-2">
+    <span class="w-1.5 h-1.5 rounded-full bg-[#7c3aed] animate-pulse"></span>
+    DS4 · VOID×PRISM
+  </a>
+  <div class="hidden md:flex items-center gap-6">
+    <a href="#typography"  class="font-mono text-[10px] uppercase tracking-widest text-neutral-500 hover:text-white transition-colors">Type</a>
+    <a href="#colors"      class="font-mono text-[10px] uppercase tracking-widest text-neutral-500 hover:text-white transition-colors">Colors</a>
+    <a href="#buttons"     class="font-mono text-[10px] uppercase tracking-widest text-neutral-500 hover:text-white transition-colors">Buttons</a>
+    <a href="#inputs"      class="font-mono text-[10px] uppercase tracking-widest text-neutral-500 hover:text-white transition-colors">Inputs</a>
+    <a href="#cards"       class="font-mono text-[10px] uppercase tracking-widest text-neutral-500 hover:text-white transition-colors">Cards</a>
+    <a href="#components"  class="font-mono text-[10px] uppercase tracking-widest text-neutral-500 hover:text-white transition-colors">UI</a>
+    <a href="#icons"       class="font-mono text-[10px] uppercase tracking-widest text-neutral-500 hover:text-white transition-colors">Icons</a>
+    <a href="#animations"  class="font-mono text-[10px] uppercase tracking-widest text-neutral-500 hover:text-white transition-colors">Motion</a>
+  </div>
+  <div class="flex items-center gap-2">
+    <span class="font-mono text-[10px] text-neutral-600 uppercase tracking-widest hidden sm:block">v4.0</span>
+    <div class="w-6 h-6 rounded-full border border-[#7c3aed]/50 flex items-center justify-center">
+      <div class="w-1.5 h-1.5 rounded-full bg-[#7c3aed]"></div>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════════════════════
+  01 — HERO  (First Fold — showcase hero do design system)
+══════════════════════════════════════════════════════════ -->
+<section id="hero" class="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-[#050505]">
+  <!-- canvas particles -->
+  <canvas id="hero-canvas"></canvas>
+
+  <!-- Animated orbs (glow background) -->
+  <div class="orb orb-prism w-[600px] h-[600px] -top-32 -left-40"></div>
+  <div class="orb orb-cyan  w-[500px] h-[500px] top-1/2 -right-40 -translate-y-1/2"></div>
+  <div class="orb orb-acid  w-[300px] h-[300px] bottom-20 left-1/4"></div>
+
+  <!-- Animated background grid -->
+  <div class="absolute inset-0 bg-grid-pattern opacity-30 pointer-events-none"></div>
+  <div class="absolute inset-0 bg-lines pointer-events-none opacity-60"></div>
+
+  <!-- Hero background image with overlay -->
+  <div class="absolute inset-0 bg-cover bg-center opacity-10 pointer-events-none"
+       style="background-image:url('https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/53970266-f8db-425c-8883-5535f3e41c4d_1600w.webp')"></div>
+  <div class="absolute inset-0 bg-gradient-to-b from-[#050505] via-transparent to-[#050505] pointer-events-none"></div>
+
+  <!-- Content -->
+  <div class="relative z-10 text-center max-w-5xl mx-auto px-6 pt-24 pb-20">
+
+    <!-- Tag / eyebrow -->
+    <div class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.1s_both] animate inline-flex items-center gap-2 border border-[#7c3aed]/40 bg-[#7c3aed]/10 px-4 py-1.5 rounded-full mb-8">
+      <span class="w-1.5 h-1.5 rounded-full bg-[#7c3aed] animate-pulse"></span>
+      <span class="font-mono text-[10px] uppercase tracking-[0.25em] text-[#a78bfa]">Design System 4 · VOID × PRISM</span>
+    </div>
+
+    <!-- Main heading (text-clip-anim from animations-gemini) -->
+    <div class="overflow-hidden mb-4">
+      <h1 class="animate-on-scroll [animation:animationIn_1s_ease-out_0.2s_both] animate text-clip-anim font-display font-bold leading-[0.9] tracking-tight"
+          style="font-size:clamp(4rem,12vw,9rem)">
+        <span class="gradient-text-warm">VOID</span>
+      </h1>
+    </div>
+    <div class="overflow-hidden mb-10">
+      <h1 class="animate-on-scroll [animation:animationIn_1s_ease-out_0.35s_both] animate font-display font-bold leading-[0.9] tracking-tight text-neutral-700"
+          style="font-size:clamp(4rem,12vw,9rem)">
+        ×&nbsp;<span class="gradient-text">PRISM</span>
+      </h1>
+    </div>
+
+    <p class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.5s_both] animate text-base md:text-xl text-neutral-400 font-light max-w-2xl mx-auto mb-12 leading-relaxed">
+      Um design system fora da caixa — monotone radical com acentes violeta e ciano. 
+      Cada componente traz animações de surgimento, glow e efeitos interativos de nível premium.
+    </p>
+
+    <!-- CTA Buttons (beam animation from animations-gemini) -->
+    <div class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.65s_both] animate flex flex-wrap items-center justify-center gap-4">
+      <!-- Primary — spinning beam button (animations-gemini pattern) -->
+      <div class="group relative scale-100">
+        <div class="-inset-2 group-hover:opacity-100 opacity-0 transition duration-500 bg-[#7c3aed]/30 rounded-full absolute blur-xl"></div>
+        <div class="absolute -inset-[1px] rounded-full overflow-hidden opacity-0 group-hover:opacity-100 transition duration-500 pointer-events-none">
+          <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300%] h-[300%] bg-[conic-gradient(from_0deg,transparent_0_340deg,#7c3aed_360deg)] animate-[spin_2s_linear_infinite]"></div>
+        </div>
+        <button class="group relative z-10 flex items-center justify-center overflow-hidden rounded-full p-[1px]">
+          <span class="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_0deg,transparent_0_340deg,#7c3aed_360deg)]"></span>
+          <span class="relative flex h-full w-full items-center rounded-full bg-black px-8 py-3.5 ring-1 ring-[#7c3aed]/20 text-sm font-semibold tracking-wide text-white">
+            <span class="absolute inset-0 overflow-hidden rounded-full">
+              <span class="absolute top-0 left-0 h-full w-full -skew-x-12 bg-gradient-to-r from-transparent via-white/15 to-transparent opacity-0 group-hover:animate-[shimmer_1.5s_infinite] group-hover:opacity-100"></span>
+            </span>
+            <span class="relative z-10">Explorar Sistema</span>
+            <iconify-icon class="ml-3 text-xl text-[#a78bfa] group-hover:translate-x-1 transition-transform" icon="solar:arrow-right-bold-duotone"></iconify-icon>
+          </span>
+        </button>
+      </div>
+
+      <!-- Secondary ghost button -->
+      <button class="group inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 text-sm font-medium text-neutral-300 hover:text-white transition-all duration-300 backdrop-blur-sm">
+        <iconify-icon class="text-lg text-[#06b6d4]" icon="solar:document-bold-duotone"></iconify-icon>
+        Documentação
+      </button>
+    </div>
+
+    <!-- Stats row -->
+    <div class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.8s_both] animate mt-16 grid grid-cols-3 gap-4 max-w-lg mx-auto border-t border-white/5 pt-8">
+      <div class="text-center">
+        <div class="font-display text-2xl md:text-3xl font-bold text-white mb-1">40+</div>
+        <div class="font-mono text-[10px] uppercase tracking-widest text-neutral-600">Componentes</div>
+      </div>
+      <div class="text-center border-x border-white/5">
+        <div class="font-display text-2xl md:text-3xl font-bold text-[#a78bfa] mb-1">12</div>
+        <div class="font-mono text-[10px] uppercase tracking-widest text-neutral-600">Animações</div>
+      </div>
+      <div class="text-center">
+        <div class="font-display text-2xl md:text-3xl font-bold text-[#06b6d4] mb-1">∞</div>
+        <div class="font-mono text-[10px] uppercase tracking-widest text-neutral-600">Variações</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="animate-on-scroll [animation:animationIn_0.8s_ease-out_1s_both] animate absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50">
+    <span class="font-mono text-[9px] uppercase tracking-widest text-neutral-500">Scroll</span>
+    <iconify-icon class="text-neutral-500 animate-bounce" icon="solar:arrow-down-bold-duotone"></iconify-icon>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+  02 — TYPOGRAPHY
+══════════════════════════════════════════════════════════ -->
+<section id="typography" class="ds-section bg-[#050505] border-t border-white/5">
+  <!-- Animated orbs -->
+  <div class="orb orb-prism w-[400px] h-[400px] -top-20 -right-20 opacity-10"></div>
+  <div class="absolute inset-0 bg-grid pointer-events-none"></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto">
+    <span class="ds-section-label animate-on-scroll [animation:animationIn_0.8s_ease-out_0.1s_both]">02 — Tipografia</span>
+
+    <!-- Section headline with clip-path animation (from animations-gemini) -->
+    <div class="space-y-1 mb-16">
+      <div class="overflow-hidden">
+        <h2 class="ds-section-title animate-on-scroll [animation:animationIn_0.8s_ease-out_0.15s_both] text-white">Type</h2>
+      </div>
+      <div class="overflow-hidden">
+        <h2 class="ds-section-title animate-on-scroll [animation:animationIn_0.8s_ease-out_0.25s_both] text-neutral-700">Scale</h2>
+      </div>
+      <div class="overflow-hidden">
+        <h2 class="ds-section-title animate-on-scroll [animation:animationIn_0.8s_ease-out_0.35s_both] text-neutral-800">System</h2>
+      </div>
+    </div>
+
+    <!-- Font Families -->
+    <div class="grid md:grid-cols-3 gap-4 mb-16">
+      <!-- Display -->
+      <div class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.1s_both] border border-[#1e1e1e] bg-[#0a0a0a] p-6 hover:border-[#333] transition-colors group relative overflow-hidden"
+           style="position:relative; --border-gradient:linear-gradient(135deg, rgba(124,58,237,0.25), rgba(124,58,237,0)); --border-radius-before:0px">
+        <span class="font-mono text-[10px] text-[#ccff00] uppercase tracking-widest block mb-4">Display</span>
+        <p class="font-display text-4xl font-bold text-white tracking-tighter leading-tight mb-3">Bricolage<br/>Grotesque</p>
+        <p class="font-mono text-xs text-neutral-600">CDN · Google Fonts<br/>opsz 12–96 · wght 200–800</p>
+        <div class="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+          <iconify-icon class="text-2xl text-[#7c3aed]/50" icon="solar:letter-bold-duotone"></iconify-icon>
+        </div>
+      </div>
+      <!-- Body -->
+      <div class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.2s_both] border border-[#1e1e1e] bg-[#0a0a0a] p-6 hover:border-[#333] transition-colors group relative overflow-hidden">
+        <span class="font-mono text-[10px] text-[#06b6d4] uppercase tracking-widest block mb-4">Body</span>
+        <p class="font-sans text-4xl font-semibold text-white tracking-tight leading-tight mb-3">Inter<br/><span class="font-light text-neutral-600">Variable</span></p>
+        <p class="font-mono text-xs text-neutral-600">CDN · Google Fonts<br/>wght 300–700 · Variable</p>
+      </div>
+      <!-- Mono -->
+      <div class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.3s_both] border border-[#1e1e1e] bg-[#0a0a0a] p-6 hover:border-[#333] transition-colors group relative overflow-hidden">
+        <span class="font-mono text-[10px] text-[#a78bfa] uppercase tracking-widest block mb-4">Mono</span>
+        <p class="font-mono text-3xl font-bold text-white leading-tight mb-3">Space<br/>Mono</p>
+        <p class="font-mono text-xs text-neutral-600">CDN · Google Fonts<br/>wght 400–700</p>
+      </div>
+    </div>
+
+    <!-- Type Scale -->
+    <div class="space-y-1 border-t border-[#1e1e1e] pt-12">
+      <!-- H1 -->
+      <div class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.1s_both] flex items-baseline gap-6 py-4 border-b border-[#1a1a1a] group hover:border-[#333] transition-colors overflow-hidden">
+        <span class="font-mono text-[10px] text-neutral-700 w-10 shrink-0">H1</span>
+        <span class="font-display font-bold text-white tracking-tighter truncate" style="font-size:clamp(2.5rem,6vw,5rem);line-height:1">The Future is Void</span>
+        <span class="font-mono text-[9px] text-neutral-700 ml-auto shrink-0 hidden md:block">5xl–9xl · 700 · -0.03em</span>
+      </div>
+      <!-- H2 -->
+      <div class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.15s_both] flex items-baseline gap-6 py-4 border-b border-[#1a1a1a] hover:border-[#333] transition-colors overflow-hidden">
+        <span class="font-mono text-[10px] text-neutral-700 w-10 shrink-0">H2</span>
+        <span class="font-display font-bold text-white/90 tracking-tighter truncate" style="font-size:clamp(2rem,4vw,3.5rem);line-height:1.05">Design Beyond Limits</span>
+        <span class="font-mono text-[9px] text-neutral-700 ml-auto shrink-0 hidden md:block">4xl–6xl · 700 · -0.025em</span>
+      </div>
+      <!-- H3 -->
+      <div class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.2s_both] flex items-baseline gap-6 py-4 border-b border-[#1a1a1a] hover:border-[#333] transition-colors">
+        <span class="font-mono text-[10px] text-neutral-700 w-10 shrink-0">H3</span>
+        <span class="font-display font-semibold text-3xl md:text-4xl text-white/80 tracking-tight">Components & Motion</span>
+        <span class="font-mono text-[9px] text-neutral-700 ml-auto shrink-0 hidden md:block">3xl–4xl · 600 · -0.02em</span>
+      </div>
+      <!-- H4 -->
+      <div class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.25s_both] flex items-baseline gap-6 py-4 border-b border-[#1a1a1a] hover:border-[#333] transition-colors">
+        <span class="font-mono text-[10px] text-neutral-700 w-10 shrink-0">H4</span>
+        <span class="font-grotesk font-semibold text-2xl text-white/70 tracking-tight">Precision in Every Pixel</span>
+        <span class="font-mono text-[9px] text-neutral-700 ml-auto shrink-0 hidden md:block">2xl · 600 · -0.015em</span>
+      </div>
+      <!-- H5 -->
+      <div class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.3s_both] flex items-baseline gap-6 py-4 border-b border-[#1a1a1a] hover:border-[#333] transition-colors">
+        <span class="font-mono text-[10px] text-neutral-700 w-10 shrink-0">H5</span>
+        <span class="font-grotesk font-medium text-xl text-white/60">Animate Everything Elegantly</span>
+        <span class="font-mono text-[9px] text-neutral-700 ml-auto shrink-0 hidden md:block">xl · 500 · -0.01em</span>
+      </div>
+      <!-- H6 -->
+      <div class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.35s_both] flex items-baseline gap-6 py-4 border-b border-[#1a1a1a] hover:border-[#333] transition-colors">
+        <span class="font-mono text-[10px] text-neutral-700 w-10 shrink-0">H6</span>
+        <span class="font-grotesk font-medium text-base text-white/50 uppercase tracking-wide">Section Subheadings</span>
+        <span class="font-mono text-[9px] text-neutral-700 ml-auto shrink-0 hidden md:block">base · 500 · 0.05em</span>
+      </div>
+      <!-- body-lg -->
+      <div class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.4s_both] flex items-baseline gap-6 py-4 border-b border-[#1a1a1a] hover:border-[#333] transition-colors">
+        <span class="font-mono text-[10px] text-neutral-700 w-10 shrink-0">B-LG</span>
+        <span class="font-sans text-lg font-light text-neutral-300 leading-relaxed max-w-xl">A design system built for cinematic interfaces — where motion, depth, and precision coexist.</span>
+        <span class="font-mono text-[9px] text-neutral-700 ml-auto shrink-0 hidden md:block">lg · 300 · normal</span>
+      </div>
+      <!-- body -->
+      <div class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.45s_both] flex items-baseline gap-6 py-4 border-b border-[#1a1a1a] hover:border-[#333] transition-colors">
+        <span class="font-mono text-[10px] text-neutral-700 w-10 shrink-0">B</span>
+        <span class="font-sans text-base font-normal text-neutral-400 leading-relaxed max-w-xl">Each token is defined across semantic roles — primary, secondary, accent, neutral, feedback.</span>
+        <span class="font-mono text-[9px] text-neutral-700 ml-auto shrink-0 hidden md:block">base · 400 · 1.5</span>
+      </div>
+      <!-- body-sm -->
+      <div class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.5s_both] flex items-baseline gap-6 py-4 border-b border-[#1a1a1a] hover:border-[#333] transition-colors">
+        <span class="font-mono text-[10px] text-neutral-700 w-10 shrink-0">B-SM</span>
+        <span class="font-sans text-sm font-normal text-neutral-500 leading-relaxed max-w-xl">Small body text for secondary content, captions, and inline annotations.</span>
+        <span class="font-mono text-[9px] text-neutral-700 ml-auto shrink-0 hidden md:block">sm · 400 · 1.5</span>
+      </div>
+      <!-- caption -->
+      <div class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.55s_both] flex items-baseline gap-6 py-4 border-b border-[#1a1a1a] hover:border-[#333] transition-colors">
+        <span class="font-mono text-[10px] text-neutral-700 w-10 shrink-0">CAP</span>
+        <span class="font-sans text-xs font-normal text-neutral-600">Caption · helper text · error messages</span>
+        <span class="font-mono text-[9px] text-neutral-700 ml-auto shrink-0 hidden md:block">xs · 400 · 1.4</span>
+      </div>
+      <!-- label -->
+      <div class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.6s_both] flex items-baseline gap-6 py-4 hover:border-[#333] transition-colors">
+        <span class="font-mono text-[10px] text-neutral-700 w-10 shrink-0">LBL</span>
+        <span class="font-mono text-[10px] uppercase tracking-[0.25em] text-neutral-600">MONO LABEL · SYSTEM TAG · STATUS</span>
+        <span class="font-mono text-[9px] text-neutral-700 ml-auto shrink-0 hidden md:block">10px · 400 mono · 0.25em</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+  03 — COLOR SYSTEM
+══════════════════════════════════════════════════════════ -->
+<section id="colors" class="ds-section bg-[#080808] border-t border-white/5 relative">
+  <div class="orb orb-cyan w-[500px] h-[500px] -bottom-20 -left-20 opacity-15"></div>
+  <div class="absolute inset-0 bg-grid-pattern opacity-20 pointer-events-none"></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto">
+    <span class="ds-section-label animate-on-scroll [animation:animationIn_0.8s_ease-out_0.1s_both]">03 — Sistema de Cores</span>
+    <h2 class="ds-section-title animate-on-scroll [animation:animationIn_0.8s_ease-out_0.2s_both] mb-4">Paleta<br/><span class="text-neutral-700">Semântica</span></h2>
+    <p class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.3s_both] font-sans text-base text-neutral-500 max-w-xl mb-14">
+      Cada cor possui papel semântico, variantes de opacidade e contraste WCAG definido.
+    </p>
+
+    <!-- Background / Base -->
+    <div class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.1s_both] mb-10">
+      <span class="font-mono text-[10px] text-neutral-600 uppercase tracking-widest block mb-4">Base · Backgrounds</span>
+      <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-2">
+        <div>
+          <div class="swatch" style="background:#000000"></div>
+          <div class="font-mono text-[9px] text-neutral-600 mt-1">void<br/>#000000</div>
+        </div>
+        <div>
+          <div class="swatch" style="background:#050505"></div>
+          <div class="font-mono text-[9px] text-neutral-600 mt-1">bg-deep<br/>#050505</div>
+        </div>
+        <div>
+          <div class="swatch" style="background:#09090b"></div>
+          <div class="font-mono text-[9px] text-neutral-600 mt-1">obsidian<br/>#09090b</div>
+        </div>
+        <div>
+          <div class="swatch" style="background:#0a0a0a"></div>
+          <div class="font-mono text-[9px] text-neutral-600 mt-1">surface<br/>#0A0A0A</div>
+        </div>
+        <div>
+          <div class="swatch" style="background:#111111"></div>
+          <div class="font-mono text-[9px] text-neutral-600 mt-1">panel<br/>#111111</div>
+        </div>
+        <div>
+          <div class="swatch" style="background:#1e1e1e; border:1px solid #333"></div>
+          <div class="font-mono text-[9px] text-neutral-600 mt-1">border<br/>#1e1e1e</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Prism (Violet) accent -->
+    <div class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.15s_both] mb-10">
+      <span class="font-mono text-[10px] text-[#a78bfa] uppercase tracking-widest block mb-4">Prism · Violet Primary Accent</span>
+      <div class="grid grid-cols-2 sm:grid-cols-5 gap-2">
+        <div><div class="swatch" style="background:#1e1b4b"></div><div class="font-mono text-[9px] text-neutral-600 mt-1">prism-950<br/>#1e1b4b</div></div>
+        <div><div class="swatch" style="background:#4c1d95"></div><div class="font-mono text-[9px] text-neutral-600 mt-1">prism-900<br/>#4c1d95</div></div>
+        <div><div class="swatch" style="background:#7c3aed; box-shadow:0 0 20px rgba(124,58,237,0.4)"></div><div class="font-mono text-[9px] text-[#a78bfa] mt-1">prism ★<br/>#7c3aed</div></div>
+        <div><div class="swatch" style="background:#a78bfa"></div><div class="font-mono text-[9px] text-neutral-600 mt-1">prism-lt<br/>#a78bfa</div></div>
+        <div><div class="swatch" style="background:#ddd6fe"></div><div class="font-mono text-[9px] text-neutral-800 mt-1">prism-200<br/>#ddd6fe</div></div>
+      </div>
+      <div class="mt-3 flex flex-wrap gap-3 font-mono text-[10px] text-neutral-600">
+        <span>HSL: 258°  89%  46%</span>
+        <span>·</span>
+        <span>RGB: 124, 58, 237</span>
+        <span>·</span>
+        <span>Contrast: AA (white text) ✓</span>
+      </div>
+    </div>
+
+    <!-- Cyan accent -->
+    <div class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.2s_both] mb-10">
+      <span class="font-mono text-[10px] text-[#06b6d4] uppercase tracking-widest block mb-4">Cyan · Secondary Accent</span>
+      <div class="grid grid-cols-2 sm:grid-cols-5 gap-2">
+        <div><div class="swatch" style="background:#164e63"></div><div class="font-mono text-[9px] text-neutral-600 mt-1">cyan-900<br/>#164e63</div></div>
+        <div><div class="swatch" style="background:#0e7490"></div><div class="font-mono text-[9px] text-neutral-600 mt-1">cyan-700<br/>#0e7490</div></div>
+        <div><div class="swatch" style="background:#06b6d4; box-shadow:0 0 20px rgba(6,182,212,0.4)"></div><div class="font-mono text-[9px] text-[#06b6d4] mt-1">cyan ★<br/>#06b6d4</div></div>
+        <div><div class="swatch" style="background:#67e8f9"></div><div class="font-mono text-[9px] text-neutral-600 mt-1">cyan-300<br/>#67e8f9</div></div>
+        <div><div class="swatch" style="background:#cffafe"></div><div class="font-mono text-[9px] text-neutral-800 mt-1">cyan-100<br/>#cffafe</div></div>
+      </div>
+    </div>
+
+    <!-- Text / Neutral -->
+    <div class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.25s_both] mb-10">
+      <span class="font-mono text-[10px] text-neutral-500 uppercase tracking-widest block mb-4">Neutral · Text &amp; UI</span>
+      <div class="grid grid-cols-3 sm:grid-cols-6 gap-2">
+        <div><div class="swatch" style="background:#e5e5e5"></div><div class="font-mono text-[9px] text-neutral-600 mt-1">neutral-200<br/>Body text</div></div>
+        <div><div class="swatch" style="background:#a3a3a3"></div><div class="font-mono text-[9px] text-neutral-600 mt-1">neutral-400<br/>Muted</div></div>
+        <div><div class="swatch" style="background:#737373"></div><div class="font-mono text-[9px] text-neutral-600 mt-1">neutral-500<br/>Placeholder</div></div>
+        <div><div class="swatch" style="background:#404040"></div><div class="font-mono text-[9px] text-neutral-600 mt-1">neutral-700<br/>Disabled</div></div>
+        <div><div class="swatch" style="background:#262626"></div><div class="font-mono text-[9px] text-neutral-600 mt-1">neutral-800<br/>Divider</div></div>
+        <div><div class="swatch" style="background:#171717"></div><div class="font-mono text-[9px] text-neutral-600 mt-1">neutral-900<br/>Hover BG</div></div>
+      </div>
+    </div>
+
+    <!-- Feedback -->
+    <div class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.3s_both] mb-10">
+      <span class="font-mono text-[10px] text-neutral-500 uppercase tracking-widest block mb-4">Semantic Feedback</span>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <div class="border border-[#1e1e1e] bg-[#0a0a0a] p-4 flex items-center gap-3">
+          <div class="w-3 h-3 rounded-full bg-emerald-500 shadow-[0_0_8px_#22c55e]"></div>
+          <div><div class="text-sm font-medium text-emerald-400">Success</div><div class="font-mono text-[9px] text-neutral-600">#22c55e · AA ✓</div></div>
+        </div>
+        <div class="border border-[#1e1e1e] bg-[#0a0a0a] p-4 flex items-center gap-3">
+          <div class="w-3 h-3 rounded-full bg-amber-400 shadow-[0_0_8px_#fbbf24]"></div>
+          <div><div class="text-sm font-medium text-amber-400">Warning</div><div class="font-mono text-[9px] text-neutral-600">#fbbf24 · AA ✓</div></div>
+        </div>
+        <div class="border border-[#1e1e1e] bg-[#0a0a0a] p-4 flex items-center gap-3">
+          <div class="w-3 h-3 rounded-full bg-rose-500 shadow-[0_0_8px_#f43f5e]"></div>
+          <div><div class="text-sm font-medium text-rose-400">Error</div><div class="font-mono text-[9px] text-neutral-600">#f43f5e · AA ✓</div></div>
+        </div>
+        <div class="border border-[#1e1e1e] bg-[#0a0a0a] p-4 flex items-center gap-3">
+          <div class="w-3 h-3 rounded-full bg-[#06b6d4] shadow-[0_0_8px_#06b6d4]"></div>
+          <div><div class="text-sm font-medium text-cyan-400">Info</div><div class="font-mono text-[9px] text-neutral-600">#06b6d4 · AA ✓</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gradients -->
+    <div class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.35s_both]">
+      <span class="font-mono text-[10px] text-neutral-500 uppercase tracking-widest block mb-4">Gradients</span>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <div><div class="swatch h-20" style="background:linear-gradient(135deg,#7c3aed,#06b6d4)"></div><div class="font-mono text-[9px] text-neutral-600 mt-1">prism → cyan</div></div>
+        <div><div class="swatch h-20" style="background:linear-gradient(135deg,#4c1d95,#7c3aed,#a78bfa)"></div><div class="font-mono text-[9px] text-neutral-600 mt-1">prism depth</div></div>
+        <div><div class="swatch h-20" style="background:linear-gradient(135deg,#a78bfa,#06b6d4,#ccff00)"></div><div class="font-mono text-[9px] text-neutral-600 mt-1">prism × acid</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+  04 — BUTTONS (com todas as animações)
+══════════════════════════════════════════════════════════ -->
+<section id="buttons" class="ds-section bg-[#050505] border-t border-white/5">
+  <div class="orb orb-prism w-[350px] h-[350px] top-1/2 right-0 -translate-y-1/2 opacity-10"></div>
+  <div class="absolute inset-0 bg-grid-pattern opacity-15 pointer-events-none"></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto">
+    <span class="ds-section-label animate-on-scroll [animation:animationIn_0.8s_ease-out_0.1s_both]">04 — Botões</span>
+    <h2 class="ds-section-title animate-on-scroll [animation:animationIn_0.8s_ease-out_0.2s_both] mb-14">Button<br/><span class="text-neutral-800">System</span></h2>
+
+    <div class="grid md:grid-cols-2 gap-8">
+
+      <!-- Primary — spinning beam (from animations-gemini) -->
+      <div class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.1s_both] border border-[#1e1e1e] bg-[#0a0a0a] p-8">
+        <span class="font-mono text-[10px] text-[#ccff00] uppercase tracking-widest block mb-6">Primary · Beam</span>
+        <div class="flex flex-col items-start gap-6">
+          <div class="group relative">
+            <div class="-inset-2 group-hover:opacity-100 opacity-0 transition duration-500 bg-[#7c3aed]/25 rounded-full absolute blur-xl"></div>
+            <button class="group relative z-10 flex items-center justify-center overflow-hidden rounded-full p-[1px] leading-none">
+              <span class="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_0deg,transparent_0_340deg,#7c3aed_360deg)]"></span>
+              <span class="relative flex h-full w-full items-center rounded-full bg-[#050505] px-7 py-3 ring-1 ring-[#7c3aed]/20">
+                <span class="absolute inset-0 overflow-hidden rounded-full">
+                  <span class="absolute top-0 left-0 h-full w-full -skew-x-12 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:animate-[shimmer_1.5s_infinite] group-hover:opacity-100"></span>
+                </span>
+                <span class="relative z-10 flex items-center text-sm font-semibold tracking-wide text-white">
+                  Primário Beam
+                </span>
+                <span class="relative z-10 ml-3 text-[#a78bfa] group-hover:translate-x-1 transition-transform">
+                  <iconify-icon icon="solar:arrow-right-bold-duotone"></iconify-icon>
+                </span>
+              </span>
+            </button>
+          </div>
+          <div class="font-mono text-[9px] text-neutral-700 border-l border-[#2a2a2a] pl-3">
+            conic-gradient beam · shimmer on hover<br/>
+            ring-1 ring-prism/20 · rounded-full
+          </div>
+        </div>
+      </div>
+
+      <!-- Secondary ghost -->
+      <div class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.15s_both] border border-[#1e1e1e] bg-[#0a0a0a] p-8">
+        <span class="font-mono text-[10px] text-[#a78bfa] uppercase tracking-widest block mb-6">Secondary · Ghost</span>
+        <div class="flex flex-col items-start gap-4">
+          <button class="group inline-flex items-center gap-3 rounded-full px-7 py-3 border border-[#7c3aed]/40 bg-[#7c3aed]/8 hover:bg-[#7c3aed]/20 hover:border-[#7c3aed]/70 transition-all duration-300 text-sm font-medium text-[#a78bfa] hover:text-white">
+            <iconify-icon class="text-lg" icon="solar:star-bold-duotone"></iconify-icon>
+            Ghost Prism
+            <iconify-icon class="text-base group-hover:translate-x-0.5 transition-transform" icon="solar:arrow-right-bold-duotone"></iconify-icon>
+          </button>
+          <button class="group inline-flex items-center gap-3 rounded-full px-7 py-3 border border-[#06b6d4]/40 bg-[#06b6d4]/8 hover:bg-[#06b6d4]/15 transition-all duration-300 text-sm font-medium text-[#06b6d4] hover:text-white">
+            Ghost Cyan
+          </button>
+          <div class="font-mono text-[9px] text-neutral-700 border-l border-[#2a2a2a] pl-3">
+            border opacity variant · bg tint<br/>
+            hover: bg increase + text white
+          </div>
+        </div>
+      </div>
+
+      <!-- Solid fills -->
+      <div class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.2s_both] border border-[#1e1e1e] bg-[#0a0a0a] p-8">
+        <span class="font-mono text-[10px] text-neutral-500 uppercase tracking-widest block mb-6">Solid · Fill Variants</span>
+        <div class="flex flex-wrap items-center gap-3">
+          <button class="group relative overflow-hidden rounded-full px-6 py-2.5 bg-[#7c3aed] hover:bg-[#6d28d9] text-sm font-semibold text-white transition-all hover:shadow-[0_0_20px_rgba(124,58,237,0.5)] active:scale-95">
+            <span class="absolute inset-0 overflow-hidden rounded-full">
+              <span class="absolute top-0 left-0 h-full w-full -skew-x-12 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:animate-[shimmer_1.5s_infinite] group-hover:opacity-100"></span>
+            </span>
+            Prism
+          </button>
+          <button class="group relative overflow-hidden rounded-full px-6 py-2.5 bg-[#06b6d4] hover:bg-[#0891b2] text-sm font-semibold text-[#050505] transition-all hover:shadow-[0_0_20px_rgba(6,182,212,0.5)] active:scale-95">
+            Cyan
+          </button>
+          <button class="group relative overflow-hidden rounded-full px-6 py-2.5 bg-white hover:bg-neutral-200 text-sm font-semibold text-black transition-all active:scale-95">
+            White
+          </button>
+          <button class="group relative overflow-hidden rounded-full px-6 py-2.5 bg-[#111] border border-[#333] hover:border-[#555] text-sm font-semibold text-white transition-all active:scale-95">
+            Dark
+          </button>
+        </div>
+      </div>
+
+      <!-- Icon + Sizes -->
+      <div class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.25s_both] border border-[#1e1e1e] bg-[#0a0a0a] p-8">
+        <span class="font-mono text-[10px] text-neutral-500 uppercase tracking-widest block mb-6">Tamanhos &amp; Ícone</span>
+        <div class="flex flex-col gap-3 items-start">
+          <button class="group inline-flex items-center gap-2 rounded-full px-4 py-1.5 bg-[#7c3aed]/10 border border-[#7c3aed]/30 text-xs font-medium text-[#a78bfa] hover:bg-[#7c3aed]/20 transition-all">
+            <iconify-icon class="text-sm" icon="solar:bolt-bold-duotone"></iconify-icon>
+            XS Button
+          </button>
+          <button class="group inline-flex items-center gap-2 rounded-full px-6 py-2 bg-[#7c3aed]/10 border border-[#7c3aed]/30 text-sm font-medium text-[#a78bfa] hover:bg-[#7c3aed]/20 transition-all">
+            <iconify-icon class="text-base" icon="solar:bolt-bold-duotone"></iconify-icon>
+            SM Button
+          </button>
+          <button class="group inline-flex items-center gap-2 rounded-full px-7 py-3 bg-[#7c3aed]/10 border border-[#7c3aed]/30 text-base font-medium text-[#a78bfa] hover:bg-[#7c3aed]/20 transition-all">
+            <iconify-icon class="text-xl" icon="solar:bolt-bold-duotone"></iconify-icon>
+            MD Button
+          </button>
+          <button class="group inline-flex items-center gap-2 rounded-full px-9 py-4 bg-[#7c3aed]/10 border border-[#7c3aed]/30 text-lg font-semibold text-[#a78bfa] hover:bg-[#7c3aed]/20 transition-all">
+            <iconify-icon class="text-2xl" icon="solar:bolt-bold-duotone"></iconify-icon>
+            LG Button
+          </button>
+        </div>
+      </div>
+
+      <!-- Destructive / Disabled -->
+      <div class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.3s_both] border border-[#1e1e1e] bg-[#0a0a0a] p-8">
+        <span class="font-mono text-[10px] text-neutral-500 uppercase tracking-widest block mb-6">Destructive &amp; Estado</span>
+        <div class="flex flex-wrap gap-3">
+          <button class="inline-flex items-center gap-2 rounded-full px-6 py-2.5 bg-rose-500/10 border border-rose-500/30 text-sm font-medium text-rose-400 hover:bg-rose-500/20 transition-all">
+            <iconify-icon icon="solar:trash-bin-trash-bold-duotone"></iconify-icon>
+            Deletar
+          </button>
+          <button class="inline-flex items-center gap-2 rounded-full px-6 py-2.5 bg-emerald-500/10 border border-emerald-500/30 text-sm font-medium text-emerald-400 hover:bg-emerald-500/20 transition-all">
+            <iconify-icon icon="solar:check-circle-bold-duotone"></iconify-icon>
+            Confirmar
+          </button>
+          <button disabled class="inline-flex items-center gap-2 rounded-full px-6 py-2.5 bg-[#111] border border-[#222] text-sm font-medium text-neutral-700 cursor-not-allowed opacity-50">
+            Desabilitado
+          </button>
+        </div>
+      </div>
+
+      <!-- Loading state -->
+      <div class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.35s_both] border border-[#1e1e1e] bg-[#0a0a0a] p-8">
+        <span class="font-mono text-[10px] text-neutral-500 uppercase tracking-widest block mb-6">Loading State</span>
+        <div class="flex flex-wrap gap-3">
+          <button class="inline-flex items-center gap-3 rounded-full px-7 py-3 bg-[#7c3aed] text-sm font-semibold text-white cursor-wait">
+            <svg class="w-4 h-4 animate-spin" viewBox="0 0 24 24" fill="none">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+            </svg>
+            Processando…
+          </button>
+          <button class="inline-flex items-center gap-3 rounded-full px-7 py-3 border border-[#7c3aed]/40 text-sm font-medium text-[#a78bfa] cursor-wait">
+            <svg class="w-4 h-4 animate-spin text-[#7c3aed]" viewBox="0 0 24 24" fill="none">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+            </svg>
+            Carregando
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+  05 — INPUTS
+══════════════════════════════════════════════════════════ -->
+<section id="inputs" class="ds-section bg-[#080808] border-t border-white/5">
+  <div class="orb orb-acid w-[300px] h-[300px] bottom-0 right-1/4 opacity-08"></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto">
+    <span class="ds-section-label animate-on-scroll [animation:animationIn_0.8s_ease-out_0.1s_both]">05 — Inputs</span>
+    <h2 class="ds-section-title animate-on-scroll [animation:animationIn_0.8s_ease-out_0.2s_both] mb-14">Form<br/><span class="text-neutral-800">Controls</span></h2>
+
+    <div class="grid md:grid-cols-2 gap-8">
+
+      <!-- Variants -->
+      <div class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.1s_both] border border-[#1e1e1e] bg-[#0a0a0a] p-8 space-y-6">
+        <span class="font-mono text-[10px] text-[#ccff00] uppercase tracking-widest block">Variantes</span>
+
+        <!-- Default -->
+        <div>
+          <label class="font-mono text-[10px] text-neutral-600 uppercase tracking-widest block mb-2">Default</label>
+          <input class="ds-input rounded-none" type="text" placeholder="Digite algo…" />
+        </div>
+
+        <!-- Focus (prism) -->
+        <div>
+          <label class="font-mono text-[10px] text-[#a78bfa] uppercase tracking-widest block mb-2">Focus · Prism</label>
+          <input class="ds-input rounded-none" type="text" placeholder="Em foco…" style="border-color:#7c3aed;box-shadow:0 0 0 3px rgba(124,58,237,0.15)" />
+        </div>
+
+        <!-- Error -->
+        <div>
+          <label class="font-mono text-[10px] text-rose-400 uppercase tracking-widest block mb-2">Error State</label>
+          <input class="ds-input ds-input-error rounded-none" type="text" value="valor inválido" />
+          <p class="font-mono text-[10px] text-rose-500 mt-1.5">Este campo é obrigatório.</p>
+        </div>
+
+        <!-- Success -->
+        <div>
+          <label class="font-mono text-[10px] text-emerald-400 uppercase tracking-widest block mb-2">Success State</label>
+          <input class="ds-input ds-input-success rounded-none" type="text" value="email@valido.com" />
+        </div>
+      </div>
+
+      <!-- More controls -->
+      <div class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.2s_both] border border-[#1e1e1e] bg-[#0a0a0a] p-8 space-y-6">
+        <span class="font-mono text-[10px] text-[#a78bfa] uppercase tracking-widest block">Controles Especiais</span>
+
+        <!-- Search -->
+        <div>
+          <label class="font-mono text-[10px] text-neutral-600 uppercase tracking-widest block mb-2">Search</label>
+          <div class="relative">
+            <iconify-icon class="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-500 text-lg" icon="solar:magnifer-bold-duotone"></iconify-icon>
+            <input class="ds-input rounded-none pl-9" type="search" placeholder="Buscar componentes…" />
+          </div>
+        </div>
+
+        <!-- Select -->
+        <div>
+          <label class="font-mono text-[10px] text-neutral-600 uppercase tracking-widest block mb-2">Select</label>
+          <select class="ds-input rounded-none appearance-none cursor-pointer bg-[#0a0a0a]">
+            <option value="">Escolha uma opção</option>
+            <option value="prism">Prism Violet</option>
+            <option value="cyan">Cyan Blue</option>
+            <option value="acid">Acid Green</option>
+          </select>
+        </div>
+
+        <!-- Textarea -->
+        <div>
+          <label class="font-mono text-[10px] text-neutral-600 uppercase tracking-widest block mb-2">Textarea</label>
+          <textarea class="ds-input rounded-none resize-none" rows="3" placeholder="Escreva sua mensagem…"></textarea>
+        </div>
+
+        <!-- Checkbox & Radio -->
+        <div class="flex flex-wrap gap-6">
+          <label class="flex items-center gap-2 cursor-pointer group">
+            <input type="checkbox" class="sr-only peer" />
+            <div class="w-4 h-4 border border-[#333] bg-[#111] peer-checked:bg-[#7c3aed] peer-checked:border-[#7c3aed] flex items-center justify-center transition-all">
+              <iconify-icon class="text-xs text-white opacity-0 peer-checked:opacity-100 scale-0 peer-checked:scale-100 transition-all" icon="solar:check-bold"></iconify-icon>
+            </div>
+            <span class="font-sans text-sm text-neutral-400 group-hover:text-white transition-colors">Checkbox</span>
+          </label>
+          <label class="flex items-center gap-2 cursor-pointer group">
+            <input type="radio" name="r" class="sr-only peer" checked />
+            <div class="w-4 h-4 rounded-full border border-[#7c3aed] bg-[#111] peer-checked:bg-[#7c3aed] flex items-center justify-center transition-all">
+              <div class="w-1.5 h-1.5 rounded-full bg-white opacity-0 peer-checked:opacity-100 scale-0 peer-checked:scale-100 transition-all"></div>
+            </div>
+            <span class="font-sans text-sm text-neutral-400 group-hover:text-white transition-colors">Radio</span>
+          </label>
+          <!-- Toggle -->
+          <label class="flex items-center gap-2 cursor-pointer group">
+            <input type="checkbox" class="sr-only peer" checked />
+            <div class="w-9 h-5 bg-[#222] rounded-full relative transition-all peer-checked:bg-[#7c3aed]">
+              <div class="absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full shadow transition-all peer-checked:translate-x-4 peer-checked:bg-white translate-x-0"></div>
+            </div>
+            <span class="font-sans text-sm text-neutral-400 group-hover:text-white transition-colors">Toggle</span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+  06 — CARDS (flashlight + stack animation)
+══════════════════════════════════════════════════════════ -->
+<section id="cards" class="ds-section bg-[#050505] border-t border-white/5">
+  <div class="orb orb-prism w-[600px] h-[600px] -top-32 left-1/2 -translate-x-1/2 opacity-08"></div>
+  <div class="absolute inset-0 bg-grid-pattern opacity-20 pointer-events-none"></div>
+
+  <!-- BG image overlay (from animations-gemini) -->
+  <div class="absolute inset-0 bg-cover bg-center opacity-05 pointer-events-none"
+       style="background-image:url('https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/7b8e6a1f-44f9-49ef-a26c-bf0d87724acf_1600w.webp')"></div>
+  <div class="absolute inset-0 bg-gradient-to-b from-[#050505] via-transparent to-[#050505] pointer-events-none"></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto">
+    <span class="ds-section-label animate-on-scroll [animation:animationIn_0.8s_ease-out_0.1s_both]">06 — Cards</span>
+    <h2 class="ds-section-title animate-on-scroll [animation:animationIn_0.8s_ease-out_0.2s_both] mb-14">Card<br/><span class="text-neutral-800">System</span></h2>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-12">
+
+      <!-- Flashlight card (exact from animations-gemini) -->
+      <div class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.1s_both] flashlight-card relative border border-[#1e1e1e] bg-[#0a0a0a] p-6 hover:border-[#333] transition-colors overflow-hidden group cursor-default"
+           onmousemove="const r=this.getBoundingClientRect();this.style.setProperty('--mouse-x',`${event.clientX-r.left}px`);this.style.setProperty('--mouse-y',`${event.clientY-r.top}px`)">
+        <div class="relative z-10">
+          <div class="w-10 h-10 rounded-lg bg-[#7c3aed]/15 border border-[#7c3aed]/30 flex items-center justify-center mb-4">
+            <iconify-icon class="text-xl text-[#a78bfa]" icon="solar:layers-minimalistic-bold-duotone"></iconify-icon>
+          </div>
+          <h3 class="font-grotesk text-base font-semibold text-white mb-2">Flashlight Card</h3>
+          <p class="font-sans text-sm text-neutral-500 leading-relaxed">Efeito de lanterna segue o cursor com radial-gradient via CSS custom properties.</p>
+          <div class="mt-4 flex items-center gap-2 text-[#a78bfa] text-xs font-medium group-hover:gap-3 transition-all">
+            <span>Ver detalhes</span>
+            <iconify-icon icon="solar:arrow-right-bold-duotone"></iconify-icon>
+          </div>
+        </div>
+      </div>
+
+      <!-- Glass card (from animations-gemini) -->
+      <div class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.2s_both] relative border border-white/8 glass-panel p-6 overflow-hidden group cursor-default hover:border-white/15 transition-colors"
+           style="position:relative;--border-gradient:linear-gradient(135deg,rgba(124,58,237,0.2),rgba(6,182,212,0.1),transparent);--border-radius-before:0px">
+        <div class="absolute -top-8 -right-8 w-32 h-32 rounded-full bg-[#7c3aed]/20 blur-2xl group-hover:bg-[#7c3aed]/35 transition-all duration-700"></div>
+        <div class="relative z-10">
+          <div class="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center mb-4">
+            <iconify-icon class="text-xl text-white/70 group-hover:text-white transition-colors" icon="solar:cpu-bold-duotone"></iconify-icon>
+          </div>
+          <h3 class="font-grotesk text-base font-semibold text-white mb-2">Glass Panel</h3>
+          <p class="font-sans text-sm text-neutral-400 leading-relaxed">backdrop-filter: blur(20px) com gradiente de borda via border-gradient CSS var.</p>
+          <div class="mt-4 font-mono text-[10px] text-neutral-600 uppercase tracking-widest">glass-panel class</div>
+        </div>
+      </div>
+
+      <!-- Glow card -->
+      <div class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.3s_both] relative border border-[#7c3aed]/20 bg-[#0a0a0a] p-6 overflow-hidden group cursor-default hover:border-[#7c3aed]/50 transition-all prism-card">
+        <div class="absolute inset-0 bg-gradient-to-br from-[#7c3aed]/5 to-transparent group-hover:from-[#7c3aed]/10 transition-all duration-700"></div>
+        <div class="relative z-10">
+          <div class="w-10 h-10 rounded-full bg-[#7c3aed]/20 border border-[#7c3aed]/40 flex items-center justify-center mb-4">
+            <iconify-icon class="text-xl text-[#a78bfa] animate-[float_4s_ease-in-out_infinite]" icon="solar:star-bold-duotone"></iconify-icon>
+          </div>
+          <h3 class="font-grotesk text-base font-semibold text-white mb-2">Glow Card</h3>
+          <p class="font-sans text-sm text-neutral-400 leading-relaxed">box-shadow com cor de acento Prism. Borda e gradiente internal com animação float.</p>
+          <div class="mt-4 flex gap-1">
+            <span class="ds-badge bg-[#7c3aed]/15 text-[#a78bfa] border-[#7c3aed]/30">PRISM</span>
+            <span class="ds-badge bg-white/5 text-neutral-500 border-white/10">GLOW</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card stack cycling (from instagram-slides) -->
+    <div class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.4s_both] border border-[#1e1e1e] bg-[#0a0a0a] p-8">
+      <span class="font-mono text-[10px] text-[#ccff00] uppercase tracking-widest block mb-8">Card Stack · Cycling Animation</span>
+      <div class="flex flex-col md:flex-row items-center gap-10">
+        <div class="relative w-64 h-64 shrink-0">
+          <!-- Card 3 -->
+          <div class="absolute inset-0 rounded-xl bg-[#111] border border-white/8 p-6 flex flex-col justify-between shadow-2xl group overflow-hidden"
+               style="animation:cardStackCycle 12s infinite ease-in-out;animation-delay:-8s">
+            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                 style="background:radial-gradient(400px circle at var(--mouse-x,50%) var(--mouse-y,50%),rgba(124,58,237,0.12),transparent 40%)"></div>
+            <div class="w-8 h-8 rounded-full bg-[#7c3aed]/20 border border-[#7c3aed]/40 flex items-center justify-center">
+              <iconify-icon class="text-sm text-[#a78bfa]" icon="solar:database-bold-duotone"></iconify-icon>
+            </div>
+            <div class="space-y-2">
+              <div class="h-2 bg-[#222] rounded w-3/4"></div>
+              <div class="h-14 bg-[#1a1a1a] rounded border border-white/5"></div>
+            </div>
+          </div>
+          <!-- Card 2 -->
+          <div class="absolute inset-0 rounded-xl bg-[#111] border border-white/8 p-6 flex flex-col justify-between shadow-2xl group overflow-hidden"
+               style="animation:cardStackCycle 12s infinite ease-in-out;animation-delay:-4s">
+            <div class="w-8 h-8 rounded-full bg-[#06b6d4]/20 border border-[#06b6d4]/40 flex items-center justify-center">
+              <iconify-icon class="text-sm text-[#06b6d4]" icon="solar:chart-bold-duotone"></iconify-icon>
+            </div>
+            <div class="space-y-2">
+              <div class="h-2 bg-[#222] rounded w-1/2"></div>
+              <div class="h-14 bg-[#1a1a1a] rounded border border-white/5"></div>
+            </div>
+          </div>
+          <!-- Card 1 (front) -->
+          <div class="absolute inset-0 rounded-xl bg-[#111] border border-[#7c3aed]/30 p-6 flex flex-col justify-between shadow-2xl"
+               style="animation:cardStackCycle 12s infinite ease-in-out;animation-delay:0s;box-shadow:0 0 30px rgba(124,58,237,0.15)">
+            <div class="w-8 h-8 rounded-full bg-[#7c3aed]/30 border border-[#7c3aed]/50 flex items-center justify-center">
+              <iconify-icon class="text-sm text-white" icon="solar:shield-bold-duotone"></iconify-icon>
+            </div>
+            <div class="space-y-2">
+              <div class="h-2 bg-[#7c3aed]/40 rounded w-2/3"></div>
+              <div class="h-14 bg-[#1a1a1a] rounded border border-[#7c3aed]/20"></div>
+            </div>
+          </div>
+        </div>
+        <div class="space-y-3">
+          <p class="font-mono text-sm text-neutral-400"><span class="text-[#a78bfa]">animation:</span> cardStackCycle 12s infinite ease-in-out</p>
+          <p class="font-sans text-sm text-neutral-600 leading-relaxed max-w-sm">Três cartões em loop com translateY + scale + opacity + blur. Cada card tem delay diferente para criar rotação contínua.</p>
+          <div class="flex gap-2 flex-wrap">
+            <span class="ds-badge bg-[#7c3aed]/10 text-[#a78bfa] border-[#7c3aed]/20">cardStackCycle</span>
+            <span class="ds-badge bg-white/5 text-neutral-500 border-white/10">12s loop</span>
+            <span class="ds-badge bg-[#06b6d4]/10 text-[#06b6d4] border-[#06b6d4]/20">3 cards</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+  07 — UI COMPONENTS (Navbar, Modais, Badges, Tooltips, Sections)
+══════════════════════════════════════════════════════════ -->
+<section id="components" class="ds-section bg-[#080808] border-t border-white/5">
+  <div class="orb orb-cyan w-[400px] h-[400px] top-0 right-0 opacity-10"></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto">
+    <span class="ds-section-label animate-on-scroll [animation:animationIn_0.8s_ease-out_0.1s_both]">07 — UI Components</span>
+    <h2 class="ds-section-title animate-on-scroll [animation:animationIn_0.8s_ease-out_0.2s_both] mb-14">Components<br/><span class="text-neutral-800">&amp; Patterns</span></h2>
+
+    <div class="space-y-10">
+
+      <!-- NAVBAR showcase -->
+      <div class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.1s_both] border border-[#1e1e1e] bg-[#0a0a0a] p-6 overflow-hidden">
+        <span class="font-mono text-[10px] text-[#ccff00] uppercase tracking-widest block mb-6">Navbar</span>
+        <!-- Simulated navbar -->
+        <div class="bg-black/70 backdrop-blur-lg border border-white/8 px-6 py-3 flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="w-6 h-6 rounded bg-[#7c3aed] flex items-center justify-center">
+              <iconify-icon class="text-xs text-white" icon="solar:star-bold-duotone"></iconify-icon>
+            </div>
+            <span class="font-grotesk text-sm font-semibold text-white">Brand</span>
+          </div>
+          <div class="hidden md:flex items-center gap-6">
+            <span class="font-sans text-xs text-neutral-400 hover:text-white transition-colors cursor-pointer">Produto</span>
+            <span class="font-sans text-xs text-neutral-400 hover:text-white transition-colors cursor-pointer">Features</span>
+            <span class="font-sans text-xs text-neutral-400 hover:text-white transition-colors cursor-pointer">Pricing</span>
+            <span class="font-sans text-xs text-white border-b border-[#7c3aed] cursor-pointer">Docs</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <button class="font-sans text-xs text-neutral-400 hover:text-white transition-colors px-3 py-1.5 hidden sm:block">Login</button>
+            <button class="font-sans text-xs font-semibold bg-[#7c3aed] text-white px-4 py-1.5 rounded-full hover:bg-[#6d28d9] transition-colors">Start Free</button>
+          </div>
+        </div>
+        <div class="mt-3 font-mono text-[9px] text-neutral-700">bg-black/70 · backdrop-blur-lg · border-white/8 · sticky z-50</div>
+      </div>
+
+      <!-- BADGES -->
+      <div class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.15s_both] border border-[#1e1e1e] bg-[#0a0a0a] p-6">
+        <span class="font-mono text-[10px] text-[#ccff00] uppercase tracking-widest block mb-6">Badges</span>
+        <div class="flex flex-wrap gap-3">
+          <span class="ds-badge bg-[#7c3aed]/15 text-[#a78bfa] border-[#7c3aed]/30">
+            <span class="w-1 h-1 rounded-full bg-[#a78bfa]"></span>PRISM
+          </span>
+          <span class="ds-badge bg-[#06b6d4]/15 text-[#06b6d4] border-[#06b6d4]/30">
+            <span class="w-1 h-1 rounded-full bg-[#06b6d4] animate-pulse"></span>LIVE
+          </span>
+          <span class="ds-badge bg-emerald-500/15 text-emerald-400 border-emerald-500/30">
+            <span class="w-1 h-1 rounded-full bg-emerald-400 animate-pulse"></span>ONLINE
+          </span>
+          <span class="ds-badge bg-rose-500/15 text-rose-400 border-rose-500/30">ERROR</span>
+          <span class="ds-badge bg-amber-500/15 text-amber-400 border-amber-500/30">WARNING</span>
+          <span class="ds-badge bg-white/5 text-neutral-500 border-white/10">NEUTRAL</span>
+          <span class="ds-badge bg-[#ccff00]/10 text-[#ccff00] border-[#ccff00]/30">ACID</span>
+          <span class="ds-badge border-0 bg-gradient-to-r from-[#7c3aed]/30 to-[#06b6d4]/30 text-white">GRADIENT</span>
+        </div>
+      </div>
+
+      <!-- TOOLTIPS (from animations-gemini2) -->
+      <div class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.2s_both] border border-[#1e1e1e] bg-[#0a0a0a] p-6">
+        <span class="font-mono text-[10px] text-[#ccff00] uppercase tracking-widest block mb-6">Tooltips (hover)</span>
+        <div class="flex flex-wrap gap-8">
+          <div class="group relative cursor-default">
+            <button class="ds-badge bg-[#7c3aed]/15 text-[#a78bfa] border-[#7c3aed]/30 cursor-pointer">Hover me ↑</button>
+            <div class="tooltip-box absolute bottom-full left-1/2 -translate-x-1/2 mb-2 whitespace-nowrap bg-[#0a0a0a] border border-[#333] px-3 py-1.5 font-mono text-[10px] text-white shadow-lg">
+              Tooltip top
+              <div class="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-[#333]"></div>
+            </div>
+          </div>
+          <div class="group relative cursor-default">
+            <button class="ds-badge bg-[#06b6d4]/15 text-[#06b6d4] border-[#06b6d4]/30 cursor-pointer">Hover me →</button>
+            <div class="tooltip-box absolute left-full top-1/2 -translate-y-1/2 ml-2 whitespace-nowrap bg-[#0a0a0a] border border-[#333] px-3 py-1.5 font-mono text-[10px] text-white shadow-lg">
+              Tooltip right
+            </div>
+          </div>
+          <div class="group relative cursor-default">
+            <button class="ds-badge bg-white/5 text-neutral-400 border-white/10 cursor-pointer">Info ⓘ</button>
+            <div class="tooltip-box absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 bg-[#111] border border-[#333] px-3 py-2 font-sans text-[11px] text-neutral-300 shadow-lg leading-relaxed">
+              Tooltips com elastic ease-in transition. Escala de 0.95 → 1.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODAL demo -->
+      <div class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.25s_both] border border-[#1e1e1e] bg-[#0a0a0a] p-6">
+        <span class="font-mono text-[10px] text-[#ccff00] uppercase tracking-widest block mb-6">Modal</span>
+        <button onclick="document.getElementById('demo-modal').classList.add('open')"
+                class="inline-flex items-center gap-2 rounded-full px-6 py-2.5 bg-[#7c3aed]/10 border border-[#7c3aed]/30 text-sm font-medium text-[#a78bfa] hover:bg-[#7c3aed]/20 transition-all">
+          <iconify-icon icon="solar:maximaze-bold-duotone"></iconify-icon>
+          Abrir Modal
+        </button>
+      </div>
+
+      <!-- SECTION DIVIDERS (from animations-gemini2) -->
+      <div class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.3s_both] border border-[#1e1e1e] bg-[#0a0a0a] p-6">
+        <span class="font-mono text-[10px] text-[#ccff00] uppercase tracking-widest block mb-6">Dividers &amp; Separators</span>
+        <div class="space-y-4">
+          <div class="h-[1px] w-full bg-gradient-to-r from-transparent via-[#7c3aed] to-transparent"></div>
+          <div class="h-[1px] w-full bg-gradient-to-r from-transparent via-[#06b6d4] to-transparent"></div>
+          <div class="h-[1px] w-full bg-gradient-to-r from-transparent via-[#ccff00] to-transparent opacity-50"></div>
+          <div class="h-[2px] w-full bg-gradient-to-r from-[#7c3aed] via-[#06b6d4] to-transparent"></div>
+          <div class="flex items-center gap-4">
+            <div class="flex-1 h-[1px] bg-[#1e1e1e]"></div>
+            <span class="font-mono text-[10px] text-neutral-700 uppercase tracking-widest">ou</span>
+            <div class="flex-1 h-[1px] bg-[#1e1e1e]"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+  08 — LOGOS MARQUEE (social proof — from animations-gemini)
+══════════════════════════════════════════════════════════ -->
+<section class="ds-section bg-[#050505] border-t border-white/5 py-20">
+  <div class="relative z-10 max-w-7xl mx-auto">
+    <span class="ds-section-label animate-on-scroll [animation:animationIn_0.8s_ease-out_0.1s_both] text-center block">Social Proof · Marquee</span>
+    <h2 class="ds-section-title animate-on-scroll [animation:animationIn_0.8s_ease-out_0.2s_both] text-center mb-12">
+      <span class="text-neutral-700">Infinite</span> Loop
+    </h2>
+
+    <div class="relative w-full py-10 border-y border-white/5 bg-[#080808] animate-on-scroll [animation:animationIn_0.8s_ease-out_0.3s_both]">
+      <!-- Gradient masks (exact from animations-gemini) -->
+      <div class="absolute left-0 top-0 bottom-0 w-24 z-10 bg-gradient-to-r from-[#050505] to-transparent"></div>
+      <div class="absolute right-0 top-0 bottom-0 w-24 z-10 bg-gradient-to-l from-[#050505] to-transparent"></div>
+      <!-- Marquee -->
+      <div class="flex overflow-hidden w-full">
+        <div class="flex animate-marquee whitespace-nowrap gap-16 items-center">
+          <iconify-icon class="text-3xl text-neutral-600 hover:text-neutral-300 transition-colors" icon="simple-icons:figma"></iconify-icon>
+          <iconify-icon class="text-3xl text-neutral-600 hover:text-neutral-300 transition-colors" icon="simple-icons:vercel"></iconify-icon>
+          <iconify-icon class="text-3xl text-neutral-600 hover:text-neutral-300 transition-colors" icon="simple-icons:github"></iconify-icon>
+          <iconify-icon class="text-4xl text-neutral-600 hover:text-neutral-300 transition-colors" icon="simple-icons:stripe"></iconify-icon>
+          <iconify-icon class="text-3xl text-neutral-600 hover:text-neutral-300 transition-colors" icon="simple-icons:apple"></iconify-icon>
+          <iconify-icon class="text-3xl text-neutral-600 hover:text-neutral-300 transition-colors" icon="simple-icons:linear"></iconify-icon>
+          <iconify-icon class="text-4xl text-neutral-600 hover:text-neutral-300 transition-colors" icon="simple-icons:spacex"></iconify-icon>
+          <iconify-icon class="text-3xl text-neutral-600 hover:text-neutral-300 transition-colors" icon="simple-icons:nvidia"></iconify-icon>
+          <!-- duplicate for seamless -->
+          <iconify-icon class="text-3xl text-neutral-600 hover:text-neutral-300 transition-colors" icon="simple-icons:figma"></iconify-icon>
+          <iconify-icon class="text-3xl text-neutral-600 hover:text-neutral-300 transition-colors" icon="simple-icons:vercel"></iconify-icon>
+          <iconify-icon class="text-3xl text-neutral-600 hover:text-neutral-300 transition-colors" icon="simple-icons:github"></iconify-icon>
+          <iconify-icon class="text-4xl text-neutral-600 hover:text-neutral-300 transition-colors" icon="simple-icons:stripe"></iconify-icon>
+          <iconify-icon class="text-3xl text-neutral-600 hover:text-neutral-300 transition-colors" icon="simple-icons:apple"></iconify-icon>
+          <iconify-icon class="text-3xl text-neutral-600 hover:text-neutral-300 transition-colors" icon="simple-icons:linear"></iconify-icon>
+          <iconify-icon class="text-4xl text-neutral-600 hover:text-neutral-300 transition-colors" icon="simple-icons:spacex"></iconify-icon>
+          <iconify-icon class="text-3xl text-neutral-600 hover:text-neutral-300 transition-colors" icon="simple-icons:nvidia"></iconify-icon>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+  09 — ICONS
+══════════════════════════════════════════════════════════ -->
+<section id="icons" class="ds-section bg-[#080808] border-t border-white/5">
+  <div class="orb orb-prism w-[300px] h-[300px] bottom-0 right-0 opacity-12"></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto">
+    <span class="ds-section-label animate-on-scroll [animation:animationIn_0.8s_ease-out_0.1s_both]">09 — Ícones</span>
+    <h2 class="ds-section-title animate-on-scroll [animation:animationIn_0.8s_ease-out_0.2s_both] mb-6">Icon<br/><span class="text-neutral-800">Library</span></h2>
+    <p class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.3s_both] font-sans text-sm text-neutral-600 mb-12 font-mono">Iconify · Solar Bold Duotone · Lucide · Simple Icons</p>
+
+    <!-- Iconify Solar set (from animations-gemini) -->
+    <div class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.2s_both] mb-10">
+      <span class="font-mono text-[10px] text-[#a78bfa] uppercase tracking-widest block mb-5">Solar Bold Duotone · Interativos</span>
+      <div class="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-12 gap-3">
+        <!-- each icon card replicates the icon-card hover from animations-gemini2 -->
+        <div class="group border border-[#1e1e1e] bg-[#0a0a0a] aspect-square flex items-center justify-center hover:border-[#7c3aed]/50 transition-all hover:bg-[#7c3aed]/5 cursor-pointer">
+          <iconify-icon class="text-2xl text-neutral-500 group-hover:text-[#a78bfa] group-hover:scale-110 transition-all" icon="solar:home-bold-duotone"></iconify-icon>
+        </div>
+        <div class="group border border-[#1e1e1e] bg-[#0a0a0a] aspect-square flex items-center justify-center hover:border-[#7c3aed]/50 transition-all hover:bg-[#7c3aed]/5 cursor-pointer">
+          <iconify-icon class="text-2xl text-neutral-500 group-hover:text-[#a78bfa] group-hover:scale-110 transition-all" icon="solar:star-bold-duotone"></iconify-icon>
+        </div>
+        <div class="group border border-[#1e1e1e] bg-[#0a0a0a] aspect-square flex items-center justify-center hover:border-[#7c3aed]/50 transition-all hover:bg-[#7c3aed]/5 cursor-pointer">
+          <iconify-icon class="text-2xl text-neutral-500 group-hover:text-[#a78bfa] group-hover:scale-110 transition-all" icon="solar:bolt-bold-duotone"></iconify-icon>
+        </div>
+        <div class="group border border-[#1e1e1e] bg-[#0a0a0a] aspect-square flex items-center justify-center hover:border-[#7c3aed]/50 transition-all hover:bg-[#7c3aed]/5 cursor-pointer">
+          <iconify-icon class="text-2xl text-neutral-500 group-hover:text-[#a78bfa] group-hover:scale-110 transition-all" icon="solar:shield-bold-duotone"></iconify-icon>
+        </div>
+        <div class="group border border-[#1e1e1e] bg-[#0a0a0a] aspect-square flex items-center justify-center hover:border-[#7c3aed]/50 transition-all hover:bg-[#7c3aed]/5 cursor-pointer">
+          <iconify-icon class="text-2xl text-neutral-500 group-hover:text-[#a78bfa] group-hover:scale-110 transition-all" icon="solar:cpu-bold-duotone"></iconify-icon>
+        </div>
+        <div class="group border border-[#1e1e1e] bg-[#0a0a0a] aspect-square flex items-center justify-center hover:border-[#7c3aed]/50 transition-all hover:bg-[#7c3aed]/5 cursor-pointer">
+          <iconify-icon class="text-2xl text-neutral-500 group-hover:text-[#a78bfa] group-hover:scale-110 transition-all" icon="solar:chart-bold-duotone"></iconify-icon>
+        </div>
+        <div class="group border border-[#1e1e1e] bg-[#0a0a0a] aspect-square flex items-center justify-center hover:border-[#7c3aed]/50 transition-all hover:bg-[#7c3aed]/5 cursor-pointer">
+          <iconify-icon class="text-2xl text-neutral-500 group-hover:text-[#a78bfa] group-hover:scale-110 transition-all" icon="solar:database-bold-duotone"></iconify-icon>
+        </div>
+        <div class="group border border-[#1e1e1e] bg-[#0a0a0a] aspect-square flex items-center justify-center hover:border-[#7c3aed]/50 transition-all hover:bg-[#7c3aed]/5 cursor-pointer">
+          <iconify-icon class="text-2xl text-neutral-500 group-hover:text-[#a78bfa] group-hover:scale-110 transition-all" icon="solar:code-bold-duotone"></iconify-icon>
+        </div>
+        <div class="group border border-[#1e1e1e] bg-[#0a0a0a] aspect-square flex items-center justify-center hover:border-[#06b6d4]/50 transition-all hover:bg-[#06b6d4]/5 cursor-pointer">
+          <iconify-icon class="text-2xl text-neutral-500 group-hover:text-[#06b6d4] group-hover:scale-110 transition-all" icon="solar:letter-bold-duotone"></iconify-icon>
+        </div>
+        <div class="group border border-[#1e1e1e] bg-[#0a0a0a] aspect-square flex items-center justify-center hover:border-[#06b6d4]/50 transition-all hover:bg-[#06b6d4]/5 cursor-pointer">
+          <iconify-icon class="text-2xl text-neutral-500 group-hover:text-[#06b6d4] group-hover:scale-110 transition-all" icon="solar:magnifer-bold-duotone"></iconify-icon>
+        </div>
+        <div class="group border border-[#1e1e1e] bg-[#0a0a0a] aspect-square flex items-center justify-center hover:border-[#06b6d4]/50 transition-all hover:bg-[#06b6d4]/5 cursor-pointer">
+          <iconify-icon class="text-2xl text-neutral-500 group-hover:text-[#06b6d4] group-hover:scale-110 transition-all" icon="solar:settings-bold-duotone"></iconify-icon>
+        </div>
+        <div class="group border border-[#1e1e1e] bg-[#0a0a0a] aspect-square flex items-center justify-center hover:border-[#06b6d4]/50 transition-all hover:bg-[#06b6d4]/5 cursor-pointer">
+          <iconify-icon class="text-2xl text-neutral-500 group-hover:text-[#06b6d4] group-hover:scale-110 transition-all" icon="solar:layers-minimalistic-bold-duotone"></iconify-icon>
+        </div>
+      </div>
+    </div>
+
+    <!-- Icon sizes -->
+    <div class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.3s_both] border border-[#1e1e1e] bg-[#0a0a0a] p-6">
+      <span class="font-mono text-[10px] text-neutral-500 uppercase tracking-widest block mb-5">Tamanhos</span>
+      <div class="flex items-end gap-8 flex-wrap">
+        <div class="text-center">
+          <iconify-icon class="text-sm text-[#a78bfa]" icon="solar:star-bold-duotone"></iconify-icon>
+          <div class="font-mono text-[9px] text-neutral-700 mt-2">12px<br/>xs</div>
+        </div>
+        <div class="text-center">
+          <iconify-icon class="text-base text-[#a78bfa]" icon="solar:star-bold-duotone"></iconify-icon>
+          <div class="font-mono text-[9px] text-neutral-700 mt-2">16px<br/>sm</div>
+        </div>
+        <div class="text-center">
+          <iconify-icon class="text-xl text-[#a78bfa]" icon="solar:star-bold-duotone"></iconify-icon>
+          <div class="font-mono text-[9px] text-neutral-700 mt-2">20px<br/>md</div>
+        </div>
+        <div class="text-center">
+          <iconify-icon class="text-2xl text-[#a78bfa]" icon="solar:star-bold-duotone"></iconify-icon>
+          <div class="font-mono text-[9px] text-neutral-700 mt-2">24px<br/>lg</div>
+        </div>
+        <div class="text-center">
+          <iconify-icon class="text-4xl text-[#a78bfa]" icon="solar:star-bold-duotone"></iconify-icon>
+          <div class="font-mono text-[9px] text-neutral-700 mt-2">36px<br/>xl</div>
+        </div>
+        <div class="text-center">
+          <iconify-icon class="text-6xl text-[#a78bfa]" icon="solar:star-bold-duotone"></iconify-icon>
+          <div class="font-mono text-[9px] text-neutral-700 mt-2">48px<br/>2xl</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+  10 — ANIMAÇÕES (catalog completo)
+══════════════════════════════════════════════════════════ -->
+<section id="animations" class="ds-section bg-[#050505] border-t border-white/5 relative">
+  <!-- bg image (from animations-gemini slide 6) -->
+  <div class="absolute inset-0 bg-cover bg-center opacity-05 pointer-events-none"
+       style="background-image:url('https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/47ccf769-0cb4-4a95-804e-cc919fd6d449_1600w.webp')"></div>
+  <div class="absolute inset-0 bg-gradient-to-b from-[#050505] via-[#050505]/80 to-[#050505] pointer-events-none"></div>
+
+  <div class="orb orb-prism w-[500px] h-[500px] -bottom-40 -right-40 opacity-12"></div>
+  <div class="orb orb-cyan  w-[400px] h-[400px] top-0 -left-40 opacity-10"></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto">
+    <span class="ds-section-label animate-on-scroll [animation:animationIn_0.8s_ease-out_0.1s_both]">10 — Animações</span>
+    <h2 class="ds-section-title animate-on-scroll [animation:animationIn_0.8s_ease-out_0.2s_both] mb-14">Motion<br/><span class="text-neutral-800">Library</span></h2>
+
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+
+      <!-- animationIn -->
+      <div class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.1s_both] border border-[#1e1e1e] bg-[#0a0a0a] p-5 group hover:border-[#7c3aed]/40 transition-colors">
+        <div class="h-20 flex items-center justify-center mb-4">
+          <div class="animate-on-scroll [animation:animationIn_1.5s_ease-out_0s_both_infinite] animate w-10 h-10 bg-[#7c3aed]/20 border border-[#7c3aed]/40 flex items-center justify-center">
+            <iconify-icon class="text-lg text-[#a78bfa]" icon="solar:stars-minimalistic-bold-duotone"></iconify-icon>
+          </div>
+        </div>
+        <div class="font-mono text-[9px] text-[#a78bfa] uppercase tracking-widest mb-1">animationIn</div>
+        <div class="font-sans text-xs text-neutral-600">translateY(30px) → 0 + blur(10px) → 0 + opacity 0→1</div>
+      </div>
+
+      <!-- shimmer -->
+      <div class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.12s_both] border border-[#1e1e1e] bg-[#0a0a0a] p-5 hover:border-[#06b6d4]/40 transition-colors">
+        <div class="h-20 flex items-center justify-center mb-4">
+          <div class="relative w-32 h-8 bg-[#111] border border-[#222] overflow-hidden rounded">
+            <div class="absolute top-0 h-full w-12 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 animate-[shimmer_2s_linear_infinite]"></div>
+          </div>
+        </div>
+        <div class="font-mono text-[9px] text-[#06b6d4] uppercase tracking-widest mb-1">shimmer</div>
+        <div class="font-sans text-xs text-neutral-600">translateX(-100%) skewX(-15deg) → translateX(200%)</div>
+      </div>
+
+      <!-- marquee -->
+      <div class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.14s_both] border border-[#1e1e1e] bg-[#0a0a0a] p-5 overflow-hidden hover:border-[#a78bfa]/40 transition-colors">
+        <div class="h-20 flex items-center overflow-hidden mb-4">
+          <div class="flex animate-marquee-fast whitespace-nowrap gap-4">
+            <span class="font-mono text-sm text-[#a78bfa]">VOID</span>
+            <span class="font-mono text-sm text-[#06b6d4]">PRISM</span>
+            <span class="font-mono text-sm text-[#ccff00]">ACID</span>
+            <span class="font-mono text-sm text-[#a78bfa]">VOID</span>
+            <span class="font-mono text-sm text-[#06b6d4]">PRISM</span>
+            <span class="font-mono text-sm text-[#ccff00]">ACID</span>
+          </div>
+        </div>
+        <div class="font-mono text-[9px] text-[#ccff00] uppercase tracking-widest mb-1">marquee</div>
+        <div class="font-sans text-xs text-neutral-600">translateX(0) → translateX(-50%) · 40s linear infinite</div>
+      </div>
+
+      <!-- float -->
+      <div class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.16s_both] border border-[#1e1e1e] bg-[#0a0a0a] p-5 hover:border-[#a78bfa]/40 transition-colors">
+        <div class="h-20 flex items-center justify-center mb-4">
+          <iconify-icon class="text-4xl text-[#a78bfa] animate-[float_4s_ease-in-out_infinite]" icon="solar:star-bold-duotone"></iconify-icon>
+        </div>
+        <div class="font-mono text-[9px] text-[#a78bfa] uppercase tracking-widest mb-1">float</div>
+        <div class="font-sans text-xs text-neutral-600">translateY(0) ↔ translateY(-18px) · 8s ease-in-out</div>
+      </div>
+
+      <!-- drift (orb) -->
+      <div class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.18s_both] border border-[#1e1e1e] bg-[#0a0a0a] p-5 overflow-hidden hover:border-[#7c3aed]/40 transition-colors">
+        <div class="h-20 flex items-center justify-center mb-4">
+          <div class="w-14 h-14 rounded-full bg-[#7c3aed]/30 blur-md animate-[drift_6s_ease-in-out_infinite]"></div>
+        </div>
+        <div class="font-mono text-[9px] text-[#a78bfa] uppercase tracking-widest mb-1">drift</div>
+        <div class="font-sans text-xs text-neutral-600">translate + scale orbital motion · 16s ease-in-out</div>
+      </div>
+
+      <!-- pulse-ring -->
+      <div class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.2s_both] border border-[#1e1e1e] bg-[#0a0a0a] p-5 hover:border-[#06b6d4]/40 transition-colors">
+        <div class="h-20 flex items-center justify-center mb-4 relative">
+          <div class="absolute w-6 h-6 rounded-full bg-[#06b6d4]/20 animate-[pulse-ring_2.4s_cubic-bezier(.455,.03,.515,.955)_infinite]"></div>
+          <div class="absolute w-6 h-6 rounded-full bg-[#06b6d4]/15 animate-[pulse-ring_2.4s_cubic-bezier(.455,.03,.515,.955)_infinite_0.8s]"></div>
+          <div class="w-3 h-3 rounded-full bg-[#06b6d4] relative z-10"></div>
+        </div>
+        <div class="font-mono text-[9px] text-[#06b6d4] uppercase tracking-widest mb-1">pulse-ring</div>
+        <div class="font-sans text-xs text-neutral-600">scale(0.5) → scale(2.8) + opacity 0.9→0 · radial</div>
+      </div>
+
+      <!-- clip-reveal (from instagram-slides) -->
+      <div class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.22s_both] border border-[#1e1e1e] bg-[#0a0a0a] p-5 hover:border-[#ccff00]/30 transition-colors">
+        <div class="h-20 flex items-end gap-1.5 justify-center mb-4 pb-2">
+          <div class="w-6 bg-[#7c3aed] animate-clip" style="height:60%;animation-delay:0s"></div>
+          <div class="w-6 bg-[#06b6d4] animate-clip" style="height:80%;animation-delay:0.2s"></div>
+          <div class="w-6 bg-[#a78bfa] animate-clip" style="height:50%;animation-delay:0.4s"></div>
+          <div class="w-6 bg-[#ccff00] animate-clip" style="height:70%;animation-delay:0.6s"></div>
+        </div>
+        <div class="font-mono text-[9px] text-[#ccff00] uppercase tracking-widest mb-1">clip-reveal</div>
+        <div class="font-sans text-xs text-neutral-600">clip-path: inset(100% 0 0 0) → inset(0) · column wipe</div>
+      </div>
+
+      <!-- morph -->
+      <div class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.24s_both] border border-[#1e1e1e] bg-[#0a0a0a] p-5 hover:border-[#a78bfa]/40 transition-colors">
+        <div class="h-20 flex items-center justify-center mb-4">
+          <div class="w-14 h-14 bg-gradient-to-br from-[#7c3aed] to-[#06b6d4] opacity-70 animate-morph"></div>
+        </div>
+        <div class="font-mono text-[9px] text-[#a78bfa] uppercase tracking-widest mb-1">morph</div>
+        <div class="font-sans text-xs text-neutral-600">border-radius morphing blob · 8s ease-in-out infinite</div>
+      </div>
+
+      <!-- glow-pulse -->
+      <div class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.26s_both] border border-[#1e1e1e] bg-[#0a0a0a] p-5 hover:border-[#7c3aed]/40 transition-colors">
+        <div class="h-20 flex items-center justify-center mb-4">
+          <div class="w-16 h-16 rounded-full bg-[#7c3aed]/20 animate-[glow-pulse_3s_ease-in-out_infinite] flex items-center justify-center">
+            <div class="w-6 h-6 rounded-full bg-[#7c3aed]"></div>
+          </div>
+        </div>
+        <div class="font-mono text-[9px] text-[#a78bfa] uppercase tracking-widest mb-1">glow-pulse</div>
+        <div class="font-sans text-xs text-neutral-600">opacity + filter:blur oscillation · 3s ease-in-out</div>
+      </div>
+
+      <!-- spin-beam (conic) -->
+      <div class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.28s_both] border border-[#1e1e1e] bg-[#0a0a0a] p-5 hover:border-[#a78bfa]/40 transition-colors">
+        <div class="h-20 flex items-center justify-center mb-4">
+          <div class="relative w-14 h-14 rounded-full overflow-hidden flex items-center justify-center">
+            <div class="absolute w-[200%] h-[200%] bg-[conic-gradient(from_0deg,transparent_0_340deg,#7c3aed_360deg)] animate-[spin_2s_linear_infinite]"></div>
+            <div class="w-11 h-11 rounded-full bg-[#0a0a0a] relative z-10 flex items-center justify-center">
+              <iconify-icon class="text-lg text-[#a78bfa]" icon="solar:star-bold-duotone"></iconify-icon>
+            </div>
+          </div>
+        </div>
+        <div class="font-mono text-[9px] text-[#a78bfa] uppercase tracking-widest mb-1">spin-beam</div>
+        <div class="font-sans text-xs text-neutral-600">conic-gradient rotating · spin 2s linear infinite</div>
+      </div>
+
+      <!-- textSlide -->
+      <div class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.3s_both] border border-[#1e1e1e] bg-[#0a0a0a] p-5 hover:border-[#06b6d4]/40 transition-colors overflow-hidden">
+        <div class="h-20 flex items-center justify-center mb-4 overflow-hidden">
+          <div class="text-clip-anim font-display text-2xl font-bold text-white tracking-tighter">
+            <span style="animation-delay:0s">V</span><span style="animation-delay:0.06s">O</span><span style="animation-delay:0.12s">I</span><span style="animation-delay:0.18s">D</span>
+          </div>
+        </div>
+        <div class="font-mono text-[9px] text-[#06b6d4] uppercase tracking-widest mb-1">text-slide</div>
+        <div class="font-sans text-xs text-neutral-600">per-char translateY(110%) → 0 · staggered delay</div>
+      </div>
+
+      <!-- bgScroll (lines) -->
+      <div class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.32s_both] border border-[#1e1e1e] bg-[#0a0a0a] p-5 hover:border-[#ccff00]/30 transition-colors overflow-hidden">
+        <div class="h-20 mb-4 overflow-hidden relative">
+          <div class="absolute inset-0 bg-lines opacity-80"></div>
+          <div class="absolute inset-0 flex items-center justify-center">
+            <span class="font-mono text-xs text-[#ccff00] bg-[#0a0a0a] px-2">BG SCROLL</span>
+          </div>
+        </div>
+        <div class="font-mono text-[9px] text-[#ccff00] uppercase tracking-widest mb-1">bg-scroll</div>
+        <div class="font-sans text-xs text-neutral-600">background-position 0→-200px · 25s linear infinite</div>
+      </div>
+
+    </div>
+
+    <!-- Easing Reference -->
+    <div class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.5s_both] mt-12 border border-[#1e1e1e] bg-[#0a0a0a] p-6">
+      <span class="font-mono text-[10px] text-[#ccff00] uppercase tracking-widest block mb-5">Easing Reference</span>
+      <div class="grid sm:grid-cols-3 gap-4">
+        <div>
+          <div class="font-mono text-[10px] text-[#a78bfa] mb-1">--ease-out</div>
+          <div class="font-mono text-[10px] text-neutral-600 break-all">cubic-bezier(0.16, 1, 0.3, 1)</div>
+          <div class="font-sans text-xs text-neutral-700 mt-1">Fast start, soft landing</div>
+        </div>
+        <div>
+          <div class="font-mono text-[10px] text-[#06b6d4] mb-1">--ease-elastic</div>
+          <div class="font-mono text-[10px] text-neutral-600 break-all">cubic-bezier(0.34, 1.56, 0.64, 1)</div>
+          <div class="font-sans text-xs text-neutral-700 mt-1">Overshoot + settle back</div>
+        </div>
+        <div>
+          <div class="font-mono text-[10px] text-[#ccff00] mb-1">ease-in-out</div>
+          <div class="font-mono text-[10px] text-neutral-600 break-all">cubic-bezier(0.4, 0, 0.2, 1)</div>
+          <div class="font-sans text-xs text-neutral-700 mt-1">Smooth symmetrical</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+  11 — FOOTER CTA (from animations-gemini slide 8)
+══════════════════════════════════════════════════════════ -->
+<section class="relative min-h-[70vh] flex flex-col justify-between overflow-hidden bg-[#050505] border-t border-white/5">
+  <!-- BG image -->
+  <div class="absolute inset-0 bg-cover bg-center opacity-12"
+       style="background-image:url('https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/67df17f7-9681-4bd3-927b-ac569042a884_1600w.webp')"></div>
+  <div class="absolute inset-0 bg-gradient-to-b from-[#050505] via-transparent to-[#050505]"></div>
+
+  <!-- Animated glow orbs -->
+  <div class="orb orb-prism w-[600px] h-[600px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-15"></div>
+
+  <div class="relative z-10 flex flex-col h-full">
+    <!-- Header text -->
+    <div class="flex-1 flex flex-col items-center justify-center px-6 pt-24 pb-16 text-center">
+      <span class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.1s_both] font-mono text-[10px] uppercase tracking-[0.25em] text-[#a78bfa] mb-8">
+        DS4 · VOID × PRISM · v4.0
+      </span>
+
+      <h2 class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.2s_both] font-display font-bold tracking-tighter mb-6"
+          style="font-size:clamp(3rem,8vw,7rem);line-height:0.95">
+        Build Without<br/><span class="gradient-text">Compromise.</span>
+      </h2>
+
+      <p class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.35s_both] font-sans text-lg text-neutral-400 max-w-xl mb-12 font-light leading-relaxed">
+        Cada token, animação e componente pensado para interfaces que impressionam.
+      </p>
+
+      <!-- Testimonials (from animations-gemini slide 8) -->
+      <div class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.5s_both] w-full max-w-xl space-y-3 mb-12 opacity-70 hover:opacity-100 transition-all duration-700"
+           style="mask-image:linear-gradient(180deg,transparent,black 15%,black 95%,transparent);-webkit-mask-image:linear-gradient(180deg,transparent,black 15%,black 95%,transparent)">
+        <div class="glass-panel border border-white/5 px-5 py-4 text-left">
+          <p class="font-sans text-sm text-neutral-300">"Os efeitos de glow e as animações de surgimento elevam qualquer interface."</p>
+        </div>
+        <div class="glass-panel border border-white/5 px-5 py-4 ml-8 text-left">
+          <p class="font-sans text-sm text-neutral-300">"O flashlight hover é um detalhe sutil que transforma completamente."</p>
+        </div>
+        <div class="glass-panel border border-white/5 px-5 py-4 text-left">
+          <p class="font-sans text-sm text-neutral-400 text-xs">"Monotone + Prism Violet = a combinação perfeita para SaaS premium."</p>
+        </div>
+      </div>
+
+      <!-- Final CTA -->
+      <div class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.65s_both] flex flex-col sm:flex-row gap-4 items-center">
+        <div class="group relative">
+          <div class="-inset-3 group-hover:opacity-100 opacity-0 transition duration-700 bg-[#7c3aed]/20 absolute blur-2xl rounded-full"></div>
+          <button class="relative group z-10 flex items-center gap-3 overflow-hidden rounded-full px-10 py-4 bg-white text-black font-bold text-sm hover:bg-neutral-100 transition-all hover:shadow-[0_0_40px_rgba(255,255,255,0.15)] active:scale-98">
+            <span class="absolute inset-0 overflow-hidden rounded-full">
+              <span class="absolute top-0 left-0 h-full w-full -skew-x-12 bg-gradient-to-r from-transparent via-[#7c3aed]/20 to-transparent opacity-0 group-hover:animate-[shimmer_2s_infinite] group-hover:opacity-100"></span>
+            </span>
+            <span class="relative z-10">Usar o DS4</span>
+            <iconify-icon class="relative z-10 text-xl group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" icon="solar:arrow-right-up-bold-duotone"></iconify-icon>
+          </button>
+        </div>
+        <button class="inline-flex items-center gap-2 rounded-full px-8 py-4 border border-white/10 text-sm font-medium text-neutral-400 hover:text-white hover:border-white/20 transition-all">
+          <iconify-icon class="text-lg" icon="solar:github-bold-duotone"></iconify-icon>
+          GitHub
+        </button>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="animate-on-scroll [animation:animationIn_0.8s_ease-out_0.7s_both] border-t border-white/5 px-8 py-5 flex items-center justify-between">
+      <span class="font-mono text-[10px] uppercase tracking-widest text-neutral-700">VOID × PRISM · Design System v4.0</span>
+      <div class="flex items-center gap-4">
+        <span class="font-mono text-[10px] text-neutral-700">MIT License</span>
+        <div class="flex items-center gap-1.5">
+          <div class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div>
+          <span class="font-mono text-[10px] text-neutral-700">Sistema Ativo</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+  MODAL (triggered by button in section 07)
+══════════════════════════════════════════════════════════ -->
+<div class="ds-modal-backdrop" id="demo-modal" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="ds-modal">
+    <!-- Glow -->
+    <div class="absolute -inset-1 bg-gradient-to-br from-[#7c3aed]/20 to-[#06b6d4]/10 blur-2xl pointer-events-none rounded"></div>
+    <div class="relative z-10">
+      <div class="flex items-center justify-between mb-6">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-lg bg-[#7c3aed]/20 border border-[#7c3aed]/40 flex items-center justify-center">
+            <iconify-icon class="text-sm text-[#a78bfa]" icon="solar:maximaze-bold-duotone"></iconify-icon>
+          </div>
+          <h3 class="font-grotesk text-base font-semibold text-white">Modal Component</h3>
+        </div>
+        <button onclick="document.getElementById('demo-modal').classList.remove('open')"
+                class="w-7 h-7 flex items-center justify-center text-neutral-500 hover:text-white hover:bg-white/10 transition-all rounded">
+          <iconify-icon icon="solar:close-bold-duotone"></iconify-icon>
+        </button>
+      </div>
+      <p class="font-sans text-sm text-neutral-400 leading-relaxed mb-6">
+        Modal com backdrop blur, transição de scale + translateY, box-shadow Prism glow e fechamento ao clicar no backdrop.
+      </p>
+      <div class="mb-6">
+        <label class="font-mono text-[10px] text-neutral-600 uppercase tracking-widest block mb-2">Confirmar Ação</label>
+        <input class="ds-input rounded-none" type="text" placeholder="Digite para confirmar…" />
+      </div>
+      <div class="flex gap-3">
+        <button onclick="document.getElementById('demo-modal').classList.remove('open')"
+                class="flex-1 rounded-full py-2.5 border border-[#333] text-sm font-medium text-neutral-400 hover:text-white hover:border-[#555] transition-all">
+          Cancelar
+        </button>
+        <button onclick="document.getElementById('demo-modal').classList.remove('open')"
+                class="flex-1 rounded-full py-2.5 bg-[#7c3aed] text-sm font-semibold text-white hover:bg-[#6d28d9] transition-all">
+          Confirmar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+  JAVASCRIPT
+══════════════════════════════════════════════════════════ -->
+<script>
+  /* ── Lucide icons init (from instagram-slides) ── */
+  lucide.createIcons();
+
+  /* ── animate-on-scroll observer (exact from animations-gemini) ── */
+  (function () {
+    const style = document.createElement("style");
+    style.textContent = `
+      .animate-on-scroll { animation-play-state: paused !important; }
+      .animate-on-scroll.animate { animation-play-state: running !important; }
+    `;
+    document.head.appendChild(style);
+
+    const once = true;
+
+    if (!window.__inViewIO) {
+      window.__inViewIO = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate");
+            if (once) window.__inViewIO.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+    }
+
+    window.initInViewAnimations = function (selector = ".animate-on-scroll") {
+      document.querySelectorAll(selector).forEach((el) => {
+        window.__inViewIO.observe(el);
+      });
+    };
+
+    document.addEventListener("DOMContentLoaded", () => initInViewAnimations());
+  })();
+
+  /* ── text-clip-anim trigger on scroll ── */
+  document.addEventListener("DOMContentLoaded", () => {
+    const clipEls = document.querySelectorAll(".text-clip-anim");
+    const clipIO = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll("span").forEach((span, i) => {
+            span.style.animationDelay = `${i * 0.06}s`;
+            span.style.animationPlayState = "running";
+          });
+          clipIO.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    clipEls.forEach((el) => clipIO.observe(el));
+  });
+
+  /* ── Canvas particle background for hero ── */
+  (function() {
+    const canvas = document.getElementById("hero-canvas");
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    let W, H, particles = [];
+
+    function resize() {
+      W = canvas.width  = canvas.parentElement.offsetWidth;
+      H = canvas.height = canvas.parentElement.offsetHeight;
+    }
+
+    function Particle() {
+      this.x = Math.random() * W;
+      this.y = Math.random() * H;
+      this.r = Math.random() * 1.5 + 0.3;
+      this.vx = (Math.random() - 0.5) * 0.4;
+      this.vy = (Math.random() - 0.5) * 0.4;
+      const colors = ["rgba(124,58,237,", "rgba(6,182,212,", "rgba(167,139,250,", "rgba(204,255,0,"];
+      this.color = colors[Math.floor(Math.random() * colors.length)];
+      this.alpha = Math.random() * 0.5 + 0.1;
+    }
+
+    Particle.prototype.update = function() {
+      this.x += this.vx;
+      this.y += this.vy;
+      if (this.x < 0) this.x = W;
+      if (this.x > W) this.x = 0;
+      if (this.y < 0) this.y = H;
+      if (this.y > H) this.y = 0;
+    };
+
+    function init() {
+      particles = [];
+      const count = Math.floor((W * H) / 12000);
+      for (let i = 0; i < count; i++) particles.push(new Particle());
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+      particles.forEach((p) => {
+        p.update();
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = p.color + p.alpha + ")";
+        ctx.fill();
+      });
+
+      /* draw connecting lines */
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 120) {
+            ctx.beginPath();
+            ctx.strokeStyle = "rgba(124,58,237," + (0.06 * (1 - dist / 120)) + ")";
+            ctx.lineWidth = 0.5;
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      requestAnimationFrame(draw);
+    }
+
+    window.addEventListener("resize", () => { resize(); init(); });
+    resize();
+    init();
+    draw();
+  })();
+
+  /* ── Nav active highlight on scroll ── */
+  (function() {
+    const sections = document.querySelectorAll("section[id]");
+    const navLinks = document.querySelectorAll("nav a[href^='#']");
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          navLinks.forEach(link => {
+            const isActive = link.getAttribute("href") === "#" + id;
+            link.classList.toggle("text-white",   isActive);
+            link.classList.toggle("text-neutral-500", !isActive);
+          });
+        }
+      });
+    }, { threshold: 0.4 });
+    sections.forEach(s => io.observe(s));
+  })();
+</script>
+</body>
+</html>
