@@ -2799,6 +2799,1286 @@
       .onlab-card:hover { transform: none; }
       .onlab-card:hover .onlab-card-img img { transform: none; }
     }
+
+    /* =================================================================
+       SECTION 06 — DEPOIMENTOS · OFF NUTRITION LAB
+       Carrossel editorial de comentários premium.
+       Cards glass-panel atmosféricos inspirados no animations-gemini.
+       DS: flashlight · glow-ring · acid accent · shimmer.
+       ================================================================= */
+
+    .reviews {
+      position: relative;
+      background: var(--obsidian);
+      padding: clamp(56px, 8vh, 88px) 0 clamp(72px, 11vh, 120px);
+      overflow: hidden;
+      z-index: 4;
+      isolation: isolate;
+    }
+
+    /* Bridge acid do onlab */
+    .reviews::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: clamp(120px, 16vh, 190px);
+      background:
+        linear-gradient(to right, transparent 0%, rgba(204,255,0,0.04) 30%, rgba(204,255,0,0.08) 50%, rgba(204,255,0,0.04) 70%, transparent 100%) top/100% 1px no-repeat,
+        radial-gradient(ellipse 70% 100% at 50% 0%, rgba(204,255,0,0.04) 0%, transparent 65%),
+        linear-gradient(to bottom, var(--obsidian) 0%, rgba(5,5,5,0.60) 42%, transparent 100%);
+      pointer-events: none; z-index: 1;
+    }
+
+    /* BG grid + glows */
+    .rev-bg-grid {
+      position: absolute; inset: 0; pointer-events: none; z-index: 0;
+      background-image:
+        linear-gradient(to right,  rgba(255,255,255,0.012) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.012) 1px, transparent 1px);
+      background-size: 52px 52px;
+      mask-image: radial-gradient(ellipse 130% 75% at 50% 50%, #000 10%, transparent 70%);
+      -webkit-mask-image: radial-gradient(ellipse 130% 75% at 50% 50%, #000 10%, transparent 70%);
+    }
+    .rev-glow-a {
+      position: absolute; border-radius: 50%; pointer-events: none; z-index: 0;
+      width: clamp(360px, 40vw, 600px); height: clamp(360px, 40vw, 600px);
+      background: radial-gradient(circle, rgba(204,255,0,0.055) 0%, transparent 65%);
+      filter: blur(100px);
+      top: 10%; left: -8%;
+    }
+    .rev-glow-b {
+      position: absolute; border-radius: 50%; pointer-events: none; z-index: 0;
+      width: clamp(300px, 32vw, 500px); height: clamp(300px, 32vw, 500px);
+      background: radial-gradient(circle, rgba(249,115,22,0.055) 0%, transparent 65%);
+      filter: blur(90px);
+      bottom: 5%; right: -5%;
+    }
+
+    /* ── Section header ──────────────────────────────────────────── */
+    .rev-header {
+      position: relative; z-index: 2;
+      padding: 0 clamp(20px, 5vw, 80px);
+      margin-bottom: clamp(32px, 5vh, 56px);
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .rev-header-left { display: flex; flex-direction: column; gap: 12px; max-width: 600px; }
+
+    .rev-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--f-mono);
+      font-size: 9px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.50);
+    }
+    .rev-eyebrow-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--acid);
+      box-shadow: 0 0 8px 1px rgba(204,255,0,0.80);
+      flex-shrink: 0;
+      animation: ping 1.9s cubic-bezier(0,0,0.2,1) infinite;
+    }
+
+    .rev-title {
+      font-family: var(--f-display);
+      font-weight: 800;
+      font-size: clamp(26px, 3.6vw, 48px);
+      letter-spacing: -0.04em;
+      line-height: 1.04;
+      color: rgba(255,255,255,0.95);
+      margin: 0;
+    }
+    .rev-title-accent { color: var(--acid); }
+
+    .rev-sub {
+      font-family: var(--f-body);
+      font-size: clamp(13px, 1.05vw, 14.5px);
+      line-height: 1.65;
+      color: rgba(255,255,255,0.38);
+      margin: 4px 0 0;
+    }
+
+    /* Social proof counter strip */
+    .rev-proof-strip {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+    .rev-proof-item {
+      display: flex; align-items: center; gap: 8px;
+    }
+    .rev-proof-val {
+      font-family: var(--f-display);
+      font-weight: 700;
+      font-size: clamp(20px, 1.8vw, 26px);
+      letter-spacing: -0.03em;
+      color: #fff;
+      line-height: 1;
+    }
+    .rev-proof-val span {
+      color: var(--acid);
+      font-size: 0.65em;
+      margin-left: 1px;
+    }
+    .rev-proof-lbl {
+      font-family: var(--f-mono);
+      font-size: 9px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      line-height: 1.3;
+    }
+    .rev-proof-divider {
+      width: 1px; height: 28px;
+      background: rgba(255,255,255,0.10);
+    }
+
+    /* Nav arrows (padrão do site) */
+    .rev-nav { display: flex; align-items: center; gap: 8px; }
+    .rev-nav-btn {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.04);
+      color: rgba(255,255,255,0.50);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: background .25s, border-color .25s, color .25s, transform .2s;
+    }
+    .rev-nav-btn:hover {
+      background: rgba(204,255,0,0.10);
+      border-color: rgba(204,255,0,0.32);
+      color: var(--acid);
+      transform: scale(1.08);
+    }
+    .rev-nav-btn svg { width: 14px; height: 14px; }
+
+    /* ── Carousel wrapper ────────────────────────────────────────── */
+    .rev-carousel-wrap {
+      position: relative; z-index: 2;
+      overflow: hidden;
+      -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 4%, black 96%, transparent 100%);
+      mask-image: linear-gradient(90deg, transparent 0%, black 4%, black 96%, transparent 100%);
+    }
+    .rev-track {
+      display: flex;
+      gap: clamp(16px, 2vw, 26px);
+      padding: clamp(16px, 2.5vh, 28px) clamp(20px, 5vw, 80px) clamp(20px, 3vh, 36px);
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-padding-left: clamp(20px, 5vw, 80px);
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .rev-track::-webkit-scrollbar { display: none; }
+
+    /* ── Card (glass-panel editorial, inspirado no animations-gemini) ─ */
+    .rev-card {
+      flex-shrink: 0;
+      width: clamp(320px, 34vw, 440px);
+      scroll-snap-align: start;
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      cursor: pointer;
+      /* Glass panel DS */
+      background:
+        radial-gradient(ellipse 100% 70% at 50% -10%, rgba(204,255,0,0.05) 0%, transparent 60%),
+        rgba(18, 18, 18, 0.72);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      border: 1px solid rgba(255,255,255,0.07);
+      transition:
+        transform .42s var(--ease-out),
+        box-shadow .42s ease,
+        border-color .35s ease;
+      will-change: transform, opacity, filter;
+    }
+    .rev-card:hover {
+      transform: translateY(-8px) scale(1.010);
+      border-color: rgba(204,255,0,0.18);
+      box-shadow:
+        0 0 0 1px rgba(204,255,0,0.28),
+        0 24px 50px -14px rgba(0,0,0,0.75),
+        0 0 60px -24px rgba(204,255,0,0.20);
+    }
+
+    /* Flashlight DS */
+    .rev-card::before {
+      content: "";
+      position: absolute; inset: 0;
+      background: radial-gradient(
+        560px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(204,255,0,0.08),
+        transparent 42%
+      );
+      opacity: 0;
+      transition: opacity .4s ease;
+      pointer-events: none;
+      z-index: 5;
+      border-radius: inherit;
+    }
+    .rev-card:hover::before { opacity: 1; }
+
+    /* Shimmer beam */
+    .rev-card-shimmer {
+      position: absolute;
+      top: 0; bottom: 0; left: 0;
+      width: 40%;
+      background: linear-gradient(100deg, transparent 20%, rgba(255,255,255,0.055) 50%, transparent 80%);
+      transform: translateX(-180%) skewX(-12deg);
+      pointer-events: none;
+      z-index: 4;
+    }
+    .rev-card:hover .rev-card-shimmer {
+      transition: transform .85s cubic-bezier(0.4,0,0.2,1) .08s;
+      transform: translateX(380%) skewX(-12deg);
+    }
+
+    /* Acid gradient top edge */
+    .rev-card-accent-bar {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent 0%, rgba(204,255,0,0.50) 30%, rgba(204,255,0,0.80) 50%, rgba(204,255,0,0.50) 70%, transparent 100%);
+      opacity: 0;
+      transition: opacity .35s;
+      z-index: 3;
+    }
+    .rev-card:hover .rev-card-accent-bar { opacity: 1; }
+
+    /* Inner padding */
+    .rev-card-inner {
+      position: relative; z-index: 2;
+      padding: clamp(22px, 3vw, 32px);
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      height: 100%;
+    }
+
+    /* Top row: product tag + rating */
+    .rev-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .rev-product-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--f-mono);
+      font-size: 8.5px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.09);
+      padding: 5px 10px;
+      border-radius: 5px;
+      transition: color .35s, background .35s, border-color .35s;
+    }
+    .rev-card:hover .rev-product-tag {
+      color: var(--acid);
+      background: rgba(204,255,0,0.08);
+      border-color: rgba(204,255,0,0.28);
+    }
+    .rev-product-tag::before {
+      content: "";
+      width: 4px; height: 4px; border-radius: 50%;
+      background: var(--acid);
+      opacity: 0.80;
+    }
+
+    /* Stars */
+    .rev-stars {
+      display: flex; align-items: center; gap: 2px;
+    }
+    .rev-star {
+      width: 14px; height: 14px;
+      color: var(--acid);
+      filter: drop-shadow(0 0 4px rgba(204,255,0,0.55));
+    }
+
+    /* Big quote mark (decorativo) */
+    .rev-quote-mark {
+      font-family: var(--f-display);
+      font-size: clamp(52px, 6vw, 72px);
+      font-weight: 800;
+      line-height: 0.7;
+      color: rgba(204,255,0,0.14);
+      letter-spacing: -0.05em;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    /* Testimonial text */
+    .rev-text {
+      font-family: var(--f-body);
+      font-size: clamp(14px, 1.1vw, 16px);
+      line-height: 1.68;
+      color: rgba(255,255,255,0.78);
+      margin: 0;
+      flex: 1;
+      transition: color .35s;
+    }
+    .rev-card:hover .rev-text { color: rgba(255,255,255,0.92); }
+
+    /* Key metric / highlight quote (linha em destaque) */
+    .rev-highlight {
+      font-family: var(--f-display);
+      font-size: clamp(15px, 1.2vw, 18px);
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      color: rgba(255,255,255,0.95);
+      border-left: 2px solid var(--acid);
+      padding-left: 12px;
+      line-height: 1.4;
+      transition: border-color .35s;
+    }
+    .rev-card:hover .rev-highlight { border-left-color: rgba(204,255,0,0.85); }
+
+    /* Divider */
+    .rev-card-rule {
+      width: 100%; height: 1px;
+      background: rgba(255,255,255,0.06);
+    }
+
+    /* Author row */
+    .rev-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    /* Avatar CSS (gradiente acid → dark, initials premium) */
+    .rev-avatar {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--f-display);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #0a0a0a;
+      flex-shrink: 0;
+      border: 1.5px solid rgba(204,255,0,0.25);
+      box-shadow: 0 0 12px -4px rgba(204,255,0,0.30);
+      transition: box-shadow .35s, border-color .35s;
+    }
+    .rev-card:hover .rev-avatar {
+      box-shadow: 0 0 18px -4px rgba(204,255,0,0.55);
+      border-color: rgba(204,255,0,0.50);
+    }
+    /* Each avatar gets a unique gradient via inline style */
+
+    .rev-author-info { display: flex; flex-direction: column; gap: 2px; }
+    .rev-author-name {
+      font-family: var(--f-display);
+      font-size: 13.5px;
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      color: rgba(255,255,255,0.90);
+      line-height: 1.2;
+    }
+    .rev-author-role {
+      font-family: var(--f-mono);
+      font-size: 9.5px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.32);
+      line-height: 1.2;
+    }
+
+    /* Verified badge (canto inferior direito) */
+    .rev-verified {
+      margin-left: auto;
+      display: inline-flex; align-items: center; gap: 5px;
+      font-family: var(--f-mono);
+      font-size: 8px;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      color: rgba(204,255,0,0.70);
+      flex-shrink: 0;
+    }
+    .rev-verified svg {
+      width: 12px; height: 12px;
+      color: var(--acid);
+    }
+
+    /* ── Pagination dots ─────────────────────────────────────────── */
+    .rev-dots {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      margin-top: clamp(24px, 3.5vh, 36px);
+      position: relative; z-index: 2;
+    }
+    .rev-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.16);
+      cursor: pointer;
+      transition: background .3s, width .3s, box-shadow .3s;
+    }
+    .rev-dot.is-active {
+      background: var(--acid);
+      width: 20px;
+      border-radius: 100px;
+      box-shadow: 0 0 10px rgba(204,255,0,0.60);
+    }
+
+    /* ── NOVO LAYOUT: masonry 3 colunas dentro de rev-panel ─────── */
+
+    /* Painel premium (mesmo padrão do ben-panel da dobra 04) */
+    .rev-panel {
+      position: relative;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% -5%, rgba(204,255,0,0.06) 0%, transparent 65%),
+        linear-gradient(160deg, rgba(255,255,255,0.025) 0%, rgba(255,255,255,0.005) 100%),
+        rgba(12,12,12,0.82);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: clamp(16px, 2vw, 24px);
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.04) inset,
+        0 40px 120px -40px rgba(0,0,0,0.85),
+        0 0 80px -30px rgba(204,255,0,0.05);
+      margin: 0 clamp(20px, 5vw, 80px);
+      padding: clamp(32px, 4.5vh, 52px) clamp(24px, 3.5vw, 48px) clamp(36px, 5vh, 60px);
+      overflow: hidden;
+      isolation: isolate;
+    }
+    /* Acid top accent line no painel */
+    .rev-panel::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(204,255,0,0.35) 30%, rgba(204,255,0,0.55) 50%, rgba(204,255,0,0.35) 70%, transparent 100%);
+      pointer-events: none;
+    }
+    /* Glow interno discreto */
+    .rev-panel::after {
+      content: "";
+      position: absolute;
+      top: -60px; left: 50%; transform: translateX(-50%);
+      width: 60%; height: 160px;
+      background: radial-gradient(ellipse 100% 100% at 50% 0%, rgba(204,255,0,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* ── Cabeçalho do painel ─────────────────────────────────────── */
+    .rev-panel-header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      gap: clamp(16px, 2vw, 32px);
+      margin-bottom: clamp(28px, 4vh, 44px);
+      padding-bottom: clamp(18px, 2.5vh, 28px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .rev-panel-left { display: flex; flex-direction: column; gap: 10px; }
+    .rev-panel-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 14px;
+    }
+
+    /* ── Masonry grid ─────────────────────────────────────────────── */
+    .rev-masonry {
+      display: flex;
+      gap: clamp(14px, 1.6vw, 22px);
+      align-items: flex-start;
+    }
+    .rev-col {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(14px, 1.6vw, 22px);
+      flex: 1;
+    }
+    /* Offsets verticais para o efeito staircase / masonry */
+    .rev-col-left  { padding-top: clamp(32px, 5vh, 64px); }
+    .rev-col-center { padding-top: 0; flex: 1.15; }
+    .rev-col-right  { padding-top: clamp(16px, 3vh, 40px); }
+
+    /* ── Card base (glass-panel editorial) ───────────────────────── */
+    .rev-card {
+      position: relative;
+      /* Override valores do bloco de carrossel antigo */
+      width: 100%;
+      flex-shrink: 1;
+      scroll-snap-align: none;
+      border-radius: 14px;
+      overflow: hidden;
+      cursor: pointer;
+      background:
+        radial-gradient(ellipse 100% 60% at 50% -8%, rgba(204,255,0,0.04) 0%, transparent 60%),
+        rgba(18,18,18,0.70);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.07);
+      opacity: 1;
+      transition:
+        transform .40s var(--ease-out),
+        box-shadow .40s ease,
+        border-color .32s ease;
+      will-change: transform, opacity, filter;
+    }
+    .rev-card:hover {
+      transform: translateY(-7px) scale(1.008);
+      border-color: rgba(204,255,0,0.18);
+      box-shadow:
+        0 0 0 1px rgba(204,255,0,0.26),
+        0 22px 48px -14px rgba(0,0,0,0.72),
+        0 0 56px -22px rgba(204,255,0,0.18);
+    }
+
+    /* Card featured (centro) — mais proeminente */
+    .rev-card-featured {
+      background:
+        radial-gradient(ellipse 110% 70% at 50% -5%, rgba(204,255,0,0.08) 0%, transparent 55%),
+        rgba(16,18,14,0.85);
+      border-color: rgba(204,255,0,0.14);
+      box-shadow:
+        0 0 0 1px rgba(204,255,0,0.12),
+        0 20px 60px -20px rgba(0,0,0,0.85);
+    }
+    .rev-card-featured:hover {
+      border-color: rgba(204,255,0,0.32);
+      box-shadow:
+        0 0 0 1px rgba(204,255,0,0.36),
+        0 28px 70px -16px rgba(0,0,0,0.85),
+        0 0 80px -20px rgba(204,255,0,0.28);
+    }
+
+    /* Flashlight DS */
+    .rev-card::before {
+      content: "";
+      position: absolute; inset: 0;
+      background: radial-gradient(
+        480px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(204,255,0,0.08),
+        transparent 42%
+      );
+      opacity: 0;
+      transition: opacity .4s ease;
+      pointer-events: none;
+      z-index: 5;
+      border-radius: inherit;
+    }
+    .rev-card:hover::before { opacity: 1; }
+
+    /* Accent bar top */
+    .rev-card-accent-bar {
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent 0%, rgba(204,255,0,0.45) 30%, rgba(204,255,0,0.75) 50%, rgba(204,255,0,0.45) 70%, transparent 100%);
+      opacity: 0;
+      transition: opacity .35s;
+      z-index: 3;
+    }
+    .rev-card:hover .rev-card-accent-bar { opacity: 1; }
+    .rev-card-featured .rev-card-accent-bar { opacity: 0.55; }
+    .rev-card-featured:hover .rev-card-accent-bar { opacity: 1; }
+
+    /* Shimmer beam */
+    .rev-card-shimmer {
+      position: absolute;
+      top: 0; bottom: 0; left: 0; width: 38%;
+      background: linear-gradient(100deg, transparent 20%, rgba(255,255,255,0.055) 50%, transparent 80%);
+      transform: translateX(-180%) skewX(-12deg);
+      pointer-events: none; z-index: 4;
+    }
+    .rev-card:hover .rev-card-shimmer {
+      transition: transform .85s cubic-bezier(0.4,0,0.2,1) .05s;
+      transform: translateX(380%) skewX(-12deg);
+    }
+
+    /* Inner padding */
+    .rev-card-inner {
+      position: relative; z-index: 2;
+      padding: clamp(18px, 2.2vw, 28px);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .rev-card-featured .rev-card-inner {
+      padding: clamp(22px, 2.6vw, 34px);
+    }
+
+    /* Top row: tag + stars */
+    .rev-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .rev-product-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--f-mono);
+      font-size: 8px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.50);
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 4px 9px;
+      border-radius: 4px;
+      transition: color .35s, background .35s, border-color .35s;
+    }
+    .rev-card:hover .rev-product-tag {
+      color: var(--acid);
+      background: rgba(204,255,0,0.07);
+      border-color: rgba(204,255,0,0.26);
+    }
+    .rev-product-tag::before {
+      content: ""; width: 4px; height: 4px; border-radius: 50%;
+      background: var(--acid); opacity: 0.75;
+    }
+
+    /* Stars */
+    .rev-stars { display: flex; align-items: center; gap: 2px; }
+    .rev-star {
+      width: 12px; height: 12px;
+      color: var(--acid);
+      filter: drop-shadow(0 0 3px rgba(204,255,0,0.50));
+    }
+    .rev-card-featured .rev-star { width: 14px; height: 14px; }
+
+    /* Quote mark */
+    .rev-quote-mark {
+      font-family: var(--f-display);
+      font-size: clamp(40px, 4vw, 56px);
+      font-weight: 800;
+      line-height: 0.7;
+      color: rgba(204,255,0,0.12);
+      letter-spacing: -0.05em;
+      user-select: none; pointer-events: none;
+      margin-bottom: -6px;
+    }
+    .rev-card-featured .rev-quote-mark {
+      font-size: clamp(52px, 5.5vw, 72px);
+      color: rgba(204,255,0,0.16);
+    }
+
+    /* Testimonial text */
+    .rev-text {
+      font-family: var(--f-body);
+      font-size: clamp(12.5px, 0.95vw, 14px);
+      line-height: 1.70;
+      color: rgba(255,255,255,0.70);
+      margin: 0;
+      transition: color .35s;
+    }
+    .rev-card:hover .rev-text { color: rgba(255,255,255,0.88); }
+    .rev-card-featured .rev-text {
+      font-size: clamp(13.5px, 1.05vw, 15.5px);
+    }
+
+    /* Highlight */
+    .rev-highlight {
+      font-family: var(--f-display);
+      font-size: clamp(13px, 1.0vw, 15px);
+      font-weight: 600;
+      letter-spacing: -0.022em;
+      color: rgba(255,255,255,0.92);
+      border-left: 2px solid var(--acid);
+      padding-left: 11px;
+      line-height: 1.42;
+    }
+    .rev-card-featured .rev-highlight {
+      font-size: clamp(14px, 1.1vw, 17px);
+    }
+
+    /* Divider */
+    .rev-card-rule {
+      width: 100%; height: 1px;
+      background: rgba(255,255,255,0.06);
+    }
+
+    /* Author */
+    .rev-author {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+    }
+    .rev-avatar {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--f-display);
+      font-size: 13px;
+      font-weight: 700;
+      color: #0a0a0a;
+      flex-shrink: 0;
+      border: 1.5px solid rgba(204,255,0,0.22);
+      box-shadow: 0 0 10px -4px rgba(204,255,0,0.28);
+      transition: box-shadow .35s, border-color .35s;
+    }
+    .rev-card-featured .rev-avatar {
+      width: 44px; height: 44px;
+      font-size: 14px;
+    }
+    .rev-card:hover .rev-avatar {
+      box-shadow: 0 0 16px -4px rgba(204,255,0,0.55);
+      border-color: rgba(204,255,0,0.48);
+    }
+    .rev-author-info { display: flex; flex-direction: column; gap: 2px; }
+    .rev-author-name {
+      font-family: var(--f-display);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      color: rgba(255,255,255,0.90);
+      line-height: 1.2;
+    }
+    .rev-author-role {
+      font-family: var(--f-mono);
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.30);
+    }
+    .rev-verified {
+      margin-left: auto; flex-shrink: 0;
+      display: inline-flex; align-items: center; gap: 4px;
+      font-family: var(--f-mono);
+      font-size: 7.5px;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      color: rgba(204,255,0,0.65);
+    }
+    .rev-verified svg { width: 11px; height: 11px; color: var(--acid); }
+
+    /* ── Social proof counters (painel header) ───────────────────── */
+    .rev-proof-strip {
+      display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+    }
+    .rev-proof-item { display: flex; align-items: center; gap: 8px; }
+    .rev-proof-val {
+      font-family: var(--f-display);
+      font-weight: 700;
+      font-size: clamp(18px, 1.6vw, 24px);
+      letter-spacing: -0.03em;
+      color: #fff; line-height: 1;
+    }
+    .rev-proof-val span { color: var(--acid); font-size: 0.65em; margin-left: 1px; }
+    .rev-proof-lbl {
+      font-family: var(--f-mono);
+      font-size: 8.5px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.32);
+      line-height: 1.3;
+    }
+    .rev-proof-divider {
+      width: 1px; height: 26px;
+      background: rgba(255,255,255,0.09);
+    }
+
+    /* ── Eyebrow, title, sub (reutiliza classes globais no painel) ── */
+    .rev-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: var(--f-mono);
+      font-size: 9px; letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.50);
+    }
+    .rev-eyebrow-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--acid);
+      box-shadow: 0 0 8px 1px rgba(204,255,0,0.80);
+      flex-shrink: 0;
+      animation: ping 1.9s cubic-bezier(0,0,0.2,1) infinite;
+    }
+    .rev-title {
+      font-family: var(--f-display);
+      font-weight: 800;
+      font-size: clamp(24px, 3.2vw, 44px);
+      letter-spacing: -0.04em; line-height: 1.04;
+      color: rgba(255,255,255,0.95); margin: 0;
+    }
+    .rev-title-accent { color: var(--acid); }
+    .rev-sub {
+      font-family: var(--f-body);
+      font-size: clamp(12.5px, 1.0vw, 14px);
+      line-height: 1.65;
+      color: rgba(255,255,255,0.36);
+      margin: 4px 0 0; max-width: 480px;
+    }
+
+    /* ── Responsive ──────────────────────────────────────────────── */
+    @media (max-width: 960px) {
+      .rev-masonry { flex-direction: column; gap: 14px; }
+      .rev-col { padding-top: 0 !important; }
+      .rev-col-left, .rev-col-right {
+        display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+      }
+      .rev-panel { margin: 0 clamp(16px, 3vw, 32px); }
+      .rev-panel-header { grid-template-columns: 1fr; }
+      .rev-panel-right { align-items: flex-start; }
+    }
+    @media (max-width: 640px) {
+      .rev-col-left, .rev-col-right { grid-template-columns: 1fr; }
+      .rev-proof-strip { gap: 12px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .rev-card { opacity: 1; transform: none; }
+      .rev-card:hover { transform: none; }
+    }
+
+    /* =================================================================
+       SECTION 07 — SITE FOOTER (premium closing fold)
+       Padrão de painel: ben-panel / rev-panel
+       Identidade: DS3 footer + acid signature + giant wordmark backdrop
+       ================================================================= */
+    .site-footer {
+      position: relative;
+      padding: clamp(80px, 11vh, 140px) 0 clamp(40px, 6vh, 70px);
+      isolation: isolate;
+      overflow: hidden;
+    }
+
+    /* Atmosphere — coerente com as outras dobras */
+    .ftr-bg-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(to right, rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: radial-gradient(ellipse 70% 80% at 50% 100%, #000 30%, transparent 80%);
+      -webkit-mask-image: radial-gradient(ellipse 70% 80% at 50% 100%, #000 30%, transparent 80%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .ftr-glow-a {
+      position: absolute;
+      bottom: -40%;
+      left: 50%;
+      width: clamp(700px, 85vw, 1400px);
+      height: clamp(500px, 60vh, 800px);
+      transform: translateX(-50%);
+      background: radial-gradient(ellipse at 50% 100%,
+                  rgba(204,255,0,0.08) 0%,
+                  rgba(204,255,0,0.04) 30%,
+                  transparent 70%);
+      filter: blur(40px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .ftr-glow-b {
+      position: absolute;
+      top: -10%;
+      right: -10%;
+      width: clamp(400px, 50vw, 700px);
+      height: clamp(400px, 50vw, 700px);
+      background: radial-gradient(circle, rgba(204,255,0,0.04) 0%, transparent 60%);
+      filter: blur(60px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Painel premium — mesmo DNA do ben-panel/rev-panel */
+    .ftr-panel {
+      position: relative;
+      z-index: 2;
+      margin: 0 clamp(20px, 5vw, 80px);
+      padding: clamp(40px, 5.5vh, 64px) clamp(28px, 4vw, 56px) clamp(32px, 4vh, 48px);
+      background:
+        radial-gradient(ellipse 80% 50% at 50% -5%, rgba(204,255,0,0.05) 0%, transparent 60%),
+        rgba(12,12,12,0.78);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: clamp(16px, 2vw, 24px);
+      box-shadow:
+        0 1px 0 rgba(255,255,255,0.05) inset,
+        0 -1px 0 rgba(204,255,0,0.06) inset,
+        0 30px 80px -30px rgba(0,0,0,0.85),
+        0 0 0 1px rgba(255,255,255,0.02);
+      overflow: hidden;
+    }
+    /* Top accent — linha sutil acid igual aos outros painéis */
+    .ftr-panel::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(204,255,0,0.32) 30%,
+        rgba(204,255,0,0.55) 50%,
+        rgba(204,255,0,0.32) 70%,
+        transparent 100%);
+      opacity: 0.7;
+      pointer-events: none;
+    }
+    /* Halo superior */
+    .ftr-panel::after {
+      content: "";
+      position: absolute;
+      top: -50px; left: 50%;
+      transform: translateX(-50%);
+      width: 60%; height: 100px;
+      background: radial-gradient(ellipse at center,
+                  rgba(204,255,0,0.10) 0%,
+                  transparent 70%);
+      pointer-events: none;
+    }
+
+    /* ── CTA Mega block ─────────────────────────────────────────────── */
+    .ftr-cta-block {
+      display: grid;
+      grid-template-columns: 1.2fr auto;
+      align-items: end;
+      gap: clamp(24px, 3vw, 48px);
+      padding-bottom: clamp(28px, 4vh, 44px);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .ftr-cta-text { display: flex; flex-direction: column; gap: 14px; }
+
+    .ftr-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--f-mono);
+      font-size: 9px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.50);
+    }
+    .ftr-eyebrow-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--acid);
+      box-shadow: 0 0 8px 1px rgba(204,255,0,0.80);
+      flex-shrink: 0;
+      animation: ping 1.9s cubic-bezier(0,0,0.2,1) infinite;
+    }
+
+    .ftr-cta-title {
+      font-family: var(--f-display);
+      font-weight: 800;
+      font-size: clamp(32px, 4.6vw, 60px);
+      letter-spacing: -0.045em;
+      line-height: 1.02;
+      color: rgba(255,255,255,0.96);
+      margin: 0;
+      max-width: 18ch;
+    }
+    .ftr-cta-title em {
+      font-style: italic;
+      font-weight: 800;
+      color: var(--acid);
+      background: linear-gradient(180deg, #e6ff4d 0%, #ccff00 60%, #a9d900 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 18px rgba(204,255,0,0.18));
+    }
+    .ftr-cta-sub {
+      font-family: var(--f-sans);
+      font-size: clamp(13px, 1.05vw, 15.5px);
+      line-height: 1.6;
+      color: rgba(255,255,255,0.55);
+      margin: 0;
+      max-width: 52ch;
+    }
+
+    /* CTA actions */
+    .ftr-cta-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: flex-end;
+    }
+    .ftr-cta-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 22px;
+      background: var(--acid);
+      color: #0a0a0a;
+      font-family: var(--f-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      border-radius: var(--r-pill);
+      box-shadow: var(--sh-acid);
+      transition: transform .35s var(--ease-out), box-shadow .35s ease, background .25s ease;
+      white-space: nowrap;
+    }
+    .ftr-cta-primary:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: var(--sh-acid-strong);
+      background: #d8ff33;
+    }
+    .ftr-cta-primary svg {
+      width: 14px; height: 14px;
+      transition: transform .35s var(--ease-out);
+    }
+    .ftr-cta-primary:hover svg { transform: translateX(4px); }
+
+    .ftr-cta-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 18px;
+      font-family: var(--f-mono);
+      font-size: 10.5px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.62);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--r-pill);
+      transition: color .25s ease, border-color .25s ease, background .25s ease, transform .35s var(--ease-out);
+      white-space: nowrap;
+    }
+    .ftr-cta-ghost:hover {
+      color: var(--acid);
+      border-color: rgba(204,255,0,0.35);
+      background: rgba(204,255,0,0.04);
+      transform: translateY(-2px);
+    }
+
+    /* ── Grid principal (brand + 3 colunas de links) ────────────────── */
+    .ftr-grid {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1fr 1fr;
+      gap: clamp(28px, 3.2vw, 56px);
+      padding: clamp(36px, 5vh, 56px) 0 clamp(28px, 4vh, 44px);
+    }
+
+    /* Brand block */
+    .ftr-brand { display: flex; flex-direction: column; gap: 16px; }
+    .ftr-brand-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .ftr-brand-mark {
+      position: relative;
+      width: 44px; height: 44px;
+      background: #fff;
+      color: #000;
+      font-family: var(--f-display);
+      font-weight: 800;
+      font-size: 20px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .ftr-brand-dot {
+      position: absolute;
+      top: -3px; right: -3px;
+      width: 9px; height: 9px;
+      background: var(--acid);
+      border-radius: 50%;
+      box-shadow: 0 0 12px rgba(204,255,0,0.80);
+    }
+    .ftr-brand-info {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .ftr-brand-name {
+      font-family: var(--f-mono);
+      font-size: 11px;
+      letter-spacing: 0.30em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.92);
+      font-weight: 600;
+    }
+    .ftr-brand-meta {
+      font-family: var(--f-mono);
+      font-size: 9.5px;
+      letter-spacing: 0.18em;
+      color: rgba(255,255,255,0.40);
+      text-transform: lowercase;
+    }
+    .ftr-brand-desc {
+      font-family: var(--f-sans);
+      font-size: 13px;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.55);
+      margin: 4px 0 0;
+      max-width: 42ch;
+    }
+    .ftr-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 6px;
+    }
+    .ftr-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 10px;
+      border: 1px solid rgba(204,255,0,0.18);
+      background: rgba(204,255,0,0.04);
+      color: rgba(204,255,0,0.85);
+      font-family: var(--f-mono);
+      font-size: 9px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      border-radius: var(--r-xs);
+      transition: background .25s ease, border-color .25s ease, color .25s ease;
+    }
+    .ftr-badge::before {
+      content: "";
+      width: 4px; height: 4px;
+      background: var(--acid);
+      border-radius: 50%;
+      box-shadow: 0 0 6px rgba(204,255,0,0.60);
+    }
+    .ftr-badge:hover {
+      background: rgba(204,255,0,0.10);
+      border-color: rgba(204,255,0,0.32);
+      color: var(--acid);
+    }
+
+    /* Link columns */
+    .ftr-col { display: flex; flex-direction: column; gap: 14px; }
+    .ftr-col-title {
+      font-family: var(--f-mono);
+      font-size: 9.5px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.40);
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .ftr-links {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+    .ftr-link {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--f-sans);
+      font-size: 13.5px;
+      color: rgba(255,255,255,0.68);
+      width: fit-content;
+      padding-left: 0;
+      transition: color .25s ease, padding-left .35s var(--ease-out);
+    }
+    /* Underline reveal acid */
+    .ftr-link::after {
+      content: "";
+      position: absolute;
+      left: 0; bottom: -3px;
+      width: 0; height: 1px;
+      background: var(--acid);
+      box-shadow: 0 0 8px rgba(204,255,0,0.40);
+      transition: width .35s var(--ease-out);
+    }
+    .ftr-link::before {
+      content: "→";
+      position: absolute;
+      left: -16px;
+      opacity: 0;
+      color: var(--acid);
+      font-size: 11px;
+      transition: opacity .25s ease, left .35s var(--ease-out);
+    }
+    .ftr-link:hover {
+      color: rgba(255,255,255,0.95);
+      padding-left: 18px;
+    }
+    .ftr-link:hover::after { width: 100%; }
+    .ftr-link:hover::before { opacity: 1; left: 2px; }
+
+    /* ── Linha de acento separadora ─────────────────────────────────── */
+    .ftr-line-accent {
+      position: relative;
+      height: 1px;
+      background: rgba(255,255,255,0.06);
+      overflow: hidden;
+      margin: 0 0 clamp(18px, 2.6vh, 28px);
+    }
+    .ftr-line-accent::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(204,255,0,0.55) 50%,
+        transparent 100%);
+      transform: translateX(-100%);
+      animation: ftrLineSweep 6s linear infinite;
+    }
+    @keyframes ftrLineSweep {
+      0%   { transform: translateX(-100%); }
+      60%  { transform: translateX(100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    /* ── Bottom meta row (copyright + signature) ────────────────────── */
+    .ftr-meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      font-family: var(--f-mono);
+      font-size: 9.5px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.38);
+    }
+    .ftr-meta-row .ftr-acc { color: var(--acid); }
+
+    /* ── Responsive ─────────────────────────────────────────────────── */
+    @media (max-width: 980px) {
+      .ftr-cta-block {
+        grid-template-columns: 1fr;
+        align-items: flex-start;
+      }
+      .ftr-cta-actions { align-items: flex-start; }
+      .ftr-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .ftr-brand { grid-column: 1 / -1; }
+    }
+    @media (max-width: 640px) {
+      .site-footer { padding-top: clamp(60px, 9vh, 100px); }
+      .ftr-panel { margin: 0 clamp(14px, 3vw, 24px); }
+      .ftr-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+      .ftr-cta-title { font-size: clamp(28px, 9vw, 40px); }
+      .ftr-meta-row { font-size: 9px; gap: 6px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .ftr-eyebrow-dot,
+      .ftr-line-accent::after { animation: none; }
+      .ftr-cta-primary,
+      .ftr-cta-ghost,
+      .ftr-link,
+      .ftr-badge { transition: none; }
+      .ftr-link:hover { padding-left: 0; }
+    }
 </style>
   <!-- Scroll-to-top: executa no <head>, antes de qualquer renderização.
        Garante que refresh/F5 sempre começa do topo, independente do browser. -->
@@ -2842,11 +4122,12 @@
     </div>
 
     <div class="nav-menu" role="navigation">
-      <a href="#produto">Produto</a>
-      <a href="#lab">Laboratório</a>
-      <a href="#composicao">Composição</a>
-      <a href="#rituais">Rituais</a>
-  </div>
+      <a href="#hero">Home</a>
+      <a href="#onlab">Vestuário</a>
+      <a href="#products">Energy Dust</a>
+      <a href="#quem-somos">Quem Somos</a>
+      <a href="#politica-devolucao">Política de Devolução</a>
+    </div>
 
     <a href="#comprar" class="nav-cta" aria-label="Ativar energia">
       Ativar <span style="color:#737373">·</span> v1.0
@@ -3715,6 +4996,683 @@
 
 </section>
 
+<!-- =================================================================
+     SECTION 06 — DEPOIMENTOS · OFF NUTRITION LAB
+     Layout masonry 3 colunas escalonadas dentro de painel premium.
+     Inspirado na composição editorial da dobra 04 (ben-panel).
+     DS: glass-panel · flashlight · glow-ring · acid accent · shimmer.
+     Entrada: GSAP cinematic — painel + header + colunas em cascata.
+     ================================================================= -->
+<section class="reviews" id="reviews" aria-label="Depoimentos — o que nossos clientes dizem sobre a OFF Nutrition">
+
+  <!-- Background atmosphere (fora do painel) -->
+  <div class="rev-bg-grid" aria-hidden="true"></div>
+  <div class="rev-glow-a"  aria-hidden="true"></div>
+  <div class="rev-glow-b"  aria-hidden="true"></div>
+
+  <!-- ── Painel premium (referência dobra 04 / ben-panel) ───────── -->
+  <div class="rev-panel" id="revPanel">
+
+  <!-- Cabeçalho do painel -->
+  <div class="rev-panel-header">
+    <div class="rev-panel-left">
+      <span class="rev-eyebrow">
+        <span class="rev-eyebrow-dot" aria-hidden="true"></span>
+        OFF NUTRITION LAB · DEPOIMENTOS
+      </span>
+      <h2 class="rev-title">
+        Resultados que <span class="rev-title-accent">falam.</span>
+      </h2>
+      <p class="rev-sub">Atletas, entusiastas e fãs reais da marca. Experiências de quem escolheu a OFF Nutrition para transformar sua rotina.</p>
+    </div>
+    <div class="rev-panel-right">
+      <div class="rev-proof-strip">
+        <div class="rev-proof-item">
+          <div>
+            <div class="rev-proof-val">4.9<span>★</span></div>
+            <div class="rev-proof-lbl">Avaliação média</div>
+          </div>
+        </div>
+        <div class="rev-proof-divider"></div>
+        <div class="rev-proof-item">
+          <div>
+            <div class="rev-proof-val">+2.400</div>
+            <div class="rev-proof-lbl">Clientes ativos</div>
+          </div>
+        </div>
+        <div class="rev-proof-divider"></div>
+        <div class="rev-proof-item">
+          <div>
+            <div class="rev-proof-val">98<span>%</span></div>
+            <div class="rev-proof-lbl">Recomendariam</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Masonry: 3 colunas escalonadas ─────────────────────────── -->
+  <div class="rev-masonry" id="revMasonry">
+
+    <!-- ── COLUNA ESQUERDA ── -->
+    <div class="rev-col rev-col-left">
+
+      <!-- Card E1 — Rafael M. -->
+      <article class="rev-card" aria-label="Depoimento de Rafael M.">
+        <div class="rev-card-accent-bar" aria-hidden="true"></div>
+        <div class="rev-card-shimmer" aria-hidden="true"></div>
+        <div class="rev-card-inner">
+          <div class="rev-card-top">
+            <span class="rev-product-tag">Energy Dust</span>
+            <div class="rev-stars" aria-label="5 estrelas">
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+          </div>
+          <div class="rev-quote-mark" aria-hidden="true">"</div>
+          <p class="rev-text">Usava café antes de cada treino há anos. Quando experimentei o Energy Dust pela primeira vez, entendi que estava desperdiçando tempo. Foco limpo, energia sustentada, sem colapso.</p>
+          <p class="rev-highlight">+40% de rendimento no treino em 2 semanas.</p>
+          <div class="rev-card-rule"></div>
+          <div class="rev-author">
+            <div class="rev-avatar" style="background:linear-gradient(135deg,#ccff00,#8fb300)" aria-hidden="true">RM</div>
+            <div class="rev-author-info">
+              <span class="rev-author-name">Rafael Moreira</span>
+              <span class="rev-author-role">Personal Trainer · SP</span>
+            </div>
+            <span class="rev-verified">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 12l2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg>
+              Verificado
+            </span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card E2 — Ana P. -->
+      <article class="rev-card" aria-label="Depoimento de Ana P.">
+        <div class="rev-card-accent-bar" aria-hidden="true"></div>
+        <div class="rev-card-shimmer" aria-hidden="true"></div>
+        <div class="rev-card-inner">
+          <div class="rev-card-top">
+            <span class="rev-product-tag">Energy Dust</span>
+            <div class="rev-stars" aria-label="5 estrelas">
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+          </div>
+          <div class="rev-quote-mark" aria-hidden="true">"</div>
+          <p class="rev-text">Meu pace no último trail foi o melhor em dois anos. Mistura rápida, entra suave e mantém o ritmo durante toda a prova — sem estômago pesado.</p>
+          <p class="rev-highlight">Bati meu recorde nos 21km sem crise de energia.</p>
+          <div class="rev-card-rule"></div>
+          <div class="rev-author">
+            <div class="rev-avatar" style="background:linear-gradient(135deg,#fb7185,#be123c)" aria-hidden="true">AP</div>
+            <div class="rev-author-info">
+              <span class="rev-author-name">Ana Paula Reis</span>
+              <span class="rev-author-role">Maratonista · CWB</span>
+            </div>
+            <span class="rev-verified">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 12l2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg>
+              Verificado
+            </span>
+          </div>
+        </div>
+      </article>
+
+    </div><!-- /rev-col-left -->
+
+    <!-- ── COLUNA CENTRAL (featured) ── -->
+    <div class="rev-col rev-col-center">
+
+      <!-- Card C1 — Camila S. FEATURED -->
+      <article class="rev-card rev-card-featured" aria-label="Depoimento em destaque de Camila S.">
+        <div class="rev-card-accent-bar" aria-hidden="true"></div>
+        <div class="rev-card-shimmer" aria-hidden="true"></div>
+        <div class="rev-card-inner">
+          <div class="rev-card-top">
+            <span class="rev-product-tag">Catalyze Pro</span>
+            <div class="rev-stars" aria-label="5 estrelas">
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+          </div>
+          <div class="rev-quote-mark" aria-hidden="true">"</div>
+          <p class="rev-text">Sou atleta de CrossFit há 6 anos e já consumi muita coisa importada. O Catalyze Pro me surpreendeu — matéria-prima nacional com qualidade que eu não esperava encontrar aqui. O custo-benefício é absurdo comparado ao que pagava antes por marcas gringas.</p>
+          <p class="rev-highlight">Recuperação mais rápida, menos fadiga muscular pós-WOD. Nunca voltei ao que usava antes.</p>
+          <div class="rev-card-rule"></div>
+          <div class="rev-author">
+            <div class="rev-avatar" style="background:linear-gradient(135deg,#f97316,#b35310)" aria-hidden="true">CS</div>
+            <div class="rev-author-info">
+              <span class="rev-author-name">Camila Santos</span>
+              <span class="rev-author-role">Atleta CrossFit · RJ</span>
+            </div>
+            <span class="rev-verified">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 12l2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg>
+              Verificado
+            </span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card C2 — Juliana F. -->
+      <article class="rev-card" aria-label="Depoimento de Juliana F.">
+        <div class="rev-card-accent-bar" aria-hidden="true"></div>
+        <div class="rev-card-shimmer" aria-hidden="true"></div>
+        <div class="rev-card-inner">
+          <div class="rev-card-top">
+            <span class="rev-product-tag">Combo Performance</span>
+            <div class="rev-stars" aria-label="5 estrelas">
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+          </div>
+          <div class="rev-quote-mark" aria-hidden="true">"</div>
+          <p class="rev-text">Sou nutricionista e analiso rótulo com lupa. A formulação da OFF Nutrition é séria — ingredientes com dosagem funcional real, sem enchimento. Recomendo para meus pacientes.</p>
+          <p class="rev-highlight">Transparência nos ingredientes que raramente vejo em marcas nacionais.</p>
+          <div class="rev-card-rule"></div>
+          <div class="rev-author">
+            <div class="rev-avatar" style="background:linear-gradient(135deg,#e879f9,#a21caf)" aria-hidden="true">JF</div>
+            <div class="rev-author-info">
+              <span class="rev-author-name">Juliana Ferreira</span>
+              <span class="rev-author-role">Nutricionista · POA</span>
+            </div>
+            <span class="rev-verified">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 12l2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg>
+              Verificado
+            </span>
+          </div>
+        </div>
+      </article>
+
+    </div><!-- /rev-col-center -->
+
+    <!-- ── COLUNA DIREITA ── -->
+    <div class="rev-col rev-col-right">
+
+      <!-- Card D1 — Marcos V. -->
+      <article class="rev-card" aria-label="Depoimento de Marcos V.">
+        <div class="rev-card-accent-bar" aria-hidden="true"></div>
+        <div class="rev-card-shimmer" aria-hidden="true"></div>
+        <div class="rev-card-inner">
+          <div class="rev-card-top">
+            <span class="rev-product-tag">ONLAB + Energy Dust</span>
+            <div class="rev-stars" aria-label="5 estrelas">
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+          </div>
+          <div class="rev-quote-mark" aria-hidden="true">"</div>
+          <p class="rev-text">Dono de academia, indico a OFF para todos os meus alunos. Qualidade e preço da OFF Nutrition simplesmente não tem concorrência no mercado nacional. A camiseta ONLAB virou uniforme aqui.</p>
+          <p class="rev-highlight">Toda a equipe da academia usa ONLAB. Identidade de verdade.</p>
+          <div class="rev-card-rule"></div>
+          <div class="rev-author">
+            <div class="rev-avatar" style="background:linear-gradient(135deg,#38bdf8,#0369a1)" aria-hidden="true">MV</div>
+            <div class="rev-author-info">
+              <span class="rev-author-name">Marcos Vieira</span>
+              <span class="rev-author-role">Dono de Academia · SP</span>
+            </div>
+            <span class="rev-verified">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 12l2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg>
+              Verificado
+            </span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card D2 — Thiago R. -->
+      <article class="rev-card" aria-label="Depoimento de Thiago R.">
+        <div class="rev-card-accent-bar" aria-hidden="true"></div>
+        <div class="rev-card-shimmer" aria-hidden="true"></div>
+        <div class="rev-card-inner">
+          <div class="rev-card-top">
+            <span class="rev-product-tag">Catalyze Pro</span>
+            <div class="rev-stars" aria-label="5 estrelas">
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+          </div>
+          <div class="rev-quote-mark" aria-hidden="true">"</div>
+          <p class="rev-text">Bodybuilder natural há 8 anos. O Catalyze Pro entrou no meu protocolo de entressafra e os resultados foram visíveis em 3 semanas. Compete de igual com o que importo dos EUA — com custo bem menor.</p>
+          <p class="rev-highlight">Ganho de força na entressafra que não esperava. Vale muito.</p>
+          <div class="rev-card-rule"></div>
+          <div class="rev-author">
+            <div class="rev-avatar" style="background:linear-gradient(135deg,#fbbf24,#b45309)" aria-hidden="true">TR</div>
+            <div class="rev-author-info">
+              <span class="rev-author-name">Thiago Rocha</span>
+              <span class="rev-author-role">Atleta Natural · GO</span>
+            </div>
+            <span class="rev-verified">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 12l2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg>
+              Verificado
+            </span>
+          </div>
+        </div>
+      </article>
+
+    </div><!-- /rev-col-right -->
+
+  </div><!-- /rev-masonry -->
+
+  </div><!-- /rev-panel -->
+
+  <!-- REMOVIDO: carousel antigo substituído pelo masonry acima -->
+  <!-- PLACEHOLDER para fechar o bloco de forma válida -->
+  <div style="display:none" aria-hidden="true">
+      <article class="rev-card" role="listitem" aria-label="Depoimento de Rafael M.">
+        <div class="rev-card-accent-bar" aria-hidden="true"></div>
+        <div class="rev-card-shimmer" aria-hidden="true"></div>
+        <div class="rev-card-inner">
+          <div class="rev-card-top">
+            <span class="rev-product-tag">Energy Dust</span>
+            <div class="rev-stars" aria-label="5 estrelas">
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+          </div>
+          <div class="rev-quote-mark" aria-hidden="true">"</div>
+          <p class="rev-text">Usava café antes de cada treino há anos. Quando experimentei o Energy Dust pela primeira vez, entendi que estava desperdiçando tempo. O foco chegou em minutos e o rendimento no treino foi diferente — mais limpo, mais controlado.</p>
+          <p class="rev-highlight">Meu treino pesado ficou 40% mais produtivo nas primeiras semanas.</p>
+          <div class="rev-card-rule"></div>
+          <div class="rev-author">
+            <div class="rev-avatar" style="background: linear-gradient(135deg, #ccff00 0%, #8fb300 100%);" aria-hidden="true">RM</div>
+            <div class="rev-author-info">
+              <span class="rev-author-name">Rafael Moreira</span>
+              <span class="rev-author-role">Personal Trainer · SP</span>
+            </div>
+            <span class="rev-verified">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 12l2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg>
+              Verificado
+            </span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ═══ CARD 2 — Camila S. · Catalyze Pro ═══ -->
+      <article class="rev-card" role="listitem" aria-label="Depoimento de Camila S.">
+        <div class="rev-card-accent-bar" aria-hidden="true"></div>
+        <div class="rev-card-shimmer" aria-hidden="true"></div>
+        <div class="rev-card-inner">
+          <div class="rev-card-top">
+            <span class="rev-product-tag">Catalyze Pro</span>
+            <div class="rev-stars" aria-label="5 estrelas">
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+          </div>
+          <div class="rev-quote-mark" aria-hidden="true">"</div>
+          <p class="rev-text">Sou atleta de CrossFit há 6 anos e já consumi muita coisa importada. O Catalyze Pro me surpreendeu — matéria-prima nacional com uma qualidade que eu não esperava encontrar aqui. O custo-benefício é absurdo.</p>
+          <p class="rev-highlight">Recuperação mais rápida, menos fadiga muscular pós-WOD.</p>
+          <div class="rev-card-rule"></div>
+          <div class="rev-author">
+            <div class="rev-avatar" style="background: linear-gradient(135deg, #f97316 0%, #b35310 100%);" aria-hidden="true">CS</div>
+            <div class="rev-author-info">
+              <span class="rev-author-name">Camila Santos</span>
+              <span class="rev-author-role">Atleta CrossFit · RJ</span>
+            </div>
+            <span class="rev-verified">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 12l2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg>
+              Verificado
+            </span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ═══ CARD 3 — Bruno L. · Energy Dust (foco) ═══ -->
+      <article class="rev-card" role="listitem" aria-label="Depoimento de Bruno L.">
+        <div class="rev-card-accent-bar" aria-hidden="true"></div>
+        <div class="rev-card-shimmer" aria-hidden="true"></div>
+        <div class="rev-card-inner">
+          <div class="rev-card-top">
+            <span class="rev-product-tag">Energy Dust</span>
+            <div class="rev-stars" aria-label="5 estrelas">
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+          </div>
+          <div class="rev-quote-mark" aria-hidden="true">"</div>
+          <p class="rev-text">Estudante de engenharia, madrugadas longas são minha realidade. O Energy Dust virou meu ritual de noite de estudo. Sem aquela ansiedade do café, sem colapso de energia. Foco sustentado por horas sem efeito rebote.</p>
+          <p class="rev-highlight">Aprovei nas provas mais difíceis com a cabeça no lugar.</p>
+          <div class="rev-card-rule"></div>
+          <div class="rev-author">
+            <div class="rev-avatar" style="background: linear-gradient(135deg, #a3e635 0%, #65a30d 100%);" aria-hidden="true">BL</div>
+            <div class="rev-author-info">
+              <span class="rev-author-name">Bruno Lima</span>
+              <span class="rev-author-role">Estudante de Eng. · BH</span>
+            </div>
+            <span class="rev-verified">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 12l2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg>
+              Verificado
+            </span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ═══ CARD 4 — Juliana F. · Combo Performance ═══ -->
+      <article class="rev-card" role="listitem" aria-label="Depoimento de Juliana F.">
+        <div class="rev-card-accent-bar" aria-hidden="true"></div>
+        <div class="rev-card-shimmer" aria-hidden="true"></div>
+        <div class="rev-card-inner">
+          <div class="rev-card-top">
+            <span class="rev-product-tag">Combo Performance</span>
+            <div class="rev-stars" aria-label="5 estrelas">
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+          </div>
+          <div class="rev-quote-mark" aria-hidden="true">"</div>
+          <p class="rev-text">Sou nutricionista e analiso rótulo com lupa. A formulação da OFF Nutrition é séria — ingredientes com dosagem funcional real, sem enchimento. Recomendo para meus pacientes que buscam performance sem abrir mão da qualidade.</p>
+          <p class="rev-highlight">Transparência nos ingredientes que raramente vejo em marcas nacionais.</p>
+          <div class="rev-card-rule"></div>
+          <div class="rev-author">
+            <div class="rev-avatar" style="background: linear-gradient(135deg, #e879f9 0%, #a21caf 100%);" aria-hidden="true">JF</div>
+            <div class="rev-author-info">
+              <span class="rev-author-name">Juliana Ferreira</span>
+              <span class="rev-author-role">Nutricionista · POA</span>
+            </div>
+            <span class="rev-verified">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 12l2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg>
+              Verificado
+            </span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ═══ CARD 5 — Marcos V. · ONLAB + Energy Dust ═══ -->
+      <article class="rev-card" role="listitem" aria-label="Depoimento de Marcos V.">
+        <div class="rev-card-accent-bar" aria-hidden="true"></div>
+        <div class="rev-card-shimmer" aria-hidden="true"></div>
+        <div class="rev-card-inner">
+          <div class="rev-card-top">
+            <span class="rev-product-tag">ONLAB + Energy Dust</span>
+            <div class="rev-stars" aria-label="5 estrelas">
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+          </div>
+          <div class="rev-quote-mark" aria-hidden="true">"</div>
+          <p class="rev-text">Dono de academia, indico a OFF para todos os meus alunos. Já testamos várias marcas ao longo dos anos — a qualidade e o preço da OFF Nutrition simplesmente não tem concorrência no mercado nacional. A camiseta ONLAB virou uniforme aqui.</p>
+          <p class="rev-highlight">Toda a equipe da academia usa ONLAB. Identidade de verdade.</p>
+          <div class="rev-card-rule"></div>
+          <div class="rev-author">
+            <div class="rev-avatar" style="background: linear-gradient(135deg, #38bdf8 0%, #0369a1 100%);" aria-hidden="true">MV</div>
+            <div class="rev-author-info">
+              <span class="rev-author-name">Marcos Vieira</span>
+              <span class="rev-author-role">Dono de Academia · SP</span>
+            </div>
+            <span class="rev-verified">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 12l2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg>
+              Verificado
+            </span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ═══ CARD 6 — Ana P. · Energy Dust (corrida) ═══ -->
+      <article class="rev-card" role="listitem" aria-label="Depoimento de Ana P.">
+        <div class="rev-card-accent-bar" aria-hidden="true"></div>
+        <div class="rev-card-shimmer" aria-hidden="true"></div>
+        <div class="rev-card-inner">
+          <div class="rev-card-top">
+            <span class="rev-product-tag">Energy Dust</span>
+            <div class="rev-stars" aria-label="5 estrelas">
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+          </div>
+          <div class="rev-quote-mark" aria-hidden="true">"</div>
+          <p class="rev-text">Corredora de longa distância, preciso de energia sem estômago pesado. O Energy Dust mistura rápido, entra suave e me mantém no ritmo durante provas longas. Meu pace no último trail foi o melhor em dois anos.</p>
+          <p class="rev-highlight">Bateu meu recorde nos 21km sem crise de energia no final.</p>
+          <div class="rev-card-rule"></div>
+          <div class="rev-author">
+            <div class="rev-avatar" style="background: linear-gradient(135deg, #fb7185 0%, #be123c 100%);" aria-hidden="true">AP</div>
+            <div class="rev-author-info">
+              <span class="rev-author-name">Ana Paula Reis</span>
+              <span class="rev-author-role">Maratonista Amateur · CWB</span>
+            </div>
+            <span class="rev-verified">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 12l2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg>
+              Verificado
+            </span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ═══ CARD 7 — Thiago R. · Stack Catalyze + Energy Dust ═══ -->
+      <article class="rev-card" role="listitem" aria-label="Depoimento de Thiago R.">
+        <div class="rev-card-accent-bar" aria-hidden="true"></div>
+        <div class="rev-card-shimmer" aria-hidden="true"></div>
+        <div class="rev-card-inner">
+          <div class="rev-card-top">
+            <span class="rev-product-tag">Catalyze Pro</span>
+            <div class="rev-stars" aria-label="5 estrelas">
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+          </div>
+          <div class="rev-quote-mark" aria-hidden="true">"</div>
+          <p class="rev-text">Bodybuidler natural há 8 anos. O Catalyze Pro entrou no meu protocolo de entressafra e os resultados foram visíveis em 3 semanas. Matéria-prima nacional que compete de igual para igual com o que importo dos EUA — e com um custo bem menor.</p>
+          <p class="rev-highlight">Ganho de força na entressafra que não esperava. Vale muito.</p>
+          <div class="rev-card-rule"></div>
+          <div class="rev-author">
+            <div class="rev-avatar" style="background: linear-gradient(135deg, #fbbf24 0%, #b45309 100%);" aria-hidden="true">TR</div>
+            <div class="rev-author-info">
+              <span class="rev-author-name">Thiago Rocha</span>
+              <span class="rev-author-role">Atleta Natural · GO</span>
+            </div>
+            <span class="rev-verified">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 12l2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg>
+              Verificado
+            </span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ═══ CARD 8 — Larissa M. · ONLAB ═══ -->
+      <article class="rev-card" role="listitem" aria-label="Depoimento de Larissa M.">
+        <div class="rev-card-accent-bar" aria-hidden="true"></div>
+        <div class="rev-card-shimmer" aria-hidden="true"></div>
+        <div class="rev-card-inner">
+          <div class="rev-card-top">
+            <span class="rev-product-tag">ONLAB Wear</span>
+            <div class="rev-stars" aria-label="5 estrelas">
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="rev-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+          </div>
+          <div class="rev-quote-mark" aria-hidden="true">"</div>
+          <p class="rev-text">A oversized ONLAB é diferente de tudo que já comprei em marca nacional de academia. O caimento é perfeito, o tecido é pesado de um jeito bom — parece roupa importada. Uso no treino e saio com ela na rua sem problema nenhum.</p>
+          <p class="rev-highlight">Recebi mais elogios pela camiseta do que por qualquer outra roupa de treino.</p>
+          <div class="rev-card-rule"></div>
+          <div class="rev-author">
+            <div class="rev-avatar" style="background: linear-gradient(135deg, #34d399 0%, #065f46 100%);" aria-hidden="true">LM</div>
+            <div class="rev-author-info">
+              <span class="rev-author-name">Larissa Melo</span>
+              <span class="rev-author-role">Influencer Fitness · SP</span>
+            </div>
+            <span class="rev-verified">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 12l2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg>
+              Verificado
+            </span>
+          </div>
+        </div>
+      </article>
+
+  </div><!-- /display:none placeholder -->
+
+</section>
+
+<!-- =====================================================================
+     SECTION 07 — SITE FOOTER
+     Closing fold: CTA mega + brand + navegação + meta + wordmark gigante.
+     Mesma DNA visual: painel premium (ben-panel/rev-panel), eyebrow com
+     ponto pulsante, acid green accents, glassmorphism, JetBrains Mono.
+     ===================================================================== -->
+<footer class="site-footer" id="site-footer" role="contentinfo"
+        aria-label="Rodapé OFF Nutrition Lab — encerramento da página">
+
+  <!-- Atmosphere -->
+  <div class="ftr-bg-grid" aria-hidden="true"></div>
+  <div class="ftr-glow-a"  aria-hidden="true"></div>
+  <div class="ftr-glow-b"  aria-hidden="true"></div>
+
+  <!-- ── Painel premium ─────────────────────────────────────────────── -->
+  <div class="ftr-panel" id="ftrPanel">
+
+    <!-- ── CTA Mega block ─────────────────────────────────────────── -->
+    <div class="ftr-cta-block">
+      <div class="ftr-cta-text">
+        <span class="ftr-eyebrow">
+          <span class="ftr-eyebrow-dot" aria-hidden="true"></span>
+          OFF NUTRITION LAB · ENCERRAMENTO
+        </span>
+        <h2 class="ftr-cta-title">
+          Pronto para destravar<br>
+          o seu <em>próximo nível</em>?
+        </h2>
+        <p class="ftr-cta-sub">
+          Performance não é sorte — é bioquímica calibrada com matéria-prima
+          100% nacional, ciência aplicada e custo justo. Junte-se à elite
+          que treina, cria e entrega resultado de verdade.
+        </p>
+      </div>
+
+      <div class="ftr-cta-actions">
+        <a class="ftr-cta-primary" href="#products" aria-label="Comprar produtos OFF Nutrition Lab">
+          <span>Comprar agora</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14M13 6l6 6-6 6"/>
+          </svg>
+        </a>
+        <a class="ftr-cta-ghost" href="#reviews" aria-label="Ver depoimentos">
+          Ver depoimentos
+        </a>
+      </div>
+    </div>
+
+    <!-- ── Grid: Brand + 3 colunas de links ───────────────────────── -->
+    <div class="ftr-grid">
+
+      <!-- Brand block -->
+      <div class="ftr-brand">
+        <div class="ftr-brand-row">
+          <div class="ftr-brand-mark" aria-hidden="true">
+            O<span class="ftr-brand-dot"></span>
+          </div>
+          <div class="ftr-brand-info">
+            <span class="ftr-brand-name">OFF NUTRITION<span style="color:var(--acid)">.</span>LAB</span>
+            <span class="ftr-brand-meta">performance · ciência · estilo</span>
+          </div>
+        </div>
+
+        <p class="ftr-brand-desc">
+          A OFF NUTRITION LAB nasceu para entregar performance de elite ao
+          atleta brasileiro. Suplementação calibrada com matéria-prima
+          nacional, processos certificados e custo justo — para quem leva
+          treino, criação e rotina a sério.
+        </p>
+
+        <div class="ftr-badges" aria-label="Selos da marca">
+          <span class="ftr-badge">Certificado ANVISA</span>
+          <span class="ftr-badge">100% Nacional</span>
+          <span class="ftr-badge">Lab Tested</span>
+        </div>
+      </div>
+
+      <!-- Navegação -->
+      <nav class="ftr-col" aria-label="Navegar pela página">
+        <div class="ftr-col-title">Navegar</div>
+        <ul class="ftr-links">
+          <li><a class="ftr-link" href="#hero">Início</a></li>
+          <li><a class="ftr-link" href="#wordflow">Sistema de performance</a></li>
+          <li><a class="ftr-link" href="#products">Produtos</a></li>
+          <li><a class="ftr-link" href="#benefits">Catalyze Pro</a></li>
+          <li><a class="ftr-link" href="#onlab">ONLAB Wear</a></li>
+          <li><a class="ftr-link" href="#reviews">Depoimentos</a></li>
+        </ul>
+      </nav>
+
+      <!-- Linha / produtos -->
+      <nav class="ftr-col" aria-label="Linha de produtos">
+        <div class="ftr-col-title">Linha</div>
+        <ul class="ftr-links">
+          <li><a class="ftr-link" href="#products">Energy Dust</a></li>
+          <li><a class="ftr-link" href="#benefits">Catalyze Pro</a></li>
+          <li><a class="ftr-link" href="#products">Whey Protocol</a></li>
+          <li><a class="ftr-link" href="#products">Recovery Stack</a></li>
+          <li><a class="ftr-link" href="#onlab">ONLAB Apparel</a></li>
+        </ul>
+      </nav>
+
+      <!-- Contato -->
+      <nav class="ftr-col" aria-label="Canais de contato">
+        <div class="ftr-col-title">Contato</div>
+        <ul class="ftr-links">
+          <li><a class="ftr-link" href="https://instagram.com/offnutrition" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a class="ftr-link" href="https://wa.me/" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a class="ftr-link" href="mailto:lab@offnutrition.com.br">lab@offnutrition.com.br</a></li>
+          <li><a class="ftr-link" href="#">Suporte 24h</a></li>
+          <li><a class="ftr-link" href="#">Imprensa</a></li>
+        </ul>
+      </nav>
+
+    </div><!-- /ftr-grid -->
+
+    <!-- Linha de acento sweep -->
+    <div class="ftr-line-accent" aria-hidden="true"></div>
+
+    <!-- Meta row (copyright + signature) -->
+    <div class="ftr-meta-row">
+      <span class="ftr-meta-item">© 2026 OFF NUTRITION LAB · Todos os direitos reservados</span>
+      <span class="ftr-meta-item">Build <span class="ftr-acc">v1.0</span> · Aurora</span>
+      <span class="ftr-meta-item">Forged with <span class="ftr-acc">signal</span> — not noise</span>
+    </div>
+
+  </div><!-- /ftr-panel -->
+
+
+</footer>
+
   <!-- =================================================================
        LIBRARIES — GSAP + ScrollTrigger + Lenis (via CDN, no build)
        Sem defer: estão no fim do <body>, DOM já está pronto.
@@ -4317,6 +6275,179 @@
             card.style.setProperty('--mouse-y', '50%');
           });
         });
+
+        // =================================================================
+        //  SECTION 06 — DEPOIMENTOS · OFF NUTRITION LAB
+        //  Layout masonry 3 colunas escalonadas dentro de painel premium.
+        //  Sem carrossel — composição editorial estática com GSAP cinematic.
+        //  Entrada: painel float-in → header cascade → colunas direcionais.
+        // =================================================================
+        const revSection  = document.getElementById('reviews');
+        const revPanel    = document.getElementById('revPanel');
+        const revMasonry  = document.getElementById('revMasonry');
+        // Apenas os cards do masonry (não os do display:none placeholder)
+        const revCards    = revMasonry ? [...revMasonry.querySelectorAll('.rev-card')] : [];
+        const revColLeft  = revMasonry ? revMasonry.querySelector('.rev-col-left')   : null;
+        const revColCenter= revMasonry ? revMasonry.querySelector('.rev-col-center') : null;
+        const revColRight = revMasonry ? revMasonry.querySelector('.rev-col-right')  : null;
+
+        if (revSection && revPanel && hasGSAP && !prefersReducedMotion) {
+
+          // ── Estados iniciais ───────────────────────────────────────
+          gsap.set(revPanel,  { opacity: 0, y: 70, scale: 0.96, filter: 'blur(20px)' });
+
+          const revHeaderEls = revSection.querySelectorAll(
+            '.rev-eyebrow, .rev-title, .rev-sub, .rev-proof-strip'
+          );
+          gsap.set(revHeaderEls, { opacity: 0, y: 18, filter: 'blur(8px)' });
+
+          // Colunas entram de direções opostas (esq ← | centro ↑ | dir →)
+          if (revColLeft)   gsap.set(revColLeft,   { opacity: 0, x: -60, filter: 'blur(12px)' });
+          if (revColCenter) gsap.set(revColCenter, { opacity: 0, y:  60, scale: 0.96, filter: 'blur(14px)' });
+          if (revColRight)  gsap.set(revColRight,  { opacity: 0, x:  60, filter: 'blur(12px)' });
+
+          // ── Master timeline ────────────────────────────────────────
+          const revTl = gsap.timeline({
+            defaults: { ease: 'power3.out' },
+            scrollTrigger: {
+              trigger: revSection,
+              start: 'top 78%',
+              toggleActions: 'play none none none',
+            },
+          });
+
+          revTl
+            // [1] Painel flutua para cima
+            .to(revPanel, {
+              opacity: 1, y: 0, scale: 1, filter: 'blur(0px)',
+              duration: 1.1, ease: 'power4.out',
+            })
+            // [2] Header em cascata
+            .to(revHeaderEls, {
+              opacity: 1, y: 0, filter: 'blur(0px)',
+              duration: 0.65, stagger: 0.10,
+            }, '-=0.65')
+            // [3] Colunas entram simultaneamente de direções opostas
+            .to([revColLeft, revColCenter, revColRight].filter(Boolean), {
+              opacity: 1, x: 0, y: 0, scale: 1, filter: 'blur(0px)',
+              duration: 0.95, ease: 'power3.out',
+              stagger: 0.08,
+            }, '-=0.45');
+
+        } else if (revSection) {
+          // Reduced motion ou GSAP indisponível: tudo visível imediatamente
+          const makeVisible = (el) => {
+            if (!el) return;
+            el.style.opacity = '1';
+            el.style.filter  = 'none';
+            el.style.transform = 'none';
+          };
+          makeVisible(revPanel);
+          makeVisible(revColLeft);
+          makeVisible(revColCenter);
+          makeVisible(revColRight);
+          revCards.forEach(makeVisible);
+        }
+
+        // ── Flashlight mouse tracking (só nos cards do masonry) ──────
+        revCards.forEach(card => {
+          card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = ((e.clientX - rect.left) / rect.width  * 100).toFixed(1) + '%';
+            const y = ((e.clientY - rect.top)  / rect.height * 100).toFixed(1) + '%';
+            card.style.setProperty('--mouse-x', x);
+            card.style.setProperty('--mouse-y', y);
+          });
+          card.addEventListener('mouseleave', () => {
+            card.style.setProperty('--mouse-x', '50%');
+            card.style.setProperty('--mouse-y', '50%');
+          });
+        });
+
+        // =============================================================
+        // SECTION 07 — SITE FOOTER · entrance + wordmark parallax
+        // =============================================================
+        const ftrSection  = document.getElementById('site-footer');
+        const ftrPanel    = document.getElementById('ftrPanel');
+
+        if (ftrSection && ftrPanel && hasGSAP && !prefersReducedMotion) {
+          // ── Estados iniciais ───────────────────────────────────────
+          gsap.set(ftrPanel, { opacity: 0, y: 60, scale: 0.97, filter: 'blur(18px)' });
+
+          const ftrCtaText  = ftrSection.querySelectorAll('.ftr-cta-text > *');
+          const ftrCtaActs  = ftrSection.querySelectorAll('.ftr-cta-actions > *');
+          const ftrBrand    = ftrSection.querySelector('.ftr-brand');
+          const ftrCols     = ftrSection.querySelectorAll('.ftr-grid > .ftr-col');
+          const ftrLineAcc  = ftrSection.querySelector('.ftr-line-accent');
+          const ftrMetaItems= ftrSection.querySelectorAll('.ftr-meta-row .ftr-meta-item');
+
+          gsap.set(ftrCtaText,  { opacity: 0, y: 28, filter: 'blur(10px)' });
+          gsap.set(ftrCtaActs,  { opacity: 0, y: 18, scale: 0.96, filter: 'blur(8px)' });
+          gsap.set(ftrBrand,    { opacity: 0, x: -34, filter: 'blur(10px)' });
+          gsap.set(ftrCols,     { opacity: 0, y: 22, filter: 'blur(8px)' });
+          gsap.set(ftrLineAcc,  { opacity: 0, scaleX: 0.6, transformOrigin: 'center center' });
+          gsap.set(ftrMetaItems,{ opacity: 0, y: 10 });
+
+          // ── Master timeline ────────────────────────────────────────
+          const ftrTl = gsap.timeline({
+            defaults: { ease: 'power3.out' },
+            scrollTrigger: {
+              trigger: ftrSection,
+              start: 'top 82%',
+              toggleActions: 'play none none none',
+            },
+          });
+
+          ftrTl
+            // [1] Painel sobe
+            .to(ftrPanel, {
+              opacity: 1, y: 0, scale: 1, filter: 'blur(0px)',
+              duration: 1.0, ease: 'power4.out',
+            })
+            // [2] CTA text cascade
+            .to(ftrCtaText, {
+              opacity: 1, y: 0, filter: 'blur(0px)',
+              duration: 0.6, stagger: 0.10,
+            }, '-=0.55')
+            // [3] CTA actions (botões)
+            .to(ftrCtaActs, {
+              opacity: 1, y: 0, scale: 1, filter: 'blur(0px)',
+              duration: 0.55, stagger: 0.08, ease: 'back.out(1.4)',
+            }, '-=0.35')
+            // [4] Brand entra da esquerda
+            .to(ftrBrand, {
+              opacity: 1, x: 0, filter: 'blur(0px)',
+              duration: 0.7,
+            }, '-=0.30')
+            // [5] Colunas de links cascateiam
+            .to(ftrCols, {
+              opacity: 1, y: 0, filter: 'blur(0px)',
+              duration: 0.55, stagger: 0.08,
+            }, '-=0.55')
+            // [6] Linha sweep aparece
+            .to(ftrLineAcc, {
+              opacity: 1, scaleX: 1,
+              duration: 0.7, ease: 'power2.out',
+            }, '-=0.30')
+            // [7] Meta row finaliza
+            .to(ftrMetaItems, {
+              opacity: 1, y: 0,
+              duration: 0.45, stagger: 0.06,
+            }, '-=0.40');
+
+        } else if (ftrSection) {
+          // Reduced motion ou GSAP indisponível: tudo visível imediatamente
+          const ftrMakeVisible = (el) => {
+            if (!el) return;
+            el.style.opacity = '1';
+            el.style.filter = 'none';
+            el.style.transform = 'none';
+          };
+          ftrMakeVisible(ftrPanel);
+          ftrSection.querySelectorAll(
+            '.ftr-cta-text > *, .ftr-cta-actions > *, .ftr-brand, .ftr-grid > .ftr-col, .ftr-line-accent, .ftr-meta-row .ftr-meta-item'
+          ).forEach(ftrMakeVisible);
+        }
 
         // ---------- Scroll-driven VIDEO (the star) ----------
         const video = document.getElementById('scrollVideo');
