@@ -256,16 +256,17 @@
     .nav-menu {
       display: none;
       align-items: center;
-      gap: 28px;
+      gap: clamp(16px, 2vw, 26px);
     }
     .nav-menu a {
       font-family: var(--f-mono);
-      font-size: 11px;
-      letter-spacing: 0.2em;
+      font-size: clamp(9.5px, 0.75vw, 11px);
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--n-400);
       transition: color .25s var(--ease-out);
       position: relative;
+      white-space: nowrap;
     }
     .nav-menu a::after {
       content: "";
@@ -399,7 +400,7 @@
     }
     @keyframes spin { to { transform: translate(-50%, -50%) rotate(360deg); } }
 
-    /* ============ GRID ============ */
+    /* ============ GRID — coluna única, texto à esquerda ============ */
     .hero-grid {
       position: relative;
       z-index: 10;
@@ -407,21 +408,19 @@
       display: grid;
       grid-template-columns: 1fr;
       align-items: center;
-      gap: 40px;
+      gap: 0;
       max-width: 1360px;
       width: 100%;
       margin: 0 auto;
-      padding: 90px clamp(18px, 4vw, 56px) 40px;
-    }
-    @media (min-width: 1024px) {
-      .hero-grid {
-        grid-template-columns: 1.05fr 1fr;
-        gap: 60px;
-      }
+      padding: 90px clamp(20px, 6vw, 80px) 40px;
     }
 
     /* ============ LEFT COLUMN ============ */
-    .hero-left { position: relative; z-index: 3; max-width: 720px; }
+    .hero-left {
+      position: relative;
+      z-index: 5;
+      max-width: clamp(460px, 50vw, 640px);
+    }
 
     .hero-tag {
       display: inline-flex;
@@ -673,21 +672,59 @@
     /* =============================================================
        RIGHT COLUMN — video stage + HUD overlays + floating cards
        ============================================================= */
+    /* ── VIDEO BACKGROUND: posicionado à direita da hero ─────────── */
     .hero-right {
-      position: relative;
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 58%;          /* Ocupa a metade direita */
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+      overflow: hidden;
+      display: block;
+    }
+
+    /* Gradient overlay: dissolve a borda esquerda do vídeo no fundo
+       e escurece levemente para atmosfera premium */
+    .hero-right::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      background: linear-gradient(
+        to right,
+        var(--obsidian)   0%,
+        rgba(5,5,5,0.70) 12%,
+        rgba(5,5,5,0.20) 45%,
+        rgba(5,5,5,0.10) 100%
+      );
+      pointer-events: none;
+    }
+
+    /* Gradiente da hero: funde o fundo escuro à esquerda com o vídeo à direita */
+    .hero-sticky::before {
+      content: "";
+      position: absolute;
+      inset: 0;
       z-index: 2;
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 480px;
+      background: linear-gradient(
+        to right,
+        var(--obsidian)       0%,
+        rgba(5,5,5,0.85)     25%,
+        rgba(5,5,5,0.30)     50%,
+        transparent          100%
+      );
+      pointer-events: none;
     }
 
     .stage {
-      position: relative;
-      width: min(520px, 94%);
-      aspect-ratio: 4 / 5;
-      z-index: 4;
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      aspect-ratio: unset;  /* Preenche o hero-right inteiro */
+      z-index: 1;
       will-change: transform;
     }
 
@@ -695,31 +732,13 @@
       position: relative;
       width: 100%;
       height: 100%;
-      border-radius: var(--r-xl);
+      border-radius: 0;          /* Sem card: é background agora */
       overflow: hidden;
-      background:
-        radial-gradient(120% 80% at 50% 0%, rgba(204, 255, 0, 0.22), transparent 60%),
-        linear-gradient(180deg, #0b0e04 0%, #050505 60%, #020500 100%);
-  box-shadow:
-        0 0 0 1px rgba(255, 255, 255, 0.08) inset,
-        0 30px 90px -30px rgba(0, 0, 0, 0.9),
-        var(--sh-acid);
+      background: transparent;
+      box-shadow: none;
     }
-    /* Gradient border accent (Nebula electric-card pattern) */
-    .stage-frame::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      padding: 1px;
-      background: linear-gradient(180deg, rgba(204, 255, 0, 0.65) 0%, rgba(204, 255, 0, 0.08) 40%, transparent 70%);
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-              mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-          mask-composite: exclude;
-      pointer-events: none;
-      z-index: 3;
-    }
+    /* Remove gradient border do card */
+    .stage-frame::before { display: none; }
 
     #scrollVideo {
       position: absolute;
@@ -732,7 +751,7 @@
       pointer-events: none;
       opacity: 0;
       transition: opacity .6s var(--ease-out);
-      filter: saturate(1.05) contrast(1.04);
+      filter: saturate(1.1) contrast(1.06) brightness(0.88);
     }
     #scrollVideo.is-ready { opacity: 1; }
 
@@ -985,29 +1004,76 @@
     }
 
     /* =============================================================
-       RESPONSIVE — tighten on tablet/mobile
+       RESPONSIVE — hero com vídeo como background à esquerda
        ============================================================= */
+
+    /* ── TABLET (< 1024px) ── vídeo ainda à direita mas mais largo */
     @media (max-width: 1023px) {
       .hero { height: 220vh; }
-      .hero-grid { padding-top: 100px; }
-      .hero-right { min-height: 380px; margin-top: 20px; }
+      .hero-grid { padding-top: 110px; padding-left: clamp(20px, 5vw, 48px); padding-right: clamp(20px, 5vw, 48px); }
+      .hero-right { width: 70%; right: 0; left: auto; }
+      .hero-left { max-width: 100%; }
     }
-    @media (max-width: 680px) {
-      .hero { height: 200vh; }
-      .hero-sticky { min-height: 640px; }
-      /* mobile: mantém peso 800 mas escala para caber na tela */
-      .hero-headline { font-size: clamp(34px, 9.5vw, 54px); letter-spacing: -0.025em; line-height: 0.93; }
-      .hero-sub { font-size: 14px; }
-      .hero-cta { flex-direction: column; align-items: stretch; }
-      .btn { justify-content: center; }
-      .hero-meta { grid-template-columns: 1fr 1fr; }
-      .hero-meta > :nth-child(3) { display: none; }
-      .stage { width: 86%; aspect-ratio: 4 / 5; }
 
+    /* ── MOBILE (< 768px) ── vídeo cobre tela inteira como background */
+    @media (max-width: 767px) {
+      .hero { height: 200vh; }
+      .hero-sticky { min-height: 680px; }
+
+      /* Vídeo: full-screen background */
+      .hero-right {
+        width: 100%;
+        height: 100%;
+        right: 0; left: 0;
+      }
+      /* Overlay vertical no mobile para texto legível */
+      .hero-right::before {
+        background: linear-gradient(
+          to bottom,
+          rgba(5,5,5,0.55) 0%,
+          rgba(5,5,5,0.35) 40%,
+          rgba(5,5,5,0.80) 80%,
+          var(--obsidian)  100%
+        );
+      }
+      /* Overlay lateral escuro à esquerda para texto legível no mobile */
+      .hero-sticky::before {
+        background: linear-gradient(
+          to right,
+          rgba(5,5,5,0.85) 0%,
+          rgba(5,5,5,0.50) 50%,
+          transparent      100%
+        );
+      }
+
+      /* Texto ocupa largura total */
+      .hero-left { max-width: 100%; }
+      .hero-grid { padding-top: 120px; }
+
+      /* Tipografia escalada para mobile */
+      .hero-headline { font-size: clamp(32px, 10vw, 48px); letter-spacing: -0.025em; line-height: 0.96; }
+      .hero-sub { font-size: 14px; max-width: 100%; }
+
+      /* CTAs: coluna única, botões full-width */
+      .hero-cta { flex-direction: column; align-items: stretch; gap: 12px; }
+      .btn { justify-content: center; width: 100%; }
+
+      /* Meta: 3 colunas compactas ou 2 */
+      .hero-meta { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+
+      /* Nav */
       .nav-cta { display: none; }
       .hero-scrollhint { display: none; }
       .orbit { left: 50%; }
       .orbit.o-3 { display: none; }
+    }
+
+    /* ── MOBILE PEQUENO (< 480px) ── */
+    @media (max-width: 480px) {
+      .hero-headline { font-size: clamp(28px, 11vw, 40px); }
+      .hero-meta { grid-template-columns: 1fr 1fr; }
+      .hero-meta > :nth-child(3) { display: none; }
+      .hero-tag { font-size: 9px; letter-spacing: 0.18em; }
     }
 
     /* =================================================================
@@ -2481,14 +2547,10 @@
     .onlab-cta-link svg { width: 12px; height: 12px; transition: transform .3s var(--ease-out); }
     .onlab-cta-link:hover svg { transform: translateX(3px); }
 
-    .onlab-nav { display: flex; align-items: center; gap: 8px; }
+    /* onlab-nav e onlab-nav-btn removidos (marquee automático) */
+    .onlab-nav { display: none; }
     .onlab-nav-btn {
-      width: 40px; height: 40px;
-      border-radius: 50%;
-      border: 1px solid rgba(255,255,255,0.10);
-      background: rgba(255,255,255,0.04);
-      color: rgba(255,255,255,0.50);
-      display: flex; align-items: center; justify-content: center;
+      display: none;
       cursor: pointer;
       transition: background .25s, border-color .25s, color .25s, transform .2s;
     }
@@ -2500,47 +2562,46 @@
     }
     .onlab-nav-btn svg { width: 14px; height: 14px; }
 
-    /* ── Carousel wrapper (edge fade like products) ──────────────── */
+    /* ── Carousel wrapper: edge fade suave nas bordas ───────────── */
     .onlab-carousel-wrap {
       position: relative; z-index: 2;
       overflow: hidden;
-      -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 4%, black 96%, transparent 100%);
-      mask-image: linear-gradient(90deg, transparent 0%, black 4%, black 96%, transparent 100%);
+      -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
+      mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
     }
+    /* Track: auto-scroll via JS (rAF) + drag/touch manual pelo usuário */
     .onlab-track {
       display: flex;
       gap: clamp(14px, 1.8vw, 22px);
-      padding: clamp(12px, 2vh, 24px) clamp(20px, 5vw, 80px);
+      padding: clamp(12px, 2vh, 24px) 0;
       overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      /* Garante que o snap respeita o padding-left — primeiro card
-         fica com a mesma margem visual que o espaço após o último. */
-      scroll-padding-left: clamp(20px, 5vw, 80px);
-      scroll-behavior: smooth;
       scrollbar-width: none;
       -ms-overflow-style: none;
+      cursor: grab;
+      user-select: none;
+      -webkit-user-select: none;
+      scroll-behavior: auto; /* rAF controla; smooth interromperia o loop */
     }
     .onlab-track::-webkit-scrollbar { display: none; }
+    .onlab-track.is-dragging { cursor: grabbing; }
 
     /* ── Card editorial portrait full-bleed ─────────────────────── */
     .onlab-card {
       flex-shrink: 0;
-      width: clamp(320px, 30vw, 420px);
+      width: clamp(300px, 28vw, 400px);
       aspect-ratio: 3 / 4.8;       /* portrait premium */
-      scroll-snap-align: start;
       background: var(--surface);
       border: 1px solid rgba(255,255,255,0.08);
       border-radius: 14px;
       overflow: hidden;
       position: relative;
       cursor: pointer;
-      /* GSAP initial state */
-      opacity: 0;
+      opacity: 1;
       transition:
         transform .42s var(--ease-out),
         box-shadow .42s ease,
         border-color .35s ease;
-      will-change: transform, opacity, filter;
+      will-change: transform, box-shadow;
     }
     .onlab-card:hover {
       transform: translateY(-10px) scale(1.012);
@@ -2761,14 +2822,8 @@
     .onlab-card:hover .onlab-card-arrow svg { transform: translateX(4px); }
 
     /* ── Pagination dots (idêntico ao products) ─────────────────── */
-    .onlab-dots {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 7px;
-      margin-top: clamp(20px, 3vh, 32px);
-      position: relative; z-index: 2;
-    }
+    /* onlab-dots removidos (marquee automático) */
+    .onlab-dots { display: none; }
     .onlab-dot {
       width: 5px; height: 5px;
       border-radius: 50%;
@@ -2785,12 +2840,12 @@
 
     /* ── Responsive ──────────────────────────────────────────────── */
     @media (max-width: 768px) {
-      .onlab-card { width: clamp(280px, 80vw, 360px); }
+      .onlab-card { width: clamp(240px, 62vw, 300px); }
       .onlab-title { font-size: clamp(22px, 5.4vw, 32px); }
       .onlab-header { flex-direction: column; align-items: flex-start; }
     }
     @media (max-width: 480px) {
-      .onlab-card { width: 84vw; }
+      .onlab-card { width: clamp(200px, 72vw, 260px); }
     }
 
     /* Reduced motion */
@@ -4822,14 +4877,6 @@
         Ver coleção completa
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
       </button>
-      <div class="onlab-nav" aria-label="Navegar no carrossel">
-        <button class="onlab-nav-btn" id="onlabPrev" type="button" aria-label="Peça anterior">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
-        </button>
-        <button class="onlab-nav-btn" id="onlabNext" type="button" aria-label="Próxima peça">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
-        </button>
-      </div>
     </div>
   </div>
 
@@ -4981,18 +5028,94 @@
         </div>
       </article>
 
+      <!-- ── CLONES para loop seamless (aria-hidden) ──────────────── -->
+      <article class="onlab-card" aria-hidden="true">
+        <div class="onlab-card-img"><img src="./assets/raw_files/modelos/1.png" alt="" loading="lazy"></div>
+        <div class="onlab-shimmer" aria-hidden="true"></div>
+        <span class="onlab-card-badge">OVERSIZED · 01</span>
+        <div class="onlab-card-price"><span class="onlab-price-label">A partir de</span><span class="onlab-price-val">R$ 159,90</span></div>
+        <div class="onlab-card-fade" aria-hidden="true"></div>
+        <div class="onlab-card-content">
+          <span class="onlab-card-tag">Estampa Exclusiva · Algodão Premium</span>
+          <h3 class="onlab-card-name">Make Money Make Muscle</h3>
+          <div class="onlab-card-accent"></div>
+          <p class="onlab-card-tagline">Caimento solto, atitude pesada. Estampa exclusiva ONLAB.</p>
+          <span class="onlab-card-arrow">Visualizar peça <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+        </div>
+      </article>
+      <article class="onlab-card" aria-hidden="true">
+        <div class="onlab-card-img"><img src="./assets/raw_files/modelos/2.png" alt="" loading="lazy"></div>
+        <div class="onlab-shimmer" aria-hidden="true"></div>
+        <span class="onlab-card-badge">REGATA · 01</span>
+        <div class="onlab-card-price"><span class="onlab-price-label">A partir de</span><span class="onlab-price-val">R$ 119,90</span></div>
+        <div class="onlab-card-fade" aria-hidden="true"></div>
+        <div class="onlab-card-content">
+          <span class="onlab-card-tag">Tecido Respirável · Liberdade Total</span>
+          <h3 class="onlab-card-name">ONLAB Performance</h3>
+          <div class="onlab-card-accent"></div>
+          <p class="onlab-card-tagline">Liberdade no movimento. Conforto máximo.</p>
+          <span class="onlab-card-arrow">Visualizar peça <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+        </div>
+      </article>
+      <article class="onlab-card" aria-hidden="true">
+        <div class="onlab-card-img"><img src="./assets/raw_files/modelos/3.png" alt="" loading="lazy"></div>
+        <div class="onlab-shimmer" aria-hidden="true"></div>
+        <span class="onlab-card-badge">OVERSIZED · 02</span>
+        <div class="onlab-card-price"><span class="onlab-price-label">A partir de</span><span class="onlab-price-val">R$ 149,90</span></div>
+        <div class="onlab-card-fade" aria-hidden="true"></div>
+        <div class="onlab-card-content">
+          <span class="onlab-card-tag">Identidade Forte · Versatilidade Total</span>
+          <h3 class="onlab-card-name">ONLAB Essential</h3>
+          <div class="onlab-card-accent"></div>
+          <p class="onlab-card-tagline">Logo limpo, identidade pura. Versátil pro treino.</p>
+          <span class="onlab-card-arrow">Visualizar peça <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+        </div>
+      </article>
+      <article class="onlab-card" aria-hidden="true">
+        <div class="onlab-card-img"><img src="./assets/raw_files/modelos/4.png" alt="" loading="lazy"></div>
+        <div class="onlab-shimmer" aria-hidden="true"></div>
+        <span class="onlab-card-badge">OVERSIZED · 03</span>
+        <div class="onlab-card-price"><span class="onlab-price-label">A partir de</span><span class="onlab-price-val">R$ 169,90</span></div>
+        <div class="onlab-card-fade" aria-hidden="true"></div>
+        <div class="onlab-card-content">
+          <span class="onlab-card-tag">Coleção Neon · Edição Limitada</span>
+          <h3 class="onlab-card-name">Pre-Workout Drop</h3>
+          <div class="onlab-card-accent"></div>
+          <p class="onlab-card-tagline">Energia visual em cada estampa. Cor e atitude.</p>
+          <span class="onlab-card-arrow">Visualizar peça <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+        </div>
+      </article>
+      <article class="onlab-card" aria-hidden="true">
+        <div class="onlab-card-img"><img src="./assets/raw_files/modelos/5.png" alt="" loading="lazy"></div>
+        <div class="onlab-shimmer" aria-hidden="true"></div>
+        <span class="onlab-card-badge">OVERSIZED · 04</span>
+        <div class="onlab-card-price"><span class="onlab-price-label">A partir de</span><span class="onlab-price-val">R$ 169,90</span></div>
+        <div class="onlab-card-fade" aria-hidden="true"></div>
+        <div class="onlab-card-content">
+          <span class="onlab-card-tag">Linha Athletics · Treino Pesado</span>
+          <h3 class="onlab-card-name">Leg Day Athletics</h3>
+          <div class="onlab-card-accent"></div>
+          <p class="onlab-card-tagline">Tecido robusto, caimento certo.</p>
+          <span class="onlab-card-arrow">Visualizar peça <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+        </div>
+      </article>
+      <article class="onlab-card" aria-hidden="true">
+        <div class="onlab-card-img"><img src="./assets/raw_files/modelos/6.png" alt="" loading="lazy"></div>
+        <div class="onlab-shimmer" aria-hidden="true"></div>
+        <span class="onlab-card-badge">OVERSIZED · 05</span>
+        <div class="onlab-card-price"><span class="onlab-price-label">A partir de</span><span class="onlab-price-val">R$ 149,90</span></div>
+        <div class="onlab-card-fade" aria-hidden="true"></div>
+        <div class="onlab-card-content">
+          <span class="onlab-card-tag">Caimento Premium · Estilo Atemporal</span>
+          <h3 class="onlab-card-name">ONLAB Classic</h3>
+          <div class="onlab-card-accent"></div>
+          <p class="onlab-card-tagline">Caimento premium, estilo eterno.</p>
+          <span class="onlab-card-arrow">Visualizar peça <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+        </div>
+      </article>
+
     </div><!-- /onlab-track -->
   </div><!-- /onlab-carousel-wrap -->
-
-  <!-- Pagination dots -->
-  <div class="onlab-dots" id="onlabDots" role="tablist" aria-label="Paginação do carrossel ONLAB">
-    <button class="onlab-dot is-active" type="button" aria-label="Ir para peça 1" role="tab"></button>
-    <button class="onlab-dot" type="button" aria-label="Ir para peça 2" role="tab"></button>
-    <button class="onlab-dot" type="button" aria-label="Ir para peça 3" role="tab"></button>
-    <button class="onlab-dot" type="button" aria-label="Ir para peça 4" role="tab"></button>
-    <button class="onlab-dot" type="button" aria-label="Ir para peça 5" role="tab"></button>
-    <button class="onlab-dot" type="button" aria-label="Ir para peça 6" role="tab"></button>
-  </div>
 
 </section>
 
@@ -6152,117 +6275,108 @@
 
         // =================================================================
         //  SECTION 05 — ONLAB · PERFORMANCE WEAR
-        //  Carrossel editorial premium: snap scroll horizontal + dots + arrows.
-        //  Entrada: GSAP stagger blur+fade dos cards quando seção entra na viewport.
-        //  Hover: flashlight (mouse tracking via CSS vars) + image zoom + shimmer.
+        //  Marquee automático contínuo (CSS @keyframes — sem JS de scroll).
+        //  Entrada: GSAP fade-in da seção (header + carousel-wrap).
+        //  Hover: flashlight (mouse tracking via CSS vars) + pausa no CSS.
         // =================================================================
         const onlabSection = document.getElementById('onlab');
-        const onlabCards   = onlabSection ? [...onlabSection.querySelectorAll('.onlab-card')] : [];
         const onlabTrack   = document.getElementById('onlabTrack');
-        const onlabDotsEl  = document.getElementById('onlabDots');
-        const onlabPrev    = document.getElementById('onlabPrev');
-        const onlabNext    = document.getElementById('onlabNext');
 
-        if (onlabSection && onlabCards.length && hasGSAP) {
-          if (!prefersReducedMotion) {
-            // Estado inicial — invisível, levemente para baixo, com blur
-            gsap.set(onlabCards, {
-              opacity: 0,
-              y: 42,
-              filter: 'blur(16px)',
-              force3D: true,
-              willChange: 'transform, opacity, filter',
-            });
-
-            // Entrada coreografada: cards se revelam em cascata quando a
-            // seção entra no viewport (one-shot, sem scrub).
-            gsap.to(onlabCards, {
-              opacity: 1,
-              y: 0,
-              filter: 'blur(0px)',
-              duration: 0.95,
-              ease: 'power3.out',
-              stagger: 0.13,
+        // ── Animação de entrada do header (GSAP) ─────────────────────
+        if (onlabSection && hasGSAP && !prefersReducedMotion) {
+          const onlabHeaderEls = onlabSection.querySelectorAll(
+            '.onlab-eyebrow, .onlab-title, .onlab-sub, .onlab-header-right'
+          );
+          if (onlabHeaderEls.length) {
+            gsap.set(onlabHeaderEls, { opacity: 0, y: 22, filter: 'blur(10px)' });
+            gsap.to(onlabHeaderEls, {
+              opacity: 1, y: 0, filter: 'blur(0px)',
+              duration: 0.8, ease: 'power3.out', stagger: 0.10,
               scrollTrigger: {
                 trigger: onlabSection,
-                start: 'top 78%',
+                start: 'top 82%',
                 toggleActions: 'play none none none',
               },
             });
-
-            // Header (eyebrow + title + sub + CTA) — slide-up sutil em paralelo.
-            const onlabHeaderEls = onlabSection.querySelectorAll(
-              '.onlab-eyebrow, .onlab-title, .onlab-sub, .onlab-header-right'
-            );
-            if (onlabHeaderEls.length) {
-              gsap.set(onlabHeaderEls, { opacity: 0, y: 22, filter: 'blur(10px)' });
-              gsap.to(onlabHeaderEls, {
-                opacity: 1, y: 0, filter: 'blur(0px)',
-                duration: 0.8, ease: 'power3.out', stagger: 0.10,
-                scrollTrigger: {
-                  trigger: onlabSection,
-                  start: 'top 82%',
-                  toggleActions: 'play none none none',
-                },
-              });
-            }
-          } else {
-            onlabCards.forEach(c => { c.style.opacity = '1'; c.style.filter = 'none'; c.style.transform = 'none'; });
           }
         }
 
-        // ── Carousel nav: arrows + dots (mesmo padrão do products) ───
-        if (onlabTrack && onlabDotsEl) {
-          const oDots    = [...onlabDotsEl.querySelectorAll('.onlab-dot')];
-          let oActiveIdx = 0;
+        // ── Auto-scroll contínuo + drag/touch manual ─────────────────
+        if (onlabTrack) {
+          const SPEED = 0.9; // px por frame (~54px/s a 60fps)
+          let rafId       = null;
+          let isPaused    = false;
+          let resumeTimer = null;
 
-          const onlabScrollToCard = (idx) => {
-            const cards = [...onlabTrack.querySelectorAll('.onlab-card')];
-            if (!cards[idx]) return;
-            // Usa scrollTo no próprio track (somente horizontal).
-            // Evita scrollIntoView que pode causar scroll vertical na página.
-            const cardLeft = cards[idx].offsetLeft - onlabTrack.offsetLeft;
-            onlabTrack.scrollTo({ left: cardLeft, behavior: 'smooth' });
-            oActiveIdx = idx;
-            oDots.forEach((d, i) => d.classList.toggle('is-active', i === idx));
-          };
+          // Ponto de reset: metade do scrollWidth (clones = segunda metade)
+          const getHalf = () => onlabTrack.scrollWidth / 2;
 
-          if (onlabPrev) {
-            onlabPrev.addEventListener('click', () => onlabScrollToCard(Math.max(0, oActiveIdx - 1)));
-          }
-          if (onlabNext) {
-            onlabNext.addEventListener('click', () => {
-              const total = onlabTrack.querySelectorAll('.onlab-card').length;
-              onlabScrollToCard(Math.min(total - 1, oActiveIdx + 1));
-            });
-          }
-          oDots.forEach((dot, i) => dot.addEventListener('click', () => onlabScrollToCard(i)));
-
-          // Sync via scroll event (mais confiável que IntersectionObserver
-          // em conjunto com Lenis + scroll-snap).
-          const oCardEls = [...onlabTrack.querySelectorAll('.onlab-card')];
-          const onlabSyncDots = () => {
-            if (!oCardEls.length) return;
-            const trackLeft = onlabTrack.getBoundingClientRect().left;
-            let bestIdx = 0;
-            let bestDist = Infinity;
-            oCardEls.forEach((card, i) => {
-              const dist = Math.abs(card.getBoundingClientRect().left - trackLeft);
-              if (dist < bestDist) { bestDist = dist; bestIdx = i; }
-            });
-            if (bestIdx !== oActiveIdx) {
-              oActiveIdx = bestIdx;
-              oDots.forEach((d, i) => d.classList.toggle('is-active', i === bestIdx));
+          const tick = () => {
+            if (!isPaused) {
+              onlabTrack.scrollLeft += SPEED;
+              // Chegou na segunda metade → volta ao início sem salto
+              if (onlabTrack.scrollLeft >= getHalf()) {
+                onlabTrack.scrollLeft -= getHalf();
+              }
             }
+            rafId = requestAnimationFrame(tick);
           };
-          onlabTrack.addEventListener('scroll', onlabSyncDots, { passive: true });
-          onlabSyncDots();
+          rafId = requestAnimationFrame(tick);
+
+          const pause = () => {
+            isPaused = true;
+            clearTimeout(resumeTimer);
+          };
+          const resume = (delay = 2200) => {
+            clearTimeout(resumeTimer);
+            resumeTimer = setTimeout(() => { isPaused = false; }, delay);
+          };
+
+          // ── Touch (mobile) ────────────────────────────────────────
+          onlabTrack.addEventListener('touchstart', pause, { passive: true });
+          onlabTrack.addEventListener('touchend',   () => resume(2200), { passive: true });
+          onlabTrack.addEventListener('touchcancel',() => resume(1000), { passive: true });
+
+          // ── Drag (desktop) ────────────────────────────────────────
+          let isDragging    = false;
+          let dragStartX    = 0;
+          let dragStartLeft = 0;
+
+          onlabTrack.addEventListener('mousedown', (e) => {
+            isDragging    = true;
+            dragStartX    = e.clientX;
+            dragStartLeft = onlabTrack.scrollLeft;
+            pause();
+            onlabTrack.classList.add('is-dragging');
+            e.preventDefault();
+          });
+
+          window.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            const dx = e.clientX - dragStartX;
+            onlabTrack.scrollLeft = dragStartLeft - dx;
+          });
+
+          const stopDrag = () => {
+            if (!isDragging) return;
+            isDragging = false;
+            onlabTrack.classList.remove('is-dragging');
+            resume(2200);
+          };
+          window.addEventListener('mouseup',    stopDrag);
+          window.addEventListener('mouseleave', stopDrag);
+
+          // Cleanup no unload
+          window.addEventListener('beforeunload', () => {
+            cancelAnimationFrame(rafId);
+          }, { once: true });
         }
 
-        // ── Flashlight mouse tracking (DS pattern) ──────────────────
-        // Atualiza --mouse-x / --mouse-y para o radial gradient seguir
-        // o cursor dentro de cada card.
-        onlabCards.forEach(card => {
+        // ── Flashlight mouse tracking em todos os cards (reais + clones) ─
+        const allOnlabCards = onlabSection
+          ? [...onlabSection.querySelectorAll('.onlab-card')]
+          : [];
+        allOnlabCards.forEach(card => {
           card.addEventListener('mousemove', (e) => {
             const rect = card.getBoundingClientRect();
             const x = ((e.clientX - rect.left) / rect.width  * 100).toFixed(1) + '%';
