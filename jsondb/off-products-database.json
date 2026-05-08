@@ -1,0 +1,268 @@
+{
+  "store": {
+    "name": "OFF Nutrition Lab",
+    "shopifyDomain": "offnutrition.com.br",
+    "storefrontAccessToken": "COLOQUE_AQUI_SEU_TOKEN_PUBLICO_STOREFRONT_API",
+    "currency": "BRL",
+    "locale": "pt-BR"
+  },
+  "settings": {
+    "useLocalProducts": true,
+    "useShopifyCheckout": true,
+    "useLocalStockControl": true,
+    "cartStorageKey": "off_cart",
+    "checkoutBehavior": "redirect_to_shopify_checkout"
+  },
+  "brands": [
+    {
+      "id": 1,
+      "name": "OFF Nutrition Lab",
+      "slug": "off-nutrition-lab"
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Suplementos",
+      "slug": "suplementos"
+    }
+  ],
+  "optionTypes": [
+    {
+      "id": 1,
+      "name": "Sabor",
+      "slug": "sabor",
+      "position": 1
+    },
+    {
+      "id": 2,
+      "name": "Tamanho",
+      "slug": "tamanho",
+      "position": 2
+    }
+  ],
+  "optionValues": [
+    {
+      "id": 1,
+      "optionTypeId": 1,
+      "value": "Frutas Vermelhas",
+      "slug": "frutas-vermelhas"
+    },
+    {
+      "id": 2,
+      "optionTypeId": 1,
+      "value": "Acid Lemon",
+      "slug": "acid-lemon"
+    },
+    {
+      "id": 3,
+      "optionTypeId": 2,
+      "value": "300g · 30 doses",
+      "slug": "300g-30-doses"
+    },
+    {
+      "id": 4,
+      "optionTypeId": 2,
+      "value": "600g · 60 doses",
+      "slug": "600g-60-doses"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Catalyze Pro",
+      "slug": "catalyze-pro",
+      "subtitle": "Energy drink",
+      "brandId": 1,
+      "categoryId": 1,
+      "description": "Fórmula avançada com cafeína anidra, beta-alanina e creatina monohidratada. Matéria-prima 100% nacional, custo justo, performance comprovada em treinos de alta intensidade.",
+      "shortDescription": "Energia, foco e constância para sua rotina.",
+      "featured": true,
+      "active": true,
+      "shopify": {
+        "productId": "gid://shopify/Product/COLOQUE_AQUI_O_ID_DO_PRODUTO"
+      }
+    }
+  ],
+  "productOptions": [
+    {
+      "id": 1,
+      "productId": 1,
+      "optionTypeId": 1,
+      "position": 1
+    },
+    {
+      "id": 2,
+      "productId": 1,
+      "optionTypeId": 2,
+      "position": 2
+    }
+  ],
+  "productImages": [
+    {
+      "id": 1,
+      "productId": 1,
+      "src": "./assets/products/catalyze-pro/catalyze-pro-front.png",
+      "alt": "Catalyze Pro - imagem principal",
+      "type": "main",
+      "position": 1
+    },
+    {
+      "id": 2,
+      "productId": 1,
+      "src": "./assets/products/catalyze-pro/catalyze-pro-detail.png",
+      "alt": "Catalyze Pro - detalhes do produto",
+      "type": "gallery",
+      "position": 2
+    }
+  ],
+  "shippingProfiles": [
+    {
+      "id": 1,
+      "name": "Suplemento 300g",
+      "requiresShipping": true,
+      "weight": {
+        "value": 0.3,
+        "unit": "kg"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Suplemento 600g",
+      "requiresShipping": true,
+      "weight": {
+        "value": 0.6,
+        "unit": "kg"
+      }
+    }
+  ],
+  "variants": [
+    {
+      "id": 1,
+      "productId": 1,
+      "sku": "CATALYZE-FRUTAS-VERMELHAS-300G",
+      "title": "Catalyze Pro - Frutas Vermelhas - 300g",
+      "availableForSale": true,
+      "optionValueIds": [
+        1,
+        3
+      ],
+      "pricing": {
+        "price": 129.9,
+        "priceInCents": 12990,
+        "compareAtPrice": 159.9,
+        "compareAtPriceInCents": 15990,
+        "currency": "BRL",
+        "displayPrice": "R$ 129,90",
+        "displayCompareAtPrice": "R$ 159,90",
+        "installmentsText": "ou em até 12x no cartão"
+      },
+      "inventory": {
+        "manageStock": true,
+        "quantity": 10
+      },
+      "imageIds": [
+        1,
+        2
+      ],
+      "shippingProfileId": 1,
+      "shopify": {
+        "variantId": "gid://shopify/ProductVariant/COLOQUE_AQUI_O_ID_DA_VARIACAO_FRUTAS_300G",
+        "merchandiseId": "gid://shopify/ProductVariant/COLOQUE_AQUI_O_ID_DA_VARIACAO_FRUTAS_300G"
+      }
+    },
+    {
+      "id": 2,
+      "productId": 1,
+      "sku": "CATALYZE-ACID-LEMON-300G",
+      "title": "Catalyze Pro - Acid Lemon - 300g",
+      "availableForSale": true,
+      "optionValueIds": [
+        2,
+        3
+      ],
+      "pricing": {
+        "price": 129.9,
+        "priceInCents": 12990,
+        "compareAtPrice": 159.9,
+        "compareAtPriceInCents": 15990,
+        "currency": "BRL",
+        "displayPrice": "R$ 129,90",
+        "displayCompareAtPrice": "R$ 159,90",
+        "installmentsText": "ou em até 12x no cartão"
+      },
+      "inventory": {
+        "manageStock": true,
+        "quantity": 10
+      },
+      "imageIds": [
+        1,
+        2
+      ],
+      "shippingProfileId": 1,
+      "shopify": {
+        "variantId": "gid://shopify/ProductVariant/COLOQUE_AQUI_O_ID_DA_VARIACAO_LEMON_300G",
+        "merchandiseId": "gid://shopify/ProductVariant/COLOQUE_AQUI_O_ID_DA_VARIACAO_LEMON_300G"
+      }
+    },
+    {
+      "id": 3,
+      "productId": 1,
+      "sku": "CATALYZE-ACID-LEMON-600G",
+      "title": "Catalyze Pro - Acid Lemon - 600g",
+      "availableForSale": true,
+      "optionValueIds": [
+        2,
+        4
+      ],
+      "pricing": {
+        "price": 229.9,
+        "priceInCents": 22990,
+        "compareAtPrice": 279.9,
+        "compareAtPriceInCents": 27990,
+        "currency": "BRL",
+        "displayPrice": "R$ 229,90",
+        "displayCompareAtPrice": "R$ 279,90",
+        "installmentsText": "ou em até 12x no cartão"
+      },
+      "inventory": {
+        "manageStock": true,
+        "quantity": 10
+      },
+      "imageIds": [
+        1,
+        2
+      ],
+      "shippingProfileId": 2,
+      "shopify": {
+        "variantId": "gid://shopify/ProductVariant/COLOQUE_AQUI_O_ID_DA_VARIACAO_LEMON_600G",
+        "merchandiseId": "gid://shopify/ProductVariant/COLOQUE_AQUI_O_ID_DA_VARIACAO_LEMON_600G"
+      }
+    }
+  ],
+  "productSeo": [
+    {
+      "id": 1,
+      "productId": 1,
+      "title": "Catalyze Pro | Energético em pó | OFF Nutrition Lab",
+      "description": "Conheça o Catalyze Pro, energético em pó da OFF Nutrition Lab para energia, foco e rotina."
+    }
+  ],
+  "productCheckout": [
+    {
+      "id": 1,
+      "productId": 1,
+      "quantityDefault": 1,
+      "quantityMin": 1,
+      "quantityMax": 10000,
+      "buttonText": "Comprar agora",
+      "cartButtonText": "Adicionar ao carrinho",
+      "lineAttributes": [
+        {
+          "key": "origem",
+          "value": "site-estatico-off"
+        }
+      ]
+    }
+  ]
+}
