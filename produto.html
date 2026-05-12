@@ -4,6 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <meta name="theme-color" content="#050505" />
+<link rel="icon" type="image/png" href="./assets/hero/faviconV2.png" />
 <title>OFF NUTRITION LAB // CATALYZE PRO — Visualização do produto</title>
 <meta name="description" content="Catalyze Pro: pré-treino premium da OFF Nutrition Lab. Matéria-prima nacional, custo justo, performance de elite." />
 
@@ -245,20 +246,29 @@
   }
   .nav-brand { display: flex; align-items: center; gap: 12px; }
   .nav-mark {
-    position: relative; width: 34px; height: 34px;
+    position: relative; width: 52px; height: 52px;
     display: grid; place-items: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    overflow: hidden;
+    isolation: isolate;
+    transition: transform .35s var(--ease-out), border-color .35s ease;
   }
+  .nav-brand:hover .nav-mark { transform: scale(1.05); border-color: rgba(204, 255, 0, 0.35); }
   .nav-mark::before {
-    content: ""; position: absolute; inset: 0;
+    content: ""; position: absolute; inset: -2px;
     border-radius: 9999px;
     background: conic-gradient(from 0deg, transparent 0 310deg, var(--acid) 340deg, #fff 360deg);
-    filter: blur(6px); opacity: 0.85;
+    filter: blur(8px); opacity: 0.55;
     animation: spin 8s linear infinite;
+    z-index: 0;
   }
-  .nav-mark svg {
-    position: relative; width: 22px; height: 22px;
-    stroke: #fff; fill: none; stroke-width: 2;
-    stroke-linecap: round; stroke-linejoin: round;
+  .nav-mark img {
+    position: relative; z-index: 1;
+    width: 78%; height: 78%;
+    object-fit: contain; display: block;
+    filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.35));
   }
   @keyframes spin { to { transform: rotate(360deg); } }
   .nav-name { display: flex; flex-direction: column; line-height: 1; gap: 3px; }
@@ -301,6 +311,7 @@
     letter-spacing: 0.18em; text-transform: uppercase;
     transition: transform .3s var(--ease-out), box-shadow .3s var(--ease-out);
     box-shadow: 0 0 0 1px rgba(255,255,255,0.3) inset;
+    border: none; cursor: pointer; text-decoration: none;
   }
   .nav-cta::before {
     content: ""; width: 6px; height: 6px;
@@ -308,6 +319,15 @@
     box-shadow: 0 0 12px 2px rgba(204,255,0,0.8);
     animation: pulseDot 1.8s ease-in-out infinite;
   }
+  .nav-cta-icon {
+    width: 14px; height: 14px;
+    stroke: currentColor; fill: none; stroke-width: 2;
+    stroke-linecap: round; stroke-linejoin: round;
+    transition: transform .35s var(--ease-out);
+  }
+  .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 0 30px -8px rgba(204,255,0,0.5), 0 0 0 1px rgba(255,255,255,0.4) inset; }
+  .nav-cta:hover .nav-cta-icon { transform: translateY(-1px) scale(1.05); }
+  .js-cart-count { display: inline-block; min-width: 0.7em; text-align: center; font-variant-numeric: tabular-nums; }
   @keyframes pulseDot {
     0%, 100% { transform: scale(1);   box-shadow: 0 0 12px 2px rgba(204,255,0,0.8); }
     50%      { transform: scale(1.35); box-shadow: 0 0 22px 4px rgba(204,255,0,0.9); }
@@ -1173,25 +1193,25 @@
   <nav class="nav" aria-label="Primary">
     <a href="./index.html" class="nav-brand" aria-label="OFF Nutrition Lab — voltar para a home">
       <div class="nav-mark" aria-hidden="true">
-        <svg viewBox="0 0 24 24"><path d="M12 6v12"/><path d="M17.196 9 6.804 15"/><path d="m6.804 9 10.392 6"/></svg>
-      </div>
-      <div class="nav-name">
-        <span class="kicker">OFFNUTRITION</span>
-        <span class="brand">Energy<b>·</b>Dust</span>
+        <img src="./assets/raw_files/logo/offprancheta-1-38qgfyemv4.webp" alt="OFF Nutrition Lab" loading="eager">
       </div>
     </a>
 
     <div class="nav-menu" role="navigation">
       <a href="./index.html#hero">Home</a>
-      <a href="./index.html#onlab">Vestuário</a>
-      <a href="./index.html#products">Energy Dust</a>
-      <a href="./index.html#quem-somos">Quem Somos</a>
+      <a href="./colecao.html?category=vestuario">Vestuário</a>
+      <a href="./colecao.html?category=energy-drink">Energy Dust</a>
+      <a href="./quem-somos.html">Quem Somos</a>
       <a href="./index.html#politica-devolucao">Política de Devolução</a>
     </div>
 
-    <a href="#comprar" class="nav-cta" aria-label="Ativar energia">
-      Carrinho <span style="color:#737373">·</span> 0
-    </a>
+    <button type="button" class="nav-cta" aria-label="Abrir carrinho" data-cart-open>
+      <svg class="nav-cta-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M6 7h12l-1.2 11.2a2 2 0 0 1-2 1.8H9.2a2 2 0 0 1-2-1.8L6 7z"/>
+        <path d="M9 7V5a3 3 0 0 1 6 0v2"/>
+      </svg>
+      Carrinho <span style="color:#737373">·</span> <span class="js-cart-count">0</span>
+    </button>
   </nav>
 
   <!-- =====================================================================
@@ -1209,9 +1229,9 @@
     <nav class="pd-breadcrumb" aria-label="Breadcrumb">
       <a href="./index.html#hero">Home</a>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
-      <a href="./index.html#products">Suplementos</a>
+      <a href="./colecao.html?category=energy-drink" id="pdCrumbCategory">Suplementos</a>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
-      <span class="current">Catalyze Pro</span>
+      <span class="current" id="pdCrumbCurrent">Catalyze Pro</span>
     </nav>
 
     <!-- Grid -->
@@ -1429,8 +1449,16 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
 
+  <!-- Adapter local: carrega o JSON e expõe window.OffStore.
+       Conteúdo hard-coded da página continua intacto como fallback visual
+       caso o fetch do JSON falhe (ex: rodando via file://). -->
+  <script src="./assets/js/off-store.js"></script>
+
+  <!-- Side Cart Drawer (mesmo arquivo do index.html). Expõe window.OffCart. -->
+  <script src="./assets/js/cart-drawer.js"></script>
+
   <script>
-    (function () {
+    (async function () {
       'use strict';
 
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1439,6 +1467,365 @@
       // Reset scroll para o topo no refresh
       if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
       window.scrollTo(0, 0);
+
+      /* ============================================================
+         HYDRATAÇÃO DO JSON — substitui textos/preços/galeria/variações
+         pelo conteúdo dinâmico antes dos listeners abaixo serem anexados.
+         O conteúdo hard-coded permanece como fallback se o fetch falhar.
+         ============================================================ */
+      // Estado dinâmico do produto vivo
+      let __pdState = {
+        product: null,
+        variants: [],
+        selected: { variant: null, optionValueIds: [] },
+        checkout: null,
+      };
+
+      // Lê o slug da URL (?slug=catalyze-pro). Default: catalyze-pro.
+      function _readSlugFromURL() {
+        try {
+          const params = new URLSearchParams(window.location.search);
+          return (params.get('slug') || 'catalyze-pro').trim();
+        } catch (e) { return 'catalyze-pro'; }
+      }
+      function _readVariantIdFromURL() {
+        try {
+          const params = new URLSearchParams(window.location.search);
+          const v = parseInt(params.get('variant'), 10);
+          return Number.isFinite(v) ? v : null;
+        } catch (e) { return null; }
+      }
+
+      function _safeText(el, value) {
+        if (el && typeof value === 'string' && value.length) el.textContent = value;
+      }
+
+      // Atualiza o bloco de preços (preço atual, preço antigo, parcelas, % desconto)
+      function _renderPriceBlock(variant) {
+        if (!variant || !variant.pricing) return;
+        const p = variant.pricing;
+
+        // Preço novo: split em "R$" + reais + ",cents"
+        const priceEl = document.querySelector('.pd-price-now');
+        if (priceEl) {
+          const value = typeof p.price === 'number' ? p.price : 0;
+          const reais = Math.floor(value);
+          const cents = Math.round((value - reais) * 100).toString().padStart(2, '0');
+          priceEl.innerHTML =
+            `<span class="currency">R$</span>${reais}<span class="cents">,${cents}</span>`;
+        }
+
+        // Preço antigo + tag de desconto (apenas se compareAtPrice > price)
+        const oldEl = document.querySelector('.pd-price-old');
+        const tagEl = document.querySelector('.pd-discount-tag');
+        const hasOld = typeof p.compareAtPrice === 'number' && p.compareAtPrice > p.price;
+        if (oldEl) {
+          oldEl.style.display = hasOld ? '' : 'none';
+          if (hasOld) oldEl.textContent = (p.displayCompareAtPrice || window.OffStore.formatBRL(p.compareAtPrice));
+        }
+        if (tagEl) {
+          if (hasOld) {
+            const off = Math.round((1 - p.price / p.compareAtPrice) * 100);
+            tagEl.style.display = '';
+            tagEl.innerHTML =
+              `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg> −${off}% OFF`;
+          } else {
+            tagEl.style.display = 'none';
+          }
+        }
+
+        // Parcelamento — usa o texto do JSON se houver, senão calcula 3x sem juros.
+        const installEl = document.querySelector('.pd-installments');
+        if (installEl) {
+          if (p.installmentsText) {
+            installEl.innerHTML = `<strong>${p.installmentsText}</strong> · <span class="acc">frete grátis</span>`;
+          } else {
+            const each = (p.price / 3);
+            const r = Math.floor(each);
+            const c = Math.round((each - r) * 100).toString().padStart(2, '0');
+            installEl.innerHTML =
+              `ou <strong>3×</strong> de <strong>R$ ${r}<span style="font-size:0.85em">,${c}</span></strong> sem juros · <span class="acc">frete grátis</span>`;
+          }
+        }
+
+        // Pix — 10% extra à vista (apenas estimativa visual, segue o padrão original)
+        const pixEl = document.querySelector('.pd-pix-note');
+        if (pixEl) {
+          const pix = p.price * 0.9;
+          const pixFmt = window.OffStore.formatBRL(pix);
+          pixEl.innerHTML =
+            `<span class="badge">Pix</span><span><strong style="color:#fff">${pixFmt}</strong> à vista — <span style="color:var(--acid)">10% extra</span></span>`;
+        }
+      }
+
+      // Atualiza estado de "indisponível" / habilitado dos botões
+      function _renderAvailability(variant) {
+        const btn = document.getElementById('addToCart');
+        if (!btn) return;
+        const span = btn.querySelector('span');
+        const available = !!(variant && variant.availableForSale);
+        if (available) {
+          btn.disabled = false;
+          btn.removeAttribute('aria-disabled');
+          btn.style.opacity = '';
+          btn.style.cursor = '';
+          if (span && __pdState.checkout && __pdState.checkout.cartButtonText) {
+            span.textContent = __pdState.checkout.cartButtonText;
+          }
+        } else {
+          btn.disabled = true;
+          btn.setAttribute('aria-disabled', 'true');
+          btn.style.opacity = '0.5';
+          btn.style.cursor = 'not-allowed';
+          if (span) span.textContent = 'Indisponível';
+        }
+      }
+
+      // Reconstrói os pills de variação a partir do JSON, marcando data-attrs
+      // que permitem encontrar a variante selecionada via OffStore helpers.
+      function _renderVariations(product) {
+        const wrap = document.querySelector('.pd-variations');
+        if (!wrap || !window.OffStore) return;
+
+        const optionGroups = window.OffStore.getOptionGroups(product.id);
+        if (!optionGroups.length) return;
+
+        // Mantém o último grupo (Quantidade + CTAs), que é puramente UI.
+        const groupCTA = wrap.querySelector('.pd-var-group:last-child');
+
+        // Remove apenas os grupos de variação (não o de quantidade/CTAs)
+        wrap.querySelectorAll('.pd-var-group').forEach(g => {
+          if (g !== groupCTA) g.remove();
+        });
+
+        // Insere grupos novos antes do grupo de CTAs
+        optionGroups.forEach((g) => {
+          const groupEl = document.createElement('div');
+          groupEl.className = 'pd-var-group';
+          groupEl.dataset.optionTypeId = g.type.id;
+
+          const labelEl = document.createElement('div');
+          labelEl.className = 'pd-var-label';
+          const initial = g.values[0];
+          labelEl.innerHTML = `<span>${g.type.name} · <strong>${initial ? initial.value : ''}</strong></span>`;
+          groupEl.appendChild(labelEl);
+
+          const optsEl = document.createElement('div');
+          optsEl.className = 'pd-var-options';
+          optsEl.setAttribute('role', 'radiogroup');
+          optsEl.setAttribute('aria-label', g.type.name);
+
+          g.values.forEach((val, i) => {
+            const pill = document.createElement('button');
+            pill.className = 'pd-var-pill' + (i === 0 ? ' is-active' : '');
+            pill.type = 'button';
+            pill.setAttribute('role', 'radio');
+            pill.setAttribute('aria-checked', i === 0 ? 'true' : 'false');
+            pill.dataset.optionValueId = val.id;
+            pill.dataset.optionTypeId = g.type.id;
+            pill.textContent = val.value;
+            optsEl.appendChild(pill);
+          });
+
+          groupEl.appendChild(optsEl);
+          wrap.insertBefore(groupEl, groupCTA);
+        });
+      }
+
+      // Reconstrói as miniaturas (galeria) a partir do JSON.
+      // A primeira é a "main", as demais são "gallery".
+      function _renderGallery(product) {
+        const mainEl  = document.getElementById('mainImgEl');
+        const thumbs  = document.querySelector('.pd-thumbs');
+        if (!mainEl || !thumbs || !window.OffStore) return;
+
+        const main    = window.OffStore.getMainImage(product.id);
+        const gallery = window.OffStore.getGalleryImages(product.id);
+
+        // Imagem principal: aplica src/alt e fallback graciosamente
+        if (main) {
+          mainEl.src = main.src;
+          mainEl.alt = main.alt || product.name;
+          mainEl.onerror = function () {
+            this.onerror = null;
+            this.src = window.OffStore.CONSTANTS.FALLBACK_IMAGE;
+          };
+        }
+
+        // Reconstrói os botões de thumbnail a partir do conjunto [main, ...gallery]
+        const allImgs = [main, ...gallery].filter(Boolean);
+        if (allImgs.length) {
+          thumbs.innerHTML = '';
+          allImgs.forEach((img, i) => {
+            const ix = String(i + 1).padStart(2, '0');
+            const btn = document.createElement('button');
+            btn.className = 'pd-thumb' + (i === 0 ? ' is-active' : '');
+            btn.type = 'button';
+            btn.dataset.img = img.src;
+            btn.dataset.label = img.alt || product.name;
+            btn.setAttribute('role', 'tab');
+            btn.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+            btn.innerHTML = `
+              <span class="pd-thumb-ix">${ix}</span>
+              <img src="${img.src}" alt="${(img.alt || product.name).replace(/"/g, '&quot;')}" loading="lazy" onerror="this.onerror=null;this.src='${window.OffStore.CONSTANTS.FALLBACK_IMAGE}';">
+              <span class="pd-thumb-bar" aria-hidden="true"></span>
+            `;
+            thumbs.appendChild(btn);
+          });
+        }
+      }
+
+      // Encontra a variante atualmente selecionada conforme as pills ativas.
+      function _findSelectedVariantFromUI(productId) {
+        const ids = [...document.querySelectorAll('.pd-var-pill.is-active[data-option-value-id]')]
+          .map(p => parseInt(p.dataset.optionValueId, 10))
+          .filter(n => Number.isFinite(n));
+        if (!ids.length || !window.OffStore) return null;
+        return window.OffStore.findVariantByOptionValueIds(productId, ids) || null;
+      }
+
+      function _selectInitialVariant(product) {
+        const requested = _readVariantIdFromURL();
+        if (requested) {
+          const target = window.OffStore.getVariantsForProduct(product.id).find(v => v.id === requested);
+          if (target) return target;
+        }
+        return window.OffStore.getMinPriceVariant(product.id) ||
+               window.OffStore.getAvailableVariants(product.id)[0] || null;
+      }
+
+      // Sincroniza as pills com a variante alvo (marca como ativas as opções que ela contém)
+      function _syncPillsWithVariant(variant) {
+        if (!variant) return;
+        const ids = new Set(variant.optionValueIds || []);
+        document.querySelectorAll('.pd-var-options[role="radiogroup"]').forEach((group) => {
+          const pills = group.querySelectorAll('.pd-var-pill');
+          let activeFound = null;
+          pills.forEach(p => {
+            const id = parseInt(p.dataset.optionValueId, 10);
+            const isMatch = ids.has(id);
+            p.classList.toggle('is-active', isMatch);
+            p.setAttribute('aria-checked', isMatch ? 'true' : 'false');
+            if (isMatch) activeFound = p;
+          });
+          // Atualiza o label "Sabor · X"
+          const labelStrong = group.parentElement.querySelector('.pd-var-label strong');
+          if (labelStrong && activeFound) labelStrong.textContent = activeFound.textContent.trim();
+        });
+      }
+
+      function _applyCheckoutSettings(product, checkout) {
+        if (!checkout) return;
+        const qtyInput = document.getElementById('qtyInput');
+        if (qtyInput) {
+          const min = checkout.quantityMin || 1;
+          const max = Math.min(checkout.quantityMax || 99, 9999);
+          qtyInput.min = String(min);
+          qtyInput.max = String(max);
+          qtyInput.value = String(checkout.quantityDefault || min);
+        }
+        const cta = document.getElementById('addToCart');
+        if (cta && checkout.cartButtonText) {
+          const span = cta.querySelector('span');
+          if (span) span.textContent = checkout.cartButtonText;
+        }
+      }
+
+      // Atualiza eyebrow / title / tagline
+      function _renderHeader(product, brand, category) {
+        // Eyebrow: <BRAND> · <CATEGORIA/SUBTITLE>  (ex: OFF NUTRITION LAB · ENERGY DRINK)
+        const eyebrow = document.querySelector('.pd-eyebrow');
+        if (eyebrow) {
+          const dot = eyebrow.querySelector('.pd-eyebrow-dot');
+          const partA = (brand && brand.name) ? brand.name : '';
+          const partB = product.subtitle || (category && category.name) || '';
+          const label = [partA, partB].filter(Boolean).join(' · ').toUpperCase();
+          eyebrow.innerHTML = '';
+          if (dot) eyebrow.appendChild(dot);
+          else eyebrow.insertAdjacentHTML('afterbegin', '<span class="pd-eyebrow-dot" aria-hidden="true"></span>');
+          eyebrow.insertAdjacentText('beforeend', ' ' + label);
+        }
+
+        // Title: "<Nome> ·\n<shortDescription>" (mantém apelo comercial)
+        const title = document.querySelector('.pd-title');
+        if (title && product.name) {
+          const second = (product.shortDescription || product.subtitle || '').replace(/\.$/, '') + (product.shortDescription ? '' : '');
+          title.innerHTML = `${product.name} <em>·</em><br>${second}`;
+        }
+
+        // Tagline: descrição completa do produto (texto longo)
+        const tagline = document.querySelector('.pd-tagline');
+        if (tagline && product.description) {
+          tagline.textContent = product.description;
+        }
+
+        // SEO: <title> da página
+        try {
+          const seo = window.OffStore.getSeo(product.id);
+          if (seo && seo.title) document.title = seo.title;
+        } catch (e) { /* no-op */ }
+      }
+
+      // Atualiza o breadcrumb com a categoria/produto correto.
+      // Link da categoria aponta para a página de coleção (colecao.html?category=<slug>).
+      function _renderBreadcrumb(product, category) {
+        const crumbCat = document.getElementById('pdCrumbCategory');
+        const crumbCur = document.getElementById('pdCrumbCurrent');
+        if (crumbCat && category) {
+          crumbCat.textContent = category.name || 'Coleção';
+          if (category.slug) crumbCat.setAttribute('href', './colecao.html?category=' + encodeURIComponent(category.slug));
+        }
+        if (crumbCur && product && product.name) {
+          crumbCur.textContent = product.name;
+        }
+      }
+
+      // Função orquestradora — só roda quando o JSON está disponível.
+      function hydrateProductPage() {
+        if (!window.OffStore || !window.OffStore.isReady()) return false;
+        const slug = _readSlugFromURL();
+        const product = window.OffStore.getProductBySlug(slug);
+        if (!product || !product.active) {
+          console.info('[OffStore] Produto "' + slug + '" não encontrado/ativo no JSON. Mantendo conteúdo estático.');
+          return false;
+        }
+
+        const brand    = window.OffStore.getBrand(product.brandId);
+        const category = window.OffStore.getCategory(product.categoryId);
+        const checkout = window.OffStore.getCheckout(product.id);
+
+        __pdState.product  = product;
+        __pdState.variants = window.OffStore.getVariantsForProduct(product.id);
+        __pdState.checkout = checkout;
+
+        _renderHeader(product, brand, category);
+        _renderBreadcrumb(product, category);
+        _renderVariations(product);
+        _renderGallery(product);
+        _applyCheckoutSettings(product, checkout);
+
+        const initialVariant = _selectInitialVariant(product);
+        if (initialVariant) {
+          _syncPillsWithVariant(initialVariant);
+          _renderPriceBlock(initialVariant);
+          _renderAvailability(initialVariant);
+          __pdState.selected.variant = initialVariant;
+          __pdState.selected.optionValueIds = [...(initialVariant.optionValueIds || [])];
+        }
+
+        return true;
+      }
+
+      // Aguarda o JSON carregar antes de rodar a UI. Em caso de falha, segue
+      // com o conteúdo estático do HTML.
+      try {
+        if (window.OffStore && typeof window.OffStore.load === 'function') {
+          await window.OffStore.load();
+          hydrateProductPage();
+        }
+      } catch (e) {
+        console.warn('[OffStore] Falha ao hidratar produto.html. Mantendo fallback estático.', e);
+      }
 
       // Lenis (smooth scroll igual ao index)
       let lenis = null;
@@ -1603,6 +1990,8 @@
       }
 
       // ── Variações: pills com seleção exclusiva por grupo ───────
+      // Após o clique, recalcula a variante selecionada via OffStore e atualiza
+      // preço, parcelas, disponibilidade e (quando houver) imagens da variante.
       document.querySelectorAll('.pd-var-options[role="radiogroup"]').forEach((group) => {
         const pills = group.querySelectorAll('.pd-var-pill');
         pills.forEach((pill) => {
@@ -1623,6 +2012,39 @@
                   ? pill.querySelector('.x-out').textContent
                   : pill.textContent.trim();
                 labelStrong.textContent = txt;
+              }
+            }
+
+            // Reage à seleção: encontra a variante exata e refresca tudo
+            if (__pdState.product && window.OffStore && window.OffStore.isReady()) {
+              const variant = _findSelectedVariantFromUI(__pdState.product.id);
+              __pdState.selected.variant = variant;
+              if (variant) {
+                __pdState.selected.optionValueIds = [...(variant.optionValueIds || [])];
+                _renderPriceBlock(variant);
+                _renderAvailability(variant);
+
+                // Se a variante tiver imagens próprias, troca a imagem principal
+                // (mantém crossfade do swap visual).
+                const variantImgs = window.OffStore.getImagesForVariant(variant);
+                if (variantImgs.length) {
+                  const mainImgFigEl = document.getElementById('mainImg');
+                  const mainImgElem  = document.getElementById('mainImgEl');
+                  const newMain = variantImgs.find(i => i.type === 'main') || variantImgs[0];
+                  if (newMain && mainImgElem && mainImgElem.src && !mainImgElem.src.endsWith(newMain.src.replace(/^\.\//, ''))) {
+                    if (mainImgFigEl) mainImgFigEl.classList.add('is-swapping');
+                    setTimeout(() => {
+                      mainImgElem.src = newMain.src;
+                      mainImgElem.alt = newMain.alt || __pdState.product.name;
+                      requestAnimationFrame(() => {
+                        if (mainImgFigEl) mainImgFigEl.classList.remove('is-swapping');
+                      });
+                    }, 220);
+                  }
+                }
+              } else {
+                // Combinação inválida (nenhuma variante exata) — desabilita compra
+                _renderAvailability(null);
               }
             }
           });
@@ -1653,15 +2075,104 @@
         });
       }
 
-      // ── Add to cart (feedback visual mínimo) ──────────────────
+      // ── Add to cart ───────────────────────────────────────────
+      // 1) Monta payload Shopify (doc §16) p/ logging quando o checkout for plugado.
+      // 2) Adiciona o item ao OffCart e abre o drawer lateral.
+      // 3) Mantém feedback visual no botão.
+      function _buildSubtitleFromVariant(variant) {
+        // Lê os pills ativos no DOM (mais robusto que reaproveitar IDs).
+        const activePills = document.querySelectorAll('.pd-var-pill.is-active, .pd-var-pill[aria-pressed="true"]');
+        const labels = Array.from(activePills)
+          .map(p => (p.textContent || '').trim())
+          .filter(Boolean);
+        if (labels.length) return labels.join(' · ');
+        // Fallback: usa o título da variante (se vier do JSON)
+        if (variant && variant.title) return variant.title;
+        return '';
+      }
+
+      function _resolveCartImage(variant) {
+        if (window.OffStore && window.OffStore.isReady()) {
+          if (variant) {
+            const vimgs = window.OffStore.getImagesForVariant(variant);
+            if (vimgs && vimgs.length) return vimgs[0].src;
+          }
+          if (__pdState.product) {
+            const main = window.OffStore.getMainImage(__pdState.product.id);
+            if (main && main.src) return main.src;
+          }
+        }
+        const mainImg = document.getElementById('pd-main-img');
+        if (mainImg && mainImg.getAttribute('src')) return mainImg.getAttribute('src');
+        return './assets/raw_files/JOURNAL.png';
+      }
+
       const addBtn = document.getElementById('addToCart');
       if (addBtn) {
         addBtn.addEventListener('click', () => {
-          const original = addBtn.querySelector('span').textContent;
-          addBtn.querySelector('span').textContent = '✓ Adicionado';
+          if (addBtn.disabled) return;
+
+          const qty = Math.max(1, parseInt((qtyInput && qtyInput.value) || '1', 10) || 1);
+
+          let cartItem = null;
+
+          if (__pdState.product && window.OffStore && window.OffStore.isReady()) {
+            const variant = __pdState.selected.variant;
+            if (!variant) {
+              console.warn('[OffCart] Nenhuma variação selecionada.');
+              return;
+            }
+            // Payload Shopify (logging por enquanto, integração futura)
+            try {
+              const payload = window.OffStore.buildShopifyCheckoutPayload(
+                __pdState.product.id, variant, qty
+              );
+              if (payload) console.log('[OffStore] Payload Shopify:', payload);
+            } catch (e) { /* noop */ }
+
+            const pricing = variant.pricing || {};
+            cartItem = {
+              productId: __pdState.product.id,
+              variantId: variant.id,
+              slug: __pdState.product.slug,
+              name: __pdState.product.name,
+              subtitle: _buildSubtitleFromVariant(variant),
+              image: _resolveCartImage(variant),
+              price: typeof pricing.price === 'number' ? pricing.price : 0,
+              compareAtPrice: typeof pricing.compareAtPrice === 'number' ? pricing.compareAtPrice : null,
+              shopifyVariantGid: (variant.shopify && variant.shopify.merchandiseId) || null,
+              qty: qty,
+            };
+          } else {
+            // Fallback estático: lê dados do DOM
+            const titleEl = document.getElementById('pd-title');
+            const priceEl = document.querySelector('.pd-price-now .reais');
+            const centsEl = document.querySelector('.pd-price-now .cents');
+            const reais = priceEl ? parseInt((priceEl.textContent || '0').replace(/\D/g, ''), 10) || 0 : 0;
+            const cents = centsEl ? parseInt((centsEl.textContent || '00').replace(/\D/g, ''), 10) || 0 : 0;
+            cartItem = {
+              productId: 'static',
+              variantId: 'static_' + Date.now(),
+              name: titleEl ? (titleEl.textContent || 'Produto').trim().split('\n')[0] : 'Produto',
+              subtitle: '',
+              image: _resolveCartImage(null),
+              price: reais + (cents / 100),
+              qty: qty,
+            };
+          }
+
+          if (window.OffCart && cartItem) {
+            window.OffCart.add(cartItem);
+            window.OffCart.open();
+          }
+
+          // Feedback visual no botão
+          const span = addBtn.querySelector('span');
+          const original = span ? span.textContent : '';
+          if (span) span.textContent = '✓ Adicionado';
           addBtn.style.pointerEvents = 'none';
           setTimeout(() => {
-            addBtn.querySelector('span').textContent = original;
+            if (span) span.textContent = original;
             addBtn.style.pointerEvents = '';
           }, 1600);
         });

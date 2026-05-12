@@ -1,0 +1,2615 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#050505" />
+<link rel="icon" type="image/png" href="./assets/hero/faviconV2.png" />
+<title>OFF NUTRITION LAB // Quem Somos — Suplementação Inteligente</title>
+<meta name="description" content="Conheça a OFF Nutrition LAB: curadoria, ciência, tecnologia e vestuário ONLAB para performance consciente e estilo de laboratório." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet" />
+
+<style>
+/* =================================================================
+   OFF NUTRITION // QUEM SOMOS — design system idêntico ao projeto
+   ================================================================= */
+:root {
+  --obsidian: #050505; --void: #000000; --surface: #0A0A0A;
+  --panel: #111111;    --panel-2: #171717;
+  --n-100: #f5f5f5; --n-200: #e5e5e5; --n-300: #d4d4d4;
+  --n-400: #a3a3a3; --n-500: #737373; --n-600: #525252;
+  --n-700: #404040; --n-800: #262626;
+  --line: rgba(255,255,255,0.08);
+  --line-soft: rgba(255,255,255,0.05);
+  --line-strong: rgba(255,255,255,0.16);
+  --acid: #ccff00; --acid-2: #a9d900; --solar: #f97316;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-elastic: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --f-display: 'Bricolage Grotesque', sans-serif;
+  --f-sans: 'Inter', sans-serif;
+  --f-mono: 'JetBrains Mono', monospace;
+  --r-xs: 6px; --r-sm: 10px; --r-md: 14px; --r-lg: 22px; --r-xl: 28px; --r-pill: 999px;
+  --sh-acid: 0 0 40px -6px rgba(204,255,0,0.45), 0 0 90px -20px rgba(204,255,0,0.35);
+  --sh-acid-strong: 0 0 60px -6px rgba(204,255,0,0.7), 0 0 140px -30px rgba(204,255,0,0.55);
+}
+
+/* ── Reset ─────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+img, svg, video { display: block; max-width: 100%; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--f-sans);
+  background: var(--obsidian);
+  color: var(--n-200);
+  overflow-x: hidden;
+  min-height: 100%;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  letter-spacing: -0.005em;
+}
+::selection { background: rgba(204,255,0,0.35); color: #000; }
+body { scrollbar-width: none; -ms-overflow-style: none; }
+body::-webkit-scrollbar { display: none; }
+html.lenis { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+/* =================================================================
+   GLOBAL BACKGROUND
+   ================================================================= */
+.bg-layer { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.bg-grid {
+  position: absolute; inset: -2px;
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.022) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.022) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(ellipse 75% 60% at 50% 45%, #000 0%, #000 25%, rgba(0,0,0,0.75) 55%, transparent 88%);
+  -webkit-mask-image: radial-gradient(ellipse 75% 60% at 50% 45%, #000 0%, #000 25%, rgba(0,0,0,0.75) 55%, transparent 88%);
+}
+.bg-dotgrid {
+  position: absolute; inset: 0;
+  background-image: radial-gradient(circle at center, rgba(204,255,0,0.10) 0.5px, transparent 1.4px);
+  background-size: 72px 72px; background-position: 36px 36px;
+  mask-image: radial-gradient(ellipse 70% 55% at 50% 45%, #000 0%, #000 20%, rgba(0,0,0,0.6) 50%, transparent 82%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 55% at 50% 45%, #000 0%, #000 20%, rgba(0,0,0,0.6) 50%, transparent 82%);
+  opacity: 0.85;
+}
+.bg-stars {
+  position: absolute; inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 20px 30px, #fff, rgba(0,0,0,0)),
+    radial-gradient(1px 1px at 40px 70px, #fff, rgba(0,0,0,0)),
+    radial-gradient(1.5px 1.5px at 90px 40px, #fff, rgba(0,0,0,0)),
+    radial-gradient(1px 1px at 130px 80px, #fff, rgba(0,0,0,0));
+  background-size: 220px 220px; opacity: 0.14;
+}
+.bg-aurora {
+  position: absolute; top: 38%; left: -10%; right: -10%; height: 60vh;
+  background:
+    radial-gradient(ellipse 70% 60% at 30% 50%, rgba(204,255,0,0.06) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 40% at 75% 55%, rgba(249,115,22,0.04) 0%, transparent 60%);
+  filter: blur(60px); opacity: 0.85;
+  animation: auroraWave 18s ease-in-out infinite alternate;
+}
+@keyframes auroraWave {
+  0%   { transform: translate3d(-2%, 0, 0) scaleY(1); }
+  50%  { transform: translate3d(2%, -4%, 0) scaleY(1.05); }
+  100% { transform: translate3d(0%, 2%, 0) scaleY(0.96); }
+}
+.bg-glow { position: absolute; border-radius: 9999px; filter: blur(140px); will-change: transform; }
+.bg-glow-acid { width: 680px; height: 680px; left: 62%; top: 12%; background: rgba(204,255,0,0.13); animation: drift 16s var(--ease-out) infinite alternate; }
+.bg-glow-solar { width: 520px; height: 520px; left: -6%; top: 55%; background: rgba(249,115,22,0.09); animation: drift 22s var(--ease-out) -6s infinite alternate; }
+@keyframes drift {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  50%  { transform: translate3d(40px, -30px, 0) scale(1.06); }
+  100% { transform: translate3d(-30px, 20px, 0) scale(0.96); }
+}
+.noise {
+  position: fixed; inset: 0; z-index: 9999; pointer-events: none;
+  opacity: 0.04; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+.vignette {
+  position: fixed; inset: 0; pointer-events: none; z-index: 1;
+  background:
+    radial-gradient(120% 80% at 50% 0%, transparent 30%, rgba(0,0,0,0.45) 100%),
+    radial-gradient(80% 60% at 50% 100%, rgba(0,0,0,0.30) 0%, transparent 60%);
+}
+@media (prefers-reduced-motion: reduce) {
+  .bg-glow-acid, .bg-glow-solar, .bg-aurora { animation: none; }
+}
+
+/* =================================================================
+   NAV — mesma do projeto
+   ================================================================= */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 60;
+  padding: 18px clamp(16px, 4vw, 40px);
+  display: flex; align-items: center; justify-content: space-between; gap: 20px;
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  background: rgba(5,5,5,0.55);
+  border-bottom: 1px solid var(--line-soft);
+}
+.nav-brand { display: flex; align-items: center; gap: 12px; }
+.nav-mark {
+  position: relative; width: 52px; height: 52px;
+  display: grid; place-items: center; border-radius: 50%;
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+  overflow: hidden; isolation: isolate;
+  transition: transform .35s var(--ease-out), border-color .35s ease;
+}
+.nav-brand:hover .nav-mark { transform: scale(1.05); border-color: rgba(204,255,0,0.35); }
+.nav-mark::before {
+  content: ""; position: absolute; inset: -2px; border-radius: 9999px;
+  background: conic-gradient(from 0deg, transparent 0 310deg, var(--acid) 340deg, #fff 360deg);
+  filter: blur(8px); opacity: 0.55;
+  animation: spin 8s linear infinite; z-index: 0;
+}
+.nav-mark img { position: relative; z-index: 1; width: 78%; height: 78%; object-fit: contain; filter: drop-shadow(0 1px 4px rgba(0,0,0,0.35)); }
+@keyframes spin { to { transform: rotate(360deg); } }
+.nav-menu { display: none; align-items: center; gap: clamp(16px, 2vw, 26px); }
+.nav-menu a {
+  font-family: var(--f-mono); font-size: clamp(9.5px, 0.75vw, 11px);
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--n-400);
+  transition: color .25s var(--ease-out); position: relative; white-space: nowrap;
+}
+.nav-menu a::after {
+  content: ""; position: absolute; left: 0; bottom: -8px; height: 1px; width: 0;
+  background: var(--acid); transition: width .4s var(--ease-out);
+}
+.nav-menu a.is-active { color: #fff; }
+.nav-menu a.is-active::after, .nav-menu a:hover::after { width: 100%; }
+.nav-menu a:hover { color: #fff; }
+.nav-cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 9px 16px; border-radius: var(--r-pill);
+  background: #fff; color: #000;
+  font-family: var(--f-mono); font-size: 11px;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  transition: transform .3s var(--ease-out), box-shadow .3s var(--ease-out);
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.3) inset;
+  border: none; cursor: pointer;
+}
+.nav-cta-icon { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform .35s var(--ease-out); }
+.nav-cta:hover { transform: translateY(-1px); box-shadow: 0 0 30px -8px rgba(204,255,0,0.5), 0 0 0 1px rgba(255,255,255,0.4) inset; }
+.nav-cta:hover .nav-cta-icon { transform: translateY(-1px) scale(1.05); }
+.js-cart-count { display: inline-block; min-width: 0.7em; text-align: center; font-variant-numeric: tabular-nums; }
+@media (min-width: 960px) { .nav-menu { display: flex; } }
+
+/* =================================================================
+   SHARED SECTION UTILITIES
+   ================================================================= */
+.ab-section {
+  position: relative; z-index: 2;
+  padding: clamp(80px, 11vw, 130px) clamp(20px, 4vw, 64px);
+}
+.ab-wrap {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.ab-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 7px 16px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 9999px;
+  font-family: var(--f-mono); font-size: 10px;
+  letter-spacing: 0.24em; text-transform: uppercase;
+  color: rgba(255,255,255,0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  width: fit-content;
+}
+.ab-eyebrow-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--acid); box-shadow: 0 0 10px var(--acid);
+  animation: abPulse 2s ease-in-out infinite;
+}
+@keyframes abPulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 10px var(--acid); }
+  50%       { transform: scale(1.3); box-shadow: 0 0 18px var(--acid); }
+}
+.ab-section-title {
+  margin: 0;
+  font-family: var(--f-display); font-weight: 700;
+  font-size: clamp(36px, 5vw, 62px);
+  line-height: 1;
+  letter-spacing: -0.035em;
+  color: #fff;
+}
+.ab-section-title em {
+  font-style: italic;
+  color: transparent;
+  -webkit-text-stroke: 1.2px rgba(255,255,255,0.6);
+}
+.ab-section-title b { color: var(--acid); font-weight: 700; }
+.ab-section-sub {
+  margin: 0;
+  font-family: var(--f-sans);
+  font-size: clamp(15px, 1.1vw, 17px);
+  line-height: 1.65;
+  color: rgba(255,255,255,0.72);
+  max-width: 62ch;
+}
+.ab-panel {
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -5%, rgba(204,255,0,0.04) 0%, transparent 60%),
+    rgba(10,10,10,0.72);
+  backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: var(--r-lg);
+  box-shadow: 0 24px 60px -28px rgba(0,0,0,0.6), 0 1px 0 rgba(255,255,255,0.04) inset;
+  position: relative; overflow: hidden;
+}
+.ab-panel::before {
+  content: "";
+  position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%, rgba(204,255,0,0.35) 30%,
+    rgba(204,255,0,0.55) 50%, rgba(204,255,0,0.35) 70%, transparent 100%);
+  opacity: 0.65;
+}
+
+/* Generic card */
+.ab-card {
+  position: relative;
+  padding: clamp(22px, 2.8vw, 32px);
+  background: rgba(14,14,14,0.6);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  transition: border-color .4s ease, box-shadow .5s ease, transform .5s var(--ease-out);
+  isolation: isolate;
+}
+.ab-card::before {
+  content: "";
+  position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%, rgba(204,255,0,0.0) 20%,
+    rgba(204,255,0,0.5) 50%, rgba(204,255,0,0.0) 80%, transparent 100%);
+  opacity: 0; transition: opacity .4s ease;
+}
+.ab-card:hover {
+  border-color: rgba(204,255,0,0.22);
+  box-shadow: 0 20px 60px -28px rgba(204,255,0,0.12), 0 12px 40px -20px rgba(0,0,0,0.5);
+  transform: translateY(-3px);
+}
+.ab-card:hover::before { opacity: 1; }
+
+/* Separator line acid sweep */
+.ab-line {
+  height: 1px;
+  background: rgba(255,255,255,0.07);
+  position: relative; overflow: hidden;
+  margin: clamp(60px, 8vw, 100px) 0;
+}
+.ab-line::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg,
+    transparent 0%, rgba(204,255,0,0.55) 50%, transparent 100%);
+  transform: translateX(-100%);
+  animation: abLineSweep 5s linear infinite;
+}
+@keyframes abLineSweep {
+  0%   { transform: translateX(-100%); }
+  60%  { transform: translateX(100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* =================================================================
+   STICKY INTERNAL NAV
+   ================================================================= */
+.ab-nav {
+  position: sticky;
+  top: 88px;
+  z-index: 50;
+  pointer-events: none;
+}
+.ab-nav-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 64px);
+  pointer-events: auto;
+}
+.ab-nav-strip {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 6px;
+  background: rgba(5,5,5,0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 9999px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  box-shadow: 0 8px 24px -8px rgba(0,0,0,0.4);
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity .5s ease, transform .5s var(--ease-out);
+  width: fit-content;
+}
+.ab-nav-strip::-webkit-scrollbar { display: none; }
+.ab-nav.is-visible .ab-nav-strip { opacity: 1; transform: translateY(0); }
+.ab-nav-link {
+  display: inline-flex; align-items: center;
+  padding: 9px 14px;
+  font-family: var(--f-mono); font-size: 9.5px;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  border-radius: 9999px;
+  white-space: nowrap;
+  transition: color .25s ease, background .3s ease;
+}
+.ab-nav-link:hover { color: #fff; background: rgba(255,255,255,0.05); }
+.ab-nav-link.is-active { color: var(--acid); background: rgba(204,255,0,0.08); }
+@media (max-width: 767px) { .ab-nav { display: none; } }
+
+/* =================================================================
+   HERO SECTION
+   ================================================================= */
+.ab-hero {
+  position: relative; z-index: 2;
+  padding: clamp(130px, 16vh, 180px) clamp(20px, 4vw, 64px) clamp(80px, 10vh, 120px);
+}
+.ab-hero-wrap {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: clamp(48px, 6vw, 96px);
+  align-items: center;
+}
+.ab-hero-topbar {
+  display: flex; align-items: center; gap: 14px;
+  font-family: var(--f-mono); font-size: 10px;
+  letter-spacing: 0.28em; text-transform: uppercase;
+  color: rgba(255,255,255,0.42);
+  margin-bottom: clamp(24px, 3vw, 36px);
+}
+.ab-hero-topbar-rule {
+  flex: 1; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15) 50%, transparent);
+}
+
+.ab-hero-left { display: flex; flex-direction: column; gap: clamp(18px, 2.2vw, 24px); }
+
+.ab-hero-title {
+  margin: 0;
+  font-family: var(--f-display); font-weight: 800;
+  font-size: clamp(52px, 7.5vw, 108px);
+  line-height: 0.9;
+  letter-spacing: -0.045em;
+  color: #fff;
+}
+.ab-hero-title em {
+  display: block; font-style: italic; font-weight: 800;
+  color: transparent;
+  background: linear-gradient(135deg, var(--acid) 0%, #e8ff55 50%, var(--acid) 100%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 28px rgba(204,255,0,0.22));
+}
+.ab-hero-concept {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--f-mono); font-size: 12px;
+  letter-spacing: 0.24em; text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+}
+.ab-hero-concept::before {
+  content: "";
+  width: 28px; height: 1px;
+  background: linear-gradient(90deg, var(--acid), transparent);
+}
+.ab-hero-concept strong { color: rgba(255,255,255,0.9); }
+
+.ab-hero-desc {
+  font-family: var(--f-sans);
+  font-size: clamp(15.5px, 1.1vw, 17.5px);
+  line-height: 1.7;
+  color: rgba(255,255,255,0.72);
+  max-width: 52ch;
+  border-left: 2px solid rgba(204,255,0,0.35);
+  padding-left: 18px;
+}
+.ab-hero-nav-list {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  padding-top: 10px;
+}
+.ab-hero-nav-item {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 8px 14px;
+  border: 1px solid rgba(255,255,255,0.09);
+  background: rgba(255,255,255,0.03);
+  border-radius: 9999px;
+  font-family: var(--f-mono); font-size: 9.5px;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  transition: color .25s ease, border-color .3s ease, background .3s ease, transform .35s var(--ease-out);
+}
+.ab-hero-nav-item::before {
+  content: ""; width: 4px; height: 4px; border-radius: 50%;
+  background: rgba(255,255,255,0.25);
+  transition: background .3s ease, box-shadow .3s ease;
+}
+.ab-hero-nav-item:hover {
+  color: #fff; border-color: rgba(204,255,0,0.28);
+  background: rgba(204,255,0,0.05);
+  transform: translateY(-1px);
+}
+.ab-hero-nav-item:hover::before { background: var(--acid); box-shadow: 0 0 8px rgba(204,255,0,0.5); }
+
+/* ── Right column: Lab Viz ──────────────────────────────────────── */
+.ab-hero-right { position: relative; display: flex; align-items: center; justify-content: center; }
+
+/* Main lab card */
+.ab-viz {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  animation: abVizFloat 6s ease-in-out infinite alternate;
+}
+@keyframes abVizFloat {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(-14px); }
+}
+.ab-viz-card {
+  padding: 28px 24px;
+  background: rgba(8,8,8,0.80);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--r-lg);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow:
+    0 0 0 1px rgba(204,255,0,0.08) inset,
+    0 40px 80px -30px rgba(0,0,0,0.9),
+    0 0 60px -20px rgba(204,255,0,0.08);
+}
+.ab-viz-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 22px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.ab-viz-title {
+  font-family: var(--f-mono); font-size: 9.5px;
+  letter-spacing: 0.3em; text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+}
+.ab-viz-status {
+  display: flex; align-items: center; gap: 6px;
+  font-family: var(--f-mono); font-size: 8.5px;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--acid);
+}
+.ab-viz-status-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--acid); box-shadow: 0 0 8px var(--acid);
+  animation: abPulse 1.8s ease-in-out infinite;
+}
+.ab-viz-rows { display: flex; flex-direction: column; gap: 16px; }
+.ab-viz-row {
+  display: flex; flex-direction: column; gap: 6px;
+}
+.ab-viz-row-label {
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: var(--f-mono); font-size: 9px;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+}
+.ab-viz-row-label span:last-child { color: var(--acid); font-weight: 600; }
+.ab-viz-bar {
+  height: 4px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+.ab-viz-bar-fill {
+  height: 100%; border-radius: 9999px;
+  background: linear-gradient(90deg, var(--acid-2), var(--acid));
+  box-shadow: 0 0 8px rgba(204,255,0,0.4);
+  transform: scaleX(0); transform-origin: left;
+  animation: abBarFill 1.8s var(--ease-out) forwards;
+}
+@keyframes abBarFill {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+.ab-viz-bar-fill[data-delay="1"] { animation-delay: .3s; }
+.ab-viz-bar-fill[data-delay="2"] { animation-delay: .6s; }
+.ab-viz-footer {
+  margin-top: 22px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  display: flex; gap: 10px;
+}
+.ab-viz-badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 5px 10px;
+  border: 1px solid rgba(204,255,0,0.2);
+  background: rgba(204,255,0,0.06);
+  border-radius: 9999px;
+  font-family: var(--f-mono); font-size: 8.5px;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(204,255,0,0.9);
+}
+.ab-viz-badge::before {
+  content: ""; width: 4px; height: 4px; border-radius: 50%;
+  background: var(--acid); box-shadow: 0 0 6px var(--acid);
+}
+
+/* Floating orb behind card */
+.ab-viz-orb {
+  position: absolute;
+  top: -40px; right: -30px;
+  width: 180px; height: 180px; border-radius: 50%;
+  background: radial-gradient(circle at 40% 40%, rgba(204,255,0,0.22) 0%, transparent 65%);
+  filter: blur(30px);
+  pointer-events: none;
+  animation: drift 8s ease-in-out infinite alternate;
+}
+/* Floating stat pill */
+.ab-viz-stat {
+  position: absolute;
+  display: flex; flex-direction: column;
+  align-items: center;
+  padding: 12px 18px;
+  background: rgba(8,8,8,0.80);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--r-md);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  animation: abStatFloat 7s ease-in-out infinite alternate;
+}
+.ab-viz-stat-1 {
+  top: -24px; left: -36px;
+  animation-delay: 0s;
+}
+.ab-viz-stat-2 {
+  bottom: -22px; right: -32px;
+  animation-delay: -3.5s;
+}
+@keyframes abStatFloat {
+  0%   { transform: translateY(0) rotate(-1deg); }
+  100% { transform: translateY(-10px) rotate(1deg); }
+}
+.ab-viz-stat-val {
+  font-family: var(--f-display); font-weight: 800;
+  font-size: 22px; line-height: 1; letter-spacing: -0.04em;
+  color: var(--acid);
+}
+.ab-viz-stat-lbl {
+  font-family: var(--f-mono); font-size: 7.5px;
+  letter-spacing: 0.28em; text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  margin-top: 3px;
+}
+@media (max-width: 960px) {
+  .ab-hero-wrap { grid-template-columns: 1fr; }
+  .ab-hero-right { display: none; }
+}
+
+/* =================================================================
+   NOSSO FOCO — 4 pillar cards
+   ================================================================= */
+.ab-focus { background: transparent; }
+.ab-focus-header {
+  display: flex; flex-direction: column; gap: 18px;
+  margin-bottom: clamp(36px, 5vw, 56px);
+}
+.ab-focus-header-row {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  gap: 24px; flex-wrap: wrap;
+}
+.ab-focus-concept {
+  font-family: var(--f-mono); font-size: 11px;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  padding: 7px 14px;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 9999px;
+  white-space: nowrap;
+}
+.ab-focus-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: clamp(14px, 1.8vw, 22px);
+}
+@media (min-width: 1100px) { .ab-focus-grid { grid-template-columns: repeat(4, 1fr); } }
+
+.ab-focus-card {
+  padding: clamp(24px, 2.8vw, 32px);
+  background: rgba(12,12,12,0.55);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: var(--r-md);
+  display: flex; flex-direction: column; gap: 14px;
+  transition: border-color .4s ease, box-shadow .5s ease, transform .5s var(--ease-out);
+  isolation: isolate; position: relative; overflow: hidden;
+}
+.ab-focus-card::after {
+  content: "";
+  position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(204,255,0,0.5) 50%, transparent);
+  opacity: 0; transition: opacity .4s ease;
+}
+.ab-focus-card:hover {
+  border-color: rgba(204,255,0,0.2);
+  box-shadow: 0 18px 50px -24px rgba(204,255,0,0.14);
+  transform: translateY(-3px);
+}
+.ab-focus-card:hover::after { opacity: 1; }
+
+.ab-focus-icon {
+  width: 44px; height: 44px;
+  display: grid; place-items: center;
+  background: rgba(204,255,0,0.08);
+  border: 1px solid rgba(204,255,0,0.2);
+  border-radius: var(--r-sm);
+}
+.ab-focus-icon svg {
+  width: 20px; height: 20px;
+  stroke: var(--acid); fill: none;
+  stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+}
+.ab-focus-card-num {
+  font-family: var(--f-display); font-weight: 800;
+  font-size: 64px; line-height: 1; letter-spacing: -0.05em;
+  color: rgba(255,255,255,0.04);
+  position: absolute; bottom: -10px; right: 14px;
+  pointer-events: none;
+  transition: color .4s ease;
+}
+.ab-focus-card:hover .ab-focus-card-num { color: rgba(204,255,0,0.06); }
+.ab-focus-name {
+  font-family: var(--f-display); font-weight: 600;
+  font-size: 18px; line-height: 1.2; letter-spacing: -0.01em;
+  color: #fff;
+}
+.ab-focus-desc {
+  font-family: var(--f-sans); font-size: 14px; line-height: 1.6;
+  color: rgba(255,255,255,0.58);
+}
+
+/* =================================================================
+   QUEM SOMOS — identity panel + 3 value cards
+   ================================================================= */
+.ab-identity-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: clamp(28px, 4vw, 56px);
+  align-items: start;
+}
+.ab-identity-panel {
+  padding: clamp(32px, 4vw, 48px);
+}
+.ab-identity-text {
+  font-family: var(--f-sans);
+  font-size: clamp(16px, 1.2vw, 18.5px);
+  line-height: 1.75;
+  color: rgba(255,255,255,0.8);
+  margin: 20px 0 0;
+}
+.ab-identity-text strong {
+  color: var(--acid); font-weight: 600;
+  background: rgba(204,255,0,0.1);
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+.ab-identity-values {
+  display: flex; flex-direction: column;
+  gap: clamp(14px, 1.8vw, 20px);
+}
+.ab-value-card {
+  padding: clamp(20px, 2.2vw, 26px);
+  background: rgba(12,12,12,0.6);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: var(--r-md);
+  display: flex; gap: 16px; align-items: flex-start;
+  transition: border-color .4s ease, transform .45s var(--ease-out);
+}
+.ab-value-card:hover { border-color: rgba(204,255,0,0.18); transform: translateX(4px); }
+.ab-value-icon {
+  flex-shrink: 0;
+  width: 38px; height: 38px;
+  display: grid; place-items: center;
+  background: rgba(204,255,0,0.08);
+  border: 1px solid rgba(204,255,0,0.2);
+  border-radius: var(--r-sm);
+  margin-top: 2px;
+}
+.ab-value-icon svg { width: 18px; height: 18px; stroke: var(--acid); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.ab-value-body { display: flex; flex-direction: column; gap: 5px; }
+.ab-value-name {
+  font-family: var(--f-display); font-weight: 600;
+  font-size: 15.5px; letter-spacing: -0.01em; color: #fff;
+}
+.ab-value-desc {
+  font-family: var(--f-sans); font-size: 13.5px;
+  line-height: 1.55; color: rgba(255,255,255,0.58);
+}
+@media (max-width: 860px) {
+  .ab-identity-grid { grid-template-columns: 1fr; }
+}
+
+/* =================================================================
+   QUAL PROBLEMA RESOLVEMOS — 3 problem/solution cards
+   ================================================================= */
+.ab-problem-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: clamp(14px, 1.8vw, 22px);
+  margin-top: clamp(36px, 4.5vw, 52px);
+}
+@media (min-width: 1000px) { .ab-problem-grid { grid-template-columns: repeat(3, 1fr); } }
+.ab-problem-card {
+  padding: clamp(24px, 2.8vw, 32px);
+  background: rgba(12,12,12,0.55);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: var(--r-md);
+  display: flex; flex-direction: column; gap: 20px;
+  transition: border-color .4s ease, transform .45s var(--ease-out);
+  position: relative; overflow: hidden;
+}
+.ab-problem-card:hover {
+  border-color: rgba(204,255,0,0.18);
+  transform: translateY(-3px);
+}
+.ab-problem-issue {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding-bottom: 16px;
+  border-bottom: 1px dashed rgba(255,255,255,0.07);
+}
+.ab-problem-x {
+  flex-shrink: 0;
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: rgba(249,115,22,0.12);
+  border: 1px solid rgba(249,115,22,0.3);
+  display: grid; place-items: center;
+  font-family: var(--f-mono); font-size: 12px;
+  color: rgba(249,115,22,0.85);
+  margin-top: 2px;
+}
+.ab-problem-issue-text {
+  font-family: var(--f-sans); font-size: 14px;
+  line-height: 1.5; color: rgba(255,255,255,0.65);
+  font-weight: 600; letter-spacing: -0.01em;
+}
+.ab-problem-solution {
+  display: flex; align-items: flex-start; gap: 10px;
+}
+.ab-problem-check {
+  flex-shrink: 0;
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: rgba(204,255,0,0.1);
+  border: 1px solid rgba(204,255,0,0.3);
+  display: grid; place-items: center;
+  margin-top: 2px;
+}
+.ab-problem-check svg { width: 12px; height: 12px; stroke: var(--acid); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+.ab-problem-sol-text {
+  font-family: var(--f-sans); font-size: 13.5px;
+  line-height: 1.6; color: rgba(255,255,255,0.72);
+}
+
+/* =================================================================
+   MÉTODO LAB — numbered process steps
+   ================================================================= */
+.ab-method-intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(28px, 4vw, 56px);
+  align-items: end;
+  margin-bottom: clamp(48px, 6vw, 72px);
+}
+@media (max-width: 740px) { .ab-method-intro { grid-template-columns: 1fr; } }
+.ab-method-intro-left { display: flex; flex-direction: column; gap: 18px; }
+.ab-method-intro-right .ab-section-sub { color: rgba(255,255,255,0.62); }
+.ab-method-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  position: relative;
+  gap: 0;
+}
+/* Connecting line between steps */
+.ab-method-steps::before {
+  content: "";
+  position: absolute;
+  top: 28px; left: calc(33.333% / 2 + 28px); right: calc(33.333% / 2 + 28px);
+  height: 1px;
+  background: linear-gradient(90deg,
+    rgba(204,255,0,0.5) 0%,
+    rgba(204,255,0,0.25) 50%,
+    rgba(204,255,0,0.5) 100%);
+  pointer-events: none;
+}
+.ab-method-step {
+  display: flex; flex-direction: column;
+  align-items: flex-start;
+  padding: 0 clamp(20px, 2.5vw, 36px);
+  padding-top: 0;
+  position: relative;
+}
+.ab-method-step:first-child { padding-left: 0; }
+.ab-method-step:last-child { padding-right: 0; }
+.ab-method-num-wrap {
+  display: flex; align-items: center; gap: 0;
+  margin-bottom: 28px;
+}
+.ab-method-num {
+  width: 56px; height: 56px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: rgba(204,255,0,0.1);
+  border: 1px solid rgba(204,255,0,0.35);
+  font-family: var(--f-display); font-weight: 800;
+  font-size: 18px; letter-spacing: -0.03em;
+  color: var(--acid);
+  position: relative; z-index: 2;
+  box-shadow: 0 0 28px -8px rgba(204,255,0,0.3);
+  flex-shrink: 0;
+}
+.ab-method-step-title {
+  font-family: var(--f-display); font-weight: 700;
+  font-size: clamp(18px, 1.6vw, 22px); letter-spacing: -0.02em;
+  color: #fff; margin-bottom: 10px;
+}
+.ab-method-step-desc {
+  font-family: var(--f-sans); font-size: 14px; line-height: 1.65;
+  color: rgba(255,255,255,0.6);
+}
+@media (max-width: 680px) {
+  .ab-method-steps {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .ab-method-steps::before { display: none; }
+  .ab-method-step { padding: 0; border-left: 2px solid rgba(204,255,0,0.25); padding-left: 22px; }
+  .ab-method-step:first-child { padding-left: 22px; }
+  .ab-method-num-wrap { margin-bottom: 16px; }
+}
+
+/* =================================================================
+   LOGÍSTICA — Como compramos e enviamos
+   ================================================================= */
+.ab-logistics-header {
+  max-width: 680px;
+  display: flex; flex-direction: column; gap: 18px;
+  margin-bottom: clamp(36px, 5vw, 52px);
+}
+.ab-logistics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: clamp(14px, 1.8vw, 22px);
+}
+@media (min-width: 1000px) { .ab-logistics-grid { grid-template-columns: repeat(3, 1fr); } }
+.ab-logistics-card {
+  padding: clamp(24px, 2.8vw, 32px);
+  background: rgba(12,12,12,0.55);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: var(--r-md);
+  display: flex; flex-direction: column; gap: 16px;
+  transition: border-color .4s ease, transform .45s var(--ease-out);
+  position: relative; overflow: hidden;
+}
+.ab-logistics-card::after {
+  content: "";
+  position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(204,255,0,0.5) 50%, transparent);
+  opacity: 0; transition: opacity .4s ease;
+}
+.ab-logistics-card:hover { border-color: rgba(204,255,0,0.2); transform: translateY(-3px); }
+.ab-logistics-card:hover::after { opacity: 1; }
+.ab-logistics-icon {
+  width: 46px; height: 46px;
+  display: grid; place-items: center;
+  background: rgba(204,255,0,0.08);
+  border: 1px solid rgba(204,255,0,0.18);
+  border-radius: var(--r-sm);
+}
+.ab-logistics-icon svg { width: 22px; height: 22px; stroke: var(--acid); fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.ab-logistics-name {
+  font-family: var(--f-display); font-weight: 600;
+  font-size: 17px; letter-spacing: -0.01em; color: #fff;
+}
+.ab-logistics-desc {
+  font-family: var(--f-sans); font-size: 14px; line-height: 1.65;
+  color: rgba(255,255,255,0.62);
+}
+
+/* =================================================================
+   ONLAB FITNESS CLUB
+   ================================================================= */
+.ab-onlab-intro {
+  max-width: 720px; display: flex; flex-direction: column; gap: 18px;
+  margin-bottom: clamp(36px, 5vw, 56px);
+}
+.ab-onlab-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(16px, 2vw, 28px);
+}
+@media (max-width: 680px) { .ab-onlab-grid { grid-template-columns: 1fr; } }
+.ab-onlab-card {
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: rgba(10,10,10,0.7);
+  border: 1px solid rgba(255,255,255,0.08);
+  display: flex; flex-direction: column;
+  transition: border-color .4s ease, box-shadow .5s ease, transform .5s var(--ease-out);
+  isolation: isolate;
+}
+.ab-onlab-card:hover {
+  border-color: rgba(204,255,0,0.18);
+  box-shadow: 0 24px 60px -28px rgba(204,255,0,0.12);
+  transform: translateY(-4px);
+}
+.ab-onlab-card-img {
+  width: 100%; aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%);
+  position: relative;
+}
+.ab-onlab-card-img::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.55) 100%);
+  z-index: 2;
+}
+.ab-onlab-card-img img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center 20%;
+  transition: transform .9s var(--ease-out), filter .5s ease;
+}
+.ab-onlab-card:hover .ab-onlab-card-img img {
+  transform: scale(1.05);
+  filter: brightness(1.08) saturate(1.1);
+}
+.ab-onlab-card-body {
+  padding: clamp(22px, 2.5vw, 32px);
+  display: flex; flex-direction: column; gap: 14px;
+  flex: 1;
+}
+.ab-onlab-card-label {
+  font-family: var(--f-mono); font-size: 9px;
+  letter-spacing: 0.3em; text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  display: flex; align-items: center; gap: 7px;
+}
+.ab-onlab-card-label::before {
+  content: ""; width: 4px; height: 4px; border-radius: 50%;
+  background: var(--acid); box-shadow: 0 0 8px var(--acid);
+}
+.ab-onlab-card-name {
+  font-family: var(--f-display); font-weight: 700;
+  font-size: clamp(20px, 2vw, 26px); letter-spacing: -0.025em; color: #fff;
+}
+.ab-onlab-card-name small {
+  display: block; font-family: var(--f-mono); font-weight: 400;
+  font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--acid); margin-top: 4px;
+}
+.ab-onlab-card-desc {
+  font-family: var(--f-sans); font-size: 14px; line-height: 1.65;
+  color: rgba(255,255,255,0.65);
+}
+.ab-onlab-benefits {
+  display: flex; flex-direction: column; gap: 8px;
+  margin-top: 6px;
+}
+.ab-onlab-benefit {
+  display: flex; align-items: flex-start; gap: 9px;
+  font-family: var(--f-sans); font-size: 13.5px;
+  line-height: 1.5; color: rgba(255,255,255,0.7);
+}
+.ab-onlab-benefit-dot {
+  flex-shrink: 0; width: 4px; height: 4px; border-radius: 50%;
+  background: var(--acid); margin-top: 6px;
+  box-shadow: 0 0 6px rgba(204,255,0,0.5);
+}
+.ab-onlab-benefit strong { color: #fff; font-weight: 600; }
+
+/* =================================================================
+   ONDE ESTAMOS
+   ================================================================= */
+.ab-location-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(24px, 3vw, 40px);
+  align-items: start;
+  margin-top: clamp(36px, 4.5vw, 52px);
+}
+@media (max-width: 740px) { .ab-location-grid { grid-template-columns: 1fr; } }
+.ab-location-panel { padding: clamp(28px, 3.5vw, 44px); }
+.ab-location-panel-title {
+  font-family: var(--f-mono); font-size: 9.5px;
+  letter-spacing: 0.28em; text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  margin-bottom: 20px;
+}
+.ab-location-items { display: flex; flex-direction: column; gap: 18px; }
+.ab-location-item { display: flex; gap: 14px; align-items: flex-start; }
+.ab-location-item-icon {
+  flex-shrink: 0;
+  width: 36px; height: 36px;
+  display: grid; place-items: center;
+  background: rgba(204,255,0,0.08);
+  border: 1px solid rgba(204,255,0,0.18);
+  border-radius: var(--r-sm);
+}
+.ab-location-item-icon svg { width: 16px; height: 16px; stroke: var(--acid); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.ab-location-item-body {}
+.ab-location-item-label {
+  font-family: var(--f-mono); font-size: 9px;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 4px;
+}
+.ab-location-item-value {
+  font-family: var(--f-sans); font-size: 14.5px;
+  line-height: 1.55; color: rgba(255,255,255,0.82);
+  font-weight: 500;
+}
+.ab-location-ctas {
+  display: flex; flex-direction: column; gap: 14px;
+  padding: clamp(28px, 3.5vw, 44px);
+  justify-content: center;
+  align-items: flex-start;
+}
+.ab-location-cta-title {
+  font-family: var(--f-display); font-weight: 600;
+  font-size: clamp(22px, 2.5vw, 30px);
+  letter-spacing: -0.025em; color: #fff;
+  margin-bottom: 6px;
+}
+.ab-location-cta-sub {
+  font-family: var(--f-sans); font-size: 14px; line-height: 1.6;
+  color: rgba(255,255,255,0.58);
+  margin-bottom: 18px;
+  max-width: 38ch;
+}
+.ab-btn-primary {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 13px 22px;
+  background: var(--acid); color: #050505;
+  font-family: var(--f-mono); font-size: 11px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  border-radius: var(--r-pill);
+  box-shadow: 0 0 30px -8px rgba(204,255,0,0.4);
+  transition: transform .35s var(--ease-out), box-shadow .35s ease, background .25s ease;
+  white-space: nowrap; border: none; cursor: pointer;
+}
+.ab-btn-primary:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 0 50px -8px rgba(204,255,0,0.6);
+  background: #d8ff33;
+}
+.ab-btn-primary svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; transition: transform .35s var(--ease-out); }
+.ab-btn-primary:hover svg { transform: translateX(3px); }
+.ab-btn-ghost {
+  display: inline-flex; align-items: center; gap: 9px;
+  padding: 12px 20px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.03);
+  border-radius: var(--r-pill);
+  font-family: var(--f-mono); font-size: 11px;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+  transition: color .25s ease, border-color .3s ease, background .3s ease, transform .35s var(--ease-out);
+  white-space: nowrap;
+}
+.ab-btn-ghost:hover {
+  color: var(--acid);
+  border-color: rgba(204,255,0,0.35);
+  background: rgba(204,255,0,0.04);
+  transform: translateY(-2px);
+}
+.ab-btn-ghost svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* =================================================================
+   NOSSO COMPROMISSO
+   ================================================================= */
+.ab-commitment-intro {
+  max-width: 860px; display: flex; flex-direction: column; gap: 18px;
+  margin-bottom: clamp(36px, 5vw, 52px);
+}
+.ab-commitment-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: clamp(14px, 1.8vw, 22px);
+}
+@media (min-width: 1000px) { .ab-commitment-grid { grid-template-columns: repeat(3, 1fr); } }
+.ab-commitment-card {
+  padding: clamp(26px, 3vw, 36px);
+  background: rgba(12,12,12,0.55);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: var(--r-md);
+  display: flex; flex-direction: column; gap: 14px;
+  position: relative; overflow: hidden;
+  transition: border-color .4s ease, transform .45s var(--ease-out);
+}
+.ab-commitment-card:hover { border-color: rgba(204,255,0,0.2); transform: translateY(-3px); }
+.ab-commitment-index {
+  font-family: var(--f-display); font-weight: 800;
+  font-size: 56px; line-height: 1; letter-spacing: -0.05em;
+  color: rgba(255,255,255,0.04);
+  position: absolute; bottom: -8px; right: 16px;
+  pointer-events: none;
+  transition: color .4s ease;
+}
+.ab-commitment-card:hover .ab-commitment-index { color: rgba(204,255,0,0.06); }
+.ab-commitment-icon {
+  width: 44px; height: 44px;
+  display: grid; place-items: center;
+  background: rgba(204,255,0,0.08);
+  border: 1px solid rgba(204,255,0,0.2);
+  border-radius: var(--r-sm);
+}
+.ab-commitment-icon svg { width: 20px; height: 20px; stroke: var(--acid); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.ab-commitment-name {
+  font-family: var(--f-display); font-weight: 600;
+  font-size: 18px; letter-spacing: -0.015em; color: #fff;
+}
+.ab-commitment-desc {
+  font-family: var(--f-sans); font-size: 14px; line-height: 1.6;
+  color: rgba(255,255,255,0.6);
+}
+
+/* =================================================================
+   FAQ ACCORDION
+   ================================================================= */
+.ab-faq-header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end; gap: 24px;
+  margin-bottom: clamp(36px, 5vw, 52px);
+  flex-wrap: wrap;
+}
+.ab-faq-note {
+  font-family: var(--f-sans); font-size: 14.5px; line-height: 1.6;
+  color: rgba(255,255,255,0.55);
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 18px;
+  background: rgba(204,255,0,0.05);
+  border: 1px solid rgba(204,255,0,0.15);
+  border-radius: var(--r-pill);
+  white-space: nowrap;
+}
+.ab-faq-note a {
+  color: var(--acid); font-weight: 600;
+  text-decoration: underline; text-decoration-color: rgba(204,255,0,0.4);
+  text-underline-offset: 3px;
+}
+.ab-faq-note a:hover { text-decoration-color: var(--acid); }
+.ab-faq-list { display: flex; flex-direction: column; gap: 10px; }
+.ab-faq-item {
+  background: rgba(12,12,12,0.55);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  transition: border-color .4s ease;
+}
+.ab-faq-item.is-open { border-color: rgba(204,255,0,0.2); }
+.ab-faq-trigger {
+  width: 100%;
+  display: flex; justify-content: space-between; align-items: flex-start;
+  gap: 20px;
+  padding: clamp(18px, 2.2vw, 24px) clamp(20px, 2.5vw, 28px);
+  cursor: pointer;
+  background: none; border: none;
+  text-align: left;
+}
+.ab-faq-q {
+  display: flex; flex-direction: column; gap: 5px;
+}
+.ab-faq-q-main {
+  font-family: var(--f-display); font-weight: 600;
+  font-size: clamp(15.5px, 1.1vw, 17px);
+  letter-spacing: -0.015em; color: #fff;
+  line-height: 1.3;
+  transition: color .25s ease;
+}
+.ab-faq-item.is-open .ab-faq-q-main,
+.ab-faq-trigger:hover .ab-faq-q-main { color: var(--acid); }
+.ab-faq-q-sub {
+  font-family: var(--f-mono); font-size: 9.5px;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+}
+.ab-faq-chevron {
+  flex-shrink: 0;
+  width: 32px; height: 32px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.03);
+  transition: transform .45s var(--ease-out), border-color .3s ease, background .3s ease;
+}
+.ab-faq-item.is-open .ab-faq-chevron {
+  transform: rotate(180deg);
+  border-color: rgba(204,255,0,0.3);
+  background: rgba(204,255,0,0.08);
+}
+.ab-faq-chevron svg { width: 14px; height: 14px; stroke: rgba(255,255,255,0.6); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: stroke .3s ease; }
+.ab-faq-item.is-open .ab-faq-chevron svg { stroke: var(--acid); }
+.ab-faq-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .45s var(--ease-out);
+}
+.ab-faq-item.is-open .ab-faq-body {
+  grid-template-rows: 1fr;
+}
+.ab-faq-body-inner {
+  overflow: hidden;
+  padding: 0 clamp(20px, 2.5vw, 28px);
+}
+.ab-faq-item.is-open .ab-faq-body-inner {
+  padding-bottom: clamp(18px, 2.2vw, 26px);
+}
+.ab-faq-answer {
+  font-family: var(--f-sans); font-size: clamp(14px, 1vw, 15.5px);
+  line-height: 1.75; color: rgba(255,255,255,0.7);
+  border-left: 2px solid rgba(204,255,0,0.3);
+  padding-left: 16px;
+}
+@media (max-width: 680px) {
+  .ab-faq-header { grid-template-columns: 1fr; }
+  .ab-faq-note { white-space: normal; }
+}
+
+/* =================================================================
+   CTA FINAL
+   ================================================================= */
+.ab-cta {
+  position: relative; z-index: 2;
+  padding: clamp(80px, 11vw, 130px) clamp(20px, 4vw, 64px) clamp(60px, 9vw, 100px);
+}
+.ab-cta-panel {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: clamp(48px, 6vw, 72px) clamp(36px, 5vw, 64px);
+  text-align: center;
+  display: flex; flex-direction: column; align-items: center; gap: 24px;
+}
+.ab-cta-label {
+  font-family: var(--f-mono); font-size: 9.5px;
+  letter-spacing: 0.32em; text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  display: flex; align-items: center; gap: 10px;
+}
+.ab-cta-label::before, .ab-cta-label::after {
+  content: "";
+  display: block; width: 32px; height: 1px;
+  background: rgba(255,255,255,0.15);
+}
+.ab-cta-title {
+  margin: 0;
+  font-family: var(--f-display); font-weight: 800;
+  font-size: clamp(32px, 4.8vw, 68px);
+  line-height: 1.02; letter-spacing: -0.04em;
+  color: #fff; max-width: 20ch;
+}
+.ab-cta-title em {
+  font-style: italic;
+  color: transparent;
+  background: linear-gradient(135deg, var(--acid) 0%, #e8ff55 60%, var(--acid) 100%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 24px rgba(204,255,0,0.22));
+}
+.ab-cta-sub {
+  font-family: var(--f-sans);
+  font-size: clamp(14.5px, 1.05vw, 16.5px);
+  line-height: 1.6; color: rgba(255,255,255,0.6);
+  max-width: 54ch;
+  margin: 0;
+}
+.ab-cta-btns {
+  display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;
+  margin-top: 8px;
+}
+
+/* =================================================================
+   FOOTER — mesmo do colecao.html / index.html
+   ================================================================= */
+.site-footer {
+  position: relative; z-index: 2;
+  padding: clamp(80px, 11vh, 140px) 0 clamp(40px, 6vh, 70px);
+  isolation: isolate; overflow: hidden;
+}
+.ftr-bg-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 70% 80% at 50% 100%, #000 30%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 80% at 50% 100%, #000 30%, transparent 80%);
+  pointer-events: none; z-index: 0;
+}
+.ftr-glow-a {
+  position: absolute; bottom: -40%; left: 50%;
+  width: clamp(700px, 85vw, 1400px); height: clamp(500px, 60vh, 800px);
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse at 50% 100%, rgba(204,255,0,0.08) 0%, rgba(204,255,0,0.04) 30%, transparent 70%);
+  filter: blur(40px); pointer-events: none; z-index: 0;
+}
+.ftr-panel {
+  position: relative; z-index: 2;
+  margin: 0 clamp(20px, 5vw, 80px);
+  padding: clamp(40px, 5.5vh, 64px) clamp(28px, 4vw, 56px) clamp(32px, 4vh, 48px);
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -5%, rgba(204,255,0,0.05) 0%, transparent 60%),
+    rgba(12,12,12,0.78);
+  backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: clamp(16px, 2vw, 24px);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.05) inset, 0 -1px 0 rgba(204,255,0,0.06) inset,
+    0 30px 80px -30px rgba(0,0,0,0.85);
+  overflow: hidden;
+}
+.ftr-panel::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%, rgba(204,255,0,0.32) 30%, rgba(204,255,0,0.55) 50%,
+    rgba(204,255,0,0.32) 70%, transparent 100%);
+  opacity: 0.7;
+}
+.ftr-cta-block {
+  display: grid; grid-template-columns: 1.2fr auto; align-items: end;
+  gap: clamp(24px, 3vw, 48px);
+  padding-bottom: clamp(28px, 4vh, 44px);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.ftr-cta-text { display: flex; flex-direction: column; gap: 14px; }
+.ftr-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--f-mono); font-size: 9px;
+  letter-spacing: 0.32em; text-transform: uppercase;
+  color: rgba(255,255,255,0.50);
+}
+.ftr-eyebrow-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--acid); box-shadow: 0 0 8px 1px rgba(204,255,0,0.80);
+  animation: abPulse 1.9s ease-in-out infinite;
+}
+.ftr-cta-title {
+  font-family: var(--f-display); font-weight: 800;
+  font-size: clamp(32px, 4.6vw, 60px);
+  letter-spacing: -0.045em; line-height: 1.02;
+  color: rgba(255,255,255,0.96); margin: 0; max-width: 18ch;
+}
+.ftr-cta-title em {
+  font-style: italic; font-weight: 800; color: var(--acid);
+  background: linear-gradient(180deg, #e6ff4d 0%, #ccff00 60%, #a9d900 100%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 18px rgba(204,255,0,0.18));
+}
+.ftr-cta-sub {
+  font-family: var(--f-sans); font-size: clamp(13px, 1.05vw, 15.5px);
+  line-height: 1.6; color: rgba(255,255,255,0.55); margin: 0; max-width: 52ch;
+}
+.ftr-cta-actions { display: flex; flex-direction: column; gap: 10px; align-items: flex-end; }
+.ftr-cta-primary {
+  display: inline-flex; align-items: center; gap: 10px; padding: 14px 22px;
+  background: var(--acid); color: #0a0a0a;
+  font-family: var(--f-mono); font-size: 11px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  border-radius: var(--r-pill); box-shadow: 0 0 40px -6px rgba(204,255,0,0.45);
+  transition: transform .35s var(--ease-out), box-shadow .35s ease, background .25s ease;
+  white-space: nowrap;
+}
+.ftr-cta-primary:hover { transform: translateY(-2px) scale(1.02); background: #d8ff33; }
+.ftr-cta-primary svg { width: 14px; height: 14px; transition: transform .35s var(--ease-out); }
+.ftr-cta-primary:hover svg { transform: translateX(4px); }
+.ftr-cta-ghost {
+  display: inline-flex; align-items: center; gap: 8px; padding: 12px 18px;
+  font-family: var(--f-mono); font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(255,255,255,0.62);
+  border: 1px solid rgba(255,255,255,0.12); border-radius: var(--r-pill);
+  transition: color .25s ease, border-color .25s ease, background .25s ease, transform .35s var(--ease-out);
+  white-space: nowrap;
+}
+.ftr-cta-ghost:hover { color: var(--acid); border-color: rgba(204,255,0,0.35); background: rgba(204,255,0,0.04); transform: translateY(-2px); }
+.ftr-grid {
+  display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr;
+  gap: clamp(28px, 3.2vw, 56px);
+  padding: clamp(36px, 5vh, 56px) 0 clamp(28px, 4vh, 44px);
+}
+.ftr-brand { display: flex; flex-direction: column; gap: 16px; }
+.ftr-brand-row { display: flex; align-items: center; gap: 12px; }
+.ftr-brand-mark {
+  position: relative; width: 44px; height: 44px;
+  background: #fff; color: #000;
+  font-family: var(--f-display); font-weight: 800;
+  font-size: 20px; border-radius: 6px;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.ftr-brand-dot {
+  position: absolute; top: -3px; right: -3px;
+  width: 9px; height: 9px;
+  background: var(--acid); border-radius: 50%;
+  box-shadow: 0 0 12px rgba(204,255,0,0.80);
+}
+.ftr-brand-info { display: flex; flex-direction: column; gap: 3px; }
+.ftr-brand-name { font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.30em; text-transform: uppercase; color: rgba(255,255,255,0.92); font-weight: 600; }
+.ftr-brand-meta { font-family: var(--f-mono); font-size: 9.5px; letter-spacing: 0.18em; color: rgba(255,255,255,0.40); text-transform: lowercase; }
+.ftr-brand-desc { font-family: var(--f-sans); font-size: 13px; line-height: 1.65; color: rgba(255,255,255,0.55); margin: 4px 0 0; max-width: 42ch; }
+.ftr-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+.ftr-badge {
+  display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px;
+  border: 1px solid rgba(204,255,0,0.18); background: rgba(204,255,0,0.04);
+  color: rgba(204,255,0,0.85); font-family: var(--f-mono); font-size: 9px;
+  letter-spacing: 0.22em; text-transform: uppercase; border-radius: var(--r-xs);
+}
+.ftr-badge::before { content: ""; width: 4px; height: 4px; background: var(--acid); border-radius: 50%; box-shadow: 0 0 6px rgba(204,255,0,0.60); }
+.ftr-col { display: flex; flex-direction: column; gap: 14px; }
+.ftr-col-title { font-family: var(--f-mono); font-size: 9.5px; letter-spacing: 0.32em; text-transform: uppercase; color: rgba(255,255,255,0.40); padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.ftr-links { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 11px; }
+.ftr-link {
+  position: relative; display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--f-sans); font-size: 13.5px;
+  color: rgba(255,255,255,0.68); width: fit-content;
+  transition: color .25s ease, padding-left .35s var(--ease-out);
+}
+.ftr-link::after { content: ""; position: absolute; left: 0; bottom: -3px; width: 0; height: 1px; background: var(--acid); box-shadow: 0 0 8px rgba(204,255,0,0.40); transition: width .35s var(--ease-out); }
+.ftr-link::before { content: "→"; position: absolute; left: -16px; opacity: 0; color: var(--acid); font-size: 11px; transition: opacity .25s ease, left .35s var(--ease-out); }
+.ftr-link:hover { color: rgba(255,255,255,0.95); padding-left: 18px; }
+.ftr-link:hover::after { width: 100%; }
+.ftr-link:hover::before { opacity: 1; left: 2px; }
+.ftr-line-accent {
+  position: relative; height: 1px; background: rgba(255,255,255,0.06);
+  overflow: hidden; margin: 0 0 clamp(18px, 2.6vh, 28px);
+}
+.ftr-line-accent::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(204,255,0,0.55) 50%, transparent 100%);
+  transform: translateX(-100%);
+  animation: abLineSweep 6s linear infinite;
+}
+.ftr-meta-row {
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 16px; flex-wrap: wrap;
+  font-family: var(--f-mono); font-size: 9.5px;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(255,255,255,0.38);
+}
+.ftr-meta-row .ftr-acc { color: var(--acid); }
+@media (max-width: 980px) {
+  .ftr-cta-block { grid-template-columns: 1fr; align-items: flex-start; }
+  .ftr-cta-actions { align-items: flex-start; }
+  .ftr-grid { grid-template-columns: 1fr 1fr; }
+  .ftr-brand { grid-column: 1 / -1; }
+}
+@media (max-width: 640px) {
+  .site-footer { padding-top: clamp(60px, 9vh, 100px); }
+  .ftr-panel { margin: 0 clamp(14px, 3vw, 24px); }
+  .ftr-grid { grid-template-columns: 1fr; gap: 28px; }
+  .ftr-cta-title { font-size: clamp(28px, 9vw, 40px); }
+  .ftr-meta-row { font-size: 9px; gap: 6px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ftr-eyebrow-dot, .ftr-line-accent::after { animation: none; }
+  .ftr-link, .ftr-cta-primary, .ftr-cta-ghost { transition: none; }
+  .ftr-link:hover { padding-left: 0; }
+}
+
+/* =================================================================
+   GLOBAL RESPONSIVE
+   ================================================================= */
+@media (max-width: 480px) {
+  .ab-section { padding: clamp(60px, 9vw, 90px) 16px; }
+  .ab-hero { padding: 110px 16px clamp(60px, 8vw, 80px); }
+  .ab-hero-title { font-size: clamp(44px, 12vw, 60px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ab-eyebrow-dot, .ab-viz-status-dot { animation: none; }
+  .ab-viz { animation: none; }
+  .ab-viz-stat { animation: none; }
+  .ab-viz-bar-fill { animation: none; transform: scaleX(1); }
+  .bg-aurora, .bg-glow-acid, .bg-glow-solar { animation: none; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ── Global background ──────────────────────────────────── -->
+<div class="bg-layer" aria-hidden="true">
+  <div class="bg-grid"></div>
+  <div class="bg-dotgrid"></div>
+  <div class="bg-stars"></div>
+  <div class="bg-aurora"></div>
+  <div class="bg-glow bg-glow-acid"></div>
+  <div class="bg-glow bg-glow-solar"></div>
+</div>
+<div class="vignette" aria-hidden="true"></div>
+<div class="noise" aria-hidden="true"></div>
+
+<!-- ── NAV ──────────────────────────────────────────────── -->
+<nav class="nav" aria-label="Primary">
+  <a href="./index.html" class="nav-brand" aria-label="OFF Nutrition Lab — home">
+    <div class="nav-mark" aria-hidden="true">
+      <img src="./assets/raw_files/logo/offprancheta-1-38qgfyemv4.webp" alt="OFF Nutrition Lab" loading="eager">
+    </div>
+  </a>
+
+  <div class="nav-menu" role="navigation">
+    <a href="./index.html#hero">Home</a>
+    <a href="./colecao.html?category=vestuario">Vestuário</a>
+    <a href="./colecao.html?category=energy-drink">Energy Dust</a>
+    <a href="./quem-somos.html" class="is-active">Quem Somos</a>
+    <a href="./index.html#politica-devolucao">Política de Devolução</a>
+  </div>
+
+  <button type="button" class="nav-cta" aria-label="Abrir carrinho" data-cart-open>
+    <svg class="nav-cta-icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M6 7h12l-1.2 11.2a2 2 0 0 1-2 1.8H9.2a2 2 0 0 1-2-1.8L6 7z"/>
+      <path d="M9 7V5a3 3 0 0 1 6 0v2"/>
+    </svg>
+    Carrinho <span style="color:#737373">·</span> <span class="js-cart-count">0</span>
+  </button>
+</nav>
+
+<!-- ── STICKY INTERNAL NAV ────────────────────────────────── -->
+<div class="ab-nav" id="abNav" aria-hidden="true">
+  <div class="ab-nav-inner">
+    <nav class="ab-nav-strip" aria-label="Seções desta página">
+      <a class="ab-nav-link" href="#about-hero" data-section="about-hero">Essência</a>
+      <a class="ab-nav-link" href="#about-focus" data-section="about-focus">Nosso foco</a>
+      <a class="ab-nav-link" href="#about-identity" data-section="about-identity">Quem somos</a>
+      <a class="ab-nav-link" href="#about-method" data-section="about-method">Método LAB</a>
+      <a class="ab-nav-link" href="#about-onlab" data-section="about-onlab">ONLAB</a>
+      <a class="ab-nav-link" href="#about-location" data-section="about-location">Localização</a>
+      <a class="ab-nav-link" href="#about-faq" data-section="about-faq">Dúvidas</a>
+    </nav>
+  </div>
+</div>
+
+<main>
+
+  <!-- ═══════════════════════════════════════════════════════
+       HERO — Suplementação Inteligente
+       ═══════════════════════════════════════════════════════ -->
+  <section class="ab-hero" id="about-hero" aria-label="OFF Nutrition LAB — Essência e posicionamento">
+
+    <div class="ab-hero-wrap">
+
+      <!-- Left column: text -->
+      <div class="ab-hero-left">
+
+        <!-- Topbar archival -->
+        <div class="ab-hero-topbar" aria-hidden="true">
+          <span>[ OFF · LAB ]</span>
+          <span class="ab-hero-topbar-rule"></span>
+          <span>EST. 2024 · SÃO PAULO · BR</span>
+          <span class="ab-hero-topbar-rule" style="max-width:60px"></span>
+          <span>INSTITUCIONAL</span>
+        </div>
+
+        <span class="ab-eyebrow">
+          <span class="ab-eyebrow-dot" aria-hidden="true"></span>
+          OFF NUTRITION LAB · SOBRE NÓS
+        </span>
+
+        <h1 class="ab-hero-title">
+          Suplementação
+          <em>Inteligente.</em>
+        </h1>
+
+        <p class="ab-hero-concept" aria-label="Conceito: ciência, tecnologia e curadoria">
+          <strong>ciência</strong> + <strong>tecnologia</strong> + <strong>curadoria</strong>
+        </p>
+
+        <p class="ab-hero-desc">
+          O laboratório onde suas escolhas ficam mais inteligentes. A OFF Nutrition LAB existe para
+          unir qualidade, preço justo e orientação — com a identidade de laboratório que transforma
+          suplementação e vestuário fitness em decisão consciente, não em impulso.
+        </p>
+
+        <!-- Section anchor nav pills -->
+        <nav class="ab-hero-nav-list" aria-label="Ir para seção">
+          <a class="ab-hero-nav-item" href="#about-focus">Nosso foco</a>
+          <a class="ab-hero-nav-item" href="#about-identity">Quem somos</a>
+          <a class="ab-hero-nav-item" href="#about-method">Método LAB</a>
+          <a class="ab-hero-nav-item" href="#about-onlab">ONLAB</a>
+          <a class="ab-hero-nav-item" href="#about-location">Localização</a>
+          <a class="ab-hero-nav-item" href="#about-faq">Dúvidas</a>
+        </nav>
+      </div>
+
+      <!-- Right column: Lab visualization card -->
+      <div class="ab-hero-right" aria-hidden="true">
+
+        <!-- Floating stat pills -->
+        <div class="ab-viz-stat ab-viz-stat-1">
+          <span class="ab-viz-stat-val">100%</span>
+          <span class="ab-viz-stat-lbl">Nacional</span>
+        </div>
+        <div class="ab-viz-stat ab-viz-stat-2">
+          <span class="ab-viz-stat-val">LAB</span>
+          <span class="ab-viz-stat-lbl">Tested</span>
+        </div>
+
+        <!-- Glow orb -->
+        <div class="ab-viz-orb"></div>
+
+        <!-- Main card -->
+        <div class="ab-viz">
+          <div class="ab-viz-card">
+            <div class="ab-viz-header">
+              <span class="ab-viz-title">OFF · LAB CORE</span>
+              <span class="ab-viz-status">
+                <span class="ab-viz-status-dot"></span>
+                Ativo · v1.0
+              </span>
+            </div>
+            <div class="ab-viz-rows">
+              <div class="ab-viz-row">
+                <div class="ab-viz-row-label">
+                  <span>Curadoria</span>
+                  <span>100%</span>
+                </div>
+                <div class="ab-viz-bar">
+                  <div class="ab-viz-bar-fill" style="width:100%" data-delay="0"></div>
+                </div>
+              </div>
+              <div class="ab-viz-row">
+                <div class="ab-viz-row-label">
+                  <span>Performance</span>
+                  <span>98%</span>
+                </div>
+                <div class="ab-viz-bar">
+                  <div class="ab-viz-bar-fill" style="width:98%" data-delay="1"></div>
+                </div>
+              </div>
+              <div class="ab-viz-row">
+                <div class="ab-viz-row-label">
+                  <span>Ciência aplicada</span>
+                  <span>97%</span>
+                </div>
+                <div class="ab-viz-bar">
+                  <div class="ab-viz-bar-fill" style="width:97%" data-delay="2"></div>
+                </div>
+              </div>
+            </div>
+            <div class="ab-viz-footer">
+              <span class="ab-viz-badge">Certificado ANVISA</span>
+              <span class="ab-viz-badge">Lab Tested</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       NOSSO FOCO — 4 pilares
+       ═══════════════════════════════════════════════════════ -->
+  <section class="ab-section" id="about-focus" aria-label="Pilares da marca">
+    <div class="ab-wrap">
+
+      <div class="ab-focus-header">
+        <span class="ab-eyebrow">
+          <span class="ab-eyebrow-dot" aria-hidden="true"></span>
+          NOSSO FOCO
+        </span>
+        <div class="ab-focus-header-row">
+          <h2 class="ab-section-title">Os pilares da <b>OFF.</b></h2>
+          <span class="ab-focus-concept">resultado <span style="color:var(--acid)">+</span> estilo</span>
+        </div>
+      </div>
+
+      <div class="ab-focus-grid">
+
+        <!-- Curadoria -->
+        <div class="ab-focus-card">
+          <div class="ab-focus-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 6l3 1 4-4 4 4 3-1 2 6H1L3 6z"/><path d="M5 20h14"/><path d="M8 20v-5h8v5"/></svg>
+          </div>
+          <div>
+            <div class="ab-focus-name">Curadoria</div>
+            <p class="ab-focus-desc">Marcas confiáveis e variedade estratégica. Selecionamos cada produto com critério técnico e foco no que realmente funciona.</p>
+          </div>
+          <span class="ab-focus-card-num">01</span>
+        </div>
+
+        <!-- Custo-benefício -->
+        <div class="ab-focus-card">
+          <div class="ab-focus-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/><path d="M16.5 6.5L12 12"/></svg>
+          </div>
+          <div>
+            <div class="ab-focus-name">Custo-benefício</div>
+            <p class="ab-focus-desc">Varejo com preço de atacado. Estrutura enxuta para aproximar o consumidor de uma escolha inteligente, sem pagar caro por isso.</p>
+          </div>
+          <span class="ab-focus-card-num">02</span>
+        </div>
+
+        <!-- Identidade LAB -->
+        <div class="ab-focus-card">
+          <div class="ab-focus-icon">
+            <svg viewBox="0 0 24 24"><path d="M9 3h6v11l3 7H6l3-7V3z"/><line x1="9" y1="3" x2="9" y2="14"/><line x1="15" y1="3" x2="15" y2="14"/></svg>
+          </div>
+          <div>
+            <div class="ab-focus-name">Identidade LAB</div>
+            <p class="ab-focus-desc">Ciência e tecnologia aplicadas ao consumo. O "LAB" não é só estética — é método, validação e responsabilidade com cada escolha.</p>
+          </div>
+          <span class="ab-focus-card-num">03</span>
+        </div>
+
+        <!-- ONLAB -->
+        <div class="ab-focus-card">
+          <div class="ab-focus-icon">
+            <svg viewBox="0 0 24 24"><path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.57a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.57a2 2 0 0 0-1.34-2.23z"/></svg>
+          </div>
+          <div>
+            <div class="ab-focus-name">ONLAB</div>
+            <p class="ab-focus-desc">Vestuário premium, funcional e atemporal. Nossa linha própria carrega o mesmo DNA de laboratório: tecnologia, conforto e estilo de verdade.</p>
+          </div>
+          <span class="ab-focus-card-num">04</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="ab-section" style="padding-top:0;padding-bottom:0;">
+    <div class="ab-wrap"><div class="ab-line"></div></div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       QUEM SOMOS — identity + values
+       ═══════════════════════════════════════════════════════ -->
+  <section class="ab-section" id="about-identity" aria-label="Quem somos — identidade da marca">
+    <div class="ab-wrap">
+
+      <div class="ab-identity-grid">
+
+        <!-- Left: intro text panel -->
+        <div class="ab-panel ab-identity-panel">
+          <span class="ab-eyebrow">
+            <span class="ab-eyebrow-dot" aria-hidden="true"></span>
+            QUEM SOMOS
+          </span>
+          <p class="ab-identity-text">
+            A OFF Nutrition LAB é uma operação digital com escritório e centro de distribuição em
+            <strong>São Paulo</strong>, criada para entregar suplementação inteligente: menos promessa
+            vazia, mais clareza, procedência e decisão certa.<br><br>
+            Somos um canal de vendas focado em curadoria de suplementos de marcas confiáveis, com
+            variedade de produtos, sabores e preço justo — para o atleta que quer performance sem
+            cair em hype.
+          </p>
+        </div>
+
+        <!-- Right: 3 value cards -->
+        <div class="ab-identity-values">
+
+          <div class="ab-value-card">
+            <div class="ab-value-icon">
+              <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            </div>
+            <div class="ab-value-body">
+              <div class="ab-value-name">Ciência aplicada</div>
+              <p class="ab-value-desc">Critério técnico e foco no que realmente faz sentido para cada objetivo de treino.</p>
+            </div>
+          </div>
+
+          <div class="ab-value-card">
+            <div class="ab-value-icon">
+              <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>
+            </div>
+            <div class="ab-value-body">
+              <div class="ab-value-name">Transparência</div>
+              <p class="ab-value-desc">Informação clara e experiência de compra confiável. Sem letras miúdas, sem promessas mirabolantes.</p>
+            </div>
+          </div>
+
+          <div class="ab-value-card">
+            <div class="ab-value-icon">
+              <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div class="ab-value-body">
+              <div class="ab-value-name">Atendimento humano</div>
+              <p class="ab-value-desc">Suporte consultivo antes e depois da compra. Alguém real para te ajudar a escolher certo.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       QUAL PROBLEMA RESOLVEMOS
+       ═══════════════════════════════════════════════════════ -->
+  <section class="ab-section" id="about-problems" style="padding-top:clamp(48px,6vw,80px)" aria-label="Problemas que resolvemos">
+    <div class="ab-wrap">
+      <span class="ab-eyebrow" style="margin-bottom:20px;display:inline-flex">
+        <span class="ab-eyebrow-dot" aria-hidden="true"></span>
+        O PROBLEMA
+      </span>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,3vw,48px);align-items:end;margin-bottom:clamp(36px,4.5vw,52px);flex-wrap:wrap">
+        <h2 class="ab-section-title">Qual problema<br><em>resolvemos.</em></h2>
+        <p class="ab-section-sub">O mercado tem muito "hype" e pouca orientação. A OFF resolve isso com curadoria inteligente, variedade de marcas, políticas claras e logística eficiente — pra você comprar com confiança.</p>
+      </div>
+
+      <div class="ab-problem-grid">
+
+        <div class="ab-problem-card">
+          <div class="ab-problem-issue">
+            <div class="ab-problem-x">×</div>
+            <div class="ab-problem-issue-text">Preço alto no varejo tradicional</div>
+          </div>
+          <div class="ab-problem-solution">
+            <div class="ab-problem-check">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <p class="ab-problem-sol-text">Estrutura enxuta e digital, pensada para oferecer o melhor custo-benefício real — sem intermediários desnecessários.</p>
+          </div>
+        </div>
+
+        <div class="ab-problem-card">
+          <div class="ab-problem-issue">
+            <div class="ab-problem-x">×</div>
+            <div class="ab-problem-issue-text">Falta de orientação na hora de comprar</div>
+          </div>
+          <div class="ab-problem-solution">
+            <div class="ab-problem-check">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <p class="ab-problem-sol-text">Ajuda especializada para escolher conforme objetivo e rotina. Informação clara antes e depois da compra.</p>
+          </div>
+        </div>
+
+        <div class="ab-problem-card">
+          <div class="ab-problem-issue">
+            <div class="ab-problem-x">×</div>
+            <div class="ab-problem-issue-text">Experiência ruim e insegurança</div>
+          </div>
+          <div class="ab-problem-solution">
+            <div class="ab-problem-check">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <p class="ab-problem-sol-text">Atendimento humano, pós-venda e processos claros. Você sabe o que está comprando e tem suporte de verdade.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="ab-section" style="padding-top:0;padding-bottom:0;">
+    <div class="ab-wrap"><div class="ab-line"></div></div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       MÉTODO LAB — process steps
+       ═══════════════════════════════════════════════════════ -->
+  <section class="ab-section" id="about-method" aria-label="Método LAB — nosso processo">
+    <div class="ab-wrap">
+
+      <div class="ab-method-intro">
+        <div class="ab-method-intro-left">
+          <span class="ab-eyebrow">
+            <span class="ab-eyebrow-dot" aria-hidden="true"></span>
+            MÉTODO LAB
+          </span>
+          <h2 class="ab-section-title">O LAB não<br>é só <b>estética.</b></h2>
+        </div>
+        <div class="ab-method-intro-right">
+          <p class="ab-section-sub">É método. Cada linha do catálogo existe por um motivo: procedência, reputação, eficiência e custo-benefício. Aqui o critério vem antes do produto.</p>
+        </div>
+      </div>
+
+      <div class="ab-method-steps">
+
+        <div class="ab-method-step">
+          <div class="ab-method-num-wrap">
+            <div class="ab-method-num">01</div>
+          </div>
+          <div class="ab-method-step-title">Curadoria</div>
+          <p class="ab-method-step-desc">Seleção criteriosa de marcas confiáveis e produtos com propósito real. Só entra o que tem procedência, eficácia e reputação comprovada no mercado.</p>
+        </div>
+
+        <div class="ab-method-step">
+          <div class="ab-method-num-wrap">
+            <div class="ab-method-num">02</div>
+          </div>
+          <div class="ab-method-step-title">Validação prática</div>
+          <p class="ab-method-step-desc">Foco no que entrega na prática: rotina, aderência e resultado real. Sem promessas de curto prazo — apenas o que funciona com consistência.</p>
+        </div>
+
+        <div class="ab-method-step">
+          <div class="ab-method-num-wrap">
+            <div class="ab-method-num">03</div>
+          </div>
+          <div class="ab-method-step-title">Otimização</div>
+          <p class="ab-method-step-desc">Cupons, combos estratégicos e logística eficiente para manter a compra inteligente — do carrinho à entrega, com rastreio e suporte humano.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       LOGÍSTICA — Como compramos e enviamos
+       ═══════════════════════════════════════════════════════ -->
+  <section class="ab-section" id="about-logistics" style="padding-top:clamp(48px,6vw,80px)" aria-label="Como compramos e enviamos">
+    <div class="ab-wrap">
+
+      <div class="ab-logistics-header">
+        <span class="ab-eyebrow">
+          <span class="ab-eyebrow-dot" aria-hidden="true"></span>
+          OPERAÇÃO
+        </span>
+        <h2 class="ab-section-title">Como compramos<br>e <em>enviamos.</em></h2>
+        <p class="ab-section-sub">As compras são feitas pelo nosso site oficial. Para envios, trabalhamos com múltiplas opções de transporte, buscando a melhor combinação de prazo e custo.</p>
+      </div>
+
+      <div class="ab-logistics-grid">
+
+        <div class="ab-logistics-card">
+          <div class="ab-logistics-icon">
+            <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          </div>
+          <div class="ab-logistics-name">Compra online</div>
+          <p class="ab-logistics-desc">Processo simples, com cupons de desconto, checkout seguro e rastreio completo do pedido até a sua porta.</p>
+        </div>
+
+        <div class="ab-logistics-card">
+          <div class="ab-logistics-icon">
+            <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          </div>
+          <div class="ab-logistics-name">Transportadoras</div>
+          <p class="ab-logistics-desc">Correios, Jadlog, J&T Express e outras conforme disponibilidade. Escolhemos sempre a melhor rota em prazo e custo.</p>
+        </div>
+
+        <div class="ab-logistics-card">
+          <div class="ab-logistics-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <div class="ab-logistics-name">Pós-venda</div>
+          <p class="ab-logistics-desc">Políticas claras de troca e devolução, suporte consultivo e atendimento humano para resolver rápido qualquer situação.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="ab-section" style="padding-top:0;padding-bottom:0;">
+    <div class="ab-wrap"><div class="ab-line"></div></div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       ONLAB FITNESS CLUB
+       ═══════════════════════════════════════════════════════ -->
+  <section class="ab-section" id="about-onlab" aria-label="ONLAB Fitness Club — vestuário">
+    <div class="ab-wrap">
+
+      <div class="ab-onlab-intro">
+        <span class="ab-eyebrow">
+          <span class="ab-eyebrow-dot" aria-hidden="true"></span>
+          ONLAB FITNESS CLUB
+        </span>
+        <h2 class="ab-section-title">Vestuário com<br>DNA de <b>laboratório.</b></h2>
+        <p class="ab-section-sub">Nossa linha própria de roupas fitness carrega o mesmo DNA de método: tecnologia, funcionalidade e estética premium. Peças streetwear com conforto, performance e estilo — dentro e fora do treino.</p>
+      </div>
+
+      <div class="ab-onlab-grid">
+
+        <!-- Wellness card -->
+        <div class="ab-onlab-card">
+          <div class="ab-onlab-card-img">
+            <img src="./assets/product/oversized/4.png"
+                 alt="ONLAB Wellness — tecido premium oversized"
+                 loading="lazy"
+                 onerror="this.onerror=null;this.parentElement.style.background='linear-gradient(135deg,#1a1a1a,#0a0a0a)'">
+          </div>
+          <div class="ab-onlab-card-body">
+            <span class="ab-onlab-card-label">Linha Wellness</span>
+            <div class="ab-onlab-card-name">
+              Wellness
+              <small>Tecido premium · oversized</small>
+            </div>
+            <p class="ab-onlab-card-desc">Leve, respirável e confortável. Sensação de gramatura alta, sem pesar no corpo — feita para quem treina sem abrir mão do estilo.</p>
+            <div class="ab-onlab-benefits">
+              <div class="ab-onlab-benefit">
+                <span class="ab-onlab-benefit-dot"></span>
+                <span><strong>Respirabilidade:</strong> ajuda na rotina de treino intensa.</span>
+              </div>
+              <div class="ab-onlab-benefit">
+                <span class="ab-onlab-benefit-dot"></span>
+                <span><strong>Conforto:</strong> toque macio e caimento versátil para o dia a dia.</span>
+              </div>
+            </div>
+            <a href="./colecao.html?category=vestuario" class="ab-btn-ghost" style="margin-top:8px">
+              Ver coleção
+              <svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- FitMenegotti card -->
+        <div class="ab-onlab-card">
+          <div class="ab-onlab-card-img">
+            <img src="./assets/product/regata/4.png"
+                 alt="ONLAB FitMenegotti — tecido premium regata"
+                 loading="lazy"
+                 onerror="this.onerror=null;this.parentElement.style.background='linear-gradient(135deg,#1a1a1a,#0a0a0a)'">
+          </div>
+          <div class="ab-onlab-card-body">
+            <span class="ab-onlab-card-label">Linha FitMenegotti</span>
+            <div class="ab-onlab-card-name">
+              FitMenegotti
+              <small>Tecido premium · estruturado</small>
+            </div>
+            <p class="ab-onlab-card-desc">Mais estruturado e resistente. Visual encorpado com performance para o uso real — peças que duram e não "envelhecem" de temporada em temporada.</p>
+            <div class="ab-onlab-benefits">
+              <div class="ab-onlab-benefit">
+                <span class="ab-onlab-benefit-dot"></span>
+                <span><strong>Durabilidade:</strong> peças feitas para resistir ao uso intenso.</span>
+              </div>
+              <div class="ab-onlab-benefit">
+                <span class="ab-onlab-benefit-dot"></span>
+                <span><strong>Estilo atemporal:</strong> combina com qualquer contexto, sem perecer.</span>
+              </div>
+            </div>
+            <a href="./colecao.html?category=vestuario" class="ab-btn-ghost" style="margin-top:8px">
+              Ver coleção
+              <svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="ab-section" style="padding-top:0;padding-bottom:0;">
+    <div class="ab-wrap"><div class="ab-line"></div></div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       ONDE ESTAMOS
+       ═══════════════════════════════════════════════════════ -->
+  <section class="ab-section" id="about-location" aria-label="Onde estamos — localização e contato">
+    <div class="ab-wrap">
+      <span class="ab-eyebrow" style="margin-bottom:20px;display:inline-flex">
+        <span class="ab-eyebrow-dot" aria-hidden="true"></span>
+        ONDE ESTAMOS
+      </span>
+      <h2 class="ab-section-title" style="margin-bottom:clamp(32px,4.5vw,48px)">São Paulo,<br><em>sempre presentes.</em></h2>
+
+      <div class="ab-location-grid">
+
+        <!-- Location info panel -->
+        <div class="ab-panel ab-location-panel">
+          <div class="ab-location-panel-title">Centro de distribuição · SP</div>
+          <div class="ab-location-items">
+
+            <div class="ab-location-item">
+              <div class="ab-location-item-icon">
+                <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div class="ab-location-item-body">
+                <div class="ab-location-item-label">Endereço</div>
+                <div class="ab-location-item-value">R. Antônio Pereira Simões, 596<br>Vila Paranaguá — São Paulo/SP<br>CEP 03808-050</div>
+              </div>
+            </div>
+
+            <div class="ab-location-item">
+              <div class="ab-location-item-icon">
+                <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.25h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6 6l.97-.97a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z"/></svg>
+              </div>
+              <div class="ab-location-item-body">
+                <div class="ab-location-item-label">WhatsApp / Telefone</div>
+                <div class="ab-location-item-value">(11) 99195-4365</div>
+              </div>
+            </div>
+
+            <div class="ab-location-item">
+              <div class="ab-location-item-icon">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div class="ab-location-item-body">
+                <div class="ab-location-item-label">Horário de atendimento</div>
+                <div class="ab-location-item-value">Segunda a Sexta<br>09:00 às 19:00</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- CTA block -->
+        <div class="ab-location-ctas">
+          <div class="ab-location-cta-title">Fale com<br>a gente agora.</div>
+          <p class="ab-location-cta-sub">Nossa equipe está pronta para tirar dúvidas, ajudar na escolha do produto certo e garantir a melhor experiência de compra.</p>
+          <a class="ab-btn-primary"
+             href="https://wa.me/5511991954365?text=Oi!%20Vim%20pelo%20site%20e%20quero%20tirar%20uma%20d%C3%BAvida."
+             target="_blank" rel="noopener"
+             aria-label="Falar no WhatsApp">
+            <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" stroke-width="1.9" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Falar no WhatsApp
+          </a>
+          <a class="ab-btn-ghost"
+             href="https://maps.google.com/?q=R.+Antônio+Pereira+Simões,+596,+Vila+Paranaguá,+São+Paulo"
+             target="_blank" rel="noopener"
+             aria-label="Ver no mapa">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" stroke-width="2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="10" r="3" stroke-width="2" fill="none" stroke="currentColor"/></svg>
+            Ver no mapa
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       NOSSO COMPROMISSO
+       ═══════════════════════════════════════════════════════ -->
+  <section class="ab-section" id="about-commitment" style="padding-top:clamp(48px,6vw,80px)" aria-label="Nosso compromisso">
+    <div class="ab-wrap">
+
+      <div class="ab-commitment-intro">
+        <span class="ab-eyebrow">
+          <span class="ab-eyebrow-dot" aria-hidden="true"></span>
+          NOSSO COMPROMISSO
+        </span>
+        <h2 class="ab-section-title">Resultado com<br><em>inteligência.</em></h2>
+        <p class="ab-section-sub">A OFF Nutrition LAB é para quem leva performance e estilo a sério, mas quer comprar com inteligência. Nosso compromisso é entregar uma experiência de ponta: produto certo, informação clara e suporte de verdade.</p>
+      </div>
+
+      <div class="ab-commitment-grid">
+
+        <div class="ab-commitment-card">
+          <div class="ab-commitment-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <div class="ab-commitment-name">Qualidade</div>
+          <p class="ab-commitment-desc">Marcas confiáveis e escolha consciente. Cada produto passa por critério técnico antes de entrar no catálogo.</p>
+          <span class="ab-commitment-index">01</span>
+        </div>
+
+        <div class="ab-commitment-card">
+          <div class="ab-commitment-icon">
+            <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <div class="ab-commitment-name">Preço justo</div>
+          <p class="ab-commitment-desc">Estratégia para aproximar o varejo do preço de atacado. Performance real sem custo desnecessário.</p>
+          <span class="ab-commitment-index">02</span>
+        </div>
+
+        <div class="ab-commitment-card">
+          <div class="ab-commitment-icon">
+            <svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          </div>
+          <div class="ab-commitment-name">Transparência</div>
+          <p class="ab-commitment-desc">Sem promessas milagrosas. Apenas o que faz sentido para o seu objetivo, com informação clara e honesta.</p>
+          <span class="ab-commitment-index">03</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="ab-section" style="padding-top:0;padding-bottom:0;">
+    <div class="ab-wrap"><div class="ab-line"></div></div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       FAQ — ACCORDION
+       ═══════════════════════════════════════════════════════ -->
+  <section class="ab-section" id="about-faq" aria-label="Dúvidas frequentes">
+    <div class="ab-wrap">
+
+      <div class="ab-faq-header">
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <span class="ab-eyebrow">
+            <span class="ab-eyebrow-dot" aria-hidden="true"></span>
+            DÚVIDAS FREQUENTES
+          </span>
+          <h2 class="ab-section-title">Perguntas<br><em>respondidas.</em></h2>
+        </div>
+        <a class="ab-faq-note"
+           href="https://wa.me/5511991954365?text=Oi!%20Tenho%20uma%20d%C3%BAvida%20sobre%20a%20OFF%20Nutrition%20LAB."
+           target="_blank" rel="noopener"
+           aria-label="Falar no WhatsApp">
+          <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+          </svg>
+          Não achou? <a href="https://wa.me/5511991954365" target="_blank" rel="noopener">Chama no WhatsApp</a>
+        </a>
+      </div>
+
+      <div class="ab-faq-list" role="list">
+
+        <div class="ab-faq-item" role="listitem">
+          <button class="ab-faq-trigger" type="button" aria-expanded="false">
+            <div class="ab-faq-q">
+              <span class="ab-faq-q-main">A OFF Nutrition LAB é loja física?</span>
+              <span class="ab-faq-q-sub">Como funciona a operação?</span>
+            </div>
+            <div class="ab-faq-chevron" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </button>
+          <div class="ab-faq-body">
+            <div class="ab-faq-body-inner">
+              <p class="ab-faq-answer">Nossa operação é focada no online (e-commerce), com escritório e centro de distribuição em São Paulo. Você compra pelo site e recebe em casa com rastreio. Não temos loja física aberta ao público, mas o atendimento é totalmente humano e consultivo.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="ab-faq-item" role="listitem">
+          <button class="ab-faq-trigger" type="button" aria-expanded="false">
+            <div class="ab-faq-q">
+              <span class="ab-faq-q-main">O que significa "Suplementação Inteligente"?</span>
+              <span class="ab-faq-q-sub">Qual é a diferença da OFF?</span>
+            </div>
+            <div class="ab-faq-chevron" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </button>
+          <div class="ab-faq-body">
+            <div class="ab-faq-body-inner">
+              <p class="ab-faq-answer">É a nossa forma de trabalhar: curadoria com critério, informação clara e foco em custo-benefício real. A ideia é você comprar o que faz sentido para seu objetivo — sem hype, sem promessa vazia, sem pagar mais caro do que precisa. Ciência antes do marketing.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="ab-faq-item" role="listitem">
+          <button class="ab-faq-trigger" type="button" aria-expanded="false">
+            <div class="ab-faq-q">
+              <span class="ab-faq-q-main">Como é feito o envio?</span>
+              <span class="ab-faq-q-sub">Transportadoras e prazos</span>
+            </div>
+            <div class="ab-faq-chevron" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </button>
+          <div class="ab-faq-body">
+            <div class="ab-faq-body-inner">
+              <p class="ab-faq-answer">Trabalhamos com diferentes opções de transporte — Correios, Jadlog, J&T Express e outras conforme disponibilidade e região. Buscamos sempre a melhor rota considerando prazo e custo. Você recebe o código de rastreio e acompanha tudo pelo site da transportadora.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="ab-faq-item" role="listitem">
+          <button class="ab-faq-trigger" type="button" aria-expanded="false">
+            <div class="ab-faq-q">
+              <span class="ab-faq-q-main">As roupas ONLAB são para treino ou para uso casual?</span>
+              <span class="ab-faq-q-sub">Qual é a proposta do vestuário?</span>
+            </div>
+            <div class="ab-faq-chevron" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </button>
+          <div class="ab-faq-body">
+            <div class="ab-faq-body-inner">
+              <p class="ab-faq-answer">As peças ONLAB foram pensadas para unir conforto, performance e estilo. Elas funcionam tanto para treino quanto para uso casual e lifestyle, mantendo uma estética streetwear premium e funcional. A ideia é ter peças que transitam entre a academia e a rua com naturalidade.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       CTA FINAL
+       ═══════════════════════════════════════════════════════ -->
+  <section class="ab-cta" id="about-cta" aria-label="Chamada para ação">
+    <div class="ab-panel ab-cta-panel">
+      <span class="ab-cta-label">OFF NUTRITION LAB · ENCERRAMENTO</span>
+      <h2 class="ab-cta-title">
+        Escolha melhor.<br>
+        Evolua com <em>método.</em>
+      </h2>
+      <p class="ab-cta-sub">
+        A OFF Nutrition LAB une suplementação, vestuário e curadoria para quem quer
+        performance sem cair em promessa vazia.
+      </p>
+      <div class="ab-cta-btns">
+        <a class="ab-btn-primary" href="./colecao.html?category=energy-drink" aria-label="Ver linha de produtos">
+          Ver produtos
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7" stroke-width="2.5"/></svg>
+        </a>
+        <a class="ab-btn-ghost"
+           href="https://wa.me/5511991954365?text=Oi!%20Quero%20saber%20mais%20sobre%20os%20produtos."
+           target="_blank" rel="noopener"
+           aria-label="Falar no WhatsApp">
+          <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" stroke-width="2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Falar no WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ── FOOTER ───────────────────────────────────────────── -->
+<footer class="site-footer" role="contentinfo" aria-label="Rodapé OFF Nutrition Lab">
+  <div class="ftr-bg-grid" aria-hidden="true"></div>
+  <div class="ftr-glow-a"  aria-hidden="true"></div>
+
+  <div class="ftr-panel">
+    <div class="ftr-cta-block">
+      <div class="ftr-cta-text">
+        <span class="ftr-eyebrow">
+          <span class="ftr-eyebrow-dot" aria-hidden="true"></span>
+          OFF NUTRITION LAB · ENCERRAMENTO
+        </span>
+        <h2 class="ftr-cta-title">
+          Pronto para destravar<br>
+          o seu <em>próximo nível</em>?
+        </h2>
+        <p class="ftr-cta-sub">
+          Performance não é sorte — é bioquímica calibrada com matéria-prima
+          100% nacional, ciência aplicada e custo justo.
+        </p>
+      </div>
+      <div class="ftr-cta-actions">
+        <a class="ftr-cta-primary" href="./colecao.html?category=energy-drink">
+          <span>Comprar agora</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="ftr-cta-ghost" href="#about-faq">Ver dúvidas frequentes</a>
+      </div>
+    </div>
+
+    <div class="ftr-grid">
+      <div class="ftr-brand">
+        <div class="ftr-brand-row">
+          <div class="ftr-brand-mark">O<span class="ftr-brand-dot"></span></div>
+          <div class="ftr-brand-info">
+            <span class="ftr-brand-name">OFF NUTRITION<span style="color:var(--acid)">.</span>LAB</span>
+            <span class="ftr-brand-meta">performance · ciência · estilo</span>
+          </div>
+        </div>
+        <p class="ftr-brand-desc">A OFF NUTRITION LAB nasceu para entregar performance de elite ao atleta brasileiro. Suplementação calibrada e custo justo.</p>
+        <div class="ftr-badges">
+          <span class="ftr-badge">Certificado ANVISA</span>
+          <span class="ftr-badge">100% Nacional</span>
+          <span class="ftr-badge">Lab Tested</span>
+        </div>
+      </div>
+
+      <nav class="ftr-col" aria-label="Navegar">
+        <div class="ftr-col-title">Navegar</div>
+        <ul class="ftr-links">
+          <li><a class="ftr-link" href="./index.html#hero">Início</a></li>
+          <li><a class="ftr-link" href="./index.html#products">Produtos</a></li>
+          <li><a class="ftr-link" href="./index.html#benefits">Catalyze Pro</a></li>
+          <li><a class="ftr-link" href="./index.html#onlab">ONLAB Wear</a></li>
+          <li><a class="ftr-link" href="./quem-somos.html">Quem Somos</a></li>
+        </ul>
+      </nav>
+
+      <nav class="ftr-col" aria-label="Linha">
+        <div class="ftr-col-title">Linha</div>
+        <ul class="ftr-links">
+          <li><a class="ftr-link" href="./colecao.html?category=energy-drink">Energy Dust</a></li>
+          <li><a class="ftr-link" href="./colecao.html?category=energy-drink">Catalyze Pro</a></li>
+          <li><a class="ftr-link" href="./colecao.html?category=vestuario">ONLAB Apparel</a></li>
+          <li><a class="ftr-link" href="./colecao.html?category=vestuario">Oversized</a></li>
+          <li><a class="ftr-link" href="./colecao.html?category=vestuario">Regata Machão</a></li>
+        </ul>
+      </nav>
+
+      <nav class="ftr-col" aria-label="Contato">
+        <div class="ftr-col-title">Contato</div>
+        <ul class="ftr-links">
+          <li><a class="ftr-link" href="https://instagram.com/offnutrition" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a class="ftr-link" href="https://wa.me/5511991954365" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a class="ftr-link" href="mailto:lab@offnutrition.com.br">lab@offnutrition.com.br</a></li>
+          <li><a class="ftr-link" href="#">Suporte 24h</a></li>
+          <li><a class="ftr-link" href="./quem-somos.html#about-faq">FAQ</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="ftr-line-accent" aria-hidden="true"></div>
+    <div class="ftr-meta-row">
+      <span>© 2026 OFF NUTRITION LAB · Todos os direitos reservados</span>
+      <span>Build <span class="ftr-acc">v1.0</span> · Aurora</span>
+      <span>Forged with <span class="ftr-acc">signal</span> — not noise</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ── Scripts ─────────────────────────────────────────── -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
+<script src="./assets/js/cart-drawer.js"></script>
+
+<script>
+(function () {
+  'use strict';
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* =================================================================
+     FAQ ACCORDION
+     ================================================================= */
+  document.querySelectorAll('.ab-faq-trigger').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      const item = btn.closest('.ab-faq-item');
+      const isOpen = item.classList.contains('is-open');
+
+      // Close all
+      document.querySelectorAll('.ab-faq-item.is-open').forEach(function (el) {
+        el.classList.remove('is-open');
+        el.querySelector('.ab-faq-trigger').setAttribute('aria-expanded', 'false');
+      });
+
+      // Open clicked if it was closed
+      if (!isOpen) {
+        item.classList.add('is-open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  /* =================================================================
+     STICKY INTERNAL NAV — show after hero + active section tracking
+     ================================================================= */
+  const abNav    = document.getElementById('abNav');
+  const hero     = document.getElementById('about-hero');
+  const sections = Array.from(document.querySelectorAll('[id^="about-"]'));
+  const navLinks = Array.from(document.querySelectorAll('.ab-nav-link'));
+
+  function onScroll() {
+    if (!abNav || !hero) return;
+    const heroBottom = hero.getBoundingClientRect().bottom;
+    if (heroBottom <= 120) {
+      abNav.classList.add('is-visible');
+      abNav.setAttribute('aria-hidden', 'false');
+    } else {
+      abNav.classList.remove('is-visible');
+      abNav.setAttribute('aria-hidden', 'true');
+    }
+
+    // Active section
+    let current = '';
+    sections.forEach(function (s) {
+      const top = s.getBoundingClientRect().top;
+      if (top <= 160) current = s.id;
+    });
+    navLinks.forEach(function (a) {
+      a.classList.toggle('is-active', a.dataset.section === current);
+    });
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* =================================================================
+     LENIS — smooth scroll
+     ================================================================= */
+  function initLenis() {
+    if (typeof Lenis === 'undefined' || prefersReducedMotion) return;
+    const lenis = new Lenis({
+      duration: 1.1,
+      easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
+      smoothWheel: true,
+      smoothTouch: false,
+    });
+    if (window.gsap) {
+      gsap.ticker.add(function (time) { lenis.raf(time * 1000); });
+      gsap.ticker.lagSmoothing(0);
+    } else {
+      function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+      requestAnimationFrame(raf);
+    }
+
+    // Smooth anchor scroll within the page
+    document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        const id = a.getAttribute('href').slice(1);
+        const el = document.getElementById(id);
+        if (!el) return;
+        e.preventDefault();
+        lenis.scrollTo(el, { offset: -100, duration: 1.4 });
+      });
+    });
+  }
+
+  /* =================================================================
+     GSAP SCROLL REVEAL — entrances per section
+     ================================================================= */
+  function initAnimations() {
+    if (!window.gsap || !window.ScrollTrigger || prefersReducedMotion) return;
+    gsap.registerPlugin(ScrollTrigger);
+
+    const defaults = { ease: 'power3.out', duration: 0.85 };
+
+    // Hero
+    gsap.from('#about-hero .ab-hero-left > *', {
+      ...defaults,
+      opacity: 0, y: 30, filter: 'blur(10px)',
+      stagger: 0.1,
+    });
+    gsap.from('#about-hero .ab-viz', {
+      ...defaults,
+      opacity: 0, x: 30, filter: 'blur(14px)',
+      delay: 0.3,
+    });
+    gsap.from('#about-hero .ab-viz-stat', {
+      ...defaults,
+      opacity: 0, scale: 0.88,
+      stagger: 0.15,
+      delay: 0.5,
+    });
+
+    // Generic reveal function
+    function revealSection(selector, stagger) {
+      const els = document.querySelectorAll(selector);
+      if (!els.length) return;
+      gsap.from(els, {
+        scrollTrigger: { trigger: els[0].closest('.ab-section, .ab-cta') || els[0], start: 'top 82%' },
+        opacity: 0, y: 28, filter: 'blur(8px)',
+        stagger: stagger || 0.08,
+        duration: 0.78,
+        ease: 'power3.out',
+      });
+    }
+
+    revealSection('#about-focus .ab-focus-header > *', 0.1);
+    revealSection('#about-focus .ab-focus-card', 0.09);
+    revealSection('#about-identity .ab-identity-panel', 0.12);
+    revealSection('#about-identity .ab-value-card', 0.1);
+    revealSection('#about-problems .ab-section-title', 0);
+    revealSection('#about-problems .ab-section-sub', 0);
+    revealSection('#about-problems .ab-problem-card', 0.1);
+    revealSection('#about-method .ab-method-intro > *', 0.1);
+    revealSection('#about-method .ab-method-step', 0.12);
+    revealSection('#about-logistics .ab-logistics-header > *', 0.1);
+    revealSection('#about-logistics .ab-logistics-card', 0.1);
+    revealSection('#about-onlab .ab-onlab-intro > *', 0.1);
+    revealSection('#about-onlab .ab-onlab-card', 0.12);
+    revealSection('#about-location .ab-section-title', 0);
+    revealSection('#about-location .ab-panel', 0.1);
+    revealSection('#about-location .ab-location-ctas > *', 0.1);
+    revealSection('#about-commitment .ab-commitment-intro > *', 0.1);
+    revealSection('#about-commitment .ab-commitment-card', 0.1);
+    revealSection('#about-faq .ab-faq-item', 0.07);
+    revealSection('#about-cta .ab-cta-label', 0);
+    revealSection('#about-cta .ab-cta-title', 0);
+    revealSection('#about-cta .ab-cta-sub', 0);
+    revealSection('#about-cta .ab-cta-btns', 0);
+  }
+
+  /* Boot */
+  function boot() {
+    initLenis();
+    initAnimations();
+  }
+
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    setTimeout(boot, 0);
+  } else {
+    window.addEventListener('load', boot, { once: true });
+  }
+})();
+</script>
+
+</body>
+</html>

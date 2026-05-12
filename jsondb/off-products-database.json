@@ -23,8 +23,13 @@
   "categories": [
     {
       "id": 1,
-      "name": "Suplementos",
-      "slug": "suplementos"
+      "name": "Energy Drink",
+      "slug": "energy-drink"
+    },
+    {
+      "id": 2,
+      "name": "Vestuario",
+      "slug": "vestuario"
     }
   ],
   "optionTypes": [
@@ -39,6 +44,12 @@
       "name": "Tamanho",
       "slug": "tamanho",
       "position": 2
+    },
+    {
+      "id": 3,
+      "name": "Tamanho Roupas",
+      "slug": "tamanho-roupas",
+      "position": 0
     }
   ],
   "optionValues": [
@@ -65,6 +76,30 @@
       "optionTypeId": 2,
       "value": "600g · 60 doses",
       "slug": "600g-60-doses"
+    },
+    {
+      "id": 5,
+      "optionTypeId": 3,
+      "value": "P",
+      "slug": "p"
+    },
+    {
+      "id": 6,
+      "optionTypeId": 3,
+      "value": "M",
+      "slug": "m"
+    },
+    {
+      "id": 7,
+      "optionTypeId": 3,
+      "value": "G",
+      "slug": "g"
+    },
+    {
+      "id": 8,
+      "optionTypeId": 3,
+      "value": "GG",
+      "slug": "gg"
     }
   ],
   "products": [
@@ -82,6 +117,156 @@
       "shopify": {
         "productId": "gid://shopify/Product/COLOQUE_AQUI_O_ID_DO_PRODUTO"
       }
+    },
+    {
+      "id": 2,
+      "name": "Oversized Wellness - make money",
+      "slug": "oversized-wellness-make-money",
+      "subtitle": "Oversized Wellness - make money",
+      "brandId": 1,
+      "categoryId": 2,
+      "shortDescription": "respirabilidade e mobilidade, sem excesso de tecido.",
+      "description": "A Oversized Wellness foi desenvolvida para quem busca treinar no calor com máximo conforto. Com 120g de gramatura e uma modelagem oversized com tamanho mais reduzido, ela entrega leveza real, respirabilidade e mobilidade, sem excesso de tecido.",
+      "featured": true,
+      "active": true,
+      "shopify": {
+        "productId": ""
+      }
+    },
+    {
+      "id": 3,
+      "name": "Regata Over WELLNESS - Pre Workout",
+      "slug": "regata-over-wellness-pre-workout",
+      "subtitle": "Regata Over WELLNESS - Pre Workout",
+      "brandId": 1,
+      "categoryId": 2,
+      "shortDescription": "liberdade total de movimento com estética urbana.",
+      "description": "Camiseta Oversized Performance – Treino & Lifestyle\nA oversized perfeita para treinar: leve, respirável e com caimento firme. Ideal para academia, funcional e dia a dia — liberdade total de movimento com estética urbana.",
+      "featured": true,
+      "active": true,
+      "shopify": {
+        "productId": ""
+      }
+    },
+    {
+      "id": 4,
+      "name": "Regata Over WELLNESS - No Days OFF",
+      "slug": "regata-over-wellness-no-days-off",
+      "subtitle": "Regata Over WELLNESS - No Days OFF",
+      "brandId": 1,
+      "categoryId": 2,
+      "shortDescription": "liberdade total de movimento com estética urbana.",
+      "description": "Camiseta Oversized Performance – Treino & Lifestyle\nA oversized perfeita para treinar: leve, respirável e com caimento firme. Ideal para academia, funcional e dia a dia — liberdade total de movimento com estética urbana.",
+      "featured": true,
+      "active": true,
+      "shopify": {
+        "productId": ""
+      }
+    },
+    {
+      "id": 5,
+      "name": "Regata Over WELLNESS - Leg Day",
+      "slug": "regata-over-wellness-leg-day",
+      "subtitle": "Regata Over WELLNESS - Leg Day",
+      "brandId": 1,
+      "categoryId": 2,
+      "shortDescription": "liberdade total de movimento com estética urbana.",
+      "description": "Camiseta Oversized Performance – Treino & Lifestyle\nA oversized perfeita para treinar: leve, respirável e com caimento firme. Ideal para academia, funcional e dia a dia — liberdade total de movimento com estética urbana.",
+      "featured": true,
+      "active": true,
+      "shopify": {
+        "productId": ""
+      }
+    },
+    {
+      "id": 6,
+      "name": "Regata Over WELLNESS - Hands of God",
+      "slug": "regata-over-wellness-hands-of-god",
+      "subtitle": "Regata Over WELLNESS - Hands of God",
+      "brandId": 1,
+      "categoryId": 2,
+      "shortDescription": "liberdade total de movimento com estética urbana.",
+      "description": "Camiseta Oversized Performance – Treino & Lifestyle\nA oversized perfeita para treinar: leve, respirável e com caimento firme. Ideal para academia, funcional e dia a dia — liberdade total de movimento com estética urbana.",
+      "featured": true,
+      "active": true,
+      "shopify": {
+        "productId": ""
+      }
+    },
+    {
+      "id": 7,
+      "name": "Oversized Wellness - No Days OFF",
+      "slug": "oversized-wellness-no-days-off",
+      "subtitle": "Oversized Wellness - No Days OFF",
+      "brandId": 1,
+      "categoryId": 2,
+      "shortDescription": "respirabilidade e mobilidade, sem excesso de tecido.",
+      "description": "A Oversized Wellness foi desenvolvida para quem busca treinar no calor com máximo conforto. Com 120g de gramatura e uma modelagem oversized com tamanho mais reduzido, ela entrega leveza real, respirabilidade e mobilidade, sem excesso de tecido.",
+      "featured": true,
+      "active": true,
+      "shopify": {
+        "productId": ""
+      }
+    },
+    {
+      "id": 8,
+      "name": "Oversized Wellness - Leg Day",
+      "slug": "oversized-wellness-leg-day",
+      "subtitle": "Oversized Wellness - Leg Day",
+      "brandId": 1,
+      "categoryId": 2,
+      "shortDescription": "respirabilidade e mobilidade, sem excesso de tecido.",
+      "description": "A Oversized Wellness foi desenvolvida para quem busca treinar no calor com máximo conforto. Com 120g de gramatura e uma modelagem oversized com tamanho mais reduzido, ela entrega leveza real, respirabilidade e mobilidade, sem excesso de tecido.",
+      "featured": true,
+      "active": true,
+      "shopify": {
+        "productId": ""
+      }
+    },
+    {
+      "id": 9,
+      "name": "Oversized Wellness - Hands of God",
+      "slug": "oversized-wellness-hands-of-god",
+      "subtitle": "Oversized Wellness - Hands of God",
+      "brandId": 1,
+      "categoryId": 2,
+      "shortDescription": "respirabilidade e mobilidade, sem excesso de tecido.",
+      "description": "A Oversized Wellness foi desenvolvida para quem busca treinar no calor com máximo conforto. Com 120g de gramatura e uma modelagem oversized com tamanho mais reduzido, ela entrega leveza real, respirabilidade e mobilidade, sem excesso de tecido.",
+      "featured": true,
+      "active": true,
+      "shopify": {
+        "productId": ""
+      }
+    },
+    {
+      "id": 10,
+      "name": "Regata Over WELLNESS - Make Money",
+      "slug": "regata-over-wellness-make-money",
+      "subtitle": "Regata Over WELLNESS - Make Money",
+      "brandId": 1,
+      "categoryId": 2,
+      "shortDescription": "liberdade total de movimento com estética urbana.",
+      "description": "Regata Over Copia – Treino & Lifestyle\nA regata ideal para treinar com leveza, mobilidade e presença. Desenvolvida para entregar conforto, respirabilidade e caimento moderno dentro e fora da academia.",
+      "featured": true,
+      "active": true,
+      "shopify": {
+        "productId": ""
+      }
+    },
+    {
+      "id": 11,
+      "name": "Oversized Wellness - Pre Workout",
+      "slug": "oversized-wellness-pre-workout",
+      "subtitle": "Oversized Wellness - Pre Workout",
+      "brandId": 1,
+      "categoryId": 2,
+      "shortDescription": "respirabilidade e mobilidade, sem excesso de tecido.",
+      "description": "A Oversized Wellness foi desenvolvida para quem busca treinar no calor com máximo conforto. Com 120g de gramatura e uma modelagem oversized com tamanho mais reduzido, ela entrega leveza real, respirabilidade e mobilidade, sem excesso de tecido.",
+      "featured": true,
+      "active": true,
+      "shopify": {
+        "productId": ""
+      }
     }
   ],
   "productOptions": [
@@ -96,13 +281,73 @@
       "productId": 1,
       "optionTypeId": 2,
       "position": 2
+    },
+    {
+      "id": 3,
+      "productId": 2,
+      "optionTypeId": 3,
+      "position": 1
+    },
+    {
+      "id": 4,
+      "productId": 3,
+      "optionTypeId": 3,
+      "position": 1
+    },
+    {
+      "id": 5,
+      "productId": 4,
+      "optionTypeId": 3,
+      "position": 1
+    },
+    {
+      "id": 6,
+      "productId": 5,
+      "optionTypeId": 3,
+      "position": 1
+    },
+    {
+      "id": 7,
+      "productId": 6,
+      "optionTypeId": 3,
+      "position": 1
+    },
+    {
+      "id": 8,
+      "productId": 7,
+      "optionTypeId": 3,
+      "position": 1
+    },
+    {
+      "id": 9,
+      "productId": 8,
+      "optionTypeId": 3,
+      "position": 1
+    },
+    {
+      "id": 10,
+      "productId": 9,
+      "optionTypeId": 3,
+      "position": 1
+    },
+    {
+      "id": 11,
+      "productId": 10,
+      "optionTypeId": 3,
+      "position": 1
+    },
+    {
+      "id": 12,
+      "productId": 11,
+      "optionTypeId": 3,
+      "position": 1
     }
   ],
   "productImages": [
     {
       "id": 1,
       "productId": 1,
-      "src": "./assets/products/catalyze-pro/catalyze-pro-front.png",
+      "src": "./assets/product/catalyze/2.png",
       "alt": "Catalyze Pro - imagem principal",
       "type": "main",
       "position": 1
@@ -110,8 +355,176 @@
     {
       "id": 2,
       "productId": 1,
-      "src": "./assets/products/catalyze-pro/catalyze-pro-detail.png",
+      "src": "./assets/product/catalyze/3.png",
       "alt": "Catalyze Pro - detalhes do produto",
+      "type": "gallery",
+      "position": 2
+    },
+    {
+      "id": 3,
+      "productId": 1,
+      "src": "./assets/product/catalyze/4.png",
+      "alt": "",
+      "type": "gallery",
+      "position": 3
+    },
+    {
+      "id": 4,
+      "productId": 2,
+      "src": ".\\assets\\product\\oversized\\6.png",
+      "alt": "",
+      "type": "main",
+      "position": 1
+    },
+    {
+      "id": 5,
+      "productId": 2,
+      "src": ".\\assets\\product\\oversized\\1.png",
+      "alt": ".\\assets\\product\\oversized\\1.png",
+      "type": "gallery",
+      "position": 0
+    },
+    {
+      "id": 6,
+      "productId": 3,
+      "src": ".\\assets\\product\\regata\\4.png",
+      "alt": ".\\assets\\product\\regata\\4.png",
+      "type": "main",
+      "position": 1
+    },
+    {
+      "id": 7,
+      "productId": 3,
+      "src": ".\\assets\\product\\regata\\1.png",
+      "alt": ".\\assets\\product\\regata\\1.png",
+      "type": "gallery",
+      "position": 2
+    },
+    {
+      "id": 8,
+      "productId": 4,
+      "src": ".\\assets\\product\\regata\\2.png",
+      "alt": "Regata Over WELLNESS - Pre Workout 2 - imagem principal",
+      "type": "main",
+      "position": 1
+    },
+    {
+      "id": 9,
+      "productId": 4,
+      "src": ".\\assets\\product\\regata\\1.png",
+      "alt": "Regata Over WELLNESS - Pre Workout 2 - imagem de galeria",
+      "type": "gallery",
+      "position": 2
+    },
+    {
+      "id": 10,
+      "productId": 5,
+      "src": ".\\assets\\product\\regata\\3.png",
+      "alt": "Regata Over WELLNESS - Pre Workout 3 - imagem principal",
+      "type": "main",
+      "position": 1
+    },
+    {
+      "id": 11,
+      "productId": 5,
+      "src": ".\\assets\\product\\regata\\1.png",
+      "alt": "Regata Over WELLNESS - Pre Workout 3 - imagem de galeria",
+      "type": "gallery",
+      "position": 2
+    },
+    {
+      "id": 12,
+      "productId": 6,
+      "src": ".\\assets\\product\\regata\\5.png",
+      "alt": "Regata Over WELLNESS - Pre Workout 4 - imagem principal",
+      "type": "main",
+      "position": 1
+    },
+    {
+      "id": 13,
+      "productId": 6,
+      "src": ".\\assets\\product\\regata\\1.png",
+      "alt": "Regata Over WELLNESS - Pre Workout 4 - imagem de galeria",
+      "type": "gallery",
+      "position": 2
+    },
+    {
+      "id": 14,
+      "productId": 7,
+      "src": ".\\assets\\product\\oversized\\5.png",
+      "alt": "Oversized Wellness - No Days OFF - imagem principal",
+      "type": "main",
+      "position": 1
+    },
+    {
+      "id": 15,
+      "productId": 7,
+      "src": ".\\assets\\product\\oversized\\1.png",
+      "alt": "Oversized Wellness - No Days OFF - imagem de galeria",
+      "type": "gallery",
+      "position": 2
+    },
+    {
+      "id": 16,
+      "productId": 8,
+      "src": ".\\assets\\product\\oversized\\2.png",
+      "alt": "Oversized Wellness - Leg Day - imagem principal",
+      "type": "main",
+      "position": 1
+    },
+    {
+      "id": 17,
+      "productId": 8,
+      "src": ".\\assets\\product\\oversized\\1.png",
+      "alt": "Oversized Wellness - Leg Day - imagem de galeria",
+      "type": "gallery",
+      "position": 2
+    },
+    {
+      "id": 18,
+      "productId": 9,
+      "src": ".\\assets\\product\\oversized\\8.png",
+      "alt": "Oversized Wellness - Hands of God - imagem principal",
+      "type": "main",
+      "position": 1
+    },
+    {
+      "id": 19,
+      "productId": 9,
+      "src": ".\\assets\\product\\oversized\\7.png",
+      "alt": "Oversized Wellness - Hands of God - imagem de galeria",
+      "type": "gallery",
+      "position": 2
+    },
+    {
+      "id": 20,
+      "productId": 10,
+      "src": ".\\assets\\product\\regata\\7.png",
+      "alt": "Regata Over Copia - imagem principal",
+      "type": "main",
+      "position": 1
+    },
+    {
+      "id": 21,
+      "productId": 10,
+      "src": ".\\assets\\product\\regata\\1.png",
+      "alt": "Regata Over Copia - imagem de galeria",
+      "type": "gallery",
+      "position": 2
+    },
+    {
+      "id": 22,
+      "productId": 11,
+      "src": ".\\assets\\product\\oversized\\3.png",
+      "alt": "Oversized Wellness - imagem principal",
+      "type": "main",
+      "position": 1
+    },
+    {
+      "id": 23,
+      "productId": 11,
+      "src": ".\\assets\\product\\oversized\\1.png",
+      "alt": "Oversized Wellness - imagem de galeria",
       "type": "gallery",
       "position": 2
     }
@@ -119,28 +532,41 @@
   "shippingProfiles": [
     {
       "id": 1,
-      "name": "Suplemento 300g",
+      "name": "Pacote Energy Drink",
       "requiresShipping": true,
       "weight": {
-        "value": 0.3,
+        "value": 0.5,
         "unit": "kg"
-      }
+      },
+      "dimensions": {
+        "height": 6,
+        "width": 19,
+        "length": 26,
+        "unit": "cm"
+      },
+      "originZipCode": "03808-130"
     },
     {
       "id": 2,
-      "name": "Suplemento 600g",
+      "name": "Pacote Vestuario",
       "requiresShipping": true,
       "weight": {
-        "value": 0.6,
+        "value": 0.4,
         "unit": "kg"
-      }
+      },
+      "dimensions": {
+        "height": 1,
+        "width": 15,
+        "length": 30,
+        "unit": "cm"
+      },
+      "originZipCode": "03808-130"
     }
   ],
   "variants": [
     {
       "id": 1,
       "productId": 1,
-      "sku": "CATALYZE-FRUTAS-VERMELHAS-300G",
       "title": "Catalyze Pro - Frutas Vermelhas - 300g",
       "availableForSale": true,
       "optionValueIds": [
@@ -148,22 +574,18 @@
         3
       ],
       "pricing": {
-        "price": 129.9,
-        "priceInCents": 12990,
-        "compareAtPrice": 159.9,
-        "compareAtPriceInCents": 15990,
-        "currency": "BRL",
-        "displayPrice": "R$ 129,90",
-        "displayCompareAtPrice": "R$ 159,90",
+        "price": 69.9,
+        "compareAtPrice": 110,
         "installmentsText": "ou em até 12x no cartão"
       },
       "inventory": {
         "manageStock": true,
-        "quantity": 10
+        "quantity": 90
       },
       "imageIds": [
         1,
-        2
+        2,
+        3
       ],
       "shippingProfileId": 1,
       "shopify": {
@@ -173,22 +595,15 @@
     },
     {
       "id": 2,
-      "productId": 1,
-      "sku": "CATALYZE-ACID-LEMON-300G",
-      "title": "Catalyze Pro - Acid Lemon - 300g",
+      "productId": 2,
+      "title": "Oversized Wellness - make money - M",
       "availableForSale": true,
       "optionValueIds": [
-        2,
-        3
+        6
       ],
       "pricing": {
-        "price": 129.9,
-        "priceInCents": 12990,
-        "compareAtPrice": 159.9,
-        "compareAtPriceInCents": 15990,
-        "currency": "BRL",
-        "displayPrice": "R$ 129,90",
-        "displayCompareAtPrice": "R$ 159,90",
+        "price": 55,
+        "compareAtPrice": 150,
         "installmentsText": "ou em até 12x no cartão"
       },
       "inventory": {
@@ -196,33 +611,134 @@
         "quantity": 10
       },
       "imageIds": [
-        1,
-        2
+        4,
+        5
       ],
-      "shippingProfileId": 1,
+      "shippingProfileId": 2,
       "shopify": {
-        "variantId": "gid://shopify/ProductVariant/COLOQUE_AQUI_O_ID_DA_VARIACAO_LEMON_300G",
-        "merchandiseId": "gid://shopify/ProductVariant/COLOQUE_AQUI_O_ID_DA_VARIACAO_LEMON_300G"
+        "variantId": "",
+        "merchandiseId": ""
       }
     },
     {
       "id": 3,
-      "productId": 1,
-      "sku": "CATALYZE-ACID-LEMON-600G",
-      "title": "Catalyze Pro - Acid Lemon - 600g",
+      "productId": 3,
+      "title": "Regata Over WELLNESS - Pre Workout - P",
       "availableForSale": true,
       "optionValueIds": [
-        2,
-        4
+        5
       ],
       "pricing": {
-        "price": 229.9,
-        "priceInCents": 22990,
-        "compareAtPrice": 279.9,
-        "compareAtPriceInCents": 27990,
-        "currency": "BRL",
-        "displayPrice": "R$ 229,90",
-        "displayCompareAtPrice": "R$ 279,90",
+        "price": 55,
+        "compareAtPrice": 99,
+        "installmentsText": "ou em até 12x no cartão"
+      },
+      "inventory": {
+        "manageStock": true,
+        "quantity": 23
+      },
+      "imageIds": [
+        6,
+        7
+      ],
+      "shippingProfileId": 2,
+      "shopify": {
+        "variantId": "",
+        "merchandiseId": ""
+      }
+    },
+    {
+      "id": 4,
+      "productId": 4,
+      "title": "Regata Over WELLNESS - No Days OFF - P",
+      "availableForSale": true,
+      "optionValueIds": [
+        5
+      ],
+      "pricing": {
+        "price": 55,
+        "compareAtPrice": 99,
+        "installmentsText": "ou em até 12x no cartão"
+      },
+      "inventory": {
+        "manageStock": true,
+        "quantity": 23
+      },
+      "imageIds": [
+        8,
+        9
+      ],
+      "shippingProfileId": 2,
+      "shopify": {
+        "variantId": "",
+        "merchandiseId": ""
+      }
+    },
+    {
+      "id": 5,
+      "productId": 5,
+      "title": "Regata Over WELLNESS - Leg Day - P",
+      "availableForSale": true,
+      "optionValueIds": [
+        5
+      ],
+      "pricing": {
+        "price": 55,
+        "compareAtPrice": 99,
+        "installmentsText": "ou em até 12x no cartão"
+      },
+      "inventory": {
+        "manageStock": true,
+        "quantity": 23
+      },
+      "imageIds": [
+        10,
+        11
+      ],
+      "shippingProfileId": 2,
+      "shopify": {
+        "variantId": "",
+        "merchandiseId": ""
+      }
+    },
+    {
+      "id": 6,
+      "productId": 6,
+      "title": "Regata Over WELLNESS - Hands of God - P",
+      "availableForSale": true,
+      "optionValueIds": [
+        5
+      ],
+      "pricing": {
+        "price": 55,
+        "compareAtPrice": 99,
+        "installmentsText": "ou em até 12x no cartão"
+      },
+      "inventory": {
+        "manageStock": true,
+        "quantity": 23
+      },
+      "imageIds": [
+        12,
+        13
+      ],
+      "shippingProfileId": 2,
+      "shopify": {
+        "variantId": "",
+        "merchandiseId": ""
+      }
+    },
+    {
+      "id": 7,
+      "productId": 7,
+      "title": "Oversized Wellness - No Days OFF - M",
+      "availableForSale": true,
+      "optionValueIds": [
+        6
+      ],
+      "pricing": {
+        "price": 55,
+        "compareAtPrice": 150,
         "installmentsText": "ou em até 12x no cartão"
       },
       "inventory": {
@@ -230,13 +746,526 @@
         "quantity": 10
       },
       "imageIds": [
-        1,
-        2
+        14,
+        15
       ],
       "shippingProfileId": 2,
       "shopify": {
-        "variantId": "gid://shopify/ProductVariant/COLOQUE_AQUI_O_ID_DA_VARIACAO_LEMON_600G",
-        "merchandiseId": "gid://shopify/ProductVariant/COLOQUE_AQUI_O_ID_DA_VARIACAO_LEMON_600G"
+        "variantId": "",
+        "merchandiseId": ""
+      }
+    },
+    {
+      "id": 8,
+      "productId": 8,
+      "title": "Oversized Wellness - Leg Day - M",
+      "availableForSale": true,
+      "optionValueIds": [
+        6
+      ],
+      "pricing": {
+        "price": 55,
+        "compareAtPrice": 150,
+        "installmentsText": "ou em até 12x no cartão"
+      },
+      "inventory": {
+        "manageStock": true,
+        "quantity": 10
+      },
+      "imageIds": [
+        16,
+        17
+      ],
+      "shippingProfileId": 2,
+      "shopify": {
+        "variantId": "",
+        "merchandiseId": ""
+      }
+    },
+    {
+      "id": 9,
+      "productId": 9,
+      "title": "Oversized Wellness - Hands of God - M",
+      "availableForSale": true,
+      "optionValueIds": [
+        6
+      ],
+      "pricing": {
+        "price": 55,
+        "compareAtPrice": 150,
+        "installmentsText": "ou em até 12x no cartão"
+      },
+      "inventory": {
+        "manageStock": true,
+        "quantity": 10
+      },
+      "imageIds": [
+        18,
+        19
+      ],
+      "shippingProfileId": 2,
+      "shopify": {
+        "variantId": "",
+        "merchandiseId": ""
+      }
+    },
+    {
+      "id": 10,
+      "productId": 3,
+      "title": "Regata Over WELLNESS - Pre Workout - M",
+      "availableForSale": true,
+      "optionValueIds": [
+        6
+      ],
+      "pricing": {
+        "price": 55,
+        "compareAtPrice": 99,
+        "installmentsText": "ou em até 12x no cartão"
+      },
+      "inventory": {
+        "manageStock": true,
+        "quantity": 20
+      },
+      "imageIds": [
+        6,
+        7
+      ],
+      "shippingProfileId": 2,
+      "shopify": {
+        "variantId": "",
+        "merchandiseId": ""
+      }
+    },
+    {
+      "id": 11,
+      "productId": 3,
+      "title": "Regata Over WELLNESS - Pre Workout - G",
+      "availableForSale": true,
+      "optionValueIds": [
+        7
+      ],
+      "pricing": {
+        "price": 55,
+        "compareAtPrice": 99,
+        "installmentsText": "ou em até 12x no cartão"
+      },
+      "inventory": {
+        "manageStock": true,
+        "quantity": 17
+      },
+      "imageIds": [
+        6,
+        7
+      ],
+      "shippingProfileId": 2,
+      "shopify": {
+        "variantId": "",
+        "merchandiseId": ""
+      }
+    },
+    {
+      "id": 12,
+      "productId": 3,
+      "title": "Regata Over WELLNESS - Pre Workout - GG",
+      "availableForSale": true,
+      "optionValueIds": [
+        8
+      ],
+      "pricing": {
+        "price": 55,
+        "compareAtPrice": 99,
+        "installmentsText": "ou em até 12x no cartão"
+      },
+      "inventory": {
+        "manageStock": true,
+        "quantity": 6
+      },
+      "imageIds": [
+        6,
+        7
+      ],
+      "shippingProfileId": 2,
+      "shopify": {
+        "variantId": "",
+        "merchandiseId": ""
+      }
+    },
+    {
+      "id": 13,
+      "productId": 4,
+      "title": "Regata Over WELLNESS - No Days OFF - M",
+      "availableForSale": true,
+      "optionValueIds": [
+        6
+      ],
+      "pricing": {
+        "price": 55,
+        "compareAtPrice": 99,
+        "installmentsText": "ou em até 12x no cartão"
+      },
+      "inventory": {
+        "manageStock": true,
+        "quantity": 20
+      },
+      "imageIds": [
+        8,
+        9
+      ],
+      "shippingProfileId": 2,
+      "shopify": {
+        "variantId": "",
+        "merchandiseId": ""
+      }
+    },
+    {
+      "id": 14,
+      "productId": 4,
+      "title": "Regata Over WELLNESS - No Days OFF - G",
+      "availableForSale": true,
+      "optionValueIds": [
+        7
+      ],
+      "pricing": {
+        "price": 55,
+        "compareAtPrice": 99,
+        "installmentsText": "ou em até 12x no cartão"
+      },
+      "inventory": {
+        "manageStock": true,
+        "quantity": 17
+      },
+      "imageIds": [
+        8,
+        9
+      ],
+      "shippingProfileId": 2,
+      "shopify": {
+        "variantId": "",
+        "merchandiseId": ""
+      }
+    },
+    {
+      "id": 15,
+      "productId": 4,
+      "title": "Regata Over WELLNESS - No Days OFF - GG",
+      "availableForSale": true,
+      "optionValueIds": [
+        8
+      ],
+      "pricing": {
+        "price": 55,
+        "compareAtPrice": 99,
+        "installmentsText": "ou em até 12x no cartão"
+      },
+      "inventory": {
+        "manageStock": true,
+        "quantity": 6
+      },
+      "imageIds": [
+        8,
+        9
+      ],
+      "shippingProfileId": 2,
+      "shopify": {
+        "variantId": "",
+        "merchandiseId": ""
+      }
+    },
+    {
+      "id": 16,
+      "productId": 5,
+      "title": "Regata Over WELLNESS - Leg Day - M",
+      "availableForSale": true,
+      "optionValueIds": [
+        6
+      ],
+      "pricing": {
+        "price": 55,
+        "compareAtPrice": 99,
+        "installmentsText": "ou em até 12x no cartão"
+      },
+      "inventory": {
+        "manageStock": true,
+        "quantity": 20
+      },
+      "imageIds": [
+        10,
+        11
+      ],
+      "shippingProfileId": 2,
+      "shopify": {
+        "variantId": "",
+        "merchandiseId": ""
+      }
+    },
+    {
+      "id": 17,
+      "productId": 5,
+      "title": "Regata Over WELLNESS - Leg Day - G",
+      "availableForSale": true,
+      "optionValueIds": [
+        7
+      ],
+      "pricing": {
+        "price": 55,
+        "compareAtPrice": 99,
+        "installmentsText": "ou em até 12x no cartão"
+      },
+      "inventory": {
+        "manageStock": true,
+        "quantity": 17
+      },
+      "imageIds": [
+        10,
+        11
+      ],
+      "shippingProfileId": 2,
+      "shopify": {
+        "variantId": "",
+        "merchandiseId": ""
+      }
+    },
+    {
+      "id": 18,
+      "productId": 5,
+      "title": "Regata Over WELLNESS - Leg Day - GG",
+      "availableForSale": true,
+      "optionValueIds": [
+        8
+      ],
+      "pricing": {
+        "price": 55,
+        "compareAtPrice": 99,
+        "installmentsText": "ou em até 12x no cartão"
+      },
+      "inventory": {
+        "manageStock": true,
+        "quantity": 6
+      },
+      "imageIds": [
+        10,
+        11
+      ],
+      "shippingProfileId": 2,
+      "shopify": {
+        "variantId": "",
+        "merchandiseId": ""
+      }
+    },
+    {
+      "id": 19,
+      "productId": 6,
+      "title": "Regata Over WELLNESS - Hands of God - M",
+      "availableForSale": true,
+      "optionValueIds": [
+        6
+      ],
+      "pricing": {
+        "price": 55,
+        "compareAtPrice": 99,
+        "installmentsText": "ou em até 12x no cartão"
+      },
+      "inventory": {
+        "manageStock": true,
+        "quantity": 20
+      },
+      "imageIds": [
+        12,
+        13
+      ],
+      "shippingProfileId": 2,
+      "shopify": {
+        "variantId": "",
+        "merchandiseId": ""
+      }
+    },
+    {
+      "id": 20,
+      "productId": 6,
+      "title": "Regata Over WELLNESS - Hands of God - G",
+      "availableForSale": true,
+      "optionValueIds": [
+        7
+      ],
+      "pricing": {
+        "price": 55,
+        "compareAtPrice": 99,
+        "installmentsText": "ou em até 12x no cartão"
+      },
+      "inventory": {
+        "manageStock": true,
+        "quantity": 17
+      },
+      "imageIds": [
+        12,
+        13
+      ],
+      "shippingProfileId": 2,
+      "shopify": {
+        "variantId": "",
+        "merchandiseId": ""
+      }
+    },
+    {
+      "id": 21,
+      "productId": 6,
+      "title": "Regata Over WELLNESS - Hands of God - GG",
+      "availableForSale": true,
+      "optionValueIds": [
+        8
+      ],
+      "pricing": {
+        "price": 55,
+        "compareAtPrice": 99,
+        "installmentsText": "ou em até 12x no cartão"
+      },
+      "inventory": {
+        "manageStock": true,
+        "quantity": 6
+      },
+      "imageIds": [
+        12,
+        13
+      ],
+      "shippingProfileId": 2,
+      "shopify": {
+        "variantId": "",
+        "merchandiseId": ""
+      }
+    },
+    {
+      "id": 22,
+      "productId": 10,
+      "title": "Regata Over Copia - P",
+      "availableForSale": true,
+      "optionValueIds": [
+        5
+      ],
+      "pricing": {
+        "price": 55,
+        "compareAtPrice": 99,
+        "installmentsText": "ou em até 12x no cartão"
+      },
+      "inventory": {
+        "manageStock": true,
+        "quantity": 23
+      },
+      "imageIds": [
+        20,
+        21
+      ],
+      "shippingProfileId": 2,
+      "shopify": {
+        "variantId": "",
+        "merchandiseId": ""
+      }
+    },
+    {
+      "id": 23,
+      "productId": 10,
+      "title": "Regata Over Copia - M",
+      "availableForSale": true,
+      "optionValueIds": [
+        6
+      ],
+      "pricing": {
+        "price": 55,
+        "compareAtPrice": 99,
+        "installmentsText": "ou em até 12x no cartão"
+      },
+      "inventory": {
+        "manageStock": true,
+        "quantity": 20
+      },
+      "imageIds": [
+        20,
+        21
+      ],
+      "shippingProfileId": 2,
+      "shopify": {
+        "variantId": "",
+        "merchandiseId": ""
+      }
+    },
+    {
+      "id": 24,
+      "productId": 10,
+      "title": "Regata Over Copia - G",
+      "availableForSale": true,
+      "optionValueIds": [
+        7
+      ],
+      "pricing": {
+        "price": 55,
+        "compareAtPrice": 99,
+        "installmentsText": "ou em até 12x no cartão"
+      },
+      "inventory": {
+        "manageStock": true,
+        "quantity": 17
+      },
+      "imageIds": [
+        20,
+        21
+      ],
+      "shippingProfileId": 2,
+      "shopify": {
+        "variantId": "",
+        "merchandiseId": ""
+      }
+    },
+    {
+      "id": 25,
+      "productId": 10,
+      "title": "Regata Over Copia - GG",
+      "availableForSale": true,
+      "optionValueIds": [
+        8
+      ],
+      "pricing": {
+        "price": 55,
+        "compareAtPrice": 99,
+        "installmentsText": "ou em até 12x no cartão"
+      },
+      "inventory": {
+        "manageStock": true,
+        "quantity": 6
+      },
+      "imageIds": [
+        20,
+        21
+      ],
+      "shippingProfileId": 2,
+      "shopify": {
+        "variantId": "",
+        "merchandiseId": ""
+      }
+    },
+    {
+      "id": 27,
+      "productId": 11,
+      "title": "Oversized Wellness - M",
+      "availableForSale": true,
+      "optionValueIds": [
+        6
+      ],
+      "pricing": {
+        "price": 55,
+        "compareAtPrice": 99,
+        "installmentsText": "ou em até 12x no cartão"
+      },
+      "inventory": {
+        "manageStock": true,
+        "quantity": 20
+      },
+      "imageIds": [
+        22,
+        23
+      ],
+      "shippingProfileId": 2,
+      "shopify": {
+        "variantId": "",
+        "merchandiseId": ""
       }
     }
   ],
