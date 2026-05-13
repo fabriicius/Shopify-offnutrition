@@ -124,7 +124,7 @@ html.lenis { height: auto; }
     radial-gradient(80% 60% at 50% 100%, rgba(0,0,0,0.30) 0%, transparent 60%);
 }
 @media (prefers-reduced-motion: reduce) {
-  .bg-glow-acid, .bg-glow-solar, .bg-aurora { animation: none; }
+  .bg-glow-acid, .bg-glow-solar, .bg-aurora, .nav-cta::before, .nav-mark::before { animation: none; }
 }
 
 /* =================================================================
@@ -176,12 +176,22 @@ html.lenis { height: auto; }
   letter-spacing: 0.18em; text-transform: uppercase;
   transition: transform .3s var(--ease-out), box-shadow .3s var(--ease-out);
   box-shadow: 0 0 0 1px rgba(255,255,255,0.3) inset;
-  border: none; cursor: pointer;
+  border: none; cursor: pointer; text-decoration: none;
+}
+.nav-cta::before {
+  content: ""; width: 6px; height: 6px;
+  border-radius: 9999px; background: var(--acid);
+  box-shadow: 0 0 12px 2px rgba(204,255,0,0.8);
+  animation: pulseDot 1.8s ease-in-out infinite;
 }
 .nav-cta-icon { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform .35s var(--ease-out); }
 .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 0 30px -8px rgba(204,255,0,0.5), 0 0 0 1px rgba(255,255,255,0.4) inset; }
 .nav-cta:hover .nav-cta-icon { transform: translateY(-1px) scale(1.05); }
 .js-cart-count { display: inline-block; min-width: 0.7em; text-align: center; font-variant-numeric: tabular-nums; }
+@keyframes pulseDot {
+  0%, 100% { transform: scale(1);   box-shadow: 0 0 12px 2px rgba(204,255,0,0.8); }
+  50%      { transform: scale(1.35); box-shadow: 0 0 22px 4px rgba(204,255,0,0.9); }
+}
 @media (min-width: 960px) { .nav-menu { display: flex; } }
 
 /* =================================================================
@@ -2438,7 +2448,14 @@ html.lenis { height: auto; }
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
+<script src="./assets/js/off-store.js"></script>
 <script src="./assets/js/cart-drawer.js"></script>
+
+<!-- Camada de integração Shopify Headless (Storefront API).
+     Ordem obrigatória: shopify.js → cart.js → products.js. -->
+<script src="./shopfy/shopify.js"></script>
+<script src="./shopfy/cart.js"></script>
+<script src="./shopfy/products.js"></script>
 
 <script>
 (function () {

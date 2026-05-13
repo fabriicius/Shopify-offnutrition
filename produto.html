@@ -57,7 +57,7 @@
   /* ── Reset ─────────────────────────────────────────────────────── */
   *, *::before, *::after { box-sizing: border-box; }
   html, body { margin: 0; padding: 0; }
-  html { scroll-behavior: auto; -webkit-text-size-adjust: 100%; }
+  html { scroll-behavior: auto; -webkit-text-size-adjust: 100%; overflow-x: hidden; }
   img, svg, video { display: block; max-width: 100%; }
   button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
   a { color: inherit; text-decoration: none; }
@@ -94,6 +94,10 @@
     z-index: 0;
     pointer-events: none;
     overflow: hidden;
+    /* iOS Safari ignora overflow:hidden em elementos fixed para filhos absolutos animados.
+       clip-path: inset(0) é respeitado pelo WebKit e corta todo overflow para fora da viewport. */
+    clip-path: inset(0);
+    -webkit-clip-path: inset(0);
   }
 
   /* Camada 1 — Grid macro: linhas muito sutis em células maiores.
@@ -231,6 +235,31 @@
     .bg-aurora { animation: none; }
   }
 
+  /* ── Background glows: contêinment mobile ──────────────────────────
+     Limita os glows ao viewport para evitar overflow horizontal em
+     telas estreitas, mesmo quando clip-path falhar em browsers antigos. */
+  @media (max-width: 1024px) {
+    .bg-glow-acid {
+      width: min(100vw, 500px);
+      height: min(100vw, 500px);
+      left: 30%;
+    }
+    .bg-glow-solar {
+      width: min(80vw, 420px);
+      height: min(80vw, 420px);
+      left: -5%;
+    }
+    .bg-glow-deep {
+      width: min(100vw, 600px);
+      height: min(100vw, 600px);
+      left: 0;
+    }
+    .bg-aurora {
+      left: 0;
+      right: 0;
+    }
+  }
+
   /* =================================================================
      NAV — idêntica ao index
      ================================================================= */
@@ -342,6 +371,11 @@
     z-index: 5;
     padding: clamp(110px, 14vh, 160px) clamp(20px, 5vw, 80px) clamp(60px, 8vh, 100px);
     isolation: isolate;
+    overflow: hidden; /* contém glows decorativos absolutos — evita overflow horizontal */
+    /* Trava de segurança: o section nunca pode ultrapassar a viewport em
+       largura, mesmo com glows / shadows decorativos. */
+    width: 100%;
+    max-width: 100vw;
   }
 
   /* Atmosphere */
@@ -383,7 +417,7 @@
     transition: color .25s ease;
   }
   .pd-breadcrumb a:hover { color: var(--acid); }
-  .pd-breadcrumb svg { width: 11px; height: 11px; opacity: 0.5; }
+  .pd-breadcrumb svg { width: 11px; height: 11px; opacity: 0.5; flex-shrink: 0; }
   .pd-breadcrumb .current { color: var(--acid); }
 
   /* ── Container 2 colunas: GALERIA (esq) + INFO/SPECS (dir) ────── */
@@ -395,14 +429,32 @@
     grid-template-columns: 1.05fr 1fr;
     gap: clamp(28px, 3.5vw, 56px);
     align-items: start;
+    /* Trava de largura do grid em relação ao container pai (impede que
+       conteúdos largos forcem o grid a crescer além do .product). */
+    width: 100%;
+    max-width: 100%;
   }
+  /* Filhos do grid: por padrão `min-width: auto` mantém a coluna no tamanho
+     mínimo do conteúdo. Isto causa overflow horizontal quando um filho tem
+     palavra/texto/elemento maior que a coluna. Forçar `min-width: 0`
+     permite que a coluna encolha corretamente em viewports pequenas. */
+  .pd-grid > * { min-width: 0; }
   /* HTML mantém pd-info antes de pd-gallery por SEO/acessibilidade,
      mas visualmente a galeria fica à ESQUERDA via order. */
-  .pd-gallery { order: 1; }
-  .pd-info    { order: 2; }
+  .pd-gallery { order: 1; min-width: 0; }
+  .pd-info    { order: 2; min-width: 0; }
 
   /* ═══ COLUNA INFO / SPECS ═══════════════════════════════════════ */
-  .pd-info { display: flex; flex-direction: column; gap: clamp(18px, 2.4vh, 26px); }
+  .pd-info {
+    display: flex; flex-direction: column;
+    gap: clamp(18px, 2.4vh, 26px);
+    /* Trava de largura: como filho do grid (cuja regra de min-width:0
+       definimos acima), garantimos aqui também que o pd-info nunca
+       extrapola seu container — qualquer texto, badge ou pill que tente
+       impor largura intrínseca é forçado a respeitar o espaço disponível. */
+    min-width: 0;
+    max-width: 100%;
+  }
 
   .pd-eyebrow {
     display: inline-flex; align-items: center; gap: 10px;
@@ -602,12 +654,16 @@
 
   .pd-var-label {
     display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px 12px;
     font-family: var(--f-mono);
     font-size: 10px;
     letter-spacing: 0.28em;
     text-transform: uppercase;
     color: rgba(255,255,255,0.50);
+    max-width: 100%;
   }
+  .pd-var-label > span { min-width: 0; }
   .pd-var-label strong {
     color: #fff;
     font-weight: 600;
@@ -771,7 +827,13 @@
   .pd-trust-item strong { color: #fff; font-weight: 600; }
 
   /* ═══ COLUNA DIREITA — GALERIA ═════════════════════════════════ */
-  .pd-gallery { display: flex; flex-direction: column; gap: clamp(12px, 1.6vh, 18px); }
+  .pd-gallery {
+    display: flex; flex-direction: column;
+    gap: clamp(12px, 1.6vh, 18px);
+    /* Mesma proteção do pd-info: respeita estritamente o container pai */
+    min-width: 0;
+    max-width: 100%;
+  }
 
   /* =================================================================
      IMAGEM PRINCIPAL — card cinematográfico premium
@@ -1134,25 +1196,282 @@
   .pd-thumb.is-active .pd-thumb-ix { color: var(--acid); }
 
   /* =================================================================
-     RESPONSIVE
+     RESPONSIVE — Mobile completo
      ================================================================= */
+
+  /* ── ≤1023px: coluna única ──────────────────────────────────────── */
   @media (max-width: 1023px) {
     .pd-grid {
       grid-template-columns: 1fr;
       gap: clamp(28px, 4vh, 40px);
     }
-    /* Mobile: galeria no topo (order 1) já vem do desktop, sem mudanças */
-    .pd-main-img { aspect-ratio: 4 / 4; }
+    /* Galeria sobe (order:1) e info desce (order:2) em coluna única */
+    .pd-gallery { order: 1; }
+    .pd-info    { order: 2; }
+
+    .pd-main-img {
+      aspect-ratio: 1 / 1;
+      /* Remove transform 3D no tablet/mobile: evita repaint de compositing
+         que pode vazar os limites do contêiner no iOS Safari.
+         Também desativamos perspective/preserve-3d para garantir que o
+         hover/tilt (se algum input apontador estiver presente) não force
+         um novo stacking context com clipping inconsistente. */
+      transform: none !important;
+      perspective: none;
+      transform-style: flat;
+    }
+    /* Zoomtag só faz sentido com hover/cursor — esconde em telas táteis
+       evitando que ela seja recortada ou cause overflow horizontal */
+    .pd-main-img-zoomtag { display: none; }
+
+    /* Tagline: max-width livre — ocupa a largura total disponível */
+    .pd-tagline {
+      max-width: 100%;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+
+    /* Botão primário: remove min-width fixo em coluna única */
+    .pd-cta-primary { min-width: 0; }
+
+    /* Trust strip: 1 coluna já no tablet/mobile landscape */
+    .pd-trust {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    /* ── Containers inline-flex: vira flex respeitando o pai ──────
+       Vários containers usam display:inline-flex (largura intrínseca
+       baseada no conteúdo). Em viewports estreitos, com texto dinâmico
+       (vindo do JSON: nome do produto, marca, parcelamento etc.), eles
+       podem se estender além do contêiner pai e causar scroll horizontal.
+       Forçamos `flex + flex-wrap + max-width: 100%` já no tablet. */
+    .pd-breadcrumb,
+    .pd-eyebrow,
+    .pd-rating,
+    .pd-discount-row,
+    .pd-pix-note {
+      display: flex;
+      flex-wrap: wrap;
+      max-width: 100%;
+      min-width: 0;
+    }
+    .pd-eyebrow { row-gap: 4px; }
+    .pd-breadcrumb { row-gap: 4px; }
+
+    /* Glow decorativo lateral: reduz tamanho mínimo para não vazar */
+    .pd-bg-glow-a {
+      width: min(55vw, 360px);
+      height: min(55vw, 360px);
+      right: -5%;
+    }
+    .pd-bg-glow-b {
+      width: min(50vw, 320px);
+      height: min(50vw, 320px);
+      left: -5%;
+    }
   }
+
+  /* ── ≤768px: phones médios e landscape ─────────────────────────── */
+  @media (max-width: 768px) {
+    /* Breadcrumb: reduz tipografia (regras flex já aplicadas em ≤1023px) */
+    .pd-breadcrumb { font-size: 9.5px; }
+
+    /* Eyebrow: protege contra overflow mesmo com flex-wrap, truncando
+       quando o conteúdo dinâmico (vindo do JSON) for muito longo numa
+       linha só. min-width:0 é vital para o ellipsis funcionar em flex. */
+    .pd-eyebrow {
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    /* Nav: kicker desaparece, nome da marca compacta */
+    .nav-name .kicker { display: none; }
+    .nav-name .brand  { font-size: 15px; }
+
+    /* Botão primário: ocupa linha inteira a partir daqui */
+    .pd-cta-primary { flex: 1 1 100%; }
+
+    /* CTA row: permite quebra de linha limpa */
+    .pd-cta-row { flex-wrap: wrap; gap: 10px; }
+
+    /* Reduz letter-spacing das linhas mono uppercase em telas estreitas:
+       o espaçamento padrão (0.10em–0.18em) somado a uppercase pode forçar
+       que tokens individuais (ex: "FRETE GRÁTIS") fiquem maiores que a
+       coluna disponível, criando overflow. */
+    .pd-installments { letter-spacing: 0.06em; }
+    .pd-pix-note     { letter-spacing: 0.06em; }
+    .pd-trust-item   { letter-spacing: 0.14em; }
+  }
+
+  /* ── ≤640px: phones comuns (portrait) ──────────────────────────── */
   @media (max-width: 640px) {
-    .product { padding-top: clamp(96px, 12vh, 120px); }
-    .pd-thumbs { grid-template-columns: repeat(4, 1fr); gap: 8px; }
-    .pd-cta-primary { min-width: 0; flex: 1 1 100%; }
-    .pd-trust { grid-template-columns: 1fr; gap: 12px; }
+    .product {
+      padding-top: clamp(96px, 12vh, 120px);
+      /* Em phones portrait reduzimos o padding horizontal levemente para
+         ganhar mais largura útil ao conteúdo (preço, pills, CTAs). */
+      padding-left: clamp(14px, 4vw, 20px);
+      padding-right: clamp(14px, 4vw, 20px);
+    }
+
+    /* Thumbs: 4 colunas compactas */
+    .pd-thumbs {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+    }
+
+    /* Botão primário: linha inteira */
+    .pd-cta-primary {
+      min-width: 0;
+      flex: 1 1 100%;
+    }
+
+    /* Price block: padding interno reduzido + impede overflow interno */
+    .pd-price-block {
+      padding: 16px;
+      max-width: 100%;
+      overflow: hidden;
+    }
+
+    /* Pills de variação: ligeiramente menores e com quebra de palavras
+       longas (ex: "Tropical Burst", "300g · 30 doses") em telas pequenas */
+    .pd-var-pill {
+      font-size: 10.5px;
+      padding: 8px 12px;
+      letter-spacing: 0.08em;
+      max-width: 100%;
+      overflow-wrap: break-word;
+      word-break: break-word;
+      text-align: center;
+    }
+    /* Container das pills: garante encolhimento correto */
+    .pd-var-options { max-width: 100%; }
+
+    /* Tagline / textos longos: força quebra de palavra para evitar overflow */
+    .pd-tagline,
+    .pd-installments,
+    .pd-pix-note {
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+
+    /* Discount-row: estreita gap e impede que tag de desconto vaze */
+    .pd-discount-row {
+      gap: 8px;
+      max-width: 100%;
+    }
+    .pd-price-old,
+    .pd-discount-tag { max-width: 100%; }
+
+    /* Rating: stars + texto encolhem juntos */
+    .pd-rating { gap: 10px; }
+    .pd-stars svg { width: 14px; height: 14px; }
+
+    /* Glow interno: reduz clamp mínimo para phone portrait */
+    .pd-bg-glow-a {
+      width: min(60vw, 240px);
+      height: min(60vw, 240px);
+    }
+    .pd-bg-glow-b {
+      width: min(55vw, 220px);
+      height: min(55vw, 220px);
+    }
   }
+
+  /* ── ≤480px: phones pequenos ────────────────────────────────────── */
   @media (max-width: 480px) {
-    .pd-title { font-size: clamp(28px, 9vw, 38px); }
-    .pd-price-now { font-size: clamp(32px, 10vw, 42px); }
+    /* Tipografia principal */
+    .pd-title     { font-size: clamp(26px, 8.5vw, 36px); }
+    .pd-price-now { font-size: clamp(30px, 9.5vw, 40px); }
+    .pd-tagline   { font-size: 13.5px; line-height: 1.65; }
+
+    /* Nav: oculta nome da marca — logo sozinho é suficiente */
+    .nav-name { display: none; }
+    /* Nav-cta: encurta padding p/ caber confortavelmente ao lado do logo */
+    .nav-cta { padding: 8px 12px; font-size: 10px; }
+
+    /* Qty: centraliza no seu espaço */
+    .pd-qty { width: 100%; justify-content: center; }
+    .pd-cta-row { align-items: stretch; }
+
+    /* CTA ghost (favoritos): mantém quadrado mas levemente menor */
+    .pd-cta-ghost { width: 46px; height: 46px; flex-shrink: 0; }
+
+    /* Glow decorativo: 0px de offset para garantir que fique dentro do .product */
+    .pd-bg-glow-a {
+      width: min(70vw, 200px);
+      height: min(70vw, 200px);
+      right: 0;
+      top: 5%;
+    }
+    .pd-bg-glow-b {
+      width: min(65vw, 180px);
+      height: min(65vw, 180px);
+      left: 0;
+    }
+
+    /* Trust item: ícone menor */
+    .pd-trust-item svg { width: 15px; height: 15px; }
+
+    /* Thumbs: gap mínimo */
+    .pd-thumbs { gap: 5px; }
+
+    /* Title herda overflow-wrap para evitar palavras dinâmicas largas */
+    .pd-title {
+      overflow-wrap: break-word;
+      word-break: break-word;
+      hyphens: auto;
+    }
+
+    /* Eyebrow: trunca com ellipsis caso o texto dinâmico seja longo */
+    .pd-eyebrow {
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    /* Price block: garante que não empurra para fora */
+    .pd-price-block {
+      overflow: hidden;
+    }
+
+    /* Pills de variação: nesse range diminuímos ainda o letter-spacing */
+    .pd-var-pill { letter-spacing: 0.04em; padding: 8px 11px; }
+  }
+
+  /* ── ≤380px: telas muito pequenas (Galaxy A, Moto E etc.) ───────── */
+  @media (max-width: 380px) {
+    .nav-mark { width: 42px; height: 42px; }
+    .nav { padding: 14px 12px; gap: 10px; }
+    .nav-cta { padding: 7px 10px; font-size: 9.5px; gap: 6px; }
+    .nav-cta-icon { width: 12px; height: 12px; }
+
+    .product {
+      padding-left: 12px;
+      padding-right: 12px;
+    }
+
+    .pd-var-pill {
+      font-size: 9.5px;
+      padding: 7px 10px;
+    }
+
+    .pd-price-now { font-size: clamp(26px, 8vw, 34px); }
+    .pd-title     { font-size: clamp(24px, 8vw, 32px); }
+
+    /* Breadcrumb compacto: separadores menores e label encolhe */
+    .pd-breadcrumb { font-size: 9px; gap: 6px; }
+    .pd-breadcrumb svg { width: 9px; height: 9px; }
+
+    .pd-thumbs { grid-template-columns: repeat(4, 1fr); gap: 4px; }
+    .pd-thumb-ix { font-size: 8px; top: 6px; right: 7px; }
+
+    /* Rating: ainda mais compacto para caber sem quebrar grosseiramente */
+    .pd-stars svg { width: 13px; height: 13px; }
+    .pd-rating-text { font-size: 10px; letter-spacing: 0.12em; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -1456,6 +1775,12 @@
 
   <!-- Side Cart Drawer (mesmo arquivo do index.html). Expõe window.OffCart. -->
   <script src="./assets/js/cart-drawer.js"></script>
+
+  <!-- Camada de integração Shopify Headless (Storefront API).
+       Ordem obrigatória: shopify.js → cart.js → products.js. -->
+  <script src="./shopfy/shopify.js"></script>
+  <script src="./shopfy/cart.js"></script>
+  <script src="./shopfy/products.js"></script>
 
   <script>
     (async function () {

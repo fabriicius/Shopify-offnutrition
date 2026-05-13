@@ -1,10 +1,12 @@
 {
   "store": {
     "name": "OFF Nutrition Lab",
-    "shopifyDomain": "offnutrition.com.br",
-    "storefrontAccessToken": "COLOQUE_AQUI_SEU_TOKEN_PUBLICO_STOREFRONT_API",
+    "shopifyDomain": "offnutrition.myshopify.com",
+    "storefrontAccessToken": "3a96b9208d181d2060d05ba2a5bb5d5d",
+    "apiVersion": "2026-04",
     "currency": "BRL",
-    "locale": "pt-BR"
+    "locale": "pt-BR",
+    "slug": "off-nutrition-lab"
   },
   "settings": {
     "useLocalProducts": true,
@@ -589,8 +591,8 @@
       ],
       "shippingProfileId": 1,
       "shopify": {
-        "variantId": "gid://shopify/ProductVariant/COLOQUE_AQUI_O_ID_DA_VARIACAO_FRUTAS_300G",
-        "merchandiseId": "gid://shopify/ProductVariant/COLOQUE_AQUI_O_ID_DA_VARIACAO_FRUTAS_300G"
+        "variantId": "gid://shopify/ProductVariant/48114737742083",
+        "merchandiseId": "gid://shopify/ProductVariant/48114737742083"
       }
     },
     {
@@ -616,8 +618,8 @@
       ],
       "shippingProfileId": 2,
       "shopify": {
-        "variantId": "",
-        "merchandiseId": ""
+        "variantId": "gid://shopify/ProductVariant/48114737807619",
+        "merchandiseId": "gid://shopify/ProductVariant/48114737807619"
       }
     },
     {
@@ -643,8 +645,8 @@
       ],
       "shippingProfileId": 2,
       "shopify": {
-        "variantId": "",
-        "merchandiseId": ""
+        "variantId": "gid://shopify/ProductVariant/48114737873155",
+        "merchandiseId": "gid://shopify/ProductVariant/48114737873155"
       }
     },
     {
@@ -670,8 +672,8 @@
       ],
       "shippingProfileId": 2,
       "shopify": {
-        "variantId": "",
-        "merchandiseId": ""
+        "variantId": "gid://shopify/ProductVariant/48114738004227",
+        "merchandiseId": "gid://shopify/ProductVariant/48114738004227"
       }
     },
     {
@@ -697,8 +699,8 @@
       ],
       "shippingProfileId": 2,
       "shopify": {
-        "variantId": "",
-        "merchandiseId": ""
+        "variantId": "gid://shopify/ProductVariant/48114738200835",
+        "merchandiseId": "gid://shopify/ProductVariant/48114738200835"
       }
     },
     {
@@ -724,8 +726,8 @@
       ],
       "shippingProfileId": 2,
       "shopify": {
-        "variantId": "",
-        "merchandiseId": ""
+        "variantId": "gid://shopify/ProductVariant/48114738331907",
+        "merchandiseId": "gid://shopify/ProductVariant/48114738331907"
       }
     },
     {
@@ -751,8 +753,8 @@
       ],
       "shippingProfileId": 2,
       "shopify": {
-        "variantId": "",
-        "merchandiseId": ""
+        "variantId": "gid://shopify/ProductVariant/48114740429059",
+        "merchandiseId": "gid://shopify/ProductVariant/48114740429059"
       }
     },
     {
@@ -778,8 +780,8 @@
       ],
       "shippingProfileId": 2,
       "shopify": {
-        "variantId": "",
-        "merchandiseId": ""
+        "variantId": "gid://shopify/ProductVariant/48114740494595",
+        "merchandiseId": "gid://shopify/ProductVariant/48114740494595"
       }
     },
     {
@@ -805,8 +807,8 @@
       ],
       "shippingProfileId": 2,
       "shopify": {
-        "variantId": "",
-        "merchandiseId": ""
+        "variantId": "gid://shopify/ProductVariant/48114740527363",
+        "merchandiseId": "gid://shopify/ProductVariant/48114740527363"
       }
     },
     {
@@ -832,8 +834,8 @@
       ],
       "shippingProfileId": 2,
       "shopify": {
-        "variantId": "",
-        "merchandiseId": ""
+        "variantId": "gid://shopify/ProductVariant/48114737905923",
+        "merchandiseId": "gid://shopify/ProductVariant/48114737905923"
       }
     },
     {
@@ -859,8 +861,8 @@
       ],
       "shippingProfileId": 2,
       "shopify": {
-        "variantId": "",
-        "merchandiseId": ""
+        "variantId": "gid://shopify/ProductVariant/48114737938691",
+        "merchandiseId": "gid://shopify/ProductVariant/48114737938691"
       }
     },
     {
@@ -886,8 +888,8 @@
       ],
       "shippingProfileId": 2,
       "shopify": {
-        "variantId": "",
-        "merchandiseId": ""
+        "variantId": "gid://shopify/ProductVariant/48114737971459",
+        "merchandiseId": "gid://shopify/ProductVariant/48114737971459"
       }
     },
     {
@@ -913,8 +915,8 @@
       ],
       "shippingProfileId": 2,
       "shopify": {
-        "variantId": "",
-        "merchandiseId": ""
+        "variantId": "gid://shopify/ProductVariant/48114738036995",
+        "merchandiseId": "gid://shopify/ProductVariant/48114738036995"
       }
     },
     {
@@ -940,8 +942,8 @@
       ],
       "shippingProfileId": 2,
       "shopify": {
-        "variantId": "",
-        "merchandiseId": ""
+        "variantId": "gid://shopify/ProductVariant/48114738069763",
+        "merchandiseId": "gid://shopify/ProductVariant/48114738069763"
       }
     },
     {
@@ -967,8 +969,8 @@
       ],
       "shippingProfileId": 2,
       "shopify": {
-        "variantId": "",
-        "merchandiseId": ""
+        "variantId": "gid://shopify/ProductVariant/48114738102531",
+        "merchandiseId": "gid://shopify/ProductVariant/48114738102531"
       }
     },
     {
@@ -994,8 +996,8 @@
       ],
       "shippingProfileId": 2,
       "shopify": {
-        "variantId": "",
-        "merchandiseId": ""
+        "variantId": "gid://shopify/ProductVariant/48114738233603",
+        "merchandiseId": "gid://shopify/ProductVariant/48114738233603"
       }
     },
     {
@@ -1021,8 +1023,8 @@
       ],
       "shippingProfileId": 2,
       "shopify": {
-        "variantId": "",
-        "merchandiseId": ""
+        "variantId": "gid://shopify/ProductVariant/48114738266371",
+        "merchandiseId": "gid://shopify/ProductVariant/48114738266371"
       }
     },
     {
@@ -1048,8 +1050,8 @@
       ],
       "shippingProfileId": 2,
       "shopify": {
-        "variantId": "",
-        "merchandiseId": ""
+        "variantId": "gid://shopify/ProductVariant/48114738299139",
+        "merchandiseId": "gid://shopify/ProductVariant/48114738299139"
       }
     },
     {
@@ -1075,8 +1077,8 @@
       ],
       "shippingProfileId": 2,
       "shopify": {
-        "variantId": "",
-        "merchandiseId": ""
+        "variantId": "gid://shopify/ProductVariant/48114738364675",
+        "merchandiseId": "gid://shopify/ProductVariant/48114738364675"
       }
     },
     {
@@ -1102,8 +1104,8 @@
       ],
       "shippingProfileId": 2,
       "shopify": {
-        "variantId": "",
-        "merchandiseId": ""
+        "variantId": "gid://shopify/ProductVariant/48114738397443",
+        "merchandiseId": "gid://shopify/ProductVariant/48114738397443"
       }
     },
     {
@@ -1129,8 +1131,8 @@
       ],
       "shippingProfileId": 2,
       "shopify": {
-        "variantId": "",
-        "merchandiseId": ""
+        "variantId": "gid://shopify/ProductVariant/48114738430211",
+        "merchandiseId": "gid://shopify/ProductVariant/48114738430211"
       }
     },
     {
@@ -1156,8 +1158,8 @@
       ],
       "shippingProfileId": 2,
       "shopify": {
-        "variantId": "",
-        "merchandiseId": ""
+        "variantId": "gid://shopify/ProductVariant/48114740592899",
+        "merchandiseId": "gid://shopify/ProductVariant/48114740592899"
       }
     },
     {
@@ -1183,8 +1185,8 @@
       ],
       "shippingProfileId": 2,
       "shopify": {
-        "variantId": "",
-        "merchandiseId": ""
+        "variantId": "gid://shopify/ProductVariant/48114740625667",
+        "merchandiseId": "gid://shopify/ProductVariant/48114740625667"
       }
     },
     {
@@ -1210,8 +1212,8 @@
       ],
       "shippingProfileId": 2,
       "shopify": {
-        "variantId": "",
-        "merchandiseId": ""
+        "variantId": "gid://shopify/ProductVariant/48114740658435",
+        "merchandiseId": "gid://shopify/ProductVariant/48114740658435"
       }
     },
     {
@@ -1237,8 +1239,8 @@
       ],
       "shippingProfileId": 2,
       "shopify": {
-        "variantId": "",
-        "merchandiseId": ""
+        "variantId": "gid://shopify/ProductVariant/48114740691203",
+        "merchandiseId": "gid://shopify/ProductVariant/48114740691203"
       }
     },
     {
@@ -1264,8 +1266,8 @@
       ],
       "shippingProfileId": 2,
       "shopify": {
-        "variantId": "",
-        "merchandiseId": ""
+        "variantId": "gid://shopify/ProductVariant/48114740723971",
+        "merchandiseId": "gid://shopify/ProductVariant/48114740723971"
       }
     }
   ],

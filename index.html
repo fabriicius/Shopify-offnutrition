@@ -82,7 +82,7 @@
     /* ---------- Reset ---------- */
     *, *::before, *::after { box-sizing: border-box; }
     html, body { margin: 0; padding: 0; }
-    html { scroll-behavior: auto; -webkit-text-size-adjust: 100%; }
+    html { scroll-behavior: auto; -webkit-text-size-adjust: 100%; overflow-x: hidden; }
     img, svg, video { display: block; max-width: 100%; }
     button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
     a { color: inherit; text-decoration: none; }
@@ -349,7 +349,7 @@
        ============================================================= */
     .hero {
       position: relative;
-      height: 280vh;        /* scroll track length */
+      height: 100vh;        /* scroll track length */
       z-index: 5;
     }
     .hero-sticky {
@@ -1054,7 +1054,7 @@
 
     /* ── TABLET (< 1024px) ── vídeo ainda à direita mas mais largo */
     @media (max-width: 1023px) {
-      .hero { height: 220vh; }
+      .hero { height: 100vh; }
       .hero-grid { padding-top: 110px; padding-left: clamp(20px, 5vw, 48px); padding-right: clamp(20px, 5vw, 48px); }
       .hero-right { width: 70%; right: 0; left: auto; }
       .hero-left { max-width: 100%; }
@@ -1062,7 +1062,7 @@
 
     /* ── MOBILE (< 768px) ── vídeo cobre tela inteira como background */
     @media (max-width: 767px) {
-      .hero { height: 200vh; }
+      .hero { height: 100vh; }
       .hero-sticky { min-height: 680px; }
 
       /* Vídeo: full-screen background */
@@ -5625,15 +5625,35 @@
     .fhero-right {
       order: 2;
       aspect-ratio: 4/5;
-      max-width: 560px;
+      /* justify-self: center centraliza o card quando max-width < grid-area-width.
+         Evita o conflito com margin: 0 auto que justify-self: stretch cancela. */
+      justify-self: center;
       width: 100%;
-      justify-self: stretch;
-      margin: 0 auto;
+      max-width: 560px;
+      /* overflow: hidden contém o fhero-bignum que usa right negativo */
+      overflow: hidden;
     }
-    .fhero-bignum { font-size: clamp(130px, 24vw, 200px); top: -14px; right: -4px; }
+    .fhero-bignum {
+      font-size: clamp(130px, 24vw, 200px);
+      top: -14px;
+      /* reset do right negativo: em coluna única o bignum não deve vazar */
+      right: 0;
+    }
     .fhero-spec { right: 12px; transform: translateY(-50%); }
     .fhero-spec:hover { transform: translateY(calc(-50% - 2px)); }
     .fhero-title { font-size: clamp(40px, 8.5vw, 68px); }
+  }
+
+  /* ── Tablet médio / phone landscape (≤ 768px) ────────────── */
+  @media (max-width: 768px) {
+    .fhero { padding: 48px 20px 60px; }
+    .fhero-grid { gap: 32px; }
+    .fhero-title { font-size: clamp(38px, 9vw, 58px); }
+    .fhero-right {
+      aspect-ratio: 3/4;
+      max-width: 480px;
+    }
+    .fhero-bignum { font-size: clamp(110px, 22vw, 160px); }
   }
 
   /* ── Mobile (≤ 560px) ────────────────────────────────────── */
@@ -5648,15 +5668,21 @@
     .fhero-cta-icon { width: 22px; height: 22px; }
     .fhero-meta { font-size: 9px; gap: 8px 10px; }
     .fhero-meta-rule { width: 16px; }
-    .fhero-right { aspect-ratio: 3/4; }
+    .fhero-right {
+      aspect-ratio: 3/4;
+      max-width: 100%;
+    }
     .fhero-img { border-radius: 18px; }
     .fhero-img-tag { font-size: 8.5px; padding: 5px 9px; top: 12px; }
     .fhero-img-tag-tl { left: 12px; }
     .fhero-img-tag-tr { right: 12px; }
     .fhero-img-caption { left: 12px; bottom: 12px; padding: 6px 10px 6px 12px; font-size: 8.5px; }
     .fhero-bignum {
-      font-size: 130px;
-      top: auto; bottom: -20px; right: -8px;
+      /* bignum dentro do overflow: hidden do fhero-right — sem offset negativo */
+      font-size: clamp(100px, 28vw, 130px);
+      top: auto;
+      bottom: 0;
+      right: 0;
       -webkit-text-stroke-width: 1px;
     }
     .fhero-spec {
@@ -5667,6 +5693,22 @@
     }
     .fhero-spec li { font-size: 11px; }
     .fhero-spec-num { font-size: 8px; }
+  }
+
+  /* ── Phone pequeno (≤ 480px) ─────────────────────────────── */
+  @media (max-width: 480px) {
+    .fhero-grid { gap: 24px; }
+    .fhero-title { font-size: clamp(32px, 10vw, 46px); }
+    .fhero-right { aspect-ratio: 4/5; }
+    .fhero-bignum { font-size: clamp(90px, 26vw, 120px); }
+  }
+
+  /* ── Phone muito pequeno (≤ 380px) ──────────────────────── */
+  @media (max-width: 380px) {
+    .fhero { padding: 40px 14px 52px; }
+    .fhero-topbar { gap: 8px; }
+    .fhero-title { font-size: clamp(30px, 9.5vw, 42px); }
+    .fhero-right { aspect-ratio: 4/5; }
   }
 
   /* ── Reduce motion ───────────────────────────────────────── */
@@ -6892,6 +6934,12 @@
 
   <!-- Side Cart Drawer (compartilhado com produto.html). Expõe window.OffCart. -->
   <script src="./assets/js/cart-drawer.js"></script>
+
+  <!-- Camada de integração Shopify Headless (Storefront API).
+       Ordem obrigatória: shopify.js → cart.js → products.js. -->
+  <script src="./shopfy/shopify.js"></script>
+  <script src="./shopfy/cart.js"></script>
+  <script src="./shopfy/products.js"></script>
 
 <script>
     /* =================================================================
