@@ -344,8 +344,7 @@
     }
 
     /* =============================================================
-       HERO — 280vh track + sticky viewport
-       Scroll drives video.currentTime (Apple product-page style).
+       HERO — sticky viewport with static image stage.
        ============================================================= */
     .hero {
       position: relative;
@@ -366,7 +365,7 @@
        apagando o corte físico antes da wordflow entrar em cena.
        Multicamada: primeiro um escurecimento suave, depois obsidian
        puro nos últimos 20% — assim a próxima seção emerge do void.
-       z-index 22 garante que fica acima de tudo na hero (vídeo, grid).
+       z-index 22 garante que fica acima de tudo na hero (imagem, grid).
        ─────────────────────────────────────────────────────────── */
     .hero-sticky::after {
       content: "";
@@ -698,9 +697,9 @@
     }
 
     /* =============================================================
-       RIGHT COLUMN — video stage + HUD overlays + floating cards
+       RIGHT COLUMN — image stage + HUD overlays + floating cards
        ============================================================= */
-    /* ── VIDEO BACKGROUND: posicionado à direita da hero ─────────── */
+    /* ── IMAGE BACKGROUND: posicionado à direita da hero ─────────── */
     .hero-right {
       position: absolute;
       top: 0;
@@ -729,7 +728,7 @@
       pointer-events: none;
     }
 
-    /* Gradiente da hero: funde o fundo escuro à esquerda com o vídeo à direita */
+    /* Gradiente da hero: funde o fundo escuro à esquerda com a imagem à direita */
     .hero-sticky::before {
       content: "";
       position: absolute;
@@ -767,7 +766,7 @@
     /* Remove gradient border do card */
     .stage-frame::before { display: none; }
 
-    /* ── Hero image — substitui o vídeo ──────────────────────────── */
+    /* ── Hero image — imagem estática da composição ───────────────── */
     #heroImg {
       position: absolute;
       inset: 0;
@@ -869,7 +868,7 @@
     .tick.bl { bottom: 12px; left: 12px;    border-width: 0 0 1px 1px; }
     .tick.br { bottom: 12px; right: 12px;   border-width: 0 1px 1px 0; }
 
-    /* HUD overlays inside the video frame */
+    /* HUD overlays inside the image frame */
     .hud {
       position: absolute;
       z-index: 6;
@@ -1049,10 +1048,10 @@
     }
 
     /* =============================================================
-       RESPONSIVE — hero com vídeo como background à esquerda
+       RESPONSIVE — hero com imagem como background à esquerda
        ============================================================= */
 
-    /* ── TABLET (< 1024px) ── vídeo ainda à direita mas mais largo */
+    /* ── TABLET (< 1024px) ── imagem ainda à direita mas mais larga */
     @media (max-width: 1023px) {
       .hero { height: 100vh; }
       .hero-grid { padding-top: 110px; padding-left: clamp(20px, 5vw, 48px); padding-right: clamp(20px, 5vw, 48px); }
@@ -1060,7 +1059,7 @@
       .hero-left { max-width: 100%; }
     }
 
-    /* ── MOBILE (< 768px) ── vídeo cobre tela inteira como background */
+    /* ── MOBILE (< 768px) ── imagem cobre tela inteira como background */
     @media (max-width: 767px) {
       .hero { height: 100vh; }
       .hero-sticky { min-height: 680px; }
@@ -4488,7 +4487,7 @@
       </div>
     </div>
 
-        <!-- ============ RIGHT (video + HUD + floating cards) ============ -->
+        <!-- ============ RIGHT (image + HUD + floating cards) ============ -->
         <div class="hero-right">
           <!-- drifting motes behind the stage -->
           <span class="mote m1" aria-hidden="true"></span>
@@ -4496,10 +4495,10 @@
           <span class="mote m3" aria-hidden="true"></span>
 
 
-          <!-- ::: main video stage ::: -->
+          <!-- ::: main image stage ::: -->
           <div class="stage" id="stage">
             <div class="stage-frame">
-              <!-- Fallback (shown until the video is ready) -->
+              <!-- Fallback (shown until the image is ready) -->
               <div class="stage-fallback" aria-hidden="true"></div>
 
               <!-- Hero image — produtos OFF Nutrition LAB -->
@@ -6945,8 +6944,6 @@
     /* =================================================================
        ENERGY DUST HERO — controller
        - Lenis smooth scrolling (driven by GSAP's ticker)
-       - ScrollTrigger scrub drives the hero video (Apple product style)
-       - requestAnimationFrame smooths currentTime updates
        - Reveal timeline for headline, CTAs, HUD cards
        - prefers-reduced-motion: opt-out of all motion, keep layout
        ================================================================= */
@@ -7022,7 +7019,7 @@
             smoothWheel: true,
             wheelMultiplier: 0.9, // multiplier moderado para controle fino
             touchMultiplier: 1.2,
-            lerp: 0.11,           // mais responsivo para scrub de vídeo curto
+            lerp: 0.11,
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
           });
           // Garante que Lenis também está no topo após inicializar
@@ -7732,10 +7729,8 @@
           ).forEach(ftrMakeVisible);
         }
 
-        // ---------- Hero image scroll parallax ----------
-        const heroImg     = document.getElementById('heroImg');
+        // ---------- Hero text scroll transition ----------
         const heroSection = document.querySelector('.hero');
-        const stage       = document.getElementById('stage');
 
         if (heroSection && hasGSAP && !prefersReducedMotion) {
           const D = 1;
@@ -7750,25 +7745,6 @@
             defaults: { ease: 'power1.inOut' },
           });
 
-          // Imagem: leve zoom + parallax vertical — sensação de profundidade
-          if (heroImg) {
-            masterTl.fromTo(heroImg,
-              { scale: 1.04, y: '0%' },
-              { scale: 1.14, y: '-7%', ease: 'none', duration: D },
-              0
-            );
-          }
-
-          // Stage: brilho cresce ao rolar (imagem fica mais viva no fim)
-          if (stage) {
-            masterTl.fromTo(stage,
-              { scale: 0.97, filter: 'brightness(0.88) saturate(0.92)' },
-              { scale: 1.05, filter: 'brightness(1.10) saturate(1.12)',
-                ease: 'none', duration: D },
-              0
-            );
-          }
-
           // Textos: fade-out ao rolar
           masterTl
             .to('.hero-tag',      { y: -16, opacity: 0.07, filter: 'blur(10px)', ease: 'power2.in', duration: D * 0.87 }, D * 0.05)
@@ -7776,24 +7752,6 @@
             .to('.hero-cta',      { y: -20, opacity: 0.07, filter: 'blur(12px)', ease: 'power2.in', duration: D * 0.83 }, D * 0.10)
             .to('.hero-meta',     { y: -18, opacity: 0.07, filter: 'blur(12px)', ease: 'power2.in', duration: D * 0.81 }, D * 0.12)
             .to('.hero-headline', { y: -32, opacity: 0.07, filter: 'blur(20px)', ease: 'power2.in', duration: D * 0.83 }, D * 0.12);
-
-          // Botão CTA: glow crescente
-          masterTl.fromTo('.btn-primary',
-            { boxShadow: '0 0 0 1px rgba(255,255,255,0.30) inset,0 10px 30px -16px rgba(204,255,0,0.60),0 0 40px -20px rgba(204,255,0,0.45)' },
-            { boxShadow: '0 0 0 1px rgba(255,255,255,0.65) inset,0 18px 90px -8px rgba(204,255,0,1.0),0 0 160px -8px rgba(204,255,0,1.0)',
-              ease: 'power2.in', duration: D * 0.45 },
-            D * 0.55
-          );
-
-          // Orbit ring: rotação extra
-          masterTl.fromTo('.orbit.o-1',
-            { rotation: 0,   transformOrigin: '50% 50%' },
-            { rotation: 200, ease: 'none', duration: D },
-            0
-          );
-
-          // Halo acid de fundo
-          masterTl.to('.bg-glow-acid', { scale: 1.3, opacity: 0.85, ease: 'none', duration: D }, 0);
 
           ScrollTrigger.refresh();
         }
