@@ -4373,17 +4373,6 @@
       .ftr-link:hover { padding-left: 0; }
     }
 </style>
-  <!-- Scroll-to-top: executa no <head>, antes de qualquer renderização.
-       Garante que refresh/F5 sempre começa do topo, independente do browser. -->
-  <script>
-    (function () {
-      // Desativa restauração nativa de scroll position do browser
-      if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-      // Reseta imediatamente (antes do paint)
-      window.scrollTo(0, 0);
-      document.documentElement.scrollTop = 0;
-    })();
-  </script>
 </head>
 
 <body>
@@ -4415,7 +4404,7 @@
       <a href="./colecao.html?category=vestuario">Vestuário</a>
       <a href="./colecao.html?category=energy-drink">Energy Dust</a>
       <a href="./quem-somos.html">Quem Somos</a>
-      <a href="#politica-devolucao">Política de Devolução</a>
+      <a href="./politica-de-devolucao.html">Política de Devolução</a>
     </div>
 
     <button type="button" class="nav-cta" aria-label="Abrir carrinho" data-cart-open>
@@ -6958,12 +6947,6 @@
         if (track) track.innerHTML += track.innerHTML;
   })();
 
-      // ── Força scroll para o topo em qualquer load/refresh ─────────
-      // Impede que o browser restaure a posição de scroll anterior,
-      // garantindo que todas as animações ScrollTrigger comecem do zero.
-      if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-      window.scrollTo(0, 0);
-
       // Wait until all CDN scripts are available. We use `defer` + this check.
       function ready(cb) {
         if (document.readyState !== 'loading') cb();
@@ -6972,7 +6955,6 @@
 
       ready(function boot() {
         const hasGSAP = typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined';
-        const hasLenis = typeof window.Lenis !== 'undefined';
 
         // ── OffStore: carrega o JSON e renderiza carrosseis dinamicamente ──
         // Fluxo: o boot inteiro só roda DEPOIS do JSON estar carregado, para
@@ -7011,31 +6993,9 @@
 
         function _bootInner() {
 
-        // ---------- Lenis smooth scroll (optional) ----------
-        let lenis = null;
-        if (hasLenis && !prefersReducedMotion) {
-          lenis = new Lenis({
-            duration: 1.05,       // ligeiramente mais rápido
-            smoothWheel: true,
-            wheelMultiplier: 0.9, // multiplier moderado para controle fino
-            touchMultiplier: 1.2,
-            lerp: 0.11,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-          });
-          // Garante que Lenis também está no topo após inicializar
-          lenis.scrollTo(0, { immediate: true });
-        }
-
         // ---------- GSAP + ScrollTrigger ----------
         if (hasGSAP) {
           gsap.registerPlugin(ScrollTrigger);
-
-          // Bridge Lenis -> GSAP ticker so ScrollTrigger is in perfect sync
-          if (lenis) {
-            lenis.on('scroll', ScrollTrigger.update);
-            gsap.ticker.add((time) => lenis.raf(time * 1000));
-            gsap.ticker.lagSmoothing(0);
-          }
         }
 
         // ---------- Hero entry timeline ----------
@@ -7729,41 +7689,68 @@
           ).forEach(ftrMakeVisible);
         }
 
-        // ---------- Hero text scroll transition ----------
+        // ---------- Hero text transition (sem scrub/pin) ----------
         const heroSection = document.querySelector('.hero');
 
         if (heroSection && hasGSAP && !prefersReducedMotion) {
-          const D = 1;
+          const heroTargets = ['.hero-tag', '.hero-sub', '.hero-cta', '.hero-meta', '.hero-headline'];
+          const hideVars = [
+            { y: -16, opacity: 0.07, filter: 'blur(10px)' },
+            { y: -24, opacity: 0.07, filter: 'blur(14px)' },
+            { y: -20, opacity: 0.07, filter: 'blur(12px)' },
+            { y: -18, opacity: 0.07, filter: 'blur(12px)' },
+            { y: -32, opacity: 0.07, filter: 'blur(20px)' },
+          ];
+          let isHidden = false;
 
-          const masterTl = gsap.timeline({
-            scrollTrigger: {
-              trigger: heroSection,
-              start: 'top top',
-              end: 'bottom bottom',
-              scrub: 0.45,
-            },
-            defaults: { ease: 'power1.inOut' },
-          });
+          const animateOut = () => {
+            if (isHidden) return;
+            isHidden = true;
+            heroTargets.forEach((sel, i) => {
+              gsap.to(sel, {
+                ...hideVars[i],
+                duration: 0.45,
+                ease: 'power2.in',
+                overwrite: 'auto',
+              });
+            });
+          };
 
-          // Textos: fade-out ao rolar
-          masterTl
-            .to('.hero-tag',      { y: -16, opacity: 0.07, filter: 'blur(10px)', ease: 'power2.in', duration: D * 0.87 }, D * 0.05)
-            .to('.hero-sub',      { y: -24, opacity: 0.07, filter: 'blur(14px)', ease: 'power2.in', duration: D * 0.84 }, D * 0.08)
-            .to('.hero-cta',      { y: -20, opacity: 0.07, filter: 'blur(12px)', ease: 'power2.in', duration: D * 0.83 }, D * 0.10)
-            .to('.hero-meta',     { y: -18, opacity: 0.07, filter: 'blur(12px)', ease: 'power2.in', duration: D * 0.81 }, D * 0.12)
-            .to('.hero-headline', { y: -32, opacity: 0.07, filter: 'blur(20px)', ease: 'power2.in', duration: D * 0.83 }, D * 0.12);
+          const animateIn = () => {
+            if (!isHidden) return;
+            isHidden = false;
+            heroTargets.forEach((sel) => {
+              gsap.to(sel, {
+                y: 0,
+                opacity: 1,
+                filter: 'blur(0px)',
+                duration: 0.45,
+                ease: 'power2.out',
+                overwrite: 'auto',
+              });
+            });
+          };
 
-          ScrollTrigger.refresh();
+          if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries) => {
+              const entry = entries[0];
+              if (!entry) return;
+              if (entry.intersectionRatio < 0.55) animateOut();
+              else animateIn();
+            }, { threshold: [0.55] });
+            observer.observe(heroSection);
+          }
         }
-
-        // Clean up on teardown
-        window.addEventListener('beforeunload', () => {
-          if (lenis) lenis.destroy();
-        });
 
         // Recalc on resize
         let resizeTimer = null;
+        let lastViewportWidth = window.innerWidth;
         window.addEventListener('resize', () => {
+          const currentWidth = window.innerWidth;
+          // Em mobile, a barra do navegador altera apenas a altura enquanto
+          // rola; ignorar esse caso evita "saltos" de scroll no refresh.
+          if (Math.abs(currentWidth - lastViewportWidth) < 2) return;
+          lastViewportWidth = currentWidth;
           clearTimeout(resizeTimer);
           resizeTimer = setTimeout(() => {
             if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();

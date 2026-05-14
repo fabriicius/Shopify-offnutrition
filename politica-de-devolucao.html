@@ -1,0 +1,665 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#050505" />
+<link rel="icon" type="image/png" href="./assets/hero/faviconV2.png" />
+<title>OFF NUTRITION LAB // Política de Devolução</title>
+<meta name="description" content="Entenda como funcionam trocas, devoluções e reembolsos dos produtos OFF Nutrition LAB." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet" />
+
+<style>
+:root {
+  --obsidian: #050505; --void: #000000; --surface: #0A0A0A;
+  --panel: #111111; --panel-2: #171717;
+  --n-100: #f5f5f5; --n-200: #e5e5e5; --n-300: #d4d4d4;
+  --n-400: #a3a3a3; --n-500: #737373; --n-600: #525252;
+  --n-700: #404040; --n-800: #262626;
+  --line: rgba(255,255,255,0.08);
+  --line-soft: rgba(255,255,255,0.05);
+  --line-strong: rgba(255,255,255,0.16);
+  --acid: #ccff00; --acid-2: #a9d900; --solar: #f97316;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-elastic: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --f-display: 'Bricolage Grotesque', sans-serif;
+  --f-sans: 'Inter', sans-serif;
+  --f-mono: 'JetBrains Mono', monospace;
+  --r-xs: 6px; --r-sm: 10px; --r-md: 14px; --r-lg: 22px; --r-xl: 28px; --r-pill: 999px;
+  --sh-acid: 0 0 40px -6px rgba(204,255,0,0.45), 0 0 90px -20px rgba(204,255,0,0.35);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+img, svg, video { display: block; max-width: 100%; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--f-sans);
+  background: var(--obsidian);
+  color: var(--n-200);
+  overflow-x: hidden;
+  min-height: 100%;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  letter-spacing: -0.005em;
+}
+::selection { background: rgba(204,255,0,0.35); color: #000; }
+body { scrollbar-width: none; -ms-overflow-style: none; }
+body::-webkit-scrollbar { display: none; }
+
+.bg-layer { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.bg-grid {
+  position: absolute; inset: -2px;
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.022) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.022) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(ellipse 75% 60% at 50% 45%, #000 0%, #000 25%, rgba(0,0,0,0.75) 55%, transparent 88%);
+  -webkit-mask-image: radial-gradient(ellipse 75% 60% at 50% 45%, #000 0%, #000 25%, rgba(0,0,0,0.75) 55%, transparent 88%);
+}
+.bg-dotgrid {
+  position: absolute; inset: 0;
+  background-image: radial-gradient(circle at center, rgba(204,255,0,0.10) 0.5px, transparent 1.4px);
+  background-size: 72px 72px; background-position: 36px 36px;
+  mask-image: radial-gradient(ellipse 70% 55% at 50% 45%, #000 0%, #000 20%, rgba(0,0,0,0.6) 50%, transparent 82%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 55% at 50% 45%, #000 0%, #000 20%, rgba(0,0,0,0.6) 50%, transparent 82%);
+  opacity: 0.85;
+}
+.bg-stars {
+  position: absolute; inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 20px 30px, #fff, rgba(0,0,0,0)),
+    radial-gradient(1px 1px at 40px 70px, #fff, rgba(0,0,0,0)),
+    radial-gradient(1.5px 1.5px at 90px 40px, #fff, rgba(0,0,0,0)),
+    radial-gradient(1px 1px at 130px 80px, #fff, rgba(0,0,0,0));
+  background-size: 220px 220px; opacity: 0.14;
+}
+.bg-aurora {
+  position: absolute; top: 34%; left: -10%; right: -10%; height: 62vh;
+  background:
+    radial-gradient(ellipse 70% 60% at 30% 50%, rgba(204,255,0,0.06) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 40% at 75% 55%, rgba(249,115,22,0.04) 0%, transparent 60%);
+  filter: blur(60px); opacity: 0.85;
+  animation: auroraWave 18s ease-in-out infinite alternate;
+}
+@keyframes auroraWave {
+  0%   { transform: translate3d(-2%, 0, 0) scaleY(1); }
+  50%  { transform: translate3d(2%, -4%, 0) scaleY(1.05); }
+  100% { transform: translate3d(0%, 2%, 0) scaleY(0.96); }
+}
+.bg-glow { position: absolute; border-radius: 9999px; filter: blur(140px); will-change: transform; }
+.bg-glow-acid { width: 680px; height: 680px; left: 62%; top: 12%; background: rgba(204,255,0,0.13); animation: drift 16s var(--ease-out) infinite alternate; }
+.bg-glow-solar { width: 520px; height: 520px; left: -6%; top: 55%; background: rgba(249,115,22,0.09); animation: drift 22s var(--ease-out) -6s infinite alternate; }
+@keyframes drift {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  50%  { transform: translate3d(40px, -30px, 0) scale(1.06); }
+  100% { transform: translate3d(-30px, 20px, 0) scale(0.96); }
+}
+.noise {
+  position: fixed; inset: 0; z-index: 9999; pointer-events: none;
+  opacity: 0.04; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+.vignette {
+  position: fixed; inset: 0; pointer-events: none; z-index: 1;
+  background:
+    radial-gradient(120% 80% at 50% 0%, transparent 30%, rgba(0,0,0,0.45) 100%),
+    radial-gradient(80% 60% at 50% 100%, rgba(0,0,0,0.30) 0%, transparent 60%);
+}
+
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 60;
+  padding: 18px clamp(16px, 4vw, 40px);
+  display: flex; align-items: center; justify-content: space-between; gap: 20px;
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  background: rgba(5,5,5,0.55);
+  border-bottom: 1px solid var(--line-soft);
+}
+.nav-brand { display: flex; align-items: center; gap: 12px; }
+.nav-mark {
+  position: relative; width: 52px; height: 52px;
+  display: grid; place-items: center; border-radius: 50%;
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+  overflow: hidden; isolation: isolate;
+  transition: transform .35s var(--ease-out), border-color .35s ease;
+}
+.nav-brand:hover .nav-mark { transform: scale(1.05); border-color: rgba(204,255,0,0.35); }
+.nav-mark::before {
+  content: ""; position: absolute; inset: -2px; border-radius: 9999px;
+  background: conic-gradient(from 0deg, transparent 0 310deg, var(--acid) 340deg, #fff 360deg);
+  filter: blur(8px); opacity: 0.55;
+  animation: spin 8s linear infinite; z-index: 0;
+}
+.nav-mark img { position: relative; z-index: 1; width: 78%; height: 78%; object-fit: contain; filter: drop-shadow(0 1px 4px rgba(0,0,0,0.35)); }
+@keyframes spin { to { transform: rotate(360deg); } }
+.nav-menu { display: none; align-items: center; gap: clamp(16px, 2vw, 26px); }
+.nav-menu a {
+  font-family: var(--f-mono); font-size: clamp(9.5px, 0.75vw, 11px);
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--n-400);
+  transition: color .25s var(--ease-out); position: relative; white-space: nowrap;
+}
+.nav-menu a::after {
+  content: ""; position: absolute; left: 0; bottom: -8px; height: 1px; width: 0;
+  background: var(--acid); transition: width .4s var(--ease-out);
+}
+.nav-menu a.is-active { color: #fff; }
+.nav-menu a.is-active::after, .nav-menu a:hover::after { width: 100%; }
+.nav-menu a:hover { color: #fff; }
+.nav-cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 9px 16px; border-radius: var(--r-pill);
+  background: #fff; color: #000;
+  font-family: var(--f-mono); font-size: 11px;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  transition: transform .3s var(--ease-out), box-shadow .3s var(--ease-out);
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.3) inset;
+  border: none; cursor: pointer; text-decoration: none;
+}
+.nav-cta::before {
+  content: ""; width: 6px; height: 6px;
+  border-radius: 9999px; background: var(--acid);
+  box-shadow: 0 0 12px 2px rgba(204,255,0,0.8);
+  animation: pulseDot 1.8s ease-in-out infinite;
+}
+.nav-cta-icon { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform .35s var(--ease-out); }
+.nav-cta:hover { transform: translateY(-1px); box-shadow: 0 0 30px -8px rgba(204,255,0,0.5), 0 0 0 1px rgba(255,255,255,0.4) inset; }
+.nav-cta:hover .nav-cta-icon { transform: translateY(-1px) scale(1.05); }
+.js-cart-count { display: inline-block; min-width: 0.7em; text-align: center; font-variant-numeric: tabular-nums; }
+@keyframes pulseDot {
+  0%, 100% { transform: scale(1);   box-shadow: 0 0 12px 2px rgba(204,255,0,0.8); }
+  50%      { transform: scale(1.35); box-shadow: 0 0 22px 4px rgba(204,255,0,0.9); }
+}
+@media (min-width: 960px) { .nav-menu { display: flex; } }
+
+.policy-main { position: relative; z-index: 2; }
+.policy-hero {
+  padding: clamp(132px, 18vh, 184px) clamp(20px, 4vw, 64px) clamp(50px, 7vw, 86px);
+}
+.policy-wrap { width: min(1180px, 100%); margin: 0 auto; }
+.policy-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.55fr);
+  gap: clamp(28px, 5vw, 76px);
+  align-items: end;
+}
+.policy-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 7px 16px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: var(--r-pill);
+  font-family: var(--f-mono); font-size: 10px;
+  letter-spacing: 0.24em; text-transform: uppercase;
+  color: rgba(255,255,255,0.75);
+  backdrop-filter: blur(8px);
+}
+.policy-eyebrow-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--acid); box-shadow: 0 0 12px rgba(204,255,0,0.85); }
+.policy-title {
+  margin: 24px 0 18px;
+  font-family: var(--f-display);
+  font-size: clamp(48px, 8vw, 108px);
+  line-height: 0.88;
+  letter-spacing: -0.06em;
+  color: #fff;
+  font-weight: 300;
+}
+.policy-title em { color: var(--acid); font-style: normal; text-shadow: 0 0 34px rgba(204,255,0,0.20); }
+.policy-sub {
+  max-width: 680px;
+  margin: 0;
+  color: rgba(255,255,255,0.64);
+  font-size: clamp(16px, 1.6vw, 22px);
+  line-height: 1.55;
+}
+.policy-summary {
+  position: relative;
+  padding: 22px;
+  border-radius: var(--r-lg);
+  background: linear-gradient(180deg, rgba(255,255,255,0.075), rgba(255,255,255,0.035));
+  border: 1px solid rgba(255,255,255,0.10);
+  box-shadow: 0 24px 70px -44px rgba(204,255,0,0.40);
+  overflow: hidden;
+}
+.policy-summary::before {
+  content: ""; position: absolute; inset: 0 0 auto; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(204,255,0,0.65), transparent);
+}
+.policy-summary-kicker {
+  font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.24em;
+  text-transform: uppercase; color: var(--acid);
+}
+.policy-summary strong {
+  display: block;
+  margin-top: 12px;
+  font-family: var(--f-display);
+  font-size: clamp(26px, 3vw, 40px);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  color: #fff;
+  font-weight: 500;
+}
+.policy-summary p { margin: 14px 0 0; font-size: 13.5px; line-height: 1.65; color: rgba(255,255,255,0.58); }
+.policy-summary a { color: var(--acid); font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; }
+
+.policy-content { padding: 0 clamp(20px, 4vw, 64px) clamp(86px, 10vw, 132px); }
+.policy-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+.policy-card {
+  position: relative;
+  min-height: 220px;
+  padding: clamp(22px, 2.8vw, 34px);
+  border-radius: var(--r-lg);
+  background:
+    radial-gradient(circle at 100% 0%, rgba(204,255,0,0.07), transparent 38%),
+    linear-gradient(180deg, rgba(255,255,255,0.062), rgba(255,255,255,0.026));
+  border: 1px solid rgba(255,255,255,0.085);
+  overflow: hidden;
+}
+.policy-card::before {
+  content: ""; position: absolute; left: 0; top: 26px; bottom: 26px; width: 2px;
+  background: linear-gradient(180deg, transparent, var(--acid), transparent);
+  opacity: 0.55;
+}
+.policy-card-head { display: flex; align-items: baseline; justify-content: space-between; gap: 18px; margin-bottom: 18px; }
+.policy-number {
+  font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.24em;
+  color: rgba(204,255,0,0.85);
+}
+.policy-card h2 {
+  margin: 0;
+  font-family: var(--f-display);
+  font-size: clamp(24px, 3vw, 38px);
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  color: #fff;
+  font-weight: 500;
+}
+.policy-card p {
+  margin: 0;
+  color: rgba(255,255,255,0.66);
+  font-size: 14.5px;
+  line-height: 1.72;
+}
+.policy-list { display: flex; flex-direction: column; gap: 10px; margin-top: 16px; }
+.policy-list li {
+  position: relative;
+  padding-left: 18px;
+  color: rgba(255,255,255,0.64);
+  font-size: 14px;
+  line-height: 1.58;
+}
+.policy-list li::before {
+  content: ""; position: absolute; left: 0; top: 0.72em;
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--acid);
+  box-shadow: 0 0 10px rgba(204,255,0,0.55);
+}
+.policy-card.is-wide { grid-column: 1 / -1; min-height: 0; }
+.policy-contact {
+  display: inline-flex; align-items: center; gap: 10px;
+  margin-top: 18px;
+  padding: 12px 18px;
+  border-radius: var(--r-pill);
+  background: var(--acid);
+  color: #050505;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transition: transform .3s var(--ease-out), box-shadow .3s ease;
+}
+.policy-contact:hover { transform: translateY(-1px); box-shadow: var(--sh-acid); }
+.policy-contact svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2.3; stroke-linecap: round; stroke-linejoin: round; }
+.policy-note {
+  margin-top: 18px;
+  padding: 14px 16px;
+  border: 1px solid rgba(204,255,0,0.18);
+  background: rgba(204,255,0,0.045);
+  border-radius: var(--r-md);
+  color: rgba(255,255,255,0.72);
+  font-family: var(--f-mono);
+  font-size: 11px;
+  line-height: 1.7;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.site-footer {
+  position: relative; z-index: 2;
+  padding: clamp(70px, 10vh, 110px) 0 clamp(28px, 4vh, 44px);
+  overflow: hidden;
+}
+.ftr-bg-grid { position: absolute; inset: 0; background-image: linear-gradient(to right, rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.025) 1px, transparent 1px); background-size: 74px 74px; mask-image: linear-gradient(to bottom, transparent, #000 20%, #000 80%, transparent); opacity: 0.7; }
+.ftr-glow-a { position: absolute; right: -12%; top: 10%; width: 580px; height: 580px; border-radius: 50%; background: rgba(204,255,0,0.10); filter: blur(120px); pointer-events: none; }
+.ftr-panel {
+  position: relative; z-index: 1;
+  width: min(1280px, calc(100% - clamp(32px, 6vw, 96px)));
+  margin: 0 auto;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: linear-gradient(180deg, rgba(255,255,255,0.055), rgba(255,255,255,0.025));
+  border-radius: clamp(24px, 3vw, 34px);
+  padding: clamp(26px, 4vw, 48px);
+  box-shadow: 0 40px 120px -70px rgba(204,255,0,0.38);
+}
+.ftr-cta-block { display: grid; grid-template-columns: 1fr auto; gap: 28px; align-items: end; padding-bottom: clamp(28px, 4vh, 44px); border-bottom: 1px solid rgba(255,255,255,0.06); }
+.ftr-eyebrow { display: inline-flex; align-items: center; gap: 10px; font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(255,255,255,0.58); }
+.ftr-eyebrow-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--acid); box-shadow: 0 0 12px rgba(204,255,0,0.80); }
+.ftr-cta-title { margin: 14px 0 0; font-family: var(--f-display); font-size: clamp(34px, 5vw, 70px); line-height: 0.92; letter-spacing: -0.055em; color: #fff; font-weight: 300; }
+.ftr-cta-title em { color: var(--acid); font-style: normal; }
+.ftr-cta-sub { margin: 14px 0 0; max-width: 620px; color: rgba(255,255,255,0.58); line-height: 1.65; font-size: 14px; }
+.ftr-cta-actions { display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
+.ftr-cta-primary, .ftr-cta-ghost {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  border-radius: var(--r-pill); font-family: var(--f-mono); font-size: 10.5px;
+  letter-spacing: 0.18em; text-transform: uppercase; white-space: nowrap;
+  transition: transform .3s var(--ease-out), box-shadow .3s ease, border-color .3s ease;
+}
+.ftr-cta-primary { padding: 14px 22px; background: var(--acid); color: #050505; font-weight: 700; box-shadow: 0 16px 46px -24px rgba(204,255,0,0.95); }
+.ftr-cta-primary:hover { transform: translateY(-2px); box-shadow: var(--sh-acid); }
+.ftr-cta-primary svg { width: 14px; height: 14px; }
+.ftr-cta-ghost { padding: 13px 20px; border: 1px solid rgba(255,255,255,0.10); color: rgba(255,255,255,0.78); background: rgba(255,255,255,0.03); }
+.ftr-cta-ghost:hover { transform: translateY(-2px); border-color: rgba(204,255,0,0.28); color: #fff; }
+.ftr-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: clamp(28px, 3.2vw, 56px); padding: clamp(36px, 5vh, 56px) 0 clamp(28px, 4vh, 44px); }
+.ftr-brand { display: flex; flex-direction: column; gap: 16px; }
+.ftr-brand-row { display: flex; align-items: center; gap: 12px; }
+.ftr-brand-mark { position: relative; width: 44px; height: 44px; background: #fff; color: #000; font-family: var(--f-display); font-weight: 800; font-size: 20px; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.ftr-brand-dot { position: absolute; top: -3px; right: -3px; width: 9px; height: 9px; background: var(--acid); border-radius: 50%; box-shadow: 0 0 12px rgba(204,255,0,0.80); }
+.ftr-brand-info { display: flex; flex-direction: column; gap: 3px; }
+.ftr-brand-name { font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.30em; text-transform: uppercase; color: rgba(255,255,255,0.92); font-weight: 600; }
+.ftr-brand-meta { font-family: var(--f-mono); font-size: 9.5px; letter-spacing: 0.18em; color: rgba(255,255,255,0.40); text-transform: lowercase; }
+.ftr-brand-desc { font-size: 13px; line-height: 1.65; color: rgba(255,255,255,0.55); margin: 4px 0 0; max-width: 42ch; }
+.ftr-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+.ftr-badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; border: 1px solid rgba(204,255,0,0.18); background: rgba(204,255,0,0.04); color: rgba(204,255,0,0.85); font-family: var(--f-mono); font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; border-radius: var(--r-xs); }
+.ftr-badge::before { content: ""; width: 4px; height: 4px; background: var(--acid); border-radius: 50%; box-shadow: 0 0 6px rgba(204,255,0,0.60); }
+.ftr-col { display: flex; flex-direction: column; gap: 14px; }
+.ftr-col-title { font-family: var(--f-mono); font-size: 9.5px; letter-spacing: 0.32em; text-transform: uppercase; color: rgba(255,255,255,0.40); padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.ftr-links { display: flex; flex-direction: column; gap: 11px; }
+.ftr-link { position: relative; display: inline-flex; align-items: center; gap: 10px; font-size: 13.5px; color: rgba(255,255,255,0.68); width: fit-content; transition: color .25s ease, padding-left .35s var(--ease-out); }
+.ftr-link::after { content: ""; position: absolute; left: 0; bottom: -3px; width: 0; height: 1px; background: var(--acid); box-shadow: 0 0 8px rgba(204,255,0,0.40); transition: width .35s var(--ease-out); }
+.ftr-link::before { content: "→"; position: absolute; left: -16px; opacity: 0; color: var(--acid); font-size: 11px; transition: opacity .25s ease, left .35s var(--ease-out); }
+.ftr-link:hover { color: rgba(255,255,255,0.95); padding-left: 18px; }
+.ftr-link:hover::after { width: 100%; }
+.ftr-link:hover::before { opacity: 1; left: 2px; }
+.ftr-line-accent { position: relative; height: 1px; background: rgba(255,255,255,0.06); overflow: hidden; margin: 0 0 clamp(18px, 2.6vh, 28px); }
+.ftr-line-accent::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent 0%, rgba(204,255,0,0.55) 50%, transparent 100%); transform: translateX(-100%); animation: lineSweep 6s linear infinite; }
+@keyframes lineSweep { to { transform: translateX(100%); } }
+.ftr-meta-row { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; font-family: var(--f-mono); font-size: 9.5px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.38); }
+.ftr-meta-row .ftr-acc { color: var(--acid); }
+
+@media (max-width: 980px) {
+  .policy-hero-grid, .ftr-cta-block { grid-template-columns: 1fr; align-items: flex-start; }
+  .policy-summary { max-width: 520px; }
+  .ftr-cta-actions { align-items: flex-start; }
+  .ftr-grid { grid-template-columns: 1fr 1fr; }
+  .ftr-brand { grid-column: 1 / -1; }
+}
+@media (max-width: 720px) {
+  .policy-grid { grid-template-columns: 1fr; }
+  .policy-card.is-wide { grid-column: auto; }
+  .policy-hero { padding-top: 116px; }
+  .policy-title { font-size: clamp(44px, 13vw, 66px); }
+  .nav-cta { padding: 9px 13px; font-size: 10px; letter-spacing: 0.12em; }
+}
+@media (max-width: 640px) {
+  .site-footer { padding-top: clamp(60px, 9vh, 100px); }
+  .ftr-panel { margin: 0 clamp(14px, 3vw, 24px); width: auto; }
+  .ftr-grid { grid-template-columns: 1fr; gap: 28px; }
+  .ftr-cta-title { font-size: clamp(28px, 9vw, 40px); }
+  .ftr-meta-row { font-size: 9px; gap: 6px; }
+}
+@media (max-width: 480px) {
+  .policy-hero, .policy-content { padding-left: 16px; padding-right: 16px; }
+  .nav-menu { display: none; }
+  .policy-card { min-height: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+}
+</style>
+</head>
+
+<body>
+<div class="bg-layer" aria-hidden="true">
+  <div class="bg-grid"></div>
+  <div class="bg-dotgrid"></div>
+  <div class="bg-stars"></div>
+  <div class="bg-aurora"></div>
+  <div class="bg-glow bg-glow-acid"></div>
+  <div class="bg-glow bg-glow-solar"></div>
+</div>
+<div class="vignette" aria-hidden="true"></div>
+<div class="noise" aria-hidden="true"></div>
+
+<nav class="nav" aria-label="Primary">
+  <a href="./index.html" class="nav-brand" aria-label="OFF Nutrition Lab — home">
+    <div class="nav-mark" aria-hidden="true">
+      <img src="./assets/raw_files/logo/offprancheta-1-38qgfyemv4.webp" alt="OFF Nutrition Lab" loading="eager">
+    </div>
+  </a>
+
+  <div class="nav-menu" role="navigation">
+    <a href="./index.html#hero">Home</a>
+    <a href="./colecao.html?category=vestuario">Vestuário</a>
+    <a href="./colecao.html?category=energy-drink">Energy Dust</a>
+    <a href="./quem-somos.html">Quem Somos</a>
+    <a href="./politica-de-devolucao.html" class="is-active">Política de Devolução</a>
+  </div>
+
+  <button type="button" class="nav-cta" aria-label="Abrir carrinho" data-cart-open>
+    <svg class="nav-cta-icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M6 7h12l-1.2 11.2a2 2 0 0 1-2 1.8H9.2a2 2 0 0 1-2-1.8L6 7z"/>
+      <path d="M9 7V5a3 3 0 0 1 6 0v2"/>
+    </svg>
+    Carrinho <span style="color:#737373">·</span> <span class="js-cart-count">0</span>
+  </button>
+</nav>
+
+<main class="policy-main">
+  <section class="policy-hero" aria-label="Política de Devolução">
+    <div class="policy-wrap policy-hero-grid">
+      <div>
+        <span class="policy-eyebrow"><span class="policy-eyebrow-dot" aria-hidden="true"></span>OFF NUTRITION LAB · SUPORTE</span>
+        <h1 class="policy-title">Política de <em>Devolução</em></h1>
+        <p class="policy-sub">Entenda como funcionam trocas, devoluções e reembolsos dos nossos produtos.</p>
+      </div>
+
+      <aside class="policy-summary" aria-label="Resumo da política">
+        <span class="policy-summary-kicker">Atendimento 24 horas</span>
+        <strong>Solicitações pelo WhatsApp oficial.</strong>
+        <p>Para agilizar a análise, tenha em mãos o número do pedido, fotos do produto e uma breve descrição da solicitação.</p>
+        <p><a href="https://wa.me/5511991954365" target="_blank" rel="noopener">(11) 99195-4365</a></p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="policy-content" aria-label="Regras de troca, devolução e reembolso">
+    <div class="policy-wrap policy-grid">
+      <article class="policy-card">
+        <div class="policy-card-head">
+          <span class="policy-number">01</span>
+          <h2>Prazo para Solicitação</h2>
+        </div>
+        <p>O cliente poderá solicitar troca ou devolução em até 7 dias corridos após o recebimento do pedido, conforme previsto pelo Código de Defesa do Consumidor para compras realizadas pela internet.</p>
+      </article>
+
+      <article class="policy-card">
+        <div class="policy-card-head">
+          <span class="policy-number">02</span>
+          <h2>Condições do Produto</h2>
+        </div>
+        <p>Para que a devolução seja aprovada:</p>
+        <ul class="policy-list">
+          <li>O produto deve estar nas mesmas condições em que foi enviado;</li>
+          <li>Sem sinais de uso;</li>
+          <li>Com etiquetas, lacres e embalagem original;</li>
+          <li>Acompanhado de todos os acessórios e brindes enviados no pedido.</li>
+        </ul>
+      </article>
+
+      <article class="policy-card">
+        <div class="policy-card-head">
+          <span class="policy-number">03</span>
+          <h2>Produtos de Vestuário</h2>
+        </div>
+        <p>Roupas poderão ser devolvidas ou trocadas desde que:</p>
+        <ul class="policy-list">
+          <li>Não apresentem marcas de uso;</li>
+          <li>Não tenham sido lavadas;</li>
+          <li>Não possuam odores, manchas ou alterações.</li>
+        </ul>
+      </article>
+
+      <article class="policy-card">
+        <div class="policy-card-head">
+          <span class="policy-number">04</span>
+          <h2>Suplementos</h2>
+        </div>
+        <p>Suplementos alimentares somente poderão ser devolvidos caso:</p>
+        <ul class="policy-list">
+          <li>A embalagem esteja lacrada;</li>
+          <li>O produto não tenha sido consumido;</li>
+          <li>Não existam sinais de violação.</li>
+        </ul>
+      </article>
+
+      <article class="policy-card is-wide">
+        <div class="policy-card-head">
+          <span class="policy-number">05</span>
+          <h2>Como Solicitar</h2>
+        </div>
+        <p>Toda solicitação deve ser realizada através do nosso canal oficial de atendimento 24 horas via WhatsApp.</p>
+        <a class="policy-contact" href="https://wa.me/5511991954365?text=Oi!%20Quero%20solicitar%20uma%20troca%20ou%20devolu%C3%A7%C3%A3o." target="_blank" rel="noopener" aria-label="Solicitar troca ou devolução pelo WhatsApp">
+          WhatsApp: (11) 99195-4365
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </article>
+
+      <article class="policy-card">
+        <div class="policy-card-head">
+          <span class="policy-number">06</span>
+          <h2>Processo de Análise</h2>
+        </div>
+        <p>Após o recebimento do produto, nossa equipe realizará uma análise de qualidade para validar as condições da devolução.</p>
+      </article>
+
+      <article class="policy-card">
+        <div class="policy-card-head">
+          <span class="policy-number">07</span>
+          <h2>Reembolso</h2>
+        </div>
+        <p>Caso aprovado:</p>
+        <ul class="policy-list">
+          <li>O reembolso será realizado conforme a forma de pagamento utilizada na compra;</li>
+          <li>O prazo poderá variar de acordo com a operadora do cartão ou instituição financeira.</li>
+        </ul>
+      </article>
+
+      <article class="policy-card is-wide">
+        <div class="policy-card-head">
+          <span class="policy-number">08</span>
+          <h2>Importante</h2>
+        </div>
+        <p>Reservamo-nos o direito de recusar devoluções que não estejam de acordo com as condições descritas nesta política.</p>
+        <div class="policy-note">A clareza da solicitação e o envio das evidências ajudam nossa equipe a concluir a análise com mais rapidez.</div>
+      </article>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" role="contentinfo" aria-label="Rodapé OFF Nutrition Lab">
+  <div class="ftr-bg-grid" aria-hidden="true"></div>
+  <div class="ftr-glow-a" aria-hidden="true"></div>
+
+  <div class="ftr-panel">
+    <div class="ftr-cta-block">
+      <div class="ftr-cta-text">
+        <span class="ftr-eyebrow"><span class="ftr-eyebrow-dot" aria-hidden="true"></span>OFF NUTRITION LAB · SUPORTE</span>
+        <h2 class="ftr-cta-title">Dúvidas sobre sua<br>compra?</h2>
+        <p class="ftr-cta-sub">Nosso atendimento ajuda você com pedido, troca, devolução, rastreio e reembolso de forma direta.</p>
+      </div>
+      <div class="ftr-cta-actions">
+        <a class="ftr-cta-primary" href="https://wa.me/5511991954365?text=Oi!%20Preciso%20de%20ajuda%20com%20um%20pedido." target="_blank" rel="noopener">
+          <span>Falar no WhatsApp</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="ftr-cta-ghost" href="./colecao.html?category=energy-drink">Ver produtos</a>
+      </div>
+    </div>
+
+    <div class="ftr-grid">
+      <div class="ftr-brand">
+        <div class="ftr-brand-row">
+          <div class="ftr-brand-mark">O<span class="ftr-brand-dot"></span></div>
+          <div class="ftr-brand-info">
+            <span class="ftr-brand-name">OFF NUTRITION<span style="color:var(--acid)">.</span>LAB</span>
+            <span class="ftr-brand-meta">performance · ciência · estilo</span>
+          </div>
+        </div>
+        <p class="ftr-brand-desc">A OFF NUTRITION LAB nasceu para entregar performance de elite ao atleta brasileiro. Suplementação calibrada e custo justo.</p>
+        <div class="ftr-badges">
+          <span class="ftr-badge">Atendimento 24h</span>
+          <span class="ftr-badge">Compra Segura</span>
+          <span class="ftr-badge">Suporte Humano</span>
+        </div>
+      </div>
+
+      <nav class="ftr-col" aria-label="Navegar">
+        <div class="ftr-col-title">Navegar</div>
+        <ul class="ftr-links">
+          <li><a class="ftr-link" href="./index.html#hero">Início</a></li>
+          <li><a class="ftr-link" href="./index.html#products">Produtos</a></li>
+          <li><a class="ftr-link" href="./index.html#benefits">Catalyze Pro</a></li>
+          <li><a class="ftr-link" href="./index.html#onlab">ONLAB Wear</a></li>
+          <li><a class="ftr-link" href="./quem-somos.html">Quem Somos</a></li>
+        </ul>
+      </nav>
+
+      <nav class="ftr-col" aria-label="Linha">
+        <div class="ftr-col-title">Linha</div>
+        <ul class="ftr-links">
+          <li><a class="ftr-link" href="./colecao.html?category=energy-drink">Energy Dust</a></li>
+          <li><a class="ftr-link" href="./colecao.html?category=energy-drink">Catalyze Pro</a></li>
+          <li><a class="ftr-link" href="./colecao.html?category=vestuario">ONLAB Apparel</a></li>
+          <li><a class="ftr-link" href="./colecao.html?category=vestuario">Oversized</a></li>
+          <li><a class="ftr-link" href="./colecao.html?category=vestuario">Regata Machão</a></li>
+        </ul>
+      </nav>
+
+      <nav class="ftr-col" aria-label="Contato">
+        <div class="ftr-col-title">Contato</div>
+        <ul class="ftr-links">
+          <li><a class="ftr-link" href="https://instagram.com/offnutrition" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a class="ftr-link" href="https://wa.me/5511991954365" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a class="ftr-link" href="mailto:lab@offnutrition.com.br">lab@offnutrition.com.br</a></li>
+          <li><a class="ftr-link" href="./politica-de-devolucao.html">Política de Devolução</a></li>
+          <li><a class="ftr-link" href="./quem-somos.html#about-faq">FAQ</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="ftr-line-accent" aria-hidden="true"></div>
+    <div class="ftr-meta-row">
+      <span>© 2026 OFF NUTRITION LAB · Todos os direitos reservados</span>
+      <span>Build <span class="ftr-acc">v1.0</span> · Aurora</span>
+      <span>Forged with <span class="ftr-acc">signal</span> — not noise</span>
+    </div>
+  </div>
+</footer>
+
+<script src="./assets/js/off-store.js"></script>
+<script src="./assets/js/cart-drawer.js"></script>
+<script src="./shopfy/shopify.js"></script>
+<script src="./shopfy/cart.js"></script>
+<script src="./shopfy/products.js"></script>
+</body>
+</html>
