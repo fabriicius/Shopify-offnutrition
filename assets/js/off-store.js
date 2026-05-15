@@ -33,6 +33,7 @@
      --------------------------------------------------------------- */
   const CONSTANTS = {
     JSON_URL: './jsondb/off-products-database.json',
+    ACCOUNT_ORDERS_URL: 'https://conta.offnutrition.com.br/account/orders',
     // ID canônico das categorias usadas pelos renderers principais.
     // Conforme combinado: terceira dobra = categoria 1 (Energy Drink),
     // quinta dobra = categoria 2 (Vestuário). Fonte primária da verdade.
@@ -47,6 +48,13 @@
     FALLBACK_IMAGE: './assets/raw_files/JOURNAL.png',
     PRODUTO_PAGE: './produto.html',
   };
+
+  function hydrateAccountOrdersLinks() {
+    const links = document.querySelectorAll('[data-account-orders-link]');
+    links.forEach(function (link) {
+      link.setAttribute('href', CONSTANTS.ACCOUNT_ORDERS_URL);
+    });
+  }
 
   /* ---------------------------------------------------------------
      Estado interno
@@ -809,4 +817,10 @@
     renderEnergyDrinkHeader,
     renderApparelCarousel,
   };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', hydrateAccountOrdersLinks);
+  } else {
+    hydrateAccountOrdersLinks();
+  }
 })(window);
