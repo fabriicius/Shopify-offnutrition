@@ -47,6 +47,15 @@
     APPAREL_CATEGORY_SLUGS: ['vestuario', 'vestuário', 'apparel', 'onlab'],
     FALLBACK_IMAGE: './assets/raw_files/JOURNAL.png',
     PRODUTO_PAGE: './produto.html',
+    COLECAO_VESTUARIO_URL: './colecao.html?category=vestuario',
+    ONLAB_MODEL_IMAGES: [
+      { src: './assets/raw_files/modelos/1.png', alt: 'Modelo vestindo coleção ONLAB — look 1' },
+      { src: './assets/raw_files/modelos/2.png', alt: 'Modelo vestindo coleção ONLAB — look 2' },
+      { src: './assets/raw_files/modelos/3.png', alt: 'Modelo vestindo coleção ONLAB — look 3' },
+      { src: './assets/raw_files/modelos/4.png', alt: 'Modelo vestindo coleção ONLAB — look 4' },
+      { src: './assets/raw_files/modelos/5.png', alt: 'Modelo vestindo coleção ONLAB — look 5' },
+      { src: './assets/raw_files/modelos/6.png', alt: 'Modelo vestindo coleção ONLAB — look 6' },
+    ],
   };
 
   function hydrateAccountOrdersLinks() {
@@ -693,33 +702,28 @@
      RENDERER — quinta dobra (Vestuário/ONLAB)
      =============================================================== */
 
-  function _buildApparelCardHTML({ image, alt, badge, price, name, accentLabel, tagline, href, ariaLabel }) {
+  function _buildOnlabModelCardHTML({ image, alt, index }) {
     const safeImg = _escapeHTML(image || CONSTANTS.FALLBACK_IMAGE);
-    const safeAlt = _escapeHTML(alt || name);
-    const safeBadge = _escapeHTML(badge || 'ONLAB');
-    const safePrice = _escapeHTML(price || '');
-    const safeName = _escapeHTML(name || '');
-    const safeAccent = _escapeHTML((accentLabel || badge || 'ONLAB').toUpperCase());
-    const safeTag = _escapeHTML(tagline || '');
-    const safeHref = _escapeHTML(href || CONSTANTS.PRODUTO_PAGE);
-    const safeAria = _escapeHTML(ariaLabel || name);
+    const safeAlt = _escapeHTML(alt || 'Modelo vestindo coleção ONLAB');
+    const safeHref = _escapeHTML(CONSTANTS.COLECAO_VESTUARIO_URL);
+    const lookNum = String(index + 1).padStart(2, '0');
+    const safeAria = _escapeHTML(`Ver coleção completa ONLAB — look ${lookNum}`);
 
     return `
-      <a class="onlab-card" role="listitem" aria-label="${safeAria}" href="${safeHref}">
+      <a class="onlab-card onlab-card--model" role="listitem" aria-label="${safeAria}" href="${safeHref}">
         <div class="onlab-card-img">
           <img src="${safeImg}" alt="${safeAlt}" loading="lazy" onerror="this.src='${CONSTANTS.FALLBACK_IMAGE}'">
         </div>
-        <div class="onlab-shimmer"></div>
-        <span class="onlab-card-badge">${safeBadge}</span>
-        ${safePrice ? `<span class="onlab-card-price">${safePrice}</span>` : ''}
-        <div class="onlab-card-fade"></div>
+        <div class="onlab-shimmer" aria-hidden="true"></div>
+        <span class="onlab-card-badge">ONLAB · ${lookNum}</span>
+        <div class="onlab-card-fade" aria-hidden="true"></div>
         <div class="onlab-card-content">
-          <span class="onlab-card-tag">${safeAccent}</span>
-          <h3 class="onlab-card-name">${safeName}</h3>
+          <span class="onlab-card-tag">Performance Wear · OFF Nutrition</span>
+          <h3 class="onlab-card-name">Coleção ONLAB</h3>
           <div class="onlab-card-accent"></div>
-          <p class="onlab-card-tagline">${safeTag}</p>
+          <p class="onlab-card-tagline">Treine com identidade. Caimento premium e estilo que entrega presença.</p>
           <span class="onlab-card-arrow">
-            Visualizar produto
+            Ver coleção completa
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </span>
         </div>
@@ -728,49 +732,24 @@
   }
 
   /**
-   * Renderiza o carrossel da quinta dobra (vestuário ONLAB).
-   * - Se o JSON tiver produtos da categoria de vestuário → renderização dinâmica
-   * - Se não tiver (estado atual) → mantém o conteúdo estático original e
-   *   apenas avisa no console; o usuário disse que essa categoria virá em breve.
+   * Renderiza o carrossel da quinta dobra (ONLAB) com fotos de modelos
+   * (assets/raw_files/modelos). Não usa produtos do JSON — todos os cliques
+   * levam à página da coleção completa de vestuário.
    */
   function renderApparelCarousel({ trackEl } = {}) {
-    if (!_db || !trackEl) return false;
+    if (!trackEl) return false;
 
-    // 1) categoryId direto (Vestuário = id 2 por convenção)
-    let products = getProductsByCategoryId(CONSTANTS.APPAREL_CATEGORY_ID);
-    // 2) fallback por nome/slug
-    if (!products.length) {
-      products = getProductsByCategoryNamesOrSlugs(
-        CONSTANTS.APPAREL_CATEGORY_NAMES,
-        CONSTANTS.APPAREL_CATEGORY_SLUGS
-      );
-    }
-    if (!products.length) {
-      console.info('[OffStore] Categoria de vestuário ainda não populada no JSON. Mantendo campanha visual atual da quinta dobra.');
-      return false;
-    }
+    const models = _safeArr(CONSTANTS.ONLAB_MODEL_IMAGES);
+    if (!models.length) return false;
 
-    const cards = products.map((product) => {
-      const minVariant = getMinPriceVariant(product.id);
-      const pricing = minVariant && minVariant.pricing ? minVariant.pricing : null;
-      const priceNow = pricing ? (pricing.displayPrice || formatBRL(pricing.price)) : '';
-      const mainImg = getMainImage(product.id);
-      return _buildApparelCardHTML({
-        image: mainImg ? mainImg.src : CONSTANTS.FALLBACK_IMAGE,
-        alt: mainImg ? mainImg.alt : product.name,
-        badge: 'ONLAB',
-        price: priceNow,
-        name: product.name,
-        accentLabel: product.subtitle || 'ONLAB',
-        tagline: product.shortDescription || '',
-        href: `${CONSTANTS.PRODUTO_PAGE}?slug=${encodeURIComponent(product.slug)}`,
-        ariaLabel: product.name,
-      });
-    });
+    const cards = models.map((model, index) =>
+      _buildOnlabModelCardHTML({
+        image: model.src,
+        alt: model.alt,
+        index,
+      })
+    );
 
-    if (!cards.length) return false;
-
-    // Marquee CSS faz translate(-50%): duplicamos o conteúdo para loop seamless.
     trackEl.innerHTML = cards.join('') + cards.join('');
     return true;
   }

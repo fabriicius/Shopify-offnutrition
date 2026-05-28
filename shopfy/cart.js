@@ -412,9 +412,67 @@
     }
   }
 
+  function _resolveCheckoutDatabase() {
+    const cfg = _cfg();
+    if (cfg && cfg.raw && Array.isArray(cfg.raw.variants)) return cfg.raw;
+
+    const candidates = [
+      global.OFF_PRODUCTS_DATABASE,
+      global.offProductsDatabase,
+      global.productsDatabase,
+      global.PRODUCTS_DB,
+    ];
+    for (let i = 0; i < candidates.length; i++) {
+      const db = candidates[i];
+      if (db && Array.isArray(db.variants)) return db;
+    }
+
+    return cfg && Array.isArray(cfg.variants)
+      ? { variants: cfg.variants }
+      : null;
+  }
+
+  function _getCurrentCouponCode() {
+    if (typeof global.getCurrentCouponCode !== 'function') return null;
+    try {
+      const code = global.getCurrentCouponCode();
+      return code == null ? null : String(code).trim() || null;
+    } catch (_) {
+      return null;
+    }
+  }
+
+  async function redirectToCheckout(items) {
+    const database = _resolveCheckoutDatabase();
+
+    if (global.OffYumpiCheckout && database) {
+      const yumpiStatus = global.OffYumpiCheckout.canUseYumpiCheckout(items, database);
+
+      if (yumpiStatus.canUse) {
+        try {
+          return global.OffYumpiCheckout.redirectToYumpiCheckout(items, database, {
+            preserveUtm: true,
+            promocode: _getCurrentCouponCode(),
+            promocodeParam: 'promocode',
+          });
+        } catch (error) {
+          console.error('[YUMPI Checkout] Erro ao gerar checkout YUMPI:', error);
+          console.warn('[YUMPI Checkout] Usando fallback Shopify.');
+        }
+      } else {
+        console.warn('[YUMPI Checkout] Checkout YUMPI indisponível para este carrinho:', yumpiStatus);
+        console.warn('[YUMPI Checkout] Usando fallback Shopify.');
+      }
+    }
+
+    const cart = await createShopifyCart(items);
+    window.location.href = cart.checkoutUrl;
+    return cart;
+  }
+
   /**
-   * Lê o carrinho local, cria o carrinho real na Shopify e redireciona
-   * para o `checkoutUrl`. Desabilita o botão durante a operação.
+   * Lê o carrinho local e decide checkout YUMPI/Shopify com fallback
+   * obrigatório para a Shopify. Desabilita o botão durante a operação.
    */
   async function goToCheckout() {
     if (_processing) return;
@@ -430,12 +488,11 @@
     _setBusy(btn, true);
 
     try {
-      const cart = await createShopifyCart(items);
+      const checkoutResult = await redirectToCheckout(items);
       // Não limpamos o carrinho local antes do redirect: caso o usuário
       // volte sem concluir, o estado do drawer permanece intacto.
       // A Shopify passa a ser a fonte da verdade a partir daqui.
-      window.location.href = cart.checkoutUrl;
-      return cart;
+      return checkoutResult;
     } catch (err) {
       console.error('[OffShopifyCart] Falha em goToCheckout:', err);
       const msg = (err && err.message)
