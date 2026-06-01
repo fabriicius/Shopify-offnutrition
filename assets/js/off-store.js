@@ -248,6 +248,23 @@
     return _safeArr(_db.products).find(p => p && p.slug === slug) || null;
   }
 
+  /**
+   * Busca produtos ativos pelo nome (case- e accent-insensitive).
+   * @param {string} query
+   * @param {number} [limit=8]
+   */
+  function searchProductsByName(query, limit) {
+    const q = _normSlug(query).trim();
+    if (!q) return [];
+    const cap = typeof limit === 'number' && limit > 0 ? limit : 8;
+    return getActiveProducts().filter(p => _normSlug(p.name).includes(q)).slice(0, cap);
+  }
+
+  function getProductPageUrl(slug) {
+    if (!slug) return CONSTANTS.PRODUTO_PAGE;
+    return CONSTANTS.PRODUTO_PAGE + '?slug=' + encodeURIComponent(slug);
+  }
+
   function getBrand(brandId) { return _byId(_db && _db.brands, brandId); }
   function getCategory(catId) { return _byId(_db && _db.categories, catId); }
 
@@ -774,6 +791,8 @@
     getProductsByAnyCategorySlug,
     getProductsByCategoryNamesOrSlugs,
     getProductBySlug,
+    searchProductsByName,
+    getProductPageUrl,
     getBrand,
     getCategory,
 
